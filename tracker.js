@@ -3,7 +3,7 @@
    Multilingue FR/EN - Réactif aux changements de langue - Mobile Optimisé
    ============================================================ */
 
-const API_URL = window.PIA_API_URL || 'http://localhost:5000';
+const API_URL = window.PIA_API_URL || 'https://pia-login.onrender.com/';
 
 const COOKIE_CONFIG = {
   consentKey: 'pia-consent-v2',
