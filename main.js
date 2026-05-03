@@ -7,41 +7,41 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ── CUSTOM CURSOR PREMIUM ── */
-  if (window.matchMedia('(pointer: fine)').matches) {
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    const cursorDot = document.createElement('div');
-    cursorDot.className = 'custom-cursor-dot';
-    document.body.appendChild(cursor);
-    document.body.appendChild(cursorDot);
-    document.body.classList.add('cursor-disabled');
-
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-
-    function animateCursor() {
-      cursorX += (mouseX - cursorX) * 0.2;
-      cursorY += (mouseY - cursorY) * 0.2;
-      cursor.style.left = cursorX + 'px';
-      cursor.style.top = cursorY + 'px';
-      cursorDot.style.left = mouseX + 'px';
-      cursorDot.style.top = mouseY + 'px';
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    const hoverElements = document.querySelectorAll('a, button, input, textarea, .faq-question, .service-card, .project-card');
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-  }
+  /* ── CUSTOM CURSOR (désactivé pour fluidité) ── */
+  // if (window.matchMedia('(pointer: fine)').matches) {
+  //   const cursor = document.createElement('div');
+  //   cursor.className = 'custom-cursor';
+  //   const cursorDot = document.createElement('div');
+  //   cursorDot.className = 'custom-cursor-dot';
+  //   document.body.appendChild(cursor);
+  //   document.body.appendChild(cursorDot);
+  //   document.body.classList.add('cursor-disabled');
+  //
+  //   let mouseX = 0, mouseY = 0;
+  //   let cursorX = 0, cursorY = 0;
+  //
+  //   document.addEventListener('mousemove', (e) => {
+  //     mouseX = e.clientX;
+  //     mouseY = e.clientY;
+  //   });
+  //
+  //   function animateCursor() {
+  //     cursorX += (mouseX - cursorX) * 0.2;
+  //     cursorY += (mouseY - cursorY) * 0.2;
+  //     cursor.style.left = cursorX + 'px';
+  //   cursor.style.top = cursorY + 'px';
+  //     cursorDot.style.left = mouseX + 'px';
+  //     cursorDot.style.top = mouseY + 'px';
+  //     requestAnimationFrame(animateCursor);
+  //   }
+  //   animateCursor();
+  //
+  //   const hoverElements = document.querySelectorAll('a, button, input, textarea, .faq-question, .service-card, .project-card');
+  //   hoverElements.forEach(el => {
+  //     el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+  //     el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  //   });
+  // }
 
   /* ── GESTION DU THÈME (Sombre / Clair) ── */
   const themeToggle = document.getElementById('themeToggle');
