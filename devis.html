@@ -1,0 +1,256 @@
+<!-- 
+  PRIME IMPACT AGENCY - Page Devis (devis.html)
+  Formulaire multi-étapes pour recueillir les besoins détaillés des prospects.
+-->
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Demander un devis — Prime Impact Agency</title>
+<meta name="description" content="Obtenez un devis gratuit pour votre projet de création de site web ou tunnel de vente avec Prime Impact Agency.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Styles spécifiques au formulaire à étapes */
+  .devis-step { display: none; }
+  .devis-step.active { display: block; animation: fadeIn 0.4s ease forwards; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  
+  .form-control {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 16px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+  }
+  .form-control:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+  }
+  .radio-group {
+    display: flex;
+    gap: 20px;
+  }
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 12px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--glass-bg);
+    transition: all 0.3s ease;
+  }
+  .radio-label:hover {
+    border-color: var(--accent-blue);
+  }
+  .radio-label input[type="radio"] {
+    accent-color: var(--accent-blue);
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ── RESPONSIVE MOBILE ── */
+  @media (max-width: 640px) {
+
+    /* Réduire le padding top de la section sur mobile */
+    .devis-section-wrap {
+      padding-top: 100px !important;
+    }
+
+    /* Réduire le padding interne du formulaire */
+    .devis-container {
+      padding: 24px 18px !important;
+    }
+
+    /* Grille prénom / nom en colonne */
+    .devis-name-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Radio buttons en colonne sur petits écrans */
+    .radio-group {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .radio-label {
+      padding: 14px 16px;
+      font-size: 15px;
+    }
+
+    /* Boutons de navigation pleine largeur */
+    .devis-nav-btns {
+      flex-direction: column-reverse;
+      gap: 12px;
+    }
+
+    .devis-nav-btns .btn {
+      width: 100% !important;
+      justify-content: center;
+    }
+
+    /* Titre de l'étape moins grand */
+    .devis-step h3 {
+      font-size: 20px !important;
+    }
+
+    /* Textarea moins haute */
+    .form-control[rows] {
+      height: 120px !important;
+    }
+
+    /* Section titre */
+    .devis-page-title {
+      font-size: clamp(24px, 7vw, 36px) !important;
+    }
+  }
+</style>
+</head>
+<body class="bg-grid">
+<div id="app">
+
+<!-- Contenu principal -->
+<section class="section-padding devis-section-wrap" style="min-height: calc(100vh - 100px); display: flex; align-items: center; padding-top: 140px;">
+  <div class="container" style="max-width: 800px; margin: 0 auto; width: 100%;">
+    
+    <div class="text-center reveal">
+      <h1 class="section-title devis-page-title" data-i18n="devis.title">Parlez-nous de votre projet.</h1>
+      <p class="section-subtitle" data-i18n="devis.sub">Remplissez ce formulaire en quelques clics pour obtenir une estimation gratuite et détaillée.</p>
+    </div>
+
+    <div class="devis-container reveal delay-1" style="background: var(--glass-bg); padding: 40px; border-radius: 16px; border: 1px solid var(--border-color); margin-top: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.05);">
+      
+      <!-- Barre de progression -->
+      <div class="devis-progress-wrapper" style="margin-bottom: 40px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+          <span id="devisStepLabel" style="font-weight: bold; color: var(--accent-blue);" data-i18n="devis.step1">Étape 1 sur 3</span>
+        </div>
+        <div style="height: 6px; background: var(--border-color); border-radius: 3px; overflow: hidden;">
+          <div id="devisProgress" style="height: 100%; width: 33.33%; background: var(--accent-blue); transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+        </div>
+      </div>
+
+      <!-- Formulaire -->
+      <form id="devisForm">
+        
+        <!-- ETAPE 1 : Type de projet -->
+        <div class="devis-step active">
+          <h3 style="margin-bottom: 30px; font-size: 24px;" data-i18n="devis.q1.title">De quoi avez-vous besoin ?</h3>
+          
+          <div class="form-group" style="margin-bottom: 24px;">
+            <label style="display: block; margin-bottom: 10px; font-weight: bold;" data-i18n="devis.q1.label">Type de prestation souhaitée</label>
+            <select class="form-control" required>
+              <option value="" disabled selected data-i18n="devis.q1.opt0">Sélectionnez une option...</option>
+              <option value="vitrine" data-i18n="devis.q1.opt1">Site Vitrine / Corporate</option>
+              <option value="ecommerce" data-i18n="devis.q1.opt2">Boutique E-commerce</option>
+              <option value="funnel" data-i18n="devis.q1.opt3">Tunnel de Vente / Landing Page</option>
+              <option value="seo" data-i18n="devis.q1.opt4">Prestation SEO / Référencement</option>
+              <option value="autre" data-i18n="devis.q1.opt5">Autre / Je ne sais pas encore</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 40px;">
+            <label style="display: block; margin-bottom: 10px; font-weight: bold;" data-i18n="devis.q2.label">Avez-vous déjà un site web existant ?</label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="has_site" value="oui" required> <span data-i18n="devis.q2.opt1">Oui, je veux le refondre</span></label>
+              <label class="radio-label"><input type="radio" name="has_site" value="non"> <span data-i18n="devis.q2.opt2">Non, c'est une création</span></label>
+            </div>
+          </div>
+
+          <div class="devis-nav-btns" style="display: flex; justify-content: flex-end;">
+            <button type="button" class="btn btn-primary btn-next"><span data-i18n="devis.btn.next">Suivant</span> <i class="ph ph-arrow-right" style="margin-left: 8px;"></i></button>
+          </div>
+        </div>
+
+        <!-- ETAPE 2 : Détails du projet -->
+        <div class="devis-step">
+          <h3 style="margin-bottom: 30px; font-size: 24px;" data-i18n="devis.step2.title">Détails & Budget</h3>
+          
+          <div class="form-group" style="margin-bottom: 24px;">
+            <label style="display: block; margin-bottom: 10px; font-weight: bold;" data-i18n="devis.q3.label">Description brève de votre projet</label>
+            <textarea class="form-control" rows="5" placeholder="Quels sont vos objectifs principaux ? Qui sont vos clients ? Quelles fonctionnalités sont indispensables ?" data-i18n="devis.q3.placeholder" required style="resize: vertical;"></textarea>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 40px;">
+            <label style="display: block; margin-bottom: 10px; font-weight: bold;" data-i18n="devis.q4.label">Budget estimé alloué au projet</label>
+            <select class="form-control" required>
+              <option value="" disabled selected data-i18n="devis.q4.opt0">Sélectionnez une fourchette...</option>
+              <option value="1500-3000" data-i18n="devis.q4.opt1">1 500 € - 3 000 € (Site vitrine standard)</option>
+              <option value="3000-5000" data-i18n="devis.q4.opt2">3 000 € - 5 000 € (Vitrine premium / E-commerce)</option>
+              <option value="5000-10000" data-i18n="devis.q4.opt3">5 000 € - 10 000 € (Projet complexe / Sur-mesure)</option>
+              <option value=">10000" data-i18n="devis.q4.opt4">Plus de 10 000 €</option>
+              <option value="notsure" data-i18n="devis.q4.opt5">Je ne sais pas / À définir</option>
+            </select>
+          </div>
+
+          <div class="devis-nav-btns" style="display: flex; justify-content: space-between;">
+            <button type="button" class="btn btn-secondary btn-prev"><i class="ph ph-arrow-left" style="margin-right: 8px;"></i> <span data-i18n="devis.btn.prev">Précédent</span></button>
+            <button type="button" class="btn btn-primary btn-next"><span data-i18n="devis.btn.next">Suivant</span> <i class="ph ph-arrow-right" style="margin-left: 8px;"></i></button>
+          </div>
+        </div>
+
+        <!-- ETAPE 3 : Coordonnées -->
+        <div class="devis-step">
+          <h3 style="margin-bottom: 30px; font-size: 24px;" data-i18n="devis.step3.title">Vos coordonnées</h3>
+          
+          <div class="devis-name-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+            <div class="form-group">
+              <label style="display: block; margin-bottom: 10px; font-weight: bold;" data-i18n="devis.q5.label1">Prénom</label>
+              <input type="text" class="form-control" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label style="display: block; margin-bottom: 10px; font-weight: bold;" data-i18n="devis.q5.label2">Nom</label>
+              <input type="text" class="form-control" placeholder="Doe" required>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 24px;">
+            <label style="display: block; margin-bottom: 10px; font-weight: bold;" data-i18n="devis.q5.label3">Email professionnel</label>
+            <input type="email" class="form-control" placeholder="john@monentreprise.com" required>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 40px;">
+            <label style="display: block; margin-bottom: 10px; font-weight: bold;" data-i18n="devis.q5.label4">Téléphone</label>
+            <input type="tel" class="form-control" placeholder="06 12 34 56 78">
+          </div>
+
+          <div class="devis-nav-btns" style="display: flex; justify-content: space-between;">
+            <button type="button" class="btn btn-secondary btn-prev"><i class="ph ph-arrow-left" style="margin-right: 8px;"></i> <span data-i18n="devis.btn.prev">Précédent</span></button>
+            <button type="submit" class="btn btn-primary"><span data-i18n="devis.btn.submit">Demander mon devis</span> <i class="ph ph-paper-plane-tilt" style="margin-left: 8px;"></i></button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Message de confirmation (masqué par défaut) -->
+      <div id="devisConfirm" style="display: none; text-align: center; padding: 40px 0;">
+        <div style="display: inline-flex; justify-content: center; align-items: center; width: 80px; height: 80px; border-radius: 50%; background: rgba(16, 185, 129, 0.1); color: #10b981; margin-bottom: 24px;">
+          <i class="ph ph-check" style="font-size: 40px;"></i>
+        </div>
+        <h3 style="font-size: 32px; margin-bottom: 16px;" data-i18n="devis.success.title">Demande envoyée !</h3>
+        <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 40px; line-height: 1.6;" data-i18n="devis.success.desc">Merci pour votre confiance. Notre équipe va étudier votre projet en détail et vous recontactera sous 24 à 48 heures pour en discuter.</p>
+        <a href="index.html" class="btn btn-primary" data-i18n="devis.success.btn">Retour à l'accueil</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</div><!-- #app -->
+
+<script src="i18n.js"></script>
+  <script src="components.js"></script>
+<script src="main.js"></script>
+<script src="tracker.js"></script>
+</body>
+</html>
