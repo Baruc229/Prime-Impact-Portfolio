@@ -726,7 +726,7 @@ class I18nManager {
   }
 
   setupSwitcher() {
-    const switchers = document.querySelectorAll('.lang-switcher button, .lang-dropdown button');
+    const switchers = document.querySelectorAll('.lang-switcher button');
     switchers.forEach(btn => {
       btn.addEventListener('click', (e) => {
         const lang = e.currentTarget.getAttribute('data-lang');
@@ -737,7 +737,7 @@ class I18nManager {
   }
 
   updateActiveSwitcher() {
-    const switchers = document.querySelectorAll('.lang-switcher button, .lang-dropdown button');
+    const switchers = document.querySelectorAll('.lang-switcher button');
     switchers.forEach(btn => {
       if (btn.getAttribute('data-lang') === this.currentLang) {
         btn.classList.add('active');

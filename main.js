@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 400);
     }, 3000);
     
-    document.querySelectorAll('.lang-switcher button, .lang-dropdown button').forEach(btn => {
+    document.querySelectorAll('.lang-switcher button').forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.dataset.lang;
         words = lang === 'en' ? wordsEN : wordsFR;
@@ -203,19 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rotator.textContent = words[0];
       });
     });
-
-    // Globe dropdown toggle
-    const langGlobe = document.getElementById('langGlobe');
-    const langDropdown = document.getElementById('langDropdown');
-    if (langGlobe && langDropdown) {
-      langGlobe.addEventListener('click', (e) => {
-        e.stopPropagation();
-        langDropdown.classList.toggle('show');
-      });
-      document.addEventListener('click', () => {
-        langDropdown.classList.remove('show');
-      });
-    }
   }
 
   /* ── COMPTEURS ANIMÉS (Section Résultats) ── 
