@@ -2505,6 +2505,24 @@ img {
 }
 
 @media (max-width: 640px) {
+  .testi-hero-stats {
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+  }
+  
+  .testi-stat-num {
+    font-size: 36px;
+  }
+  
+  .testi-stat-stars {
+    font-size: 12px;
+  }
+  
+  .testi-stat-label {
+    font-size: 11px;
+  }
+  
   .hero-title-centered {
     font-size: 32px;
   }
