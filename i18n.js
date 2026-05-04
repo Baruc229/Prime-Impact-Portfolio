@@ -18,6 +18,7 @@ const translations = {
   "nav.testimonials": { "fr": "Témoignages", "en": "Testimonials" },
   "nav.contact": { "fr": "Contact", "en": "Contact" },
   "nav.quote": { "fr": "Devis gratuit", "en": "Free Quote" },
+  "nav.cta_mobile": { "fr": "Demander un devis", "en": "Request a Quote" },
 
   /**
    * CONVENTION DE NOMMAGE DES CLÉS :
