@@ -4135,8 +4135,8 @@ textarea.form-control {
     transform: translateX(-50%);
     width: 92%;
     max-width: 420px;
-    height: 48px;
-    padding: 0 16px;
+    height: 56px;
+    padding: 0 20px;
     z-index: 9999;
     background-color: var(--glass-bg-solid);
     border: 1px solid var(--border-color);
@@ -4157,7 +4157,7 @@ textarea.form-control {
   }
 
   .nav-logo {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: -1px;
@@ -4165,7 +4165,7 @@ textarea.form-control {
     text-decoration: none;
     flex-shrink: 0;
     line-height: 1;
-    height: 24px;
+    height: 28px;
     display: flex;
     align-items: center;
   }
@@ -4174,9 +4174,9 @@ textarea.form-control {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     flex-shrink: 0;
-    height: 24px;
+    height: 28px;
   }
 
   .lang-switcher {
@@ -4213,7 +4213,7 @@ textarea.form-control {
     background: none;
     border: none;
     color: var(--text-main);
-    font-size: 18px;
+    font-size: 22px;
     cursor: pointer;
     padding: 4px;
     align-items: center;
@@ -4288,7 +4288,7 @@ textarea.form-control {
     background: none;
     border: none;
     color: var(--text-main);
-    font-size: 18px;
+    font-size: 22px;
     cursor: pointer;
     padding: 4px;
     display: flex;
