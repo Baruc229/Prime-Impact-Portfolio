@@ -995,6 +995,10 @@ img {
   transform: scale(1.1);
 }
 
+.lang-btn {
+  display: none;
+}
+
 /* BUTTONS */
 .btn {
   display: inline-flex;
@@ -4199,14 +4203,19 @@ textarea.form-control {
     color: var(--accent-blue);
   }
 
+  /* Hide original FR|EN on mobile, show globe instead */
+  .lang-switcher {
+    display: none !important;
+  }
+
   .lang-btn {
+    display: flex !important;
     background: none;
     border: none;
     color: var(--text-main);
     font-size: 18px;
     cursor: pointer;
     padding: 4px;
-    display: flex;
     align-items: center;
     justify-content: center;
     transition: color 0.2s;

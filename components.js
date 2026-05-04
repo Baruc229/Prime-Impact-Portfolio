@@ -40,6 +40,11 @@ function buildHeader() {
         ${navLinksHTML}
       </nav>
       <div class="nav-actions">
+        <div class="lang-switcher">
+          <button data-lang="fr" class="active">FR</button>
+          <span>|</span>
+          <button data-lang="en">EN</button>
+        </div>
         <button class="lang-btn" id="langToggle" aria-label="Changer la langue">
           <i class="fa-solid fa-globe"></i>
         </button>
