@@ -996,7 +996,7 @@ img {
 }
 
 .lang-btn {
-  display: none;
+  display: none !important;
 }
 
 /* BUTTONS */
