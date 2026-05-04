@@ -109,6 +109,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const langToggle = document.getElementById('langToggle');
   const langMenu = document.getElementById('langMenu');
   if (langToggle && langMenu) {
+    // Direct click handler
+    langToggle.onclick = function(e) {
+      e.stopPropagation();
+      langMenu.classList.toggle('show');
+    };
+    
     langToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       langMenu.classList.toggle('show');

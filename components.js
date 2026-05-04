@@ -45,7 +45,7 @@ function buildHeader() {
           <span>|</span>
           <button data-lang="en">EN</button>
         </div>
-        <button class="lang-btn" id="langToggle" aria-label="Changer la langue">
+        <button class="lang-btn" id="langToggle" aria-label="Changer la langue" onclick="toggleLangMenu(event)">
           <i class="fa-solid fa-globe"></i>
         </button>
         <div class="lang-menu" id="langMenu">

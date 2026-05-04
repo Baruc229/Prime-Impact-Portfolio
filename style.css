@@ -4226,7 +4226,7 @@ textarea.form-control {
   }
 
   .lang-menu {
-    display: none;
+    display: none !important;
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
