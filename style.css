@@ -12,6 +12,11 @@
   --font-main: 'Roboto Condensed', sans-serif;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* THÈME CLAIR - Premium Light */
 [data-theme="light"] {
   --bg-main: #F8F9FA;
