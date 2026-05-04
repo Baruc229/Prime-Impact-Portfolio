@@ -995,7 +995,7 @@ img {
   transform: scale(1.1);
 }
 
-.lang-btn {
+.lang-btn, .lang-menu {
   display: none !important;
 }
 
