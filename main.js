@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 400);
     }, 3000);
     
-    document.querySelectorAll('.lang-switcher button').forEach(btn => {
+    document.querySelectorAll('.lang-menu button').forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.dataset.lang;
         words = lang === 'en' ? wordsEN : wordsFR;
