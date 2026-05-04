@@ -4209,24 +4209,43 @@ textarea.form-control {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: color 0.2s;
+  }
+
+  .lang-btn:hover {
+    color: var(--accent-blue);
   }
 
   .lang-menu {
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 8px);
     right: 0;
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 8px;
+    border-radius: 10px;
+    padding: 4px;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
     z-index: 10000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    min-width: 80px;
   }
 
   .lang-menu.show {
     display: flex;
+    animation: dropIn 0.2s ease;
+  }
+
+  @keyframes dropIn {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .lang-menu button {
@@ -4236,9 +4255,15 @@ textarea.form-control {
     font-weight: 600;
     color: var(--text-muted);
     cursor: pointer;
-    padding: 6px 12px;
-    border-radius: 4px;
+    padding: 8px 16px;
+    border-radius: 6px;
     text-align: center;
+    transition: all 0.2s;
+  }
+
+  .lang-menu button:hover {
+    background: var(--glass-bg);
+    color: var(--text-main);
   }
 
   .lang-menu button.active {
