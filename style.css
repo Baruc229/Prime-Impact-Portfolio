@@ -4426,19 +4426,19 @@ textarea.form-control {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2px;
+    gap: 0;
     width: 100%;
     flex: none;
-    margin: 10px 0;
+    padding: 10px 0;
   }
 
   .nav-mobile .nav-links a {
-    font-size: 20px;
+    font-size: 18px;
     color: var(--text-main);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease;
-    padding: 6px;
+    padding: 4px 10px;
     text-align: center;
     font-family: var(--font-main);
   }
@@ -4452,14 +4452,14 @@ textarea.form-control {
   .nav-mobile .btn-primary {
     width: 100%;
     max-width: 100%;
-    padding: 10px 20px;
-    font-size: 14px;
+    padding: 8px 16px;
+    font-size: 13px;
     text-align: center;
   }
 
   .nav-mobile-footer {
     position: absolute;
-    bottom: 20px;
+    bottom: 12px;
     left: 20px;
     right: 20px;
     display: flex;
