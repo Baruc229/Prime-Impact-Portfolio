@@ -3208,23 +3208,62 @@ textarea.form-control {
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 12px 0;
+    padding: 8px 0;
+    background-color: var(--glass-bg-solid);
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   .nav-actions {
-    gap: 8px;
+    gap: 4px;
+    flex-shrink: 0;
   }
 
-  .lang-globe, .theme-toggle, .btn-whatsapp-nav {
-    font-size: 18px;
+  .lang-globe {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    padding: 0;
+  }
+
+  .theme-toggle {
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+  }
+
+  .btn-whatsapp-nav {
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+  }
+
+  .nav-container {
+    padding: 0 8px;
+    gap: 4px;
+  }
+
+  .nav-logo {
+    font-size: 14px;
+    flex-shrink: 0;
   }
 
   .nav-burger {
-    display: flex;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
   }
 
   .nav-burger span {
-    width: 20px;
+    width: 16px;
+  }
+
+  .lang-dropdown {
+    right: 0;
+    top: 28px;
   }
 }
 
