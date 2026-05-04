@@ -663,6 +663,9 @@ class I18nManager {
     this.applyTranslations();
     this.updateSEO();
     this.updateActiveSwitcher();
+    
+    // Déclenche un événement pour les autres composants (rotator, etc.)
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
   }
 
   init() {

@@ -134,6 +134,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ── LANGUAGE CHANGE LISTENER FOR ROTATOR ── */
+  document.addEventListener('languageChanged', (e) => {
+    const lang = e.detail.lang;
+    const wordsFR = ["vendre pour vous.", "capter l'attention.", "convertir rapidement.", "maximiser votre visibilité."];
+    const wordsEN = ["sell for you.", "capture attention.", "convert quickly.", "maximize your visibility."];
+    const rotator = document.getElementById('text-rotator');
+    if (rotator) {
+      const newWords = lang === 'en' ? wordsEN : wordsFR;
+      rotator.textContent = newWords[0];
+      window.rotatorWords = newWords;
+      window.rotatorIdx = 0;
+    }
+  });
+
   /* ── ANIMATIONS D'APPARITION (Scroll Reveal) ── 
      Fait apparaître les éléments avec la classe .reveal quand ils entrent à l'écran.
   */
@@ -218,14 +232,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const wordsFR = ["vendre pour vous.", "capter l'attention.", "convertir rapidement.", "maximiser votre visibilité."];
     const wordsEN = ["sell for you.", "capture attention.", "convert quickly.", "maximize your visibility."];
     let currentLang = localStorage.getItem('site_lang') || 'fr';
-    let words = currentLang === 'en' ? wordsEN : wordsFR;
-    let idx = 0;
+    window.rotatorWords = currentLang === 'en' ? wordsEN : wordsFR;
+    window.rotatorIdx = 0;
     
     setInterval(() => {
       rotator.classList.add('fade-out');
       setTimeout(() => {
-        idx = (idx + 1) % words.length;
-        rotator.textContent = words[idx];
+        window.rotatorIdx = (window.rotatorIdx + 1) % window.rotatorWords.length;
+        rotator.textContent = window.rotatorWords[window.rotatorIdx];
         rotator.classList.remove('fade-out');
         rotator.classList.add('fade-in');
         setTimeout(() => rotator.classList.remove('fade-in'), 400);
