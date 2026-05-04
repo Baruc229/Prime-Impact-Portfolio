@@ -218,7 +218,12 @@ img {
   margin: 0 auto;
   padding: 0 4vw;
   position: relative;
-  /* For glows */
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
 }
 
 /* UTILITIES */
