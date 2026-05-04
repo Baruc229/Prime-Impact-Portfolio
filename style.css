@@ -4262,8 +4262,13 @@ textarea.form-control {
 .lang-switcher button:hover { color: var(--text-color); }
 .lang-switcher button.active { color: var(--accent-blue); }
 
-/* --- MOBILE HEADER FLOATING PILL --- */
+/* Mobile styles - reset to default */
 @media (max-width: 767px) {
+  .hero-split-section {
+    padding-top: 100px;
+  }
+}
+}
   .navbar {
     position: fixed;
     top: 15px;
