@@ -3201,23 +3201,41 @@ textarea.form-control {
   .nav-cta {
     display: none;
   }
-  
+
   .nav-actions {
-    gap: 12px;
+    gap: 10px;
   }
-  
-  .lang-switcher {
-    gap: 4px;
-    padding: 4px 8px;
+
+  .lang-globe {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
   }
-  
-  .lang-switcher button {
-    font-size: 13px;
-    padding: 2px 4px;
+
+  .theme-toggle {
+    font-size: 18px;
   }
-  
-  .lang-switcher span {
-    font-size: 12px;
+
+  .btn-whatsapp-nav {
+    font-size: 18px;
+  }
+
+  .navbar {
+    padding: 12px 0;
+  }
+
+  .navbar.scrolled {
+    width: calc(100% - 30px);
+    padding: 8px 0;
+    top: 10px;
+  }
+
+  .nav-container {
+    padding: 0 16px;
+  }
+
+  .nav-logo {
+    font-size: 18px;
   }
 }
 
