@@ -4168,33 +4168,17 @@ textarea.form-control {
   .lang-switcher {
     display: flex;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
     background: transparent;
-    padding: 4px 6px;
-    border-radius: 20px;
     border: none;
-  }
-
-  .lang-switcher span {
-    display: none;
+    padding: 4px;
   }
 
   .lang-switcher button {
-    font-size: 16px;
-    padding: 4px;
-    color: var(--text-main);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .lang-switcher button::before {
-    content: "🌐";
-    font-size: 16px;
-  }
-
-  .lang-switcher button.active::before {
-    content: "🌐";
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
   }
 
   .theme-toggle {
@@ -4207,6 +4191,22 @@ textarea.form-control {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .lang-globe {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lang-switcher {
+    display: none;
   }
 
   .btn-whatsapp-nav, .nav-cta {
