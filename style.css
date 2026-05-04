@@ -3031,6 +3031,34 @@ textarea.form-control {
   z-index: 1;
 }
 
+@media (max-width: 768px) {
+  .temoignage-full-card {
+    width: 100%;
+    padding: 24px 20px;
+    margin-bottom: 20px;
+  }
+  
+  .temoignage-full-card .ph-quotes {
+    font-size: 80px;
+    top: -5px;
+    right: -5px;
+  }
+  
+  .testimonial-featured {
+    flex-direction: column;
+    padding: 24px 20px;
+  }
+  
+  .testimonial-featured-video {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+  
+  .testimonial-featured-content {
+    width: 100%;
+  }
+}
+
 .temoignage-full-card .ph-quotes {
   position: absolute;
   top: -10px;
