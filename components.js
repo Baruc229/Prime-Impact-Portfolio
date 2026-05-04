@@ -40,14 +40,20 @@ function buildHeader() {
         ${navLinksHTML}
       </nav>
       <div class="nav-actions">
-        <button class="lang-globe" id="langGlobe" aria-label="Changer la langue">
-          <i class="ph ph-globe"></i>
-        </button>
+        <div class="lang-switcher">
+          <button data-lang="fr" class="active">FR</button>
+          <span>|</span>
+          <button data-lang="en">EN</button>
+        </div>
         <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
           <i class="ph ph-moon"></i>
         </button>
+        <a href="${WA_LINK}" class="btn-whatsapp-nav" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="devis.html" class="btn btn-primary nav-cta" data-i18n="nav.quote">Devis gratuit</a>
         <button class="nav-burger" id="navBurger" aria-label="Menu">
-          <span></span><span></span>
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
