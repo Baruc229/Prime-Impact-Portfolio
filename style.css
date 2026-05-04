@@ -1760,7 +1760,7 @@ img {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 2fr;
   gap: 60px;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 
 .footer-col {
@@ -1850,7 +1850,7 @@ img {
 
 .footer-bottom {
   text-align: center;
-  padding-top: 40px;
+  padding-top: 20px;
   border-top: 1px solid var(--border-color);
   color: var(--text-muted);
   font-size: 14px;
