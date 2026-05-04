@@ -967,7 +967,7 @@ img {
 }
 
 .nav-links a {
-  font-size: max(14px, 1vw);
+  font-size: max(16px, 1.2vw);
   font-weight: 600;
   letter-spacing: 0.5px;
 }
@@ -4120,9 +4120,9 @@ textarea.form-control {
 }
 
 /* --- LANG SWITCHER --- */
-.lang-switcher { display: flex; align-items: center; gap: 8px; background: var(--glass-bg); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+.lang-switcher { display: flex; align-items: center; gap: 10px; background: var(--glass-bg); padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); }
 .lang-switcher span { color: var(--border-color); }
-.lang-switcher button { background: none; border: none; font-size: 14px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 4px; transition: color 0.3s ease; }
+.lang-switcher button { background: none; border: none; font-size: 16px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 4px; transition: color 0.3s ease; }
 .lang-switcher button:hover { color: var(--text-color); }
 .lang-switcher button.active { color: var(--accent-blue); }
 
