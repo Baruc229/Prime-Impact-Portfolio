@@ -88,12 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
     burger.addEventListener('click', () => {
       burger.classList.toggle('open');
       mobileMenu.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
     });
     // Close button
     if (navClose) {
       navClose.addEventListener('click', () => {
         burger.classList.remove('open');
         mobileMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
       });
     }
     // Fermer au clic sur un lien
@@ -101,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
       a.addEventListener('click', () => {
         burger.classList.remove('open');
         mobileMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
       });
     });
   }
@@ -119,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (burger && mobileMenu) {
         burger.classList.remove('open');
         mobileMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
       }
     });
   }
