@@ -4131,7 +4131,8 @@ textarea.form-control {
     transform: translateX(-50%);
     width: 92%;
     max-width: 420px;
-    padding: 12px 16px;
+    height: 48px;
+    padding: 0 16px;
     z-index: 9999;
     background-color: var(--glass-bg-solid);
     border: 1px solid var(--border-color);
@@ -4140,6 +4141,8 @@ textarea.form-control {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
   }
 
   .nav-container {
@@ -4150,20 +4153,26 @@ textarea.form-control {
   }
 
   .nav-logo {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: -1px;
     color: var(--text-main);
     text-decoration: none;
     flex-shrink: 0;
+    line-height: 1;
+    height: 24px;
+    display: flex;
+    align-items: center;
   }
 
   .nav-actions {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     flex-shrink: 0;
+    height: 24px;
   }
 
   .lang-switcher {
