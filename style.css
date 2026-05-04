@@ -223,11 +223,11 @@ img {
 @media (max-width: 768px) {
   .container {
     max-width: 100%;
-    padding: 0 6px;
+    padding: 0 1px;
   }
   .section-padding {
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 1px;
+    padding-right: 1px;
   }
 }
 
