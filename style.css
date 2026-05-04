@@ -4476,6 +4476,7 @@ textarea.form-control {
     color: var(--text-muted);
     white-space: nowrap;
     flex-shrink: 0;
+    display: inline-block;
   }
 
   .nav-socials {
