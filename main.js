@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── MOBILE BURGER ── */
   const burger = document.getElementById('navBurger');
+  const burgerOpen = document.getElementById('navBurgerOpen');
   const mobileMenu = document.getElementById('navMobile');
   if (burger && mobileMenu) {
     burger.addEventListener('click', () => {
@@ -89,6 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileMenu.classList.toggle('open');
       document.body.classList.toggle('menu-open');
     });
+    // Close button in overlay
+    if (burgerOpen) {
+      burgerOpen.addEventListener('click', () => {
+        burger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+      });
+    }
     // Fermer au clic sur un lien
     mobileMenu.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
