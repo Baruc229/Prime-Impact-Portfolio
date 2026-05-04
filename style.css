@@ -4146,33 +4146,40 @@ textarea.form-control {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    width: 100%;
   }
 
   .nav-logo {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: -1px;
     color: var(--text-main);
     text-decoration: none;
     flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .nav-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-shrink: 0;
   }
 
   .lang-switcher {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 0;
     background: transparent;
-    padding: 4px 6px;
-    border-radius: 20px;
+    padding: 0;
+    border-radius: 0;
     border: none;
+    position: relative;
+    width: 32px;
+    height: 32px;
   }
 
   .lang-switcher span {
@@ -4180,21 +4187,44 @@ textarea.form-control {
   }
 
   .lang-switcher button {
-    font-size: 16px;
+    position: absolute;
+    font-size: 0;
     padding: 4px;
     color: var(--text-main);
     display: flex;
     align-items: center;
     justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .lang-switcher button.active {
+    opacity: 1;
+    position: relative;
+    pointer-events: auto;
   }
 
   .lang-switcher button::before {
     content: "🌐";
-    font-size: 16px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .lang-switcher button.active::before {
-    content: "🌐";
+  .lang-switcher button.active {
+    color: var(--accent-blue);
+  }
+
+  .lang-switcher button:hover {
+    transform: scale(1.15) rotate(15deg);
+    color: var(--accent-blue);
   }
 
   .theme-toggle {
@@ -4244,6 +4274,10 @@ textarea.form-control {
     opacity: 0;
   }
 
+  .nav-burger.open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
   .nav-links, .nav-cta {
     display: none !important;
   }
@@ -4258,11 +4292,11 @@ textarea.form-control {
     background: var(--bg-secondary);
     z-index: 9998;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 40px;
-    padding: 80px 20px;
+    padding: 100px 20px 40px;
     box-sizing: border-box;
+    overflow-y: auto;
   }
 
   .nav-mobile.open {
@@ -4274,19 +4308,41 @@ textarea.form-control {
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    width: 100%;
   }
 
   .nav-mobile .nav-links a {
-    font-size: 28px;
+    font-size: 24px;
     color: var(--text-main);
     text-decoration: none;
     font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 8px;
+  }
+
+  .nav-mobile .nav-links a:hover,
+  .nav-mobile .nav-links a.active {
+    color: var(--accent-blue);
+    background-color: rgba(0, 86, 210, 0.1);
+  }
+
+  .nav-mobile > div:last-child {
+    width: 100%;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .nav-mobile .btn-primary {
-    margin-top: 20px;
-    padding: 18px 36px;
+    width: 100%;
+    padding: 18px 36px !important;
     font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   .hero-split-section {

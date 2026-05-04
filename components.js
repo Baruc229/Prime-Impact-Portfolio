@@ -41,9 +41,9 @@ function buildHeader() {
       </nav>
       <div class="nav-actions">
         <div class="lang-switcher">
-          <button data-lang="fr" class="active">FR</button>
+          <button data-lang="fr" class="active" aria-label="Français">FR</button>
           <span>|</span>
-          <button data-lang="en">EN</button>
+          <button data-lang="en" aria-label="English">EN</button>
         </div>
         <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
           <i class="ph ph-moon"></i>
@@ -59,8 +59,12 @@ function buildHeader() {
     </div>
     <!-- Mobile menu -->
     <div class="nav-mobile" id="navMobile">
-      ${navLinksHTML}
-      <a href="devis.html" class="btn btn-primary" style="margin-top:10px;width:100%;" data-i18n="nav.quote">Devis gratuit</a>
+      <nav class="nav-links">
+        ${navLinksHTML}
+      </nav>
+      <div style="width:100%;padding:0 20px;border-top:1px solid var(--border-color);padding-top:30px;">
+        <a href="devis.html" class="btn btn-primary" style="width:100%;margin:0;" data-i18n="nav.cta_mobile">Demander un devis</a>
+      </div>
     </div>
   </header>`;
 }
