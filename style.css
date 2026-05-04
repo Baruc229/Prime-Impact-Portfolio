@@ -70,29 +70,8 @@ body {
   color: var(--text-main);
   line-height: 1.6;
   overflow-x: hidden;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
   transition: background-color var(--transition-speed), color var(--transition-speed);
-}
-
-/* Fix flex overflow on mobile */
-.navbar,
-.nav-container,
-.hero-glow,
-.hero-glow-1,
-.hero-glow-2,
-.tools-marquee-wrapper,
-.tools-marquee-track,
-.testimonials-section,
-.testimonials-scroll,
-.testimonials-track,
-.testimonial-card,
-.testimonial-text,
-.testimonial-author,
-.modal-overlay,
-.modal-container {
-  max-width: 100%;
-  overflow-x: hidden;
+  /* Custom cursor */
 }
 
 a,
@@ -3202,31 +3181,16 @@ textarea.form-control {
     justify-content: center;
   }
   
-  /* Fix flex overflow on mobile */
-  .navbar,
-  .nav-container,
-  .hero-glow,
-  .tools-marquee-wrapper,
-  .tools-marquee-track,
-  .testimonials-section,
-  .testimonials-scroll,
-  .testimonials-track,
-  .testimonial-card,
-  .modal-overlay,
-  .modal-container {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-  
-  /* Grid fixes */
+  /* TOUTES LES GRILLES EN 1 COLONNE SUR MOBILE */
   .features-grid,
   .services-grid,
   .realisations-grid,
-  /* .testimonials-grid, */
+  /* .testimonials-grid, - removed for testimonials page */
   .pricing-grid,
   .team-grid,
   .faq-grid,
   .metrics-grid-inline,
+  /* .testimonial-cards, - removed for testimonials page */
   .timeline-steps,
   .constat-grid,
   .about-grid,
