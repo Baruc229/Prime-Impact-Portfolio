@@ -518,6 +518,16 @@ img {
     width: 100%;
     justify-content: center;
   }
+  .hero-image-wrapper {
+    max-width: 100%;
+    margin: 0 auto 30px;
+  }
+  .hero-image-inner {
+    min-height: 300px;
+  }
+  .hero-image-inner img {
+    aspect-ratio: 1/1;
+  }
   .hero-floating-card {
     left: 0;
     right: 0;
@@ -526,6 +536,12 @@ img {
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
+  }
+  .hero-floating-card span {
+    font-size: 14px;
+  }
+  .hero-floating-card strong {
+    font-size: 16px;
   }
   .hero-image-wrapper::before {
     left: -10px;
@@ -854,6 +870,16 @@ img {
   white-space: nowrap;
 }
 
+@media (max-width: 768px) {
+  .tools-marquee-track {
+    gap: 24px;
+  }
+  .tool-item {
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+}
+
 .text-center {
   text-align: center;
 }
@@ -868,7 +894,6 @@ img {
   z-index: 1000;
   background-color: transparent;
   border: 1px solid transparent;
-  transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -884,12 +909,6 @@ img {
   box-shadow: var(--shadow-heavy);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-}
-
-.navbar.scrolled .nav-container {
-  padding: 0 28px;
-  max-width: 100%;
-  margin: 0;
 }
 
 .nav-container {
@@ -1685,6 +1704,16 @@ img {
   box-shadow: 0 0 0 3px rgba(0, 86, 210, 0.1);
 }
 
+/* Select Dark Mode Fix */
+[data-theme="dark"] select.form-control {
+  background-color: var(--bg-tertiary);
+  color: var(--text-main);
+}
+[data-theme="dark"] select.form-control option {
+  background-color: var(--bg-tertiary);
+  color: var(--text-main);
+}
+
 /* MEGA CTA SECTION */
 .cta-mega {
   background: var(--glass-bg);
@@ -1892,7 +1921,8 @@ img {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
+  margin-left: 8px;
 }
 
 .nav-burger span {
@@ -3008,17 +3038,23 @@ textarea.form-control {
   .nav-cta {
     display: none;
   }
-
-  .constat-grid {
-    grid-template-columns: 1fr;
+  
+  .nav-actions {
+    gap: 12px;
   }
-
-  .about-grid {
-    grid-template-columns: 1fr;
+  
+  .lang-switcher {
+    gap: 4px;
+    padding: 4px 8px;
   }
-
-  .contact-layout {
-    grid-template-columns: 1fr;
+  
+  .lang-switcher button {
+    font-size: 13px;
+    padding: 2px 4px;
+  }
+  
+  .lang-switcher span {
+    font-size: 12px;
   }
 }
 
@@ -3029,6 +3065,18 @@ textarea.form-control {
 
   .hero-keywords {
     gap: 10px;
+  }
+  
+  .services-grid {
+    gap: 20px;
+  }
+  
+  .service-card {
+    padding: 32px 20px;
+  }
+  
+  .service-card .btn {
+    margin-top: 16px;
   }
 
   .methode-grid {

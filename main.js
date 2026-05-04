@@ -178,8 +178,12 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── TEXT ROTATOR ── */
   const rotator = document.getElementById('text-rotator');
   if (rotator) {
-    const words = ["vendre pour vous.", "capter l'attention.", "convertir rapidement.", "maximiser votre visibilité."];
+    const wordsFR = ["vendre pour vous.", "capter l'attention.", "convertir rapidement.", "maximiser votre visibilité."];
+    const wordsEN = ["sell for you.", "capture attention.", "convert quickly.", "maximize your visibility."];
+    let currentLang = localStorage.getItem('site_lang') || 'fr';
+    let words = currentLang === 'en' ? wordsEN : wordsFR;
     let idx = 0;
+    
     setInterval(() => {
       rotator.classList.add('fade-out');
       setTimeout(() => {
@@ -190,6 +194,15 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => rotator.classList.remove('fade-in'), 400);
       }, 400);
     }, 3000);
+    
+    document.querySelectorAll('.lang-switcher button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        words = lang === 'en' ? wordsEN : wordsFR;
+        idx = 0;
+        rotator.textContent = words[0];
+      });
+    });
   }
 
   /* ── COMPTEURS ANIMÉS (Section Résultats) ── 
