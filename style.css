@@ -2505,11 +2505,74 @@ img {
 }
 
 @media (max-width: 640px) {
-  .testi-hero-stats {
-    flex-direction: column;
-    gap: 24px;
-    padding: 24px;
+  .hero-title-centered {
+    font-size: 32px;
   }
+  
+  .hero-content {
+    text-align: center;
+  }
+  
+  .hero-actions {
+    gap: 16px;
+  }
+  
+  .section-badge {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+  
+  .section-title {
+    font-size: 24px;
+  }
+  
+  .service-card {
+    padding: 24px 16px;
+    margin-bottom: 20px;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .btn {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+  
+  .form-control {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 28px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .section-padding {
+    padding: 50px 0;
+  }
+  
+  .service-card {
+    padding: 20px 14px;
+  }
+  
+  .btn {
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+}
   .testi-hero-divider {
     width: 60px;
     height: 1px;
@@ -3084,11 +3147,11 @@ textarea.form-control {
   }
 
   .resultats-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .project-type-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .devis-nav {
@@ -3103,6 +3166,67 @@ textarea.form-control {
   .btn-primary {
     width: 100%;
     justify-content: center;
+  }
+  
+  /* TOUTES LES GRILLES EN 1 COLONNE SUR MOBILE */
+  .features-grid,
+  .services-grid,
+  .realisations-grid,
+  .testimonials-grid,
+  .pricing-grid,
+  .team-grid,
+  .faq-grid,
+  .pricing-grid,
+  .metrics-grid-inline,
+  .testimonial-cards,
+  .timeline-steps,
+  .constat-grid,
+  .about-grid,
+  .contact-layout,
+  .contact-grid,
+  .hero-grid,
+  .problem-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* REDUCTION PADDING MOBILE */
+  .section-padding {
+    padding: 60px 0;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  /* IMAGES RESPONSIVE */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* TOUCH TARGETS AGRANDIS */
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* TYPO MOBILE */
+  h1, .hero-title, .section-title {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 24px;
+  }
+  
+  h3 {
+    font-size: 20px;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.5;
   }
 }
 
