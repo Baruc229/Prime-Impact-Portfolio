@@ -77,12 +77,12 @@ function buildHeader() {
       </nav>
       <a href="devis.html" class="btn btn-primary" data-i18n="nav.cta_mobile">Demander un devis</a>
       <div class="nav-mobile-footer">
-        <div class="nav-copyright">© 2026 Prime Impact Agency</div>
-        <div class="nav-socials">
+        <span class="nav-copyright">© 2026 Prime Impact Agency</span>
+        <span class="nav-socials">
           <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
           <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
           <a href="https://wa.me/33600000000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
+        </span>
       </div>
     </div>
   </header>`;
