@@ -4340,39 +4340,80 @@ textarea.form-control {
     background: var(--bg-secondary);
     z-index: 9998;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 100px 20px 40px;
+    gap: 40px;
+    padding: 80px 20px;
     box-sizing: border-box;
     overflow-y: auto;
   }
 
   .nav-mobile.open {
     display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   .nav-mobile .nav-links {
     display: flex !important;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    justify-content: center;
+    gap: 24px;
     width: 100%;
+    flex: 1;
+    max-height: 60vh;
   }
 
   .nav-mobile .nav-links a {
-    font-size: 24px;
+    font-size: 28px;
     color: var(--text-main);
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    padding: 8px 16px;
-    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    padding: 12px 24px;
+    border-radius: 12px;
+    text-align: center;
   }
 
   .nav-mobile .nav-links a:hover,
   .nav-mobile .nav-links a.active {
     color: var(--accent-blue);
     background-color: rgba(0, 86, 210, 0.1);
+  }
+
+  .nav-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 28px;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: transform 0.2s;
+  }
+
+  .nav-close:hover {
+    transform: rotate(90deg);
+  }
+
+  .nav-mobile .btn-primary {
+    width: 100%;
+    max-width: 300px;
+    padding: 16px 32px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
   }
 
   .nav-mobile > div:last-child {

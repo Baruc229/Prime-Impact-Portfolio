@@ -83,11 +83,19 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── MOBILE BURGER ── */
   const burger = document.getElementById('navBurger');
   const mobileMenu = document.getElementById('navMobile');
+  const navClose = document.getElementById('navClose');
   if (burger && mobileMenu) {
     burger.addEventListener('click', () => {
       burger.classList.toggle('open');
       mobileMenu.classList.toggle('open');
     });
+    // Close button
+    if (navClose) {
+      navClose.addEventListener('click', () => {
+        burger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    }
     // Fermer au clic sur un lien
     mobileMenu.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
@@ -117,6 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
         langMenu.querySelectorAll('button').forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
         langMenu.classList.remove('show');
+        // Close mobile menu when changing language
+        if (burger && mobileMenu) {
+          burger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        }
       });
     });
   }

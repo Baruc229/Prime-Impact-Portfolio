@@ -61,12 +61,13 @@ function buildHeader() {
     </div>
     <!-- Mobile menu -->
     <div class="nav-mobile" id="navMobile">
+      <button class="nav-close" id="navClose" aria-label="Fermer le menu">
+        <i class="ph ph-x"></i>
+      </button>
       <nav class="nav-links">
         ${navLinksHTML}
       </nav>
-      <div style="width:100%;padding:0 20px;border-top:1px solid var(--border-color);padding-top:30px;">
-        <a href="devis.html" class="btn btn-primary" style="width:100%;margin:0;" data-i18n="nav.cta_mobile">Demander un devis</a>
-      </div>
+      <a href="devis.html" class="btn btn-primary" data-i18n="nav.cta_mobile">Demander un devis</a>
     </div>
   </header>`;
 }
