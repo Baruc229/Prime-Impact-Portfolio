@@ -4428,8 +4428,8 @@ textarea.form-control {
     justify-content: center;
     gap: 0;
     width: 100%;
-    flex-shrink: 1;
-    padding: 5px 0;
+    flex: none;
+    padding: 10px 0;
   }
 
   .nav-mobile .nav-links a {
@@ -4459,7 +4459,7 @@ textarea.form-control {
 
 .nav-mobile-footer {
     position: absolute;
-    top: 5px;
+    top: 10px;
     left: 20px;
     right: 20px;
     display: flex;
