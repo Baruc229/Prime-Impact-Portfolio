@@ -62,7 +62,6 @@
 html {
   scroll-behavior: smooth;
   max-width: 100%;
-  position: relative;
   width: 100%;
 }
 
@@ -74,7 +73,6 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   max-width: 100%;
-  position: relative;
   width: 100%;
   transition: background-color var(--transition-speed), color var(--transition-speed);
 }
