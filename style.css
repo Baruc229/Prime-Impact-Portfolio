@@ -53,7 +53,7 @@
 /* RESET & BASE 
    Nettoyage des styles par défaut du navigateur
 */
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -61,6 +61,9 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
 }
 
 body {
@@ -70,8 +73,10 @@ body {
   color: var(--text-main);
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
   transition: background-color var(--transition-speed), color var(--transition-speed);
-  /* Custom cursor */
 }
 
 a,
@@ -750,6 +755,15 @@ img {
   .features-grid {
     grid-template-columns: 1fr;
   }
+  .navbar.scrolled {
+    width: calc(100% - 30px);
+    top: 10px;
+  }
+  .testimonial-card {
+    min-width: 280px;
+    max-width: 85vw;
+    padding: 25px;
+  }
 }
 
 /* ==========================================================================
@@ -849,6 +863,7 @@ img {
   width: 100%;
   position: relative;
   display: flex;
+  touch-action: pan-y;
 }
 
 .tools-marquee-track {
@@ -1471,7 +1486,8 @@ img {
   background-color: transparent;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
-  overflow: hidden;
+  overflow: hidden !important;
+  width: 100%;
   position: relative;
 }
 
