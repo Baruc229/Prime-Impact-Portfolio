@@ -73,6 +73,14 @@ function buildHeader() {
         ${navLinksHTML}
       </nav>
       <a href="devis.html" class="btn btn-primary" data-i18n="nav.cta_mobile">Demander un devis</a>
+      <div class="nav-mobile-footer">
+        <div class="nav-socials">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <p class="nav-copyright">© 2026 PIA. Tous droits réservés.</p>
+      </div>
     </div>
   </header>`;
 }
