@@ -77,7 +77,7 @@ function buildHeader() {
         <div class="nav-socials">
           <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
           <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://wa.me/33600000000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
         <p class="nav-copyright">© 2026 PIA. Tous droits réservés.</p>
       </div>
