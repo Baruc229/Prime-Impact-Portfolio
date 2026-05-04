@@ -3207,14 +3207,6 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    padding: 8px 0;
-    background-color: var(--glass-bg-solid);
-    border-bottom: 1px solid var(--border-color);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-
   .nav-actions {
     gap: 4px;
     flex-shrink: 0;
@@ -3239,6 +3231,16 @@ textarea.form-control {
     width: 20px;
     height: 20px;
     padding: 0;
+  }
+
+  .navbar {
+    padding: 8px 0;
+  }
+
+  .navbar.scrolled {
+    width: calc(100% - 16px);
+    padding: 4px 8px;
+    top: 6px;
   }
 
   .nav-container {
