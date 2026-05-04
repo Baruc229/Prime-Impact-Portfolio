@@ -66,9 +66,9 @@ function buildHeader() {
     </div>
     <!-- Mobile menu -->
     <div class="nav-mobile" id="navMobile">
-      <button class="nav-close" id="navClose" aria-label="Fermer le menu">
-        <i class="ph ph-x"></i>
-      </button>
+      <div class="nav-mobile-header">
+        <a href="index.html" class="nav-logo">/_PIA</a>
+      </div>
       <nav class="nav-links">
         ${navLinksHTML}
       </nav>
@@ -79,7 +79,7 @@ function buildHeader() {
           <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
           <a href="https://wa.me/33600000000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
-        <p class="nav-copyright">© 2026 PIA. Tous droits réservés.</p>
+        <span class="nav-copyright">© 2026 Prime Impact Agency</span>
       </div>
     </div>
   </header>`;
