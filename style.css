@@ -532,7 +532,7 @@ img {
     justify-content: center;
   }
   .hero-image-wrapper {
-    max-width: 100%;
+    max-width: 70%;
     margin: 0 auto 30px;
   }
   .hero-image-inner {
