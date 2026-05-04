@@ -97,6 +97,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ── LANGUAGE TOGGLE ── */
+  const langToggle = document.getElementById('langToggle');
+  const langMenu = document.getElementById('langMenu');
+  if (langToggle && langMenu) {
+    langToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langMenu.classList.toggle('show');
+    });
+    document.addEventListener('click', () => {
+      langMenu.classList.remove('show');
+    });
+    langMenu.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const lang = e.target.dataset.lang;
+        if (window.i18n) {
+          window.i18n.setLang(lang);
+        }
+        langMenu.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        langMenu.classList.remove('show');
+      });
+    });
+  }
+
   /* ── ANIMATIONS D'APPARITION (Scroll Reveal) ── 
      Fait apparaître les éléments avec la classe .reveal quand ils entrent à l'écran.
   */
