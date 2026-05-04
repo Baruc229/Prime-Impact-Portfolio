@@ -72,10 +72,12 @@ function buildHeader() {
           <span></span><span></span><span></span>
         </button>
       </div>
-      <nav class="nav-links">
-        ${navLinksHTML}
-      </nav>
-      <a href="devis.html" class="btn btn-primary" data-i18n="nav.cta_mobile">Demander un devis</a>
+      <div class="nav-mobile-content">
+        <nav class="nav-links">
+          ${navLinksHTML}
+        </nav>
+        <a href="devis.html" class="btn btn-primary nav-mobile-cta" data-i18n="nav.cta_mobile">Demander un devis</a>
+      </div>
       <div class="nav-mobile-footer">
         <span class="nav-copyright">© 2026 Prime Impact Agency</span>
         <span class="nav-socials">

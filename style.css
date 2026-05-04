@@ -1961,6 +1961,7 @@ img {
   cursor: pointer;
   padding: 8px;
   margin-left: 8px;
+  z-index: 9999;
 }
 
 .nav-burger span {
@@ -1969,7 +1970,8 @@ img {
   height: 2px;
   background: var(--text-main);
   border-radius: 2px;
-  transition: transform .3s, opacity .3s;
+  transition: transform .3s ease, opacity .3s ease;
+  transform-origin: center;
 }
 
 .nav-burger.open span:nth-child(1) {
@@ -1978,6 +1980,7 @@ img {
 
 .nav-burger.open span:nth-child(2) {
   opacity: 0;
+  transform: scaleX(0);
 }
 
 .nav-burger.open span:nth-child(3) {
@@ -2008,6 +2011,139 @@ img {
 .nav-mobile a {
   font-size: 18px;
   font-weight: 600;
+}
+
+/* Media query pour le fullscreen mobile menu (max-width: 767px) */
+@media (max-width: 767px) {
+  /* Burger toujours visible */
+  .nav-burger {
+    display: flex;
+  }
+
+  /* Overlay fullscreen du menu mobile */
+  .nav-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    padding: 16px 20px;
+    background: var(--bg-main);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    gap: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 9999;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+  }
+
+  .nav-mobile.open {
+    display: flex;
+  }
+
+  /* Header du menu mobile (logo + burger close) */
+  .nav-mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .nav-mobile-header .nav-logo {
+    font-size: 24px;
+    font-weight: 800;
+  }
+
+  /* Contenu du menu (liens + CTA) */
+  .nav-mobile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    padding-bottom: 0;
+  }
+
+  .nav-mobile-content .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .nav-mobile-content .nav-links a {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-main);
+    text-decoration: none;
+    padding: 8px 0;
+  }
+
+  .nav-mobile-content .nav-links a.active {
+    color: var(--accent-blue);
+  }
+
+  .nav-mobile-content .nav-links a:hover {
+    color: var(--accent-blue);
+  }
+
+  /* CTA Devis dans le menu mobile */
+  .nav-mobile-cta {
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+
+  /* Footer du menu mobile (signature) */
+  .nav-mobile-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+    min-height: 44px;
+    width: 100%;
+  }
+
+  .nav-mobile-footer .nav-copyright {
+    font-size: 11px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .nav-mobile-footer .nav-socials {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .nav-mobile-footer .nav-socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    color: var(--text-main);
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+
+  .nav-mobile-footer .nav-socials a:hover {
+    color: var(--accent-blue);
+  }
+
+  /* Blocage du scroll quand le menu est ouvert */
+  body.menu-open {
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 
@@ -4455,18 +4591,6 @@ textarea.form-control {
     padding: 8px 16px;
     font-size: 13px;
     text-align: center;
-  }
-
-.nav-mobile-footer {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    right: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: auto;
-    padding: 0;
   }
 
   .nav-copyright {
