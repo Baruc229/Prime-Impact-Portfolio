@@ -775,7 +775,7 @@ img {
     grid-template-columns: 1fr;
   }
   .navbar.scrolled {
-    width: calc(100% - 30px);
+    width: calc(100% - 20px);
     top: 10px;
   }
   .testimonial-card {
@@ -924,10 +924,16 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 24px 0;
+  padding: 16px 0;
   z-index: 1000;
   background-color: transparent;
   border: 1px solid transparent;
+}
+
+@media (min-width: 769px) {
+  .navbar {
+    padding: 40px 0;
+  }
 }
 
 .navbar.scrolled {
@@ -1031,6 +1037,12 @@ img {
   border-color: var(--accent-blue);
   color: #FFF;
   box-shadow: 0 8px 25px var(--shadow-heavy);
+}
+
+@media (min-width: 769px) {
+  .nav-cta {
+    padding: 12px 24px;
+  }
 }
 
 .btn-secondary {
@@ -2022,9 +2034,9 @@ img {
   .nav-mobile {
     position: fixed;
     top: 0;
-    right: -320px;
+    right: -380px;
     height: 100vh;
-    width: 280px;
+    width: 340px;
     background: var(--bg-secondary);
     border: none;
     border-radius: 0;
@@ -2088,8 +2100,8 @@ img {
   .nav-mobile-content {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding: 24px;
+    gap: 16px;
+    padding: 16px 24px;
     flex: 1;
     overflow-y: auto;
   }
