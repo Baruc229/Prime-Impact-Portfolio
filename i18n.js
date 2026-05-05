@@ -47,7 +47,7 @@ const translations = {
   "footer.start": { "fr": "Démarrer", "en": "Get Started" },
   "footer.start.text": { "fr": "Un projet en tête ? Parlons-en.", "en": "Have a project in mind? Let's talk." },
   "footer.btn.quote": { "fr": "Obtenir un devis", "en": "Get a Quote" },
-  "footer.rights": { "fr": "Tous droits réservés.", "en": "All rights reserved." },
+  "footer.rights": { "fr": "Tous droits réservés. © 2026 Prime Impact Agency.", "en": "All rights reserved. © 2026 Prime Impact Agency." },
 
   // --- Formulaire de Contact Modal ---
   "modal.title": { "fr": "Démarrer un projet", "en": "Start a Project" },
