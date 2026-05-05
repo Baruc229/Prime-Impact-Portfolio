@@ -2022,10 +2022,9 @@ img {
   .nav-mobile {
     position: fixed;
     top: 0;
-    right: 0;
+    right: -320px;
     height: 100vh;
-    width: 65%;
-    max-width: 280px;
+    width: 280px;
     background: var(--bg-secondary);
     border: none;
     border-radius: 0;
@@ -2034,8 +2033,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0;
@@ -2044,7 +2042,7 @@ img {
 
   /* Menu ouvert - Glisse à droite */
   .nav-mobile.open {
-    transform: translateX(0);
+    right: 0;
   }
 
   /* HEADER du menu latéral (Logo + Close button) */
@@ -2193,6 +2191,8 @@ img {
   /* Blocage du scroll quand le menu est ouvert */
   body.menu-open {
     overflow: hidden;
+    position: fixed;
+    width: 100%;
   }
 }
 
