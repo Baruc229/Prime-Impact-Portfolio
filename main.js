@@ -82,17 +82,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── MOBILE BURGER ── */
   const burger = document.getElementById('navBurger');
+  const burgerOpen = document.getElementById('navBurgerOpen');
   const mobileMenu = document.getElementById('navMobile');
   if (burger && mobileMenu) {
     burger.addEventListener('click', () => {
       burger.classList.toggle('open');
       mobileMenu.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
     });
-    // Close menu when clicking a link
+    // Close button in overlay
+    if (burgerOpen) {
+      burgerOpen.addEventListener('click', () => {
+        burger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+      });
+    }
+    // Fermer au clic sur un lien
     mobileMenu.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         burger.classList.remove('open');
         mobileMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+      });
+    });
+  }
+
+  /* ── LANGUAGE TOGGLE (Mobile - Direct toggle) ── */
+  const langToggle = document.getElementById('langToggle');
+  if (langToggle) {
+    langToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const currentLang = localStorage.getItem('site_lang') || 'fr';
+      const newLang = currentLang === 'fr' ? 'en' : 'fr';
+      if (window.i18n) {
+        window.i18n.setLang(newLang);
+      }
+      // Close mobile menu when changing language
+      if (burger && mobileMenu) {
+        burger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+      }
+    });
+  }
+
+  /* ── LANGUAGE MENU (Desktop - keep dropdown) ── */
+  const langMenu = document.getElementById('langMenu');
+  if (langMenu) {
+    langMenu.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const lang = e.target.dataset.lang;
+        if (window.i18n) {
+          window.i18n.setLang(lang);
+        }
+        langMenu.classList.remove('show');
       });
     });
   }

@@ -45,6 +45,13 @@ function buildHeader() {
           <span>|</span>
           <button data-lang="en">EN</button>
         </div>
+        <button class="lang-btn" id="langToggle" aria-label="Changer la langue" onclick="toggleLangMenu(event)">
+          <i class="fa-solid fa-globe"></i>
+        </button>
+        <div class="lang-menu" id="langMenu">
+          <button data-lang="fr" class="active">FR</button>
+          <button data-lang="en">EN</button>
+        </div>
         <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
           <i class="ph ph-moon"></i>
         </button>
@@ -59,10 +66,26 @@ function buildHeader() {
     </div>
     <!-- Mobile menu -->
     <div class="nav-mobile" id="navMobile">
-      <nav class="nav-links">
-        ${navLinksHTML}
-      </nav>
-      <a href="devis.html" class="btn btn-primary" data-i18n="nav.quote">Devis gratuit</a>
+      <div class="nav-mobile-header">
+        <a href="index.html" class="nav-logo">/_PIA</a>
+        <button class="nav-burger open" id="navBurgerOpen" aria-label="Fermer le menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="nav-mobile-content">
+        <nav class="nav-links">
+          ${navLinksHTML}
+        </nav>
+        <a href="devis.html" class="btn btn-primary nav-mobile-cta" data-i18n="nav.cta_mobile">Demander un devis</a>
+      </div>
+      <div class="nav-mobile-footer">
+        <span class="nav-copyright">© 2026 Prime Impact Agency</span>
+        <span class="nav-socials">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://wa.me/33600000000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </span>
+      </div>
     </div>
   </header>`;
 }
