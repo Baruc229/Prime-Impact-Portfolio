@@ -85,7 +85,7 @@ function buildHeader() {
 
       <!-- Pied du menu latéral -->
       <div class="nav-mobile-footer">
-        <div class="nav-copyright" data-i18n="footer.rights">Tous droits réservés.</div>
+        <div class="nav-copyright" data-i18n="footer.rights">Tous droits réservés. © 2026 Prime Impact Agency.</div>
         <div class="nav-socials">
           <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
             <i class="fa-brands fa-linkedin"></i>
