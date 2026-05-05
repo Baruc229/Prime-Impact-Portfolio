@@ -64,8 +64,13 @@ function buildHeader() {
         </button>
       </div>
     </div>
-    <!-- Mobile menu - disabled, just placeholder -->
-    <div class="nav-mobile" id="navMobile" style="display: none;"></div>
+    <!-- Mobile menu -->
+    <div class="nav-mobile" id="navMobile">
+      <nav class="nav-links">
+        ${navLinksHTML}
+      </nav>
+      <a href="devis.html" class="btn btn-primary" data-i18n="nav.quote">Devis gratuit</a>
+    </div>
   </header>`;
 }
 
