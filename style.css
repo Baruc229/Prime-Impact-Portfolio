@@ -245,7 +245,7 @@ img {
 }
 
 .section-padding {
-  padding: 60px 0;
+  padding: 60px 0 30px;
   position: relative;
 }
 
@@ -774,10 +774,6 @@ img {
   .features-grid {
     grid-template-columns: 1fr;
   }
-  .navbar.scrolled {
-    width: calc(100% - 20px);
-    top: 10px;
-  }
   .testimonial-card {
     min-width: 280px;
     max-width: 85vw;
@@ -932,23 +928,22 @@ img {
 
 @media (min-width: 769px) {
   .navbar {
-    padding: 40px 0;
+    padding: 16px 0;
   }
 }
 
 .navbar.scrolled {
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 80px);
-  max-width: 1200px;
-  padding: 20px 0;
-  border-radius: 100px;
-  background-color: var(--glass-bg-solid);
-  border-color: var(--border-color);
-  box-shadow: var(--shadow-heavy);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .navbar.scrolled {
+  background-color: rgba(20, 20, 20, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .nav-container {
@@ -2121,10 +2116,6 @@ img {
     padding: 12px 0;
     border-bottom: 1px solid var(--border-color);
     transition: color 0.2s ease, padding-left 0.2s ease;
-  }
-
-  .nav-mobile-content .nav-links a:first-child {
-    border-top: 1px solid var(--border-color);
   }
 
   .nav-mobile-content .nav-links a.active,

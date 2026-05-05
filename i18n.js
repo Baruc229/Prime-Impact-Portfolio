@@ -149,6 +149,34 @@ const translations = {
   "index.skills.hard": { "fr": "Compétences Techniques", "en": "Technical Skills" },
   "index.skills.soft": { "fr": "Soft Skills", "en": "Soft Skills" },
 
+  // --- Index: Technical Skills (Hard Skills) ---
+  "index.skills.wordpress": { "fr": "WordPress", "en": "WordPress" },
+  "index.skills.wpfunnels": { "fr": "WPFunnels / Cartflows", "en": "WPFunnels / Cartflows" },
+  "index.skills.automations": { "fr": "Automatisations (Omnisend, IA...)", "en": "Automations (Omnisend, AI...)" },
+  "index.skills.shopify": { "fr": "Shopify", "en": "Shopify" },
+  "index.skills.design": { "fr": "Figma / Framer / React / Flutter", "en": "Figma / Framer / React / Flutter" },
+  "index.skills.seo": { "fr": "SEO", "en": "SEO" },
+  "index.skills.web": { "fr": "HTML / CSS / JS / React", "en": "HTML / CSS / JS / React" },
+
+  // --- Index: Soft Skills ---
+  "index.skills.communication": { "fr": "Communication & Écoute", "en": "Communication & Listening" },
+  "index.skills.problemsolving": { "fr": "Résolution de problèmes", "en": "Problem-solving" },
+  "index.skills.timemanagement": { "fr": "Gestion du temps", "en": "Time Management" },
+  "index.skills.adaptability": { "fr": "Adaptabilité", "en": "Adaptability" },
+
+  // --- Index: Realisations (Projets) ---
+  "index.realisations.project1.title": { "fr": "Boutique Mode Prestige", "en": "Prestige Fashion Store" },
+  "index.realisations.project1.result1": { "fr": "+180% CA", "en": "+180% Revenue" },
+  "index.realisations.project1.result2": { "fr": "+420 leads/mois", "en": "+420 leads/month" },
+  
+  "index.realisations.project2.title": { "fr": "Élite Immobilier Lyon", "en": "Elite Real Estate Lyon" },
+  "index.realisations.project2.result1": { "fr": "+300% leads", "en": "+300% leads" },
+  "index.realisations.project2.result2": { "fr": "Top 3 Google", "en": "Top 3 Google" },
+  
+  "index.realisations.project3.title": { "fr": "Coaching Business Pro", "en": "Professional Coaching" },
+  "index.realisations.project3.result1": { "fr": "38% conversion", "en": "38% conversion" },
+  "index.realisations.project3.result2": { "fr": "ROI x4", "en": "ROI x4" },
+
   // --- Index: Services ---
   "index.services.badge": { "fr": "_NOS_SERVICES_", "en": "_OUR_SERVICES_" },
   "index.services.title": { "fr": "Ce que nous faisons.", "en": "What we do." },
@@ -670,11 +698,19 @@ class I18nManager {
   }
 
   init() {
-    document.addEventListener('DOMContentLoaded', () => {
+    // Vérifie si le DOM est déjà chargé
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        this.applyTranslations();
+        this.updateSEO();
+        this.setupSwitcher();
+      });
+    } else {
+      // Si le DOM est déjà chargé, applique directement les traductions
       this.applyTranslations();
       this.updateSEO();
       this.setupSwitcher();
-    });
+    }
   }
 
   /**
