@@ -81,21 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ── MOBILE BURGER ── */
-  const burger = document.getElementById('navBurger');
-  const mobileMenu = document.getElementById('navMobile');
-  if (burger && mobileMenu) {
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-    });
-    // Close menu when clicking a link
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        burger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-      });
-    });
-  }
+  // Burger button is now disabled - no action on click
+  // Can be re-enabled later when implementing new menu
 
   /* ── LANGUAGE TOGGLE (Mobile - Direct toggle) ── */
   const langToggle = document.getElementById('langToggle');
