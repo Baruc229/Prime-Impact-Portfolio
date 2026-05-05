@@ -81,46 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* Burger button is now static - no JS handler */
-}
-
-/* ── MOBILE SIDE MENU ── */
-(function() {
-  const burger = document.getElementById('navBurger');
-  const mobileMenu = document.getElementById('navMobile');
-  const mobileOverlay = document.getElementById('navMobileClose');
-  const overlay = document.getElementById('navMobileOverlay');
-  
-  function openMenu() {
-    mobileMenu.classList.add('open');
-    overlay.classList.add('open');
-    document.body.classList.add('menu-open');
-  }
-  
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.classList.remove('menu-open');
-  }
-  
-  if (burger) {
-    burger.addEventListener('click', openMenu);
-  }
-  if (mobileOverlay) {
-    mobileOverlay.addEventListener('click', closeMenu);
-  }
-  if (overlay) {
-    overlay.addEventListener('click', closeMenu);
-  }
-  
-  // Close when clicking a link
-  if (mobileMenu) {
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', closeMenu);
-    });
-  }
-})();
-
-/* ── LANGUAGE CHANGE LISTENER FOR ROTATOR ── */
   document.addEventListener('languageChanged', (e) => {
     const lang = e.detail.lang;
     const wordsFR = ["vendre pour vous.", "capter l'attention.", "convertir rapidement.", "maximiser votre visibilité."];

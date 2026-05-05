@@ -64,28 +64,8 @@ function buildHeader() {
         </button>
       </div>
     </div>
-    <!-- Mobile side menu -->
-    <div class="nav-mobile" id="navMobile">
-      <div class="nav-mobile-header">
-        <a href="index.html" class="nav-mobile-logo">/_PIA</a>
-        <button class="nav-mobile-close" id="navMobileClose" aria-label="Fermer">
-          <i class="ph ph-x"></i>
-        </button>
-      </div>
-      <nav class="nav-mobile-links">
-        ${navLinksHTML}
-      </nav>
-      <a href="devis.html" class="btn btn-primary nav-mobile-cta" data-i18n="nav.quote">Devis gratuit</a>
-      <div class="nav-mobile-footer">
-        <span class="nav-mobile-copyright">© 2026 PIA</span>
-        <div class="nav-mobile-socials">
-          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://wa.me/33600000000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
-      </div>
-    </div>
-    <div class="nav-mobile-overlay" id="navMobileOverlay"></div>
+    <!-- Mobile menu - disabled, just placeholder -->
+    <div class="nav-mobile" id="navMobile" style="display: none;"></div>
   </header>`;
 }
 
