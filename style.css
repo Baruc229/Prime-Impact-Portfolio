@@ -2035,7 +2035,7 @@ img {
     position: fixed;
     top: 0;
     right: -380px;
-    height: 100vh;
+    height: 100dvh;
     width: 340px;
     background: var(--bg-secondary);
     border: none;
@@ -2046,8 +2046,7 @@ img {
     flex-direction: column;
     justify-content: space-between;
     transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     padding: 0;
     gap: 0;
   }
