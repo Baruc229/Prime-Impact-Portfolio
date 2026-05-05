@@ -63,6 +63,7 @@ html {
   scroll-behavior: smooth;
   max-width: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -935,7 +936,7 @@ img {
   transform: translateX(-50%);
   width: calc(100% - 80px);
   max-width: 1400px;
-  padding: 14px 0;
+  padding: 20px 0;
   border-radius: 100px;
   background-color: var(--glass-bg-solid);
   border-color: var(--border-color);
@@ -1883,9 +1884,8 @@ img {
     grid-template-columns: 1fr 1fr;
   }
 
-  .nav-links {
-    display: none;
-  }
+  /* NOTA: .nav-links reste visible sur tablette (768-1024px)
+     Il est caché uniquement sur mobile dans @media (max-width: 767px) */
 
   .contact-grid {
     grid-template-columns: 1fr;
@@ -1914,6 +1914,11 @@ img {
     min-width: 85vw;
   }
 }
+
+/* NOTE: .nav-links visibility is now centralized in new breakpoint system:
+   - Hidden on max-width: 1199px (mobile + tablet)
+   - Visible on min-width: 1200px (desktop)
+   Removed duplicate media query that was hiding nav-links at max-width: 1024px */
 
 /* -----------------------------------------------
    NOUVEAUX STYLES PIA PORTFOLIO
@@ -1950,199 +1955,258 @@ img {
   box-shadow: 0 4px 15px rgba(37, 211, 102, .4);
 }
 
-/* Mobile burger */
-.nav-burger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  margin-left: 8px;
-  z-index: 9999;
-}
+/* NOTE: Mobile & Tablet burger and nav-mobile are defined below
+   They exist up to 1199px breakpoint for mobile + tablet.
+   Desktop (1200px+) uses horizontal nav instead. */
 
-.nav-burger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--text-main);
-  border-radius: 2px;
-  transition: transform .3s ease, opacity .3s ease;
-  transform-origin: center;
-}
+/* ========================================================================
+   SIDE MENU (MOBILE & TABLET - max-width: 1199px)
+   Menu latéral qui glisse depuis le côté sur mobile et tablette.
+   Sur desktop (1200px+), menu horizontal classique apparaît.
+   ======================================================================== */
 
-.nav-burger.open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.nav-burger.open span:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
-
-.nav-burger.open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-/* Mobile nav */
-.nav-mobile {
-  display: none;
-  flex-direction: column;
-  gap: 16px;
-  padding: 24px 4vw 20px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-heavy);
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
-  width: 100%;
-  z-index: 999;
-}
-
-.nav-mobile.open {
-  display: flex;
-}
-
-.nav-mobile a {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-/* Media query pour le fullscreen mobile menu (max-width: 767px) */
-@media (max-width: 767px) {
-  /* Burger toujours visible */
+@media (max-width: 1199px) {
+  /* Afficher le burger button sur mobile */
   .nav-burger {
-    display: flex;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 9999;
   }
 
-  /* Overlay fullscreen du menu mobile */
-  .nav-mobile {
+  .nav-burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-main);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+
+  /* Masquer le burger quand le menu est ouvert pour éviter la double croix */
+  .nav-burger.open {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Ces styles sont maintenant inutiles car le burger est caché quand le menu est ouvert */
+
+  /* OVERLAY SEMI-TRANSPARENT */
+  .nav-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
     width: 100%;
     height: 100%;
-    padding: 0;
-    background: var(--bg-main);
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 9998;
+  }
+
+  .nav-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* MENU LATERAL - Glisse depuis la droite */
+  .nav-mobile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 65%;
+    max-width: 280px;
+    background: var(--bg-secondary);
     border: none;
     border-radius: 0;
-    box-shadow: none;
-    margin: 0;
-    gap: 0;
-    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     z-index: 9999;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
     overflow-x: hidden;
-    display: none;
+    padding: 0;
+    gap: 0;
   }
 
+  /* Menu ouvert - Glisse à droite */
   .nav-mobile.open {
-    display: flex;
+    transform: translateX(0);
   }
 
-  /* Header du menu mobile (logo + burger close) */
+  /* HEADER du menu latéral (Logo + Close button) */
   .nav-mobile-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
-    padding: 16px 20px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
   }
 
   .nav-mobile-header .nav-logo {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 800;
+    letter-spacing: -1px;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    color: var(--text-main);
+    text-decoration: none;
   }
 
-  /* Contenu du menu (liens + CTA) */
+  /* Close button (X) */
+  .nav-close {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .nav-close:hover {
+    color: var(--accent-blue);
+    transform: scale(1.1);
+  }
+
+  /* CONTENU du menu latéral (Navigation + CTA) */
   .nav-mobile-content {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    flex-grow: 0;
-    width: 100%;
-    padding: 0;
+    gap: 24px;
+    padding: 24px;
+    flex: 1;
+    overflow-y: auto;
   }
 
+  /* Navigation links */
   .nav-mobile-content .nav-links {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
-    gap: 12px;
+    gap: 0;
   }
 
   .nav-mobile-content .nav-links a {
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
     color: var(--text-main);
     text-decoration: none;
-    padding: 8px 0;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: color 0.2s ease, padding-left 0.2s ease;
   }
 
-  .nav-mobile-content .nav-links a.active {
-    color: var(--accent-blue);
+  .nav-mobile-content .nav-links a:first-child {
+    border-top: 1px solid var(--border-color);
   }
 
+  .nav-mobile-content .nav-links a.active,
   .nav-mobile-content .nav-links a:hover {
     color: var(--accent-blue);
+    padding-left: 8px;
   }
 
-  /* CTA Devis dans le menu mobile */
+  /* CTA Devis */
   .nav-mobile-cta {
-    align-self: flex-start;
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
     margin-top: 8px;
   }
 
-  /* Footer du menu mobile (signature) */
+  /* FOOTER du menu latéral (Copyright + Réseaux sociaux) */
   .nav-mobile-footer {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    border-top: 1px solid var(--border-color);
     flex-shrink: 0;
   }
 
   .nav-mobile-footer .nav-copyright {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--text-muted);
-    white-space: nowrap;
+    line-height: 1.5;
   }
 
+  /* Réseaux sociaux */
   .nav-mobile-footer .nav-socials {
     display: flex;
-    gap: 12px;
+    gap: 16px;
     align-items: center;
+    justify-content: flex-start;
   }
 
   .nav-mobile-footer .nav-socials a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
     color: var(--text-main);
     font-size: 16px;
-    transition: color 0.3s ease;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
   }
 
   .nav-mobile-footer .nav-socials a:hover {
-    color: var(--accent-blue);
+    color: white;
+    background: var(--accent-blue);
+    transform: translateY(-2px);
+  }
+
+  /* Masquer le menu horizontal sur mobile & tablette */
+  .nav-links {
+    display: none;
+  }
+
+  /* Masquer le bouton CTA du header sur mobile & tablette (il est dans le menu latéral) */
+  .nav-cta {
+    display: none !important;
   }
 
   /* Blocage du scroll quand le menu est ouvert */
   body.menu-open {
     overflow: hidden;
-    width: 100%;
-    box-sizing: border-box;
+  }
+}
+
+/* Sur Desktop (1200px+), le menu horizontal s'affiche, burger et overlay cachés */
+@media (min-width: 1200px) {
+  .nav-burger,
+  .nav-overlay,
+  .nav-mobile,
+  .nav-close {
+    display: none !important;
+  }
+  
+  .nav-links {
+    display: flex !important;
   }
 }
 
@@ -3275,20 +3339,12 @@ textarea.form-control {
   color: var(--text-muted);
 }
 
-/* -- RESPONSIVE ADDITIONNEL -- */
+/* -- RESPONSIVE HEADER -- */
+/* NOTE: .nav-links and .nav-cta hiding is now in @media (max-width: 1199px) */
+/* This prevents code duplication - previous rules removed */
+
+/* Tablet and up - remove the extra burger display that was interfering */
 @media (max-width: 1024px) {
-  .nav-burger {
-    display: flex;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .nav-cta {
-    display: none;
-  }
-  
   .nav-actions {
     gap: 12px;
   }
@@ -4262,28 +4318,8 @@ textarea.form-control {
 .lang-switcher button:hover { color: var(--text-color); }
 .lang-switcher button.active { color: var(--accent-blue); }
 
-/* --- MOBILE HEADER FLOATING PILL --- */
-@media (max-width: 767px) {
-  .navbar {
-    position: fixed;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 92%;
-    max-width: 420px;
-    height: 56px;
-    padding: 0 20px;
-    z-index: 9999;
-    background-color: var(--glass-bg-solid);
-    border: 1px solid var(--border-color);
-    border-radius: 50px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-  }
+/* Mobile header disabled - burger button is now static */
+
 
   .nav-container {
     display: flex;
@@ -4432,196 +4468,10 @@ textarea.form-control {
     justify-content: center;
   }
 
-  .btn-whatsapp-nav, .nav-cta {
-    display: none !important;
-  }
 
-  .nav-burger {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    width: 24px;
-    height: 24px;
-  }
-
-  .nav-burger span {
-    display: block;
-    width: 18px;
-    height: 2px;
-    background: var(--text-main);
-    border-radius: 1px;
-    transition: transform 0.3s, opacity 0.3s;
-  }
-
-  .nav-burger.open span:first-child {
-    transform: translateY(6px) rotate(45deg);
-  }
-
-  .nav-burger.open span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .nav-burger.open span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
-  }
-
-  .nav-links, .nav-cta {
-    display: none !important;
-  }
-
-  .nav-mobile {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bg-secondary);
-    z-index: 9999;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-
-  .nav-mobile.open {
-    display: flex;
-  }
-
-  .nav-mobile-header {
-    display: none;
-  }
-
-  .nav-mobile .nav-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-  }
-
-  .nav-mobile .nav-links a {
-    color: var(--text-main);
-    text-decoration: none;
-    font-size: 18px;
-  }
-
-  .nav-mobile .btn-primary {
-    margin-top: 20px;
-    width: 100%;
-  }
-
-  .nav-mobile-footer {
-    display: none;
-  }
-
-  body.menu-open {
-  }
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-  }
-
-  .nav-burger.open span {
-  }
-
-  .nav-burger.open span:first-child {
-  }
-
-  .nav-burger.open span:nth-child(2) {
-  }
-
-  .nav-burger.open span:nth-child(3) {
-  }
-
-  .nav-mobile .nav-links {
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    width: 100%;
-    flex: none;
-    padding: 10px 0;
-  }
-
-  .nav-mobile .nav-links a {
-    font-size: 18px;
-    color: var(--text-main);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
-    padding: 4px 10px;
-    text-align: center;
-    font-family: var(--font-main);
-  }
-
-  .nav-mobile .nav-links a:hover,
-  .nav-mobile .nav-links a.active {
-    color: var(--accent-blue);
-    background-color: rgba(0, 86, 210, 0.1);
-  }
-
-  .nav-mobile .btn-primary {
-    width: 100%;
-    max-width: 100%;
-    padding: 8px 16px;
-    font-size: 13px;
-    text-align: center;
-  }
-
-  .nav-copyright {
-    font-size: 17px;
-    color: var(--text-muted);
-    white-space: nowrap;
-  }
-
-  .nav-socials {
-    display: flex;
-    gap: 6px;
-  }
-
-  .nav-socials a {
-    color: var(--text-muted);
-    font-size: 19px;
-    transition: color 0.2s;
-  }
-
-  .nav-socials a:hover {
-    color: var(--accent-blue);
-  }
-
-  .nav-mobile > div:last-child {
-    width: 100%;
-    padding-top: 30px;
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-mobile .btn-primary {
-    width: 100%;
-    padding: 18px 36px !important;
-    font-size: 16px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
 
   .hero-split-section {
     padding-top: 100px;
   }
-}
+
 

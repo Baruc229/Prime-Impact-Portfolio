@@ -80,9 +80,75 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  /* ── MOBILE BURGER ── */
-  // Burger button is now disabled - no action on click
-  // Can be re-enabled later when implementing new menu
+  /* ── MENU LATÉRAL MOBILE (Side Menu) ── 
+     Gère l'ouverture/fermeture du menu latéral sur mobile uniquement.
+     Le menu glisse du côté gauche avec un overlay semi-transparent.
+  */
+  const burger = document.getElementById('navBurger');
+  const mobileMenu = document.getElementById('navMobile');
+  const mobileOverlay = document.getElementById('navOverlay');
+  const closeBtn = document.getElementById('navClose');
+  const menuLinks = mobileMenu ? mobileMenu.querySelectorAll('.nav-links a, .nav-mobile-cta') : [];
+
+  function openMenu() {
+    if (mobileMenu && window.innerWidth < 1200) {
+      mobileMenu.classList.add('open');
+      mobileOverlay.classList.add('open');
+      burger.classList.add('open');
+      document.body.classList.add('menu-open');
+    }
+  }
+
+  function closeMenu() {
+    if (mobileMenu) {
+      mobileMenu.classList.remove('open');
+      mobileOverlay.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.classList.remove('menu-open');
+    }
+  }
+
+  // Ouvrir le menu au clic sur le burger
+  if (burger) {
+    burger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (mobileMenu.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+  }
+
+  // Fermer le menu au clic sur la croix
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeMenu();
+    });
+  }
+
+  // Fermer le menu au clic sur l'overlay
+  if (mobileOverlay) {
+    mobileOverlay.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeMenu();
+    });
+  }
+
+  // Fermer le menu au clic sur un lien de navigation
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+
+  // Fermer le menu si la fenêtre est redimensionnée (e.g., rotation d'écran)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1200 && mobileMenu) {
+      closeMenu();
+    }
+  });
 
   /* ── LANGUAGE TOGGLE (Mobile - Direct toggle) ── */
   const langToggle = document.getElementById('langToggle');
@@ -93,12 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const newLang = currentLang === 'fr' ? 'en' : 'fr';
       if (window.i18n) {
         window.i18n.setLang(newLang);
-      }
-      // Close mobile menu when changing language
-      if (burger && mobileMenu) {
-        burger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        document.body.classList.remove('menu-open');
       }
     });
   }

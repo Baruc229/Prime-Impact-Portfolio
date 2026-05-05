@@ -64,12 +64,40 @@ function buildHeader() {
         </button>
       </div>
     </div>
-    <!-- Mobile menu -->
+    <!-- Mobile menu (Side Menu) -->
+    <div class="nav-overlay" id="navOverlay"></div>
     <div class="nav-mobile" id="navMobile">
-      <nav class="nav-links">
-        ${navLinksHTML}
-      </nav>
-      <a href="devis.html" class="btn btn-primary" data-i18n="nav.quote">Devis gratuit</a>
+      <!-- Header du menu latéral -->
+      <div class="nav-mobile-header">
+        <a href="index.html" class="nav-logo">/_PIA</a>
+        <button class="nav-close" id="navClose" aria-label="Fermer le menu">
+          <i class="ph ph-x"></i>
+        </button>
+      </div>
+
+      <!-- Contenu du menu latéral -->
+      <div class="nav-mobile-content">
+        <nav class="nav-links">
+          ${navLinksHTML}
+        </nav>
+        <a href="devis.html" class="btn btn-primary nav-mobile-cta" data-i18n="nav.quote">Devis gratuit</a>
+      </div>
+
+      <!-- Pied du menu latéral -->
+      <div class="nav-mobile-footer">
+        <div class="nav-copyright" data-i18n="footer.rights">Tous droits réservés.</div>
+        <div class="nav-socials">
+          <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="${WA_LINK}" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </header>`;
 }
