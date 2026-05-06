@@ -147,7 +147,7 @@ function buildFooter() {
           <h4 class="footer-title" data-i18n="footer.start">Démarrer</h4>
           <p style="color:var(--text-muted);font-size:14px;margin-bottom:16px;" data-i18n="footer.start.text">Un projet en tête ? Parlons-en.</p>
           <a href="devis.html" class="btn btn-primary" style="width:100%;margin-bottom:12px;" data-i18n="footer.btn.quote">Obtenir un devis</a>
-          <a href="${WA_LINK}" class="btn btn-whatsapp" target="_blank" style="width:100%;"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+          <a id="whatsapp-btn-footer" href="${WA_LINK}" class="btn btn-whatsapp" style="width:100%;" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="index.hero.cta.contact">Contactez-moi</span></a>
         </div>
       </div>
       <div class="footer-bottom">

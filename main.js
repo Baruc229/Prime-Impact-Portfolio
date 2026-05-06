@@ -7,6 +7,25 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ── WHATSAPP BUTTON INITIALIZATION ── */
+  function initWhatsAppButton() {
+    const whatsappButtons = document.querySelectorAll('[id^="whatsapp-btn"]');
+    if (whatsappButtons.length && typeof i18nManager !== 'undefined') {
+      const lang = i18nManager.currentLang || 'fr';
+      const phoneNumber = '33600000000';
+      const message = lang === 'en' 
+        ? 'I need your services for my business' 
+        : 'J\'ai besoin de vos services pour mon entreprise';
+      const encodedMessage = encodeURIComponent(message);
+      whatsappButtons.forEach(btn => {
+        btn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      });
+    }
+  }
+  
+  // Initialise tous les boutons WhatsApp au chargement
+  setTimeout(initWhatsAppButton, 100);
+
   /* ── CUSTOM CURSOR (désactivé pour fluidité) ── */
   // if (window.matchMedia('(pointer: fine)').matches) {
   //   const cursor = document.createElement('div');
@@ -177,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ── LANGUAGE CHANGE LISTENER FOR ROTATOR ── */
+  /* ── LANGUAGE CHANGE LISTENER FOR ROTATOR & WHATSAPP ── */
   document.addEventListener('languageChanged', (e) => {
     const lang = e.detail.lang;
     const wordsFR = ["vendre pour vous.", "capter l'attention.", "convertir rapidement.", "maximiser votre visibilité."];
@@ -189,6 +208,17 @@ document.addEventListener('DOMContentLoaded', () => {
       window.rotatorWords = newWords;
       window.rotatorIdx = 0;
     }
+
+    // Met à jour tous les boutons WhatsApp avec message pré-rempli selon la langue
+    const whatsappButtons = document.querySelectorAll('[id^="whatsapp-btn"]');
+    whatsappButtons.forEach(btn => {
+      const phoneNumber = '33600000000';
+      const message = lang === 'en' 
+        ? 'I need your services for my business' 
+        : 'J\'ai besoin de vos services pour mon entreprise';
+      const encodedMessage = encodeURIComponent(message);
+      btn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    });
   });
 
   /* ── ANIMATIONS D'APPARITION (Scroll Reveal) ── 

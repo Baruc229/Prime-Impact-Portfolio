@@ -62,13 +62,16 @@ const translations = {
   "modal.success.text": { "fr": "Nous vous contactons très vite.", "en": "We will contact you very soon." },
 
   // --- Index: Hero ---
-  "index.hero.badge": { "fr": "_L'Agence_des_Sites_qui_Vendent_", "en": "_The_Agency_For_Websites_That_Sell_" },
+  "index.hero.badge": { "fr": "Agence premium", "en": "Premium Agency" },
   "index.hero.title": { "fr": "Nous concevons des sites web qui ont le devoir de", "en": "We design websites that have a duty to" },
   "index.hero.rotator": { "fr": "vendre pour vous.", "en": "sell for you." },
   "index.hero.kw1": { "fr": "Stratégie", "en": "Strategy" },
   "index.hero.kw2": { "fr": "Développement", "en": "Development" },
   "index.hero.kw3": { "fr": "Performance", "en": "Performance" },
-  "index.hero.cta": { "fr": "Démarrer mon projet", "en": "Start my project" },
+  "index.hero.cta.portfolio": { "fr": "Mes projets", "en": "My projects" },
+  "index.hero.cta.contact": { "fr": "Contactez-moi", "en": "Contact me" },
+  "index.hero.whatsapp.message.fr": { "fr": "J'ai besoin de vos services pour mon entreprise", "en": "J'ai besoin de vos services pour mon entreprise" },
+  "index.hero.whatsapp.message.en": { "fr": "I need your services for my business", "en": "I need your services for my business" },
   "index.hero.proof": { "fr": "Entrepreneurs accompagnés", "en": "Entrepreneurs supported" },
   "index.hero.float.title": { "fr": "Résultats Garantis", "en": "Guaranteed Results" },
   "index.hero.float.sub": { "fr": "Expertise 100% orientée ROI", "en": "100% ROI-focused expertise" },
