@@ -337,7 +337,7 @@ img {
 }
 
 .hero-google-sep {
-  color: var(--border-color);
+  color: var(--text-muted);
 }
 
 .hero-google-max {
@@ -461,11 +461,11 @@ img {
     gap: 24px;
   }
   .hero-line-xs {
-    font-size: clamp(14px, 3vw, 20px);
+    font-size: clamp(18px, 5vw, 28px);
     letter-spacing: 2px;
   }
   .hero-line-sm {
-    font-size: clamp(22px, 6vw, 36px);
+    font-size: clamp(30px, 8vw, 48px);
     letter-spacing: -1px;
   }
   .hero-line-lg {
@@ -473,11 +473,24 @@ img {
     letter-spacing: -2px;
   }
   .hero-actions {
-    flex-direction: column;
-    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-width: 280px;
+    margin: 0 auto;
   }
   .hero-actions .btn {
     width: 100%;
+    min-width: 0;
+    justify-content: center;
+    padding: 10px 6px;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hero-actions .btn i {
+    font-size: 13px;
   }
   .hero-slider-track {
     width: 180px;
@@ -1293,8 +1306,8 @@ img {
   font-size: max(14px, 1vw);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border-radius: 100px;
-  /* Modern Pill shape */
+  border-radius: 12px;
+  /* Modern square-pill shape */
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
   /* Removed transform transition so JS magnetic effect is smooth */
@@ -2487,7 +2500,7 @@ img {
   padding: 16px 32px;
   background: var(--accent-secondary);
   color: var(--bg-main);
-  border-radius: 100px;
+  border-radius: 12px;
   font-weight: 700;
   font-size: max(14px, 1vw);
   text-transform: uppercase;
