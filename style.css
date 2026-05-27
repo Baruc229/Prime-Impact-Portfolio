@@ -461,15 +461,15 @@ img {
     gap: 24px;
   }
   .hero-line-xs {
-    font-size: clamp(18px, 5vw, 28px);
+    font-size: clamp(14px, 3.5vw, 20px);
     letter-spacing: 2px;
   }
   .hero-line-sm {
-    font-size: clamp(30px, 8vw, 48px);
+    font-size: clamp(34px, 9vw, 56px);
     letter-spacing: -1px;
   }
   .hero-line-lg {
-    font-size: clamp(36px, 14vw, 64px);
+    font-size: clamp(40px, 16vw, 72px);
     letter-spacing: -2px;
   }
   .hero-actions {
