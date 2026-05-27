@@ -19,7 +19,7 @@ function buildHeader() {
     { href: 'services.html',     label: 'Services', i18n: 'nav.services' },
     { href: 'realisations.html', label: 'Réalisations', i18n: 'nav.portfolio' },
     { href: 'a-propos.html',     label: 'À propos', i18n: 'nav.about' },
-    { href: 'temoignages.html',  label: 'Témoignages', i18n: 'nav.testimonials' },
+    // { href: 'temoignages.html',  label: 'Témoignages', i18n: 'nav.testimonials' },
     { href: 'contact.html',      label: 'Contact', i18n: 'nav.contact' },
   ];
   
@@ -35,7 +35,10 @@ function buildHeader() {
 
   <header class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="index.html" class="nav-logo">/_PIA</a>
+      <a href="index.html" class="nav-logo">
+        <img src="assets/pia-logo-white.png" alt="PIA" class="logo-white">
+        <img src="assets/pia-logo-dark.png" alt="PIA" class="logo-dark">
+      </a>
       <nav class="nav-links" id="nav-links">
         ${navLinksHTML}
       </nav>
@@ -45,7 +48,7 @@ function buildHeader() {
           <span>|</span>
           <button data-lang="en">EN</button>
         </div>
-        <button class="lang-btn" id="langToggle" aria-label="Changer la langue" onclick="toggleLangMenu(event)">
+        <button class="lang-btn" id="langToggle" aria-label="Changer la langue">
           <i class="fa-solid fa-globe"></i>
         </button>
         <div class="lang-menu" id="langMenu">
@@ -53,7 +56,7 @@ function buildHeader() {
           <button data-lang="en">EN</button>
         </div>
         <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
-          <i class="ph ph-moon"></i>
+          <i class="ph ph-sun"></i>
         </button>
         <a href="${WA_LINK}" class="btn-whatsapp-nav" target="_blank" rel="noopener" aria-label="WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
@@ -69,7 +72,10 @@ function buildHeader() {
     <div class="nav-mobile" id="navMobile">
       <!-- Header du menu latéral -->
       <div class="nav-mobile-header">
-        <a href="index.html" class="nav-logo">/_PIA</a>
+        <a href="index.html" class="nav-logo">
+          <img src="assets/pia-logo-white.png" alt="PIA" class="logo-white">
+          <img src="assets/pia-logo-dark.png" alt="PIA" class="logo-dark">
+        </a>
         <button class="nav-close" id="navClose" aria-label="Fermer le menu">
           <i class="ph ph-x"></i>
         </button>
@@ -112,7 +118,10 @@ function buildFooter() {
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" style="text-decoration:none;color:inherit;"><h3>/_PIA</h3></a>
+          <a href="index.html" style="text-decoration:none;color:inherit;">
+            <img src="assets/pia-logo-white.png" alt="PIA" class="logo-white" style="height:68px;">
+            <img src="assets/pia-logo-dark.png" alt="PIA" class="logo-dark" style="height:68px;">
+          </a>
           <p style="color:var(--text-muted);font-size:14px;line-height:1.7;" data-i18n="footer.desc">
             Agence web & marketing digital spécialisée dans la création de sites performants, tunnels de vente et référencement SEO.
           </p>

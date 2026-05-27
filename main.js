@@ -221,16 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ── ANIMATIONS D'APPARITION (Scroll Reveal) ── 
-     Fait apparaître les éléments avec la classe .reveal quand ils entrent à l'écran.
-  */
-  const revealEls = document.querySelectorAll('.reveal');
-  if (revealEls.length) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => observer.observe(el));
-  }
+  /* ── ANIMATIONS D'APPARITION désactivées ── */
 
   /* ── FAQ ACCORDION ── */
   document.querySelectorAll('.faq-question').forEach(q => {

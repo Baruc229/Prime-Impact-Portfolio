@@ -147,8 +147,10 @@ body.cursor-disabled * {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* MODERN GRID BACKGROUND */
-
+/* BACKGROUND */
+.bg-grid {
+  background: var(--bg-main);
+}
 
 /* GLOW BLOBS */
 .glow-blob {
@@ -1017,12 +1019,19 @@ img {
 }
 
 .nav-logo {
-  font-size: max(24px, 1.8vw);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -2px;
-  font-family: 'JetBrains Mono', monospace;
+  display: flex;
+  align-items: center;
+  height: 40px;
 }
+
+.nav-logo img {
+  height: 70px;
+  width: auto;
+}
+
+.logo-dark { display: none !important; }
+[data-theme="light"] .logo-dark { display: inline-block !important; }
+[data-theme="light"] .logo-white { display: none !important; }
 
 .nav-links {
   display: flex;
@@ -1246,22 +1255,13 @@ img {
    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ */
 /* ANIMATIONS */
 .reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
-.delay-1 {
-  transition-delay: 0.1s;
-}
-
+.delay-1,
 .delay-2 {
-  transition-delay: 0.2s;
+  transition: none;
 }
 
 /* SECTION TITLES */
@@ -1997,10 +1997,9 @@ img {
   color: var(--accent-blue);
 }
 
-.nav-logo {
-  font-size: max(20px, 1.5vw);
-  font-weight: 700;
-  text-transform: uppercase;
+.nav-logo img {
+  height: 70px;
+  width: auto;
 }
 
 /* WhatsApp nav icon */
@@ -2122,14 +2121,8 @@ img {
     flex-shrink: 0;
   }
 
-  .nav-mobile-header .nav-logo {
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    font-family: 'JetBrains Mono', monospace;
-    text-transform: uppercase;
-    color: var(--text-main);
-    text-decoration: none;
+  .nav-mobile-header .nav-logo img {
+    height: 54px;
   }
 
   /* Close button (X) */
@@ -4394,17 +4387,14 @@ textarea.form-control {
   }
 
   .nav-logo {
-    font-size: 20px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    color: var(--text-main);
-    text-decoration: none;
     flex-shrink: 0;
-    line-height: 1;
     height: 28px;
     display: flex;
     align-items: center;
+  }
+
+  .nav-logo img {
+    height: 70px;
   }
 
   .nav-actions {

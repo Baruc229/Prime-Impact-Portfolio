@@ -146,7 +146,7 @@ const translations = {
   "index.metrics.3": { "fr": "des projets livrés sur-mesure", "en": "tailor-made projects delivered" },
 
   // --- Index: Skills ---
-  "index.skills.badge": { "fr": "_MON_EXPERTISE_", "en": "_MY_EXPERTISE_" },
+  "index.skills.badge": { "fr": "Expertise", "en": "Expertise" },
   "index.skills.title": { "fr": "Compétences que je maîtrise.", "en": "Skills I master." },
   "index.skills.sub": { "fr": "L'alliance parfaite entre maîtrise technique et savoir-être pour mener à bien vos projets.", "en": "The perfect blend of technical mastery and interpersonal skills to succeed in your projects." },
   "index.skills.hard": { "fr": "Compétences Techniques", "en": "Technical Skills" },
