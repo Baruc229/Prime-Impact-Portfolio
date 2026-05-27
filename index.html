@@ -23,65 +23,41 @@
 <body class="bg-grid">
   <div id="app">
 
-    <!-- ░░ HERO SPLIT ░░ -->
-    <section class="hero-split-section" id="hero">
-      <div class="container hero-grid">
-        <!-- Colonne Gauche : Contenu -->
-        <div class="hero-content reveal">
-          <div class="hero-badge" data-i18n="index.hero.badge">Agence premium</div>
-          <h1 class="hero-title">
-            <span data-i18n="index.hero.title">Nous concevons des sites web qui ont le devoir de</span> <br>
-            <span class="highlight-text"><span class="text-rotator" id="text-rotator" data-i18n="index.hero.rotator">vendre pour vous.</span></span>
-          </h1>
-          
-          <div class="hero-keywords">
-            <span class="keyword" data-i18n="index.hero.kw1">Stratégie</span><span class="keyword-dot">·</span>
-            <span class="keyword" data-i18n="index.hero.kw2">Développement</span><span class="keyword-dot">·</span>
-            <span class="keyword" data-i18n="index.hero.kw3">Performance</span>
-          </div>
-          
-          <div class="hero-actions">
-            <a id="whatsapp-btn" href="https://wa.me/33600000000?text=J%27ai%20besoin%20de%20vos%20services%20pour%20mon%20entreprise" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="index.hero.cta.contact">Contactez-moi</span></a>
-            <a href="realisations.html" class="btn btn-primary btn-lg" data-i18n="index.hero.cta.portfolio">Mes projets</a>
-          </div>
+    <!-- ░░ HERO TEXTE ░░ -->
+    <section class="hero-section" id="hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">
+          <span class="hero-line hero-line-sm" data-i18n="index.hero.title">Nous concevons des sites web</span>
+          <span class="hero-line hero-line-xs" data-i18n="index.hero.subtitle">qui ont le devoir de</span>
+          <span class="hero-line hero-line-lg"><span class="text-rotator" id="text-rotator" data-i18n="index.hero.rotator">vendre pour vous.</span></span>
+        </h1>
 
-          <div class="hero-social-proof">
-            <a href="#" class="google-badge" target="_blank" rel="noopener">
-              <div class="google-badge-content">
-                <div class="google-logo">
-                  <i class="fa-brands fa-google"></i>
-                </div>
-                <div class="google-rating">
-                  <div class="google-stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                  </div>
-                  <div class="google-score">4,8 <span class="google-separator">/</span> 5</div>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 12px; margin-left: 8px;"></i>
-              </div>
-            </a>
-          </div>
+        <div class="hero-actions">
+          <a id="whatsapp-btn" href="https://wa.me/33600000000?text=J%27ai%20besoin%20de%20vos%20services%20pour%20mon%20entreprise" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="index.hero.cta.contact">Contactez-moi</span></a>
+          <a href="realisations.html" class="btn btn-primary btn-lg" data-i18n="index.hero.cta.portfolio">Mes projets</a>
         </div>
 
-        <!-- Colonne Droite : Image -->
-        <div class="hero-image-wrapper reveal delay-1">
-          <div class="hero-image-inner">
-            <img src="assets/schallom-_2_.avif" alt="Schallom, Fondateur" onerror="alert('Image introuvable ou non supportée'); this.style.display='none';">
-          </div>
-          <!-- Floating Card -->
-          <div class="hero-floating-card">
-            <i class="ph-fill ph-rocket-launch" style="color: #10b981; font-size: 32px;"></i>
-            <div>
-              <div class="hero-floating-card-text" data-i18n="index.hero.float.title">Résultats Garantis</div>
-              <div class="hero-floating-card-sub" data-i18n="index.hero.float.sub">Expertise 100% orientée ROI</div>
+        <div class="hero-slider">
+          <div class="hero-slider-line"></div>
+          <div class="hero-slider-body">
+            <button class="hero-slider-arrow hero-slider-prev" aria-label="Précédent">
+              <i class="ph ph-caret-left"></i>
+            </button>
+            <div class="hero-slider-track">
+              <div class="hero-slider-slide active" data-i18n="index.slider.1">Création de site web</div>
+              <div class="hero-slider-slide" data-i18n="index.slider.2">Refonte de site web</div>
+              <div class="hero-slider-slide" data-i18n="index.slider.3">Tunnel de vente</div>
+              <div class="hero-slider-slide" data-i18n="index.slider.4">Landing page</div>
+              <div class="hero-slider-slide" data-i18n="index.slider.5">Référencement SEO</div>
+              <div class="hero-slider-slide" data-i18n="index.slider.6">Audit & stratégie</div>
             </div>
+            <button class="hero-slider-arrow hero-slider-next" aria-label="Suivant">
+              <i class="ph ph-caret-right"></i>
+            </button>
           </div>
+          <div class="hero-slider-dots"></div>
         </div>
       </div>
-      
-      <!-- Éléments décoratifs (Glows) -->
-      <div class="hero-glow hero-glow-1"></div>
-      <div class="hero-glow hero-glow-2"></div>
     </section>
 
     <!-- ░░ OUTILS ░░ -->

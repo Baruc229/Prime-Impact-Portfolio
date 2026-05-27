@@ -30,8 +30,6 @@ function buildHeader() {
 
   return `
   <div class="noise-overlay"></div>
-  <div class="glow-blob glow-top-left"></div>
-  <div class="glow-blob glow-bottom-right"></div>
 
   <header class="navbar" id="navbar">
     <div class="nav-container">

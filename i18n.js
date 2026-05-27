@@ -63,7 +63,8 @@ const translations = {
 
   // --- Index: Hero ---
   "index.hero.badge": { "fr": "Agence premium", "en": "Premium Agency" },
-  "index.hero.title": { "fr": "Nous concevons des sites web qui ont le devoir de", "en": "We design websites that have a duty to" },
+  "index.hero.title": { "fr": "Nous concevons des sites web", "en": "We design websites" },
+  "index.hero.subtitle": { "fr": "qui ont le devoir de", "en": "that have a duty to" },
   "index.hero.rotator": { "fr": "vendre pour vous.", "en": "sell for you." },
   "index.hero.kw1": { "fr": "Stratégie", "en": "Strategy" },
   "index.hero.kw2": { "fr": "Développement", "en": "Development" },
@@ -126,6 +127,14 @@ const translations = {
   "index.resultats.3.desc": { "fr": "Temps de chargement moyen de nos sites, optimisés Core Web Vitals", "en": "Average loading time of our sites, Core Web Vitals optimized" },
   "index.resultats.4.label": { "fr": "Trafic organique SEO", "en": "Organic SEO Traffic" },
   "index.resultats.4.desc": { "fr": "Augmentation du trafic naturel après optimisation SEO", "en": "Increase in natural traffic after SEO optimization" },
+
+  // --- Index: Services Slider ---
+  "index.slider.1": { "fr": "Création de site web", "en": "Website creation" },
+  "index.slider.2": { "fr": "Refonte de site web", "en": "Website redesign" },
+  "index.slider.3": { "fr": "Tunnel de vente", "en": "Sales funnel" },
+  "index.slider.4": { "fr": "Landing page", "en": "Landing page" },
+  "index.slider.5": { "fr": "Référencement SEO", "en": "SEO optimization" },
+  "index.slider.6": { "fr": "Audit & stratégie", "en": "Audit & strategy" },
 
   // --- Index: Features ---
   "index.features.badge": { "fr": "_Pourquoi_nous_choisir_", "en": "_Why_choose_us_" },

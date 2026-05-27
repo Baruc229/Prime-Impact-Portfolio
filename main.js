@@ -223,6 +223,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── ANIMATIONS D'APPARITION désactivées ── */
 
+  /* ── HERO SERVICE SLIDER ── */
+  initHeroSlider();
+
   /* ── FAQ ACCORDION ── */
   document.querySelectorAll('.faq-question').forEach(q => {
     q.addEventListener('click', () => {
@@ -463,6 +466,64 @@ function initContactForm() {
       if (err) err.style.display = 'none';
     });
   });
+}
+
+/* ════════════════════════════════════════════
+   HERO SLIDER — Service text rotator 1 à 1
+════════════════════════════════════════════ */
+function initHeroSlider() {
+  const track = document.querySelector('.hero-slider-track');
+  const slides = document.querySelectorAll('.hero-slider-slide');
+  const dots = document.querySelector('.hero-slider-dots');
+  const prevBtn = document.querySelector('.hero-slider-prev');
+  const nextBtn = document.querySelector('.hero-slider-next');
+  if (!track || !slides.length) return;
+
+  let current = 0;
+  let interval;
+
+  function buildDots() {
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goTo(i));
+      dots.appendChild(dot);
+    });
+  }
+
+  function goTo(index) {
+    slides.forEach((s, i) => {
+      s.classList.remove('active', 'prev');
+      if (i === index) s.classList.add('active');
+      else s.classList.add('prev');
+    });
+    dots.querySelectorAll('span').forEach((d, i) => {
+      d.classList.toggle('active', i === index);
+    });
+    current = index;
+    resetAuto();
+  }
+
+  function next() {
+    goTo((current + 1) % slides.length);
+  }
+
+  function prev() {
+    goTo((current - 1 + slides.length) % slides.length);
+  }
+
+  function resetAuto() {
+    clearInterval(interval);
+    interval = setInterval(next, 4000);
+  }
+
+  buildDots();
+  goTo(0);
+
+  if (prevBtn) prevBtn.addEventListener('click', prev);
+  if (nextBtn) nextBtn.addEventListener('click', next);
+
+  resetAuto();
 }
 
 /* ════════════════════════════════════════════
