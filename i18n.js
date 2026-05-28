@@ -63,14 +63,14 @@ const translations = {
 
   // --- Index: Hero ---
   "index.hero.badge": { "fr": "Agence premium", "en": "Premium Agency" },
-  "index.hero.title": { "fr": "Nous concevons des sites web", "en": "We design websites" },
+  "index.hero.title": { "fr": "Nous concevons des sites web qui", "en": "We design websites that" },
   "index.hero.subtitle": { "fr": "qui ont le devoir de", "en": "that have a duty to" },
-  "index.hero.rotator": { "fr": "vendre pour vous.", "en": "sell for you." },
+  "index.hero.rotator": { "fr": "vendent pour vous.", "en": "sell for you." },
   "index.hero.kw1": { "fr": "Stratégie", "en": "Strategy" },
   "index.hero.kw2": { "fr": "Développement", "en": "Development" },
   "index.hero.kw3": { "fr": "Performance", "en": "Performance" },
   "index.hero.cta.portfolio": { "fr": "Mes projets", "en": "My projects" },
-  "index.hero.cta.contact": { "fr": "Contactez-moi", "en": "Contact me" },
+  "index.hero.cta.contact": { "fr": "Audit gratuit", "en": "Get a free audit" },
   "index.hero.whatsapp.message.fr": { "fr": "J'ai besoin de vos services pour mon entreprise", "en": "J'ai besoin de vos services pour mon entreprise" },
   "index.hero.whatsapp.message.en": { "fr": "I need your services for my business", "en": "I need your services for my business" },
   "index.hero.proof": { "fr": "Entrepreneurs accompagnés", "en": "Entrepreneurs supported" },

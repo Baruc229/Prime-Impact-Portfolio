@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── LANGUAGE CHANGE LISTENER FOR ROTATOR & WHATSAPP ── */
   document.addEventListener('languageChanged', (e) => {
     const lang = e.detail.lang;
-    const wordsFR = ["vendre pour vous.", "capter l'attention.", "convertir rapidement.", "maximiser votre visibilité."];
+    const wordsFR = ["vendent pour vous.", "captent l'attention.", "convertissent rapidement.", "maximisent votre visibilité."];
     const wordsEN = ["sell for you.", "capture attention.", "convert quickly.", "maximize your visibility."];
     const rotator = document.getElementById('text-rotator');
     if (rotator) {
@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── TEXT ROTATOR ── */
   const rotator = document.getElementById('text-rotator');
   if (rotator) {
-    const wordsFR = ["vendre pour vous.", "capter l'attention.", "convertir rapidement.", "maximiser votre visibilité."];
+    const wordsFR = ["vendent pour vous.", "captent l'attention.", "convertissent rapidement.", "maximisent votre visibilité."];
     const wordsEN = ["sell for you.", "capture attention.", "convert quickly.", "maximize your visibility."];
     let currentLang = localStorage.getItem('site_lang') || 'fr';
     window.rotatorWords = currentLang === 'en' ? wordsEN : wordsFR;
