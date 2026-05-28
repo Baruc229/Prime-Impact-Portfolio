@@ -47,7 +47,7 @@ const translations = {
   "footer.start": { "fr": "Démarrer", "en": "Get Started" },
   "footer.start.text": { "fr": "Un projet en tête ? Parlons-en.", "en": "Have a project in mind? Let's talk." },
   "footer.btn.quote": { "fr": "Obtenir un devis", "en": "Get a Quote" },
-  "footer.rights": { "fr": "Tous droits réservés. © 2026 Prime Impact Agency.", "en": "All rights reserved. © 2026 Prime Impact Agency." },
+  "footer.rights": { "fr": "Tous droits réservés.", "en": "All rights reserved." },
 
   // --- Formulaire de Contact Modal ---
   "modal.title": { "fr": "Démarrer un projet", "en": "Start a Project" },
@@ -71,7 +71,7 @@ const translations = {
   "index.hero.kw3": { "fr": "Performance", "en": "Performance" },
   "index.hero.cta.portfolio": { "fr": "Mes projets", "en": "My projects" },
   "index.hero.cta.contact": { "fr": "Audit gratuit", "en": "Get a free audit" },
-  "index.hero.whatsapp.message.fr": { "fr": "J'ai besoin de vos services pour mon entreprise", "en": "J'ai besoin de vos services pour mon entreprise" },
+  "index.hero.whatsapp.message.fr": { "fr": "salut pia, j'ai besoin de vos services de developpement web", "en": "salut pia, j'ai besoin de vos services de developpement web" },
   "index.hero.whatsapp.message.en": { "fr": "I need your services for my business", "en": "I need your services for my business" },
   "index.hero.proof": { "fr": "Entrepreneurs accompagnés", "en": "Entrepreneurs supported" },
   "index.hero.float.title": { "fr": "Résultats Garantis", "en": "Guaranteed Results" },
@@ -147,11 +147,11 @@ const translations = {
   "index.features.1.title": { "fr": "Expertise technique", "en": "Technical Expertise" },
   "index.features.1.desc": { "fr": "WordPress, Shopify, WPFunnels, Cartflows, Omnisend — maîtrisés sur le bout des doigts pour des solutions sur-mesure.", "en": "WordPress, Shopify, WPFunnels, Cartflows, Omnisend — mastered for tailor-made solutions." },
   "index.features.2.title": { "fr": "Accompagnement A à Z", "en": "A to Z Support" },
-  "index.features.2.desc": { "fr": "Stratégie, design, développement, automatisations marketing — une équipe de 3 experts à vos côtés à chaque étape.", "en": "Strategy, design, development, marketing automations — a team of 3 experts by your side at every step." },
+  "index.features.2.desc": { "fr": "Stratégie, design, développement, automatisations marketing — un accompagnement complet à chaque étape.", "en": "Strategy, design, development, marketing automations — full support at every step." },
   "index.features.3.title": { "fr": "Résultats concrets", "en": "Concrete Results" },
   "index.features.3.desc": { "fr": "Des sites qui convertissent, des tunnels de vente performants et des automatisations qui travaillent pour vous 24h/24.", "en": "Websites that convert, high-performing sales funnels, and automations working for you 24/7." },
   "index.metrics.1": { "fr": "entrepreneurs accompagnés avec succès", "en": "entrepreneurs successfully supported" },
-  "index.metrics.2": { "fr": "experts dédiés à votre projet", "en": "dedicated experts for your project" },
+  "index.metrics.2": { "fr": "expert dédié à votre projet", "en": "dedicated expert for your project" },
   "index.metrics.3": { "fr": "des projets livrés sur-mesure", "en": "tailor-made projects delivered" },
 
   // --- Index: Skills ---
@@ -163,18 +163,18 @@ const translations = {
 
   // --- Index: Technical Skills (Hard Skills) ---
   "index.skills.wordpress": { "fr": "WordPress", "en": "WordPress" },
-  "index.skills.wpfunnels": { "fr": "WPFunnels / Cartflows", "en": "WPFunnels / Cartflows" },
+  "index.skills.wpfunnels": { "fr": "Funnel building", "en": "Funnel building" },
   "index.skills.automations": { "fr": "Automatisations (Omnisend, IA...)", "en": "Automations (Omnisend, AI...)" },
   "index.skills.shopify": { "fr": "Shopify", "en": "Shopify" },
   "index.skills.design": { "fr": "Figma / Framer / React / Flutter", "en": "Figma / Framer / React / Flutter" },
   "index.skills.seo": { "fr": "SEO", "en": "SEO" },
-  "index.skills.web": { "fr": "HTML / CSS / JS / React", "en": "HTML / CSS / JS / React" },
 
   // --- Index: Soft Skills ---
   "index.skills.communication": { "fr": "Communication & Écoute", "en": "Communication & Listening" },
   "index.skills.problemsolving": { "fr": "Résolution de problèmes", "en": "Problem-solving" },
-  "index.skills.timemanagement": { "fr": "Gestion du temps", "en": "Time Management" },
-  "index.skills.adaptability": { "fr": "Adaptabilité", "en": "Adaptability" },
+  "index.skills.timemanagement": { "fr": "Discipline & Rigueur", "en": "Discipline & Rigor" },
+  "index.skills.adaptability": { "fr": "Autonomie", "en": "Autonomy" },
+  "index.skills.pressure": { "fr": "Travail sous pression", "en": "Working under pressure" },
 
   // --- Index: Realisations (Projets) ---
   "index.realisations.project1.title": { "fr": "Boutique Mode Prestige", "en": "Prestige Fashion Store" },
@@ -345,53 +345,45 @@ const translations = {
   // ============================================================
   // A-PROPOS.HTML
   // ============================================================
-  "about.hero.badge": { "fr": "Notre histoire", "en": "Our history" },
+  "about.hero.badge": { "fr": "Mon histoire", "en": "My story" },
   "about.hero.title1": { "fr": "À propos de", "en": "About" },
   "about.hero.sub": { "fr": "Une agence fondée sur une conviction simple : un bon site web doit travailler pour vous, pas juste vous représenter.", "en": "An agency founded on a simple conviction: a good website should work for you, not just represent you." },
-  
-  "about.history.badge": { "fr": "_Notre_histoire_", "en": "_Our_history_" },
+
+  "about.history.badge": { "fr": "_Mon_histoire_", "en": "_My_story_" },
   "about.history.title": { "fr": "De la passion au métier.", "en": "From passion to profession." },
   "about.history.p1": { "fr": "Prime Impact Agency est née d'une observation simple de son fondateur, <strong>Schallom</strong> : beaucoup de sites existent, mais très peu vendent réellement. Trop d'entrepreneurs voient leurs visiteurs repartir sans jamais cliquer.", "en": "Prime Impact Agency was born from a simple observation by its founder, <strong>Schallom</strong>: many sites exist, but very few actually sell. Too many entrepreneurs see their visitors leave without ever clicking." },
-  "about.history.p2": { "fr": "La mission de PIA est de transformer ces sites obsolètes en <strong>véritables machines d'acquisition digitales</strong>. Nous allions esthétique premium et stratégie d'acquisition pour générer de la croissance.", "en": "PIA's mission is to transform these obsolete sites into <strong>true digital acquisition machines</strong>. We combine premium aesthetics and acquisition strategy to generate growth." },
-  "about.history.p3": { "fr": "Aujourd'hui, PIA repose sur l'excellence d'un trio passionné : <strong>Schallom, Jeffried et Donné</strong>, unissant leurs compétences en Stratégie, Design et Développement.", "en": "Today, PIA is based on the excellence of a passionate trio: <strong>Schallom, Jeffried, and Donné</strong>, uniting their skills in Strategy, Design, and Development." },
+  "about.history.p2": { "fr": "La mission de PIA est de transformer ces sites obsolètes en <strong>véritables machines d'acquisition digitales</strong>. J'allie esthétique premium et stratégie d'acquisition pour générer de la croissance.", "en": "PIA's mission is to transform these obsolete sites into <strong>true digital acquisition machines</strong>. I combine premium aesthetics and acquisition strategy to generate growth." },
+  "about.history.p3": { "fr": "Aujourd'hui, PIA mise sur l'expertise unique d'un passionné : stratégie, design et développement, réunis au service de votre croissance.", "en": "Today, PIA relies on the unique expertise of one passionate professional: strategy, design, and development, united for your growth." },
   
-  "about.metrics.team": { "fr": "Dans l'équipe", "en": "In the team" },
+  "about.metrics.team": { "fr": "Seul à bord", "en": "Solo at the helm" },
   "about.metrics.custom": { "fr": "Sur-mesure", "en": "Tailor-made" },
   
-  "about.team.badge": { "fr": "_NOTRE_ÉQUIPE_", "en": "_OUR_TEAM_" },
-  "about.team.title": { "fr": "L'équipe derrière vos succès.", "en": "The team behind your success." },
-  "about.team.sub": { "fr": "3 experts aux compétences complémentaires dédiés à votre réussite.", "en": "3 experts with complementary skills dedicated to your success." },
-  
-  "about.team.1.tag": { "fr": "Stratégie & Management", "en": "Strategy & Management" },
-  "about.team.1.role": { "fr": "Fondateur", "en": "Founder" },
-  "about.team.1.bio": { "fr": "Visionnaire de l'agence, Schallom pilote les projets de A à Z. Expert en web marketing, il s'assure que chaque site devienne une véritable machine d'acquisition.", "en": "Visionary of the agency, Schallom pilots projects from A to Z. Web marketing expert, he ensures that every site becomes a true acquisition machine." },
-  
-  "about.team.2.tag": { "fr": "Code & Architecture", "en": "Code & Architecture" },
-  "about.team.2.role": { "fr": "Expert Technique", "en": "Technical Expert" },
-  "about.team.2.bio": { "fr": "Architecte du web, Jeffried crée des bases solides, sécurisées et ultra-rapides. Maître du Front-end et Back-end, rien ne résiste à son code robuste.", "en": "Web architect, Jeffried creates solid, secure, and ultra-fast foundations. Master of Front-end and Back-end, nothing resists his robust code." },
-  
-  "about.team.3.tag": { "fr": "UI/UX & Branding", "en": "UI/UX & Branding" },
-  "about.team.3.role": { "fr": "Expert Créatif", "en": "Creative Expert" },
-  "about.team.3.bio": { "fr": "L'œil artistique de PIA. Donné transforme vos idées en interfaces intuitives, esthétiques et pensées pour séduire et convertir chaque visiteur.", "en": "PIA's artistic eye. Donné transforms your ideas into intuitive, aesthetic interfaces designed to seduce and convert every visitor." },
+  "about.team.badge": { "fr": "_QUI_SUIS-JE_", "en": "_WHO_I_AM_" },
+  "about.team.title": { "fr": "Derrière PIA.", "en": "Behind PIA." },
+  "about.team.sub": { "fr": "Un expert dédié à votre réussite, du code à la stratégie.", "en": "One expert dedicated to your success, from code to strategy." },
+  "about.team.1.tag": { "fr": "Web Master & Stratégie", "en": "Web Master & Strategy" },
+  "about.team.1.role": { "fr": "Fondateur — Web Master", "en": "Founder — Web Master" },
+  "about.team.1.bio": { "fr": "Web Master et stratège marketing, je conçois des sites web performants et élabore des stratégies digitales sur-mesure pour transformer votre présence en ligne en véritable moteur d'acquisition.", "en": "Web Master and marketing strategist, I design high-performance websites and develop tailored digital strategies to turn your online presence into a true acquisition engine." },
   
   "about.skills.title": { "fr": "Compétences & Outils", "en": "Skills & Tools" },
-  "about.skills.sub": { "fr": "Notre stack technique au service de vos projets.", "en": "Our tech stack at the service of your projects." },
+  "about.skills.sub": { "fr": "Mon stack technique au service de vos projets.", "en": "My tech stack at the service of your projects." },
   "about.skills.soft1": { "fr": "Communication & Écoute", "en": "Communication & Listening" },
   "about.skills.soft2": { "fr": "Résolution de problèmes", "en": "Problem solving" },
-  "about.skills.soft3": { "fr": "Gestion du temps", "en": "Time management" },
-  "about.skills.soft4": { "fr": "Adaptabilité", "en": "Adaptability" },
+  "about.skills.soft3": { "fr": "Discipline & Rigueur", "en": "Discipline & Rigor" },
+  "about.skills.soft4": { "fr": "Autonomie", "en": "Autonomy" },
+  "about.skills.soft5": { "fr": "Travail sous pression", "en": "Working under pressure" },
   
   "about.values.title": { "fr": "Mission & Valeurs", "en": "Mission & Values" },
-  "about.values.sub": { "fr": "Ce qui guide chacun de nos projets.", "en": "What guides each of our projects." },
-  "about.values.1.title": { "fr": "Notre mission", "en": "Our mission" },
+  "about.values.sub": { "fr": "Ce qui guide chacun de mes projets.", "en": "What guides each of my projects." },
+  "about.values.1.title": { "fr": "Ma mission", "en": "My mission" },
   "about.values.1.desc": { "fr": "Aider les entrepreneurs et PME à exploiter tout le potentiel du digital pour attirer plus de clients, automatiser leur croissance et bâtir une marque forte.", "en": "To help entrepreneurs and SMEs exploit the full potential of digital to attract more clients, automate their growth, and build a strong brand." },
   "about.values.2.title": { "fr": "Transparence", "en": "Transparency" },
-  "about.values.2.desc": { "fr": "Pas de jargon inutile, pas de frais cachés. On vous explique tout, on justifie chaque choix et on vous rend autonome sur votre propre outil.", "en": "No useless jargon, no hidden fees. We explain everything, justify each choice, and make you autonomous on your own tool." },
+  "about.values.2.desc": { "fr": "Pas de jargon inutile, pas de frais cachés. Je vous explique tout, je justifie chaque choix et je vous rends autonome sur votre propre outil.", "en": "No useless jargon, no hidden fees. I explain everything, justify each choice, and make you autonomous on your own tool." },
   "about.values.3.title": { "fr": "Excellence", "en": "Excellence" },
-  "about.values.3.desc": { "fr": "On ne sort pas un projet dont on n'est pas fiers. Chaque ligne de code, chaque pixel, chaque mot est pensé pour maximiser votre impact.", "en": "We don't release a project we aren't proud of. Every line of code, every pixel, every word is designed to maximize your impact." },
+  "about.values.3.desc": { "fr": "Je ne sors pas un projet dont je ne suis pas fier. Chaque ligne de code, chaque pixel, chaque mot est pensé pour maximiser votre impact.", "en": "I don't release a project I'm not proud of. Every line of code, every pixel, every word is designed to maximize your impact." },
   
   "about.cta.title": { "fr": "Travaillons ensemble.", "en": "Let's work together." },
-  "about.cta.sub": { "fr": "Votre projet mérite une équipe engagée et des résultats concrets.", "en": "Your project deserves a committed team and concrete results." },
+  "about.cta.sub": { "fr": "Votre projet mérite un engagement fort et des résultats concrets.", "en": "Your project deserves strong commitment and concrete results." },
 
   // ============================================================
   // DEVIS.HTML
@@ -442,8 +434,8 @@ const translations = {
   "contact.info.wapp": { "fr": "Disponible lun–sam, 9h–19h", "en": "Available Mon–Sat, 9am–7pm" },
   "contact.info.email": { "fr": "Réponse sous 24h ouvrées", "en": "Response within 24 business hours" },
   "contact.info.loc": { "fr": "Localisation", "en": "Location" },
-  "contact.info.loc.val": { "fr": "France (remote)", "en": "France (remote)" },
-  "contact.info.loc.sub": { "fr": "On travaille avec toute la France", "en": "We work with all of France" },
+  "contact.info.loc.val": { "fr": "Cotonou", "en": "Cotonou" },
+  "contact.info.loc.sub": { "fr": "On travaille partout dans le monde — freelance", "en": "We work worldwide — freelance" },
   "contact.badge.time": { "fr": "Réponse sous 24h", "en": "Response within 24h" },
   "contact.badge.trust": { "fr": "Sans engagement", "en": "No commitment" },
   "contact.form.title": { "fr": "Envoyez-nous un message", "en": "Send us a message" },
@@ -458,9 +450,11 @@ const translations = {
   "contact.form.sub5": { "fr": "Autre demande", "en": "Other request" },
   "contact.form.msg.ph": { "fr": "Décrivez brièvement votre projet ou votre question…", "en": "Briefly describe your project or your question…" },
   "contact.form.btn": { "fr": "Envoyer le message", "en": "Send message" },
+  "contact.error.name": { "fr": "3 caractères minimum, lettres uniquement", "en": "Min 3 characters, letters only" },
   "contact.error.req": { "fr": "Ce champ est requis", "en": "This field is required" },
   "contact.error.email": { "fr": "Email invalide", "en": "Invalid email" },
   "contact.error.sub": { "fr": "Veuillez choisir un sujet", "en": "Please choose a subject" },
+  "contact.error.phone": { "fr": "Numéro invalide (chiffres et + uniquement, 4 car. min)", "en": "Invalid number (digits and + only, min 4 chars)" },
   "contact.success.title": { "fr": "Message envoyé !", "en": "Message sent!" },
   "contact.success.sub": { "fr": "Nous vous répondrons sous 24h ouvrées.", "en": "We will respond within 24 business hours." },
   "contact.process.badge": { "fr": "_APRÈS_L'ENVOI_", "en": "_AFTER_SENDING_" },

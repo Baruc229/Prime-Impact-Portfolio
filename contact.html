@@ -38,7 +38,7 @@
         <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i>
         <div>
           <div class="contact-info-label">WhatsApp</div>
-          <div class="contact-info-value"><a href="https://wa.me/33600000000" target="_blank" style="color:var(--accent-blue);">+33 6 00 00 00 00</a></div>
+          <div class="contact-info-value"><a href="https://wa.me/22993288212" target="_blank" style="color:var(--accent-blue);">+229 93 28 82 12</a></div>
           <p style="font-size:13px;color:var(--text-muted);margin-top:4px;" data-i18n="contact.info.wapp">Disponible lun–sam, 9h–19h</p>
         </div>
       </div>
@@ -46,7 +46,7 @@
         <i class="ph ph-envelope"></i>
         <div>
           <div class="contact-info-label">Email</div>
-          <div class="contact-info-value"><a href="mailto:contact@primeimpact.agency" style="color:var(--accent-blue);">contact@primeimpact.agency</a></div>
+          <div class="contact-info-value"><a href="mailto:primiagency@gmail.com" style="color:var(--accent-blue);">primiagency@gmail.com</a></div>
           <p style="font-size:13px;color:var(--text-muted);margin-top:4px;" data-i18n="contact.info.email">Réponse sous 24h ouvrées</p>
         </div>
       </div>
@@ -54,8 +54,8 @@
         <i class="ph ph-map-pin"></i>
         <div>
           <div class="contact-info-label" data-i18n="contact.info.loc">Localisation</div>
-          <div class="contact-info-value" data-i18n="contact.info.loc.val">France (remote)</div>
-          <p style="font-size:13px;color:var(--text-muted);margin-top:4px;" data-i18n="contact.info.loc.sub">On travaille avec toute la France</p>
+          <div class="contact-info-value" data-i18n="contact.info.loc.val">Cotonou</div>
+          <p style="font-size:13px;color:var(--text-muted);margin-top:4px;" data-i18n="contact.info.loc.sub">On travaille partout dans le monde — freelance</p>
         </div>
       </div>
       <div class="reassurance-badges">
@@ -72,7 +72,7 @@
           <div class="form-group">
             <label class="form-label" data-i18n="contact.form.name">Nom complet *</label>
             <input type="text" class="form-control" name="name" required placeholder="Jean Dupont">
-            <span class="field-error" data-i18n="contact.error.req">Ce champ est requis</span>
+            <span class="field-error" data-i18n="contact.error.name">3 caractères minimum, lettres uniquement</span>
           </div>
           <div class="form-group">
             <label class="form-label">Email *</label>
@@ -81,7 +81,8 @@
           </div>
           <div class="form-group">
             <label class="form-label" data-i18n="contact.form.phone">Téléphone</label>
-            <input type="tel" class="form-control" name="phone" placeholder="06 12 34 56 78">
+            <input type="tel" class="form-control" name="phone" placeholder="votre numero whatsapp">
+            <span class="field-error" data-i18n="contact.error.phone">Numéro invalide (chiffres et + uniquement, 4 car. min)</span>
           </div>
           <div class="form-group">
             <label class="form-label" data-i18n="contact.form.subject">Sujet *</label>
@@ -102,11 +103,6 @@
           </div>
           <button type="submit" class="btn btn-primary" style="width:100%;padding:18px;" data-i18n="contact.form.btn">Envoyer le message</button>
         </form>
-        <div id="contactSuccess" style="display:none;text-align:center;padding:48px 0;">
-          <i class="ph ph-check-circle" style="font-size:72px;color:var(--accent-blue);margin-bottom:16px;"></i>
-          <h3 style="font-size:24px;margin-bottom:8px;" data-i18n="contact.success.title">Message envoyé !</h3>
-          <p style="color:var(--text-muted);" data-i18n="contact.success.sub">Nous vous répondrons sous 24h ouvrées.</p>
-        </div>
       </div>
     </div>
 
@@ -143,6 +139,15 @@
 </div>
 </section>
 
+</div>
+<div class="form-modal" id="contactModal">
+  <div class="form-modal-backdrop" onclick="closeFormModal('contactModal')"></div>
+  <div class="form-modal-box">
+    <div class="form-modal-icon"><i class="ph ph-check"></i></div>
+    <h3 class="form-modal-title" data-i18n="contact.success.title">Message envoyé !</h3>
+    <p class="form-modal-desc" data-i18n="contact.success.sub">Nous vous répondrons sous 24h ouvrées.</p>
+    <button class="btn btn-primary" onclick="closeFormModal('contactModal')" style="min-width:160px;">OK</button>
+  </div>
 </div>
 <script src="i18n.js"></script>
   <script src="components.js"></script>

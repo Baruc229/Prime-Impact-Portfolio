@@ -6,7 +6,7 @@
    ============================================================ */
 
 // Lien WhatsApp global utilisé sur tout le site
-const WA_LINK = 'https://wa.me/33600000000'; // ← Remplace par le vrai numéro
+const WA_LINK = 'https://wa.me/22993288212'; // ← Remplace par le vrai numéro
 
 /**
  * CONSTRUIT LE HEADER (Barre de navigation)
@@ -89,13 +89,13 @@ function buildHeader() {
 
       <!-- Pied du menu latéral -->
       <div class="nav-mobile-footer">
-        <div class="nav-copyright" data-i18n="footer.rights">Tous droits réservés. © 2026 Prime Impact Agency.</div>
+        <div class="nav-copyright" data-i18n="footer.rights">Tous droits réservés.</div>
         <div class="nav-socials">
-          <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/schallom-sogbossi-4a6040322" target="_blank" rel="noopener" aria-label="LinkedIn">
             <i class="fa-brands fa-linkedin"></i>
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
-            <i class="fa-brands fa-instagram"></i>
+          <a href="https://www.facebook.com/share/196KYqfDUw/" target="_blank" rel="noopener" aria-label="Facebook">
+            <i class="fa-brands fa-facebook"></i>
           </a>
           <a href="${WA_LINK}" target="_blank" rel="noopener" aria-label="WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
@@ -124,8 +124,8 @@ function buildFooter() {
             Agence web & marketing digital spécialisée dans la création de sites performants, tunnels de vente et référencement SEO.
           </p>
           <div class="social-links">
-            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/schallom-sogbossi-4a6040322" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/share/196KYqfDUw/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
             <a href="${WA_LINK}" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>

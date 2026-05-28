@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const whatsappButtons = document.querySelectorAll('[id^="whatsapp-btn"]');
     if (whatsappButtons.length && typeof i18nManager !== 'undefined') {
       const lang = i18nManager.currentLang || 'fr';
-      const phoneNumber = '33600000000';
+      const phoneNumber = '22993288212';
       const message = lang === 'en' 
         ? 'I need your services for my business' 
-        : 'J\'ai besoin de vos services pour mon entreprise';
+        : 'salut pia, j\'ai besoin de vos services de developpement web';
       const encodedMessage = encodeURIComponent(message);
       whatsappButtons.forEach(btn => {
         btn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -212,10 +212,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Met à jour tous les boutons WhatsApp avec message pré-rempli selon la langue
     const whatsappButtons = document.querySelectorAll('[id^="whatsapp-btn"]');
     whatsappButtons.forEach(btn => {
-      const phoneNumber = '33600000000';
+      const phoneNumber = '22993288212';
       const message = lang === 'en' 
         ? 'I need your services for my business' 
-        : 'J\'ai besoin de vos services pour mon entreprise';
+        : 'salut pia, j\'ai besoin de vos services de developpement web';
       const encodedMessage = encodeURIComponent(message);
       btn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     });
@@ -378,48 +378,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-/* ════════════════════════════════════════════
-   DEVIS FORM — Multi-step
-════════════════════════════════════════════ */
-function initDevisForm() {
-  const form = document.getElementById('devisForm');
-  if (!form) return;
-
-  const steps = form.querySelectorAll('.devis-step');
-  const progress = document.getElementById('devisProgress');
-  const stepLabel = document.getElementById('devisStepLabel');
-  let current = 0;
-
-  function showStep(n) {
-    steps.forEach((s, i) => s.classList.toggle('active', i === n));
-    if (progress) progress.style.width = `${((n + 1) / steps.length) * 100}%`;
-    if (stepLabel) stepLabel.textContent = `Étape ${n + 1} sur ${steps.length}`;
-    current = n;
-  }
-
-  showStep(0);
-
-  form.querySelectorAll('.btn-next').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (current < steps.length - 1) showStep(current + 1);
-    });
-  });
-
-  form.querySelectorAll('.btn-prev').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (current > 0) showStep(current - 1);
-    });
-  });
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const confirm = document.getElementById('devisConfirm');
-    if (confirm) {
-      form.style.display = 'none';
-      confirm.style.display = 'block';
-    }
-  });
+/* ─── Validation helpers ─── */
+function validateName(val) {
+  return val.trim().length >= 3 && /^[\p{L}\s-]{3,}$/u.test(val.trim());
 }
+
+function validatePhone(val) {
+  if (!val.trim()) return true;
+  return /^\+?[\d\s]{4,}$/.test(val.trim().replace(/\s/g, ''));
+}
+
+function showFormModal(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add('open');
+}
+
+function closeFormModal(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove('open');
+}
+
+window.closeFormModal = closeFormModal;
 
 /* ════════════════════════════════════════════
    CONTACT FORM — Validation JS
@@ -434,38 +413,211 @@ function initContactForm() {
 
     form.querySelectorAll('[required]').forEach(field => {
       const err = field.parentElement.querySelector('.field-error');
-      if (!field.value.trim()) {
+      const val = field.value.trim();
+
+      if (!val) {
         field.classList.add('error');
         if (err) err.style.display = 'block';
         valid = false;
-      } else if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
+        return;
+      }
+
+      if (field.name === 'name' && !validateName(val)) {
+        field.classList.add('error');
+        if (err) { err.textContent = '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
+        valid = false;
+        return;
+      }
+
+      if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
         field.classList.add('error');
         if (err) { err.textContent = 'Email invalide'; err.style.display = 'block'; }
         valid = false;
-      } else {
-        field.classList.remove('error');
-        if (err) err.style.display = 'none';
+        return;
       }
+
+      if (field.name === 'subject' && field.tagName === 'SELECT' && !val) {
+        field.classList.add('error');
+        if (err) err.style.display = 'block';
+        valid = false;
+        return;
+      }
+
+      field.classList.remove('error');
+      if (err) err.style.display = 'none';
     });
+
+    // Phone validation (optional but validated if filled)
+    const phoneField = form.querySelector('[name="phone"]');
+    if (phoneField && phoneField.value.trim()) {
+      if (!validatePhone(phoneField.value)) {
+        phoneField.classList.add('error');
+        const err = phoneField.parentElement.querySelector('.field-error');
+        if (err) { err.textContent = 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
+        valid = false;
+      }
+    }
 
     if (valid) {
       const btn = form.querySelector('button[type="submit"]');
       if (btn) { btn.textContent = 'Envoi…'; btn.disabled = true; }
       setTimeout(() => {
-        const success = document.getElementById('contactSuccess');
-        if (success) { form.style.display = 'none'; success.style.display = 'block'; }
-      }, 1200);
+        btn.textContent = 'Envoyer le message';
+        btn.disabled = false;
+        form.reset();
+        showFormModal('contactModal');
+      }, 1000);
     }
   });
 
-  // Clear error on input
   form.querySelectorAll('input, textarea, select').forEach(f => {
-    f.addEventListener('input', () => {
-      f.classList.remove('error');
-      const err = f.parentElement.querySelector('.field-error');
+    f.addEventListener('input', () => validateContactField(f));
+    f.addEventListener('blur', () => validateContactField(f));
+  });
+
+  function validateContactField(field) {
+    const err = field.parentElement.querySelector('.field-error');
+    const val = field.value.trim();
+
+    if (!val && field.hasAttribute('required') && field.tagName !== 'SELECT') {
+      field.classList.add('error');
+      if (err) { err.textContent = 'Ce champ est requis'; err.style.display = 'block'; }
+      return;
+    }
+
+    if (field.name === 'subject' && field.tagName === 'SELECT') {
+      if (val) { field.classList.remove('error'); if (err) err.style.display = 'none'; }
+      else { field.classList.add('error'); if (err) err.style.display = 'block'; }
+      return;
+    }
+
+    if (field.name === 'name' && val && !validateName(val)) {
+      field.classList.add('error');
+      if (err) { err.textContent = '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
+      return;
+    }
+
+    if (field.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+      field.classList.add('error');
+      if (err) { err.textContent = 'Email invalide'; err.style.display = 'block'; }
+      return;
+    }
+
+    if (field.name === 'phone' && val && !validatePhone(val)) {
+      field.classList.add('error');
+      if (err) { err.textContent = 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
+      return;
+    }
+
+    field.classList.remove('error');
+    if (err) err.style.display = 'none';
+  }
+}
+
+/* ════════════════════════════════════════════
+   DEVIS FORM — Single page validation
+════════════════════════════════════════════ */
+function initDevisForm() {
+  const form = document.getElementById('devisForm');
+  if (!form) return;
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let valid = true;
+
+    form.querySelectorAll('[required]').forEach(field => {
+      const err = field.parentElement.querySelector('.field-error');
+      const val = field.value.trim();
+
+      if (!val) {
+        field.classList.add('error');
+        if (err) err.style.display = 'block';
+        valid = false;
+        return;
+      }
+
+      if ((field.name === 'prenom' || field.name === 'nom') && !validateName(val)) {
+        field.classList.add('error');
+        if (err) { err.textContent = '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
+        valid = false;
+        return;
+      }
+
+      if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        field.classList.add('error');
+        if (err) { err.textContent = 'Email invalide'; err.style.display = 'block'; }
+        valid = false;
+        return;
+      }
+
+      field.classList.remove('error');
       if (err) err.style.display = 'none';
     });
+
+    const phoneField = form.querySelector('[name="phone"]');
+    if (phoneField && phoneField.value.trim()) {
+      if (!validatePhone(phoneField.value)) {
+        phoneField.classList.add('error');
+        const err = phoneField.parentElement.querySelector('.field-error');
+        if (err) { err.textContent = 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
+        valid = false;
+      }
+    }
+
+    if (valid) {
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.textContent = 'Envoi…'; btn.disabled = true; }
+      setTimeout(() => {
+        btn.textContent = 'Demander mon devis gratuit';
+        btn.disabled = false;
+        form.reset();
+        showFormModal('devisModal');
+      }, 1000);
+    }
   });
+
+  form.querySelectorAll('input, textarea, select').forEach(f => {
+    f.addEventListener('input', () => validateDevisField(f));
+    f.addEventListener('blur', () => validateDevisField(f));
+  });
+
+  function validateDevisField(field) {
+    const err = field.parentElement.querySelector('.field-error');
+    const val = field.value.trim();
+
+    if (!val && field.hasAttribute('required') && field.tagName !== 'SELECT') {
+      field.classList.add('error');
+      if (err) { err.textContent = 'Ce champ est requis'; err.style.display = 'block'; }
+      return;
+    }
+
+    if (field.name === 'prestation' && field.tagName === 'SELECT') {
+      if (val) { field.classList.remove('error'); if (err) err.style.display = 'none'; }
+      else { field.classList.add('error'); if (err) err.style.display = 'block'; }
+      return;
+    }
+
+    if ((field.name === 'prenom' || field.name === 'nom') && val && !validateName(val)) {
+      field.classList.add('error');
+      if (err) { err.textContent = '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
+      return;
+    }
+
+    if (field.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+      field.classList.add('error');
+      if (err) { err.textContent = 'Email invalide'; err.style.display = 'block'; }
+      return;
+    }
+
+    if (field.name === 'phone' && val && !validatePhone(val)) {
+      field.classList.add('error');
+      if (err) { err.textContent = 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
+      return;
+    }
+
+    field.classList.remove('error');
+    if (err) err.style.display = 'none';
+  }
 }
 
 /* ════════════════════════════════════════════
