@@ -1308,15 +1308,15 @@ img {
   border: 1px solid transparent;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 769px) {
   .navbar {
-    padding: 28px 0;
+    padding: 20px 0;
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1400px) {
   .navbar {
-    padding: 16px 0;
+    padding: 30px 0;
   }
 }
 
