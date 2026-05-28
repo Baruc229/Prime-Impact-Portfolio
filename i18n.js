@@ -74,8 +74,8 @@ const translations = {
   "index.hero.whatsapp.message.fr": { "fr": "salut pia, j'ai besoin de vos services de developpement web", "en": "salut pia, j'ai besoin de vos services de developpement web" },
   "index.hero.whatsapp.message.en": { "fr": "I need your services for my business", "en": "I need your services for my business" },
   "index.hero.proof": { "fr": "Entrepreneurs accompagnés", "en": "Entrepreneurs supported" },
-  "index.hero.float.title": { "fr": "Résultats Garantis", "en": "Guaranteed Results" },
-  "index.hero.float.sub": { "fr": "Expertise 100% orientée ROI", "en": "100% ROI-focused expertise" },
+  "index.hero.float.title": { "fr": "Expertise Web", "en": "Web Expertise" },
+  "index.hero.float.sub": { "fr": "Stratégie & développement", "en": "Strategy & development" },
 
   // --- Index: Tools & Constat ---
   "index.tools.label": { "fr": "Technologies maîtrisées", "en": "Mastered Technologies" },
@@ -100,7 +100,7 @@ const translations = {
   // --- Index: Methode ---
   "index.methode.badge": { "fr": "_NOTRE_MÉTHODE_", "en": "_OUR_METHOD_" },
   "index.methode.title": { "fr": "Notre méthode, étape par étape.", "en": "Our method, step by step." },
-  "index.methode.sub": { "fr": "Chaque projet suit un processus rigoureux pour garantir des résultats concrets et durables.", "en": "Every project follows a rigorous process to guarantee concrete and lasting results." },
+  "index.methode.sub": { "fr": "Chaque projet suit un processus clair, de la stratégie au suivi après lancement.", "en": "Every project follows a clear process, from strategy to post-launch follow-up." },
   "index.methode.1.title": { "fr": "On vous écoute vraiment", "en": "We truly listen to you" },
   "index.methode.1.desc": { "fr": "Comprendre votre métier, vos défis, vos objectifs avant de toucher au moindre pixel.", "en": "Understanding your business, your challenges, your goals before touching a single pixel." },
   "index.methode.2.title": { "fr": "Analyse & Stratégie", "en": "Analysis & Strategy" },
@@ -118,7 +118,7 @@ const translations = {
   // --- Index: Resultats ---
   "index.resultats.badge": { "fr": "_NOS_RÉSULTATS_", "en": "_OUR_RESULTS_" },
   "index.resultats.title": { "fr": "Des résultats mesurables.", "en": "Measurable results." },
-  "index.resultats.sub": { "fr": "Des chiffres concrets obtenus pour nos clients.", "en": "Concrete figures achieved for our clients." },
+  "index.resultats.sub": { "fr": "Des chiffres obtenus pour nos clients.", "en": "Figures achieved for our clients." },
   "index.resultats.1.label": { "fr": "Taux de conversion", "en": "Conversion Rate" },
   "index.resultats.1.desc": { "fr": "Augmentation moyenne du taux de conversion après refonte", "en": "Average conversion rate increase after redesign" },
   "index.resultats.2.label": { "fr": "Leads / mois", "en": "Leads / month" },
@@ -140,24 +140,24 @@ const translations = {
   "index.features.badge": { "fr": "_Pourquoi_nous_choisir_", "en": "_Why_choose_us_" },
   "index.features.title": { "fr": "Une agence pensée pour votre", "en": "An agency designed for your" },
   "index.features.title.hl": { "fr": "impact", "en": "impact" },
-  "index.features.sub": { "fr": "Nous ne livrons pas juste un site — nous construisons une<br>machine à vendre, adaptée à vos ambitions.", "en": "We don't just deliver a site — we build a<br>selling machine, adapted to your ambitions." },
+  "index.features.sub": { "fr": "Chez PIA, un site n'est pas une vitrine — c'est un outil de vente pensé pour vos objectifs.", "en": "At PIA, a site isn't a showcase — it's a sales tool built for your goals." },
   "index.features.author.name": { "fr": "Schallom — Fondateur de PIA", "en": "Schallom — Founder of PIA" },
   "index.features.author.role": { "fr": "Webmaster & Expert en web marketing", "en": "Webmaster & Web Marketing Expert" },
-  "index.features.author.quote": { "fr": "Notre objectif : comprendre vos besoins en<br>profondeur et vous accompagner de A à Z pour<br>obtenir des résultats concrets.", "en": "Our goal: to deeply understand your needs<br>and accompany you from A to Z to<br>achieve concrete results." },
+  "index.features.author.quote": { "fr": "Mon objectif : comprendre vos besoins en<br>profondeur et vous accompagner de A à Z pour<br>obtenir des résultats qui comptent.", "en": "My goal: to deeply understand your needs<br>and accompany you from A to Z to<br>achieve results that matter." },
   "index.features.1.title": { "fr": "Expertise technique", "en": "Technical Expertise" },
-  "index.features.1.desc": { "fr": "WordPress, Shopify, WPFunnels, Cartflows, Omnisend — maîtrisés sur le bout des doigts pour des solutions sur-mesure.", "en": "WordPress, Shopify, WPFunnels, Cartflows, Omnisend — mastered for tailor-made solutions." },
+  "index.features.1.desc": { "fr": "WordPress, Shopify, WPFunnels, Cartflows, Omnisend — au service de vos projets.", "en": "WordPress, Shopify, WPFunnels, Cartflows, Omnisend — at the service of your projects." },
   "index.features.2.title": { "fr": "Accompagnement A à Z", "en": "A to Z Support" },
   "index.features.2.desc": { "fr": "Stratégie, design, développement, automatisations marketing — un accompagnement complet à chaque étape.", "en": "Strategy, design, development, marketing automations — full support at every step." },
-  "index.features.3.title": { "fr": "Résultats concrets", "en": "Concrete Results" },
+  "index.features.3.title": { "fr": "Résultats mesurables", "en": "Measurable Results" },
   "index.features.3.desc": { "fr": "Des sites qui convertissent, des tunnels de vente performants et des automatisations qui travaillent pour vous 24h/24.", "en": "Websites that convert, high-performing sales funnels, and automations working for you 24/7." },
-  "index.metrics.1": { "fr": "entrepreneurs accompagnés avec succès", "en": "entrepreneurs successfully supported" },
+  "index.metrics.1": { "fr": "entrepreneurs accompagnés", "en": "entrepreneurs supported" },
   "index.metrics.2": { "fr": "expert dédié à votre projet", "en": "dedicated expert for your project" },
   "index.metrics.3": { "fr": "des projets livrés sur-mesure", "en": "tailor-made projects delivered" },
 
   // --- Index: Skills ---
   "index.skills.badge": { "fr": "Expertise", "en": "Expertise" },
   "index.skills.title": { "fr": "Compétences que je maîtrise.", "en": "Skills I master." },
-  "index.skills.sub": { "fr": "L'alliance parfaite entre maîtrise technique et savoir-être pour mener à bien vos projets.", "en": "The perfect blend of technical mastery and interpersonal skills to succeed in your projects." },
+  "index.skills.sub": { "fr": "La technique et l'humain, au service de votre projet.", "en": "Technology and people, serving your project." },
   "index.skills.hard": { "fr": "Compétences Techniques", "en": "Technical Skills" },
   "index.skills.soft": { "fr": "Soft Skills", "en": "Soft Skills" },
 
@@ -192,19 +192,19 @@ const translations = {
   // --- Index: Services ---
   "index.services.badge": { "fr": "_NOS_SERVICES_", "en": "_OUR_SERVICES_" },
   "index.services.title": { "fr": "Ce que nous faisons.", "en": "What we do." },
-  "index.services.sub": { "fr": "Des solutions digitales sur-mesure, pensées pour la performance et la conversion.", "en": "Tailor-made digital solutions, designed for performance and conversion." },
+  "index.services.sub": { "fr": "Des solutions digitales sur-mesure pour répondre à vos objectifs.", "en": "Tailor-made digital solutions to meet your goals." },
   "index.services.1.title": { "fr": "Création de site web", "en": "Website Creation" },
   "index.services.1.desc": { "fr": "Sites vitrines, e-commerce ou sur-mesure, conçus pour convertir vos visiteurs en clients.", "en": "Showcase, e-commerce or tailor-made sites, designed to convert your visitors into clients." },
   "index.services.1.p1": { "fr": "Design unique et premium", "en": "Unique and premium design" },
   "index.services.1.p2": { "fr": "100% responsive mobile", "en": "100% mobile responsive" },
   "index.services.1.p3": { "fr": "Optimisé SEO dès la conception", "en": "SEO optimized from conception" },
   "index.services.2.title": { "fr": "Tunnels de vente", "en": "Sales Funnels" },
-  "index.services.2.desc": { "fr": "Des funnels haute conversion qui capturent, qualifient et convertissent vos prospects automatiquement.", "en": "High-converting funnels that automatically capture, qualify, and convert your prospects." },
+  "index.services.2.desc": { "fr": "Des funnels qui captent les bons prospects et les transforment en clients, sans effort manuel.", "en": "Funnels that capture the right prospects and turn them into clients, without manual effort." },
   "index.services.2.p1": { "fr": "WPFunnels & Cartflows", "en": "WPFunnels & Cartflows" },
   "index.services.2.p2": { "fr": "Email automation Omnisend", "en": "Omnisend email automation" },
   "index.services.2.p3": { "fr": "A/B testing inclus", "en": "A/B testing included" },
   "index.services.3.title": { "fr": "Référencement SEO", "en": "SEO Optimization" },
-  "index.services.3.desc": { "fr": "Stratégie SEO complète pour dominer Google sur vos mots-clés cibles et générer du trafic qualifié.", "en": "Complete SEO strategy to dominate Google on your target keywords and generate qualified traffic." },
+  "index.services.3.desc": { "fr": "Stratégie SEO complète pour gagner en visibilité sur Google et attirer plus de visiteurs.", "en": "Complete SEO strategy to gain visibility on Google and attract more visitors." },
   "index.services.3.p1": { "fr": "Audit technique complet", "en": "Comprehensive technical audit" },
   "index.services.3.p2": { "fr": "Optimisation on-page & off-page", "en": "On-page & off-page optimization" },
   "index.services.3.p3": { "fr": "Reporting mensuel détaillé", "en": "Detailed monthly reporting" },
@@ -213,7 +213,7 @@ const translations = {
   // --- Index: Realisations ---
   "index.realisations.badge": { "fr": "_NOS_RÉALISATIONS_", "en": "_OUR_PORTFOLIO_" },
   "index.realisations.title": { "fr": "Nos réalisations.", "en": "Our work." },
-  "index.realisations.sub": { "fr": "Des projets concrets, des clients satisfaits, des résultats prouvés.", "en": "Concrete projects, satisfied clients, proven results." },
+  "index.realisations.sub": { "fr": "Des clients satisfaits, des résultats qui parlent d'eux-mêmes.", "en": "Satisfied clients, results that speak for themselves." },
   "index.realisations.tag.ecom": { "fr": "E-commerce", "en": "E-commerce" },
   "index.realisations.tag.vitrine": { "fr": "Site vitrine", "en": "Showcase site" },
   "index.realisations.tag.landing": { "fr": "Landing page", "en": "Landing page" },
@@ -226,24 +226,24 @@ const translations = {
   // --- Index: Engagements ---
   "index.engagements.badge": { "fr": "_NOS_ENGAGEMENTS_", "en": "_OUR_COMMITMENTS_" },
   "index.engagements.title": { "fr": "Nos Engagements : Les garanties PIA.", "en": "Our Commitments: The PIA Guarantees." },
-  "index.engagements.sub": { "fr": "Faire confiance à PIA, c'est s'assurer d'un service luxueux avec des garanties solides.", "en": "Trusting PIA means ensuring a luxurious service with solid guarantees." },
+  "index.engagements.sub": { "fr": "Faire confiance à PIA, c'est s'assurer d'un service premium avec des garanties claires.", "en": "Trusting PIA means ensuring a premium service with clear guarantees." },
   "index.engagements.1.title": { "fr": "Sur-mesure absolu", "en": "Absolute tailor-made" },
   "index.engagements.1.desc": { "fr": "Aucun template générique n'est utilisé. Chaque design est unique et pensé pour votre marque.", "en": "No generic templates are used. Every design is unique and created for your brand." },
   "index.engagements.2.title": { "fr": "Livraison Rapide", "en": "Fast Delivery" },
-  "index.engagements.2.desc": { "fr": "Des projets livrés entre 7 et 21 jours selon la complexité, sans aucun compromis sur la qualité.", "en": "Projects delivered between 7 and 21 days depending on complexity, without compromising quality." },
+  "index.engagements.2.desc": { "fr": "Des projets livrés entre 7 et 21 jours selon la complexité, avec une exigence de qualité constante.", "en": "Projects delivered between 7 and 21 days depending on complexity, with constant quality standards." },
   "index.engagements.3.title": { "fr": "Approche Mobile-First", "en": "Mobile-First Approach" },
   "index.engagements.3.desc": { "fr": "Des sites pensés avant tout pour la navigation sur smartphone, là où se trouvent la majorité des utilisateurs.", "en": "Sites designed primarily for smartphone navigation, where the majority of users are." },
   "index.engagements.4.title": { "fr": "SEO Intégré", "en": "Integrated SEO" },
   "index.engagements.4.desc": { "fr": "Les bonnes pratiques de référencement (SEO) sont appliquées dès la première ligne de code.", "en": "Good SEO practices are applied from the very first line of code." },
   "index.engagements.5.title": { "fr": "Support Post-Lancement", "en": "Post-Launch Support" },
   "index.engagements.5.desc": { "fr": "30 jours d'accompagnement inclus après la mise en ligne pour s'assurer que tout fonctionne parfaitement.", "en": "30 days of support included after going live to ensure everything works perfectly." },
-  "index.engagements.6.title": { "fr": "Résultats Garantis", "en": "Guaranteed Results" },
-  "index.engagements.6.desc": { "fr": "Un focus absolu sur le ROI (Retour Sur Investissement) et le suivi des métriques de conversion.", "en": "Absolute focus on ROI (Return on Investment) and tracking conversion metrics." },
+  "index.engagements.6.title": { "fr": "Suivi des performances", "en": "Performance tracking" },
+  "index.engagements.6.desc": { "fr": "Une priorité absolue sur le ROI et le suivi des métriques de conversion.", "en": "Absolute priority on ROI and tracking conversion metrics." },
 
   // --- Index: Témoignages ---
   "index.temoignages.badge": { "fr": "_TÉMOIGNAGES_", "en": "_TESTIMONIALS_" },
   "index.temoignages.title": { "fr": "Ils nous font confiance.", "en": "They trust us." },
-  "index.temoignages.sub": { "fr": "Des entrepreneurs qui ont transformé leur présence digitale avec Prime Impact Agency.", "en": "Entrepreneurs who transformed their digital presence with Prime Impact Agency." },
+  "index.temoignages.sub": { "fr": "Des entrepreneurs qui ont donné un nouveau souffle à leur activité avec PIA.", "en": "Entrepreneurs who gave their business a new lease on life with PIA." },
 
   // --- Index: FAQ ---
   "index.faq.badge": { "fr": "_FAQ_", "en": "_FAQ_" },
@@ -270,10 +270,10 @@ const translations = {
   "services.hero.badge": { "fr": "_Ce_que_nous_faisons_", "en": "_What_we_do_" },
   "services.hero.title1": { "fr": "Nos", "en": "Our" },
   "services.hero.title2": { "fr": "Services", "en": "Services" },
-  "services.hero.sub": { "fr": "Des solutions digitales complètes pour attirer, convertir et fidéliser vos clients.", "en": "Complete digital solutions to attract, convert and retain your clients." },
+  "services.hero.sub": { "fr": "Des solutions complètes pour développer votre clientèle et faire décoller votre activité.", "en": "Complete solutions to grow your client base and boost your business." },
   
   "services.cat1.title": { "fr": "Création & Refonte", "en": "Creation & Redesign" },
-  "services.cat1.sub": { "fr": "Des fondations solides et un design qui reflète votre excellence.", "en": "Solid foundations and a design that reflects your excellence." },
+  "services.cat1.sub": { "fr": "Des fondations solides et un design à votre image.", "en": "Solid foundations and a design that reflects you." },
   
   "services.web.title": { "fr": "Création de site internet", "en": "Website creation" },
   "services.web.desc": { "fr": "Des sites élégants, structurés et sur-mesure pour asseoir la crédibilité et l'image de marque de votre entreprise.", "en": "Elegant, structured and tailor-made sites to establish the credibility and brand image of your company." },
@@ -288,28 +288,28 @@ const translations = {
   "services.redesign.p3": { "fr": "Conservation du SEO existant", "en": "Preservation of existing SEO" },
   
   "services.cat2.title": { "fr": "Acquisition & Conversion", "en": "Acquisition & Conversion" },
-  "services.cat2.sub": { "fr": "Des systèmes pensés pour attirer des visiteurs et les transformer en clients.", "en": "Systems designed to attract visitors and turn them into clients." },
+  "services.cat2.sub": { "fr": "Des systèmes conçus pour attirer des visiteurs et les transformer en clients.", "en": "Systems designed to attract visitors and turn them into clients." },
   
   "services.funnel.title": { "fr": "Tunnel de vente (Funnels)", "en": "Sales Funnel (Funnels)" },
-  "services.funnel.desc": { "fr": "Des systèmes automatisés (pages d'offre, upsell, downsell) pour guider le visiteur jusqu'à l'achat de manière fluide.", "en": "Automated systems (offer pages, upsell, downsell) to guide the visitor smoothly to purchase." },
+  "services.funnel.desc": { "fr": "Des pages d'offre, upsell et downsell qui guident le visiteur jusqu'à l'achat, sans friction.", "en": "Offer pages, upsells and downsells that guide the visitor to purchase, friction-free." },
   "services.funnel.p1": { "fr": "Stratégie funnel personnalisée", "en": "Personalized funnel strategy" },
   "services.funnel.p2": { "fr": "Intégration WPFunnels / Cartflows", "en": "WPFunnels / Cartflows integration" },
   "services.funnel.p3": { "fr": "Automatisation email Omnisend", "en": "Omnisend email automation" },
   
   "services.landing.title": { "fr": "Landing Page", "en": "Landing Page" },
-  "services.landing.desc": { "fr": "Des pages d'atterrissage à fort impact visuel, dotées d'un copywriting persuasif pour générer des leads ou des ventes.", "en": "High-impact landing pages with persuasive copywriting to generate leads or sales." },
+  "services.landing.desc": { "fr": "Des pages conçues pour capter l'attention et transformer vos visiteurs en leads ou en clients.", "en": "Pages designed to grab attention and turn your visitors into leads or customers." },
   "services.landing.p1": { "fr": "Copywriting orienté conversion", "en": "Conversion-oriented copywriting" },
   "services.landing.p2": { "fr": "Formulaire de capture optimisé", "en": "Optimized capture form" },
   "services.landing.p3": { "fr": "Compatible Google Ads / Meta Ads", "en": "Compatible with Google Ads / Meta Ads" },
   
   "services.seo.title": { "fr": "Référencement Naturel (SEO)", "en": "Organic SEO" },
-  "services.seo.desc": { "fr": "Optimisation technique et sémantique pour être visible durablement sur Google et attirer un trafic qualifié.", "en": "Technical and semantic optimization to be sustainably visible on Google and attract qualified traffic." },
+  "services.seo.desc": { "fr": "Optimisation technique et sémantique pour être visible sur Google et attirer les bons visiteurs.", "en": "Technical and semantic optimization to be visible on Google and attract the right visitors." },
   "services.seo.p1": { "fr": "Recherche de mots-clés stratégiques", "en": "Strategic keyword research" },
   "services.seo.p2": { "fr": "Optimisation technique & on-page", "en": "Technical & on-page optimization" },
   "services.seo.p3": { "fr": "Netlinking & backlinks", "en": "Netlinking & backlinks" },
   
   "services.cat3.title": { "fr": "Stratégie & Accompagnement", "en": "Strategy & Support" },
-  "services.cat3.sub": { "fr": "Nous ne vous laissons jamais seul après le lancement.", "en": "We never leave you alone after the launch." },
+  "services.cat3.sub": { "fr": "Accompagnement et conseil même après la mise en ligne.", "en": "Support and advice even after going live." },
   
   "services.audit.title": { "fr": "Audit & Stratégie Digitale", "en": "Digital Audit & Strategy" },
   "services.audit.desc": { "fr": "Analyse approfondie de la présence en ligne (diagnostic UX, structure) pour fournir un plan d'optimisation clair.", "en": "In-depth analysis of online presence (UX diagnosis, structure) to provide a clear optimization plan." },
@@ -318,7 +318,7 @@ const translations = {
   "services.audit.p3": { "fr": "Plan d'action prioritaire", "en": "Priority action plan" },
   
   "services.support.title": { "fr": "Suivi & Accompagnement", "en": "Follow-up & Support" },
-  "services.support.desc": { "fr": "Un support continu après le lancement, garantissant sérénité, maintenance et conseils stratégiques.", "en": "Continuous support after launch, ensuring peace of mind, maintenance and strategic advice." },
+  "services.support.desc": { "fr": "Un suivi après lancement incluant maintenance, conseils et évolution de votre projet.", "en": "Post-launch follow-up including maintenance, advice and project evolution." },
   "services.support.p1": { "fr": "Maintenance technique mensuelle", "en": "Monthly technical maintenance" },
   "services.support.p2": { "fr": "Mises à jour & sécurité", "en": "Updates & security" },
   "services.support.p3": { "fr": "Support prioritaire WhatsApp", "en": "Priority WhatsApp support" },
@@ -328,13 +328,13 @@ const translations = {
   "services.process.badge": { "fr": "_PROCESSUS_", "en": "_PROCESS_" },
   "services.process.title": { "fr": "De la vision au lancement,<br>en", "en": "From vision to launch,<br>in" },
   "services.process.title.hl": { "fr": "4 étapes", "en": "4 steps" },
-  "services.process.sub": { "fr": "Un processus transparent et structuré pour un résultat final irréprochable.", "en": "A transparent and structured process for a flawless final result." },
+  "services.process.sub": { "fr": "Un processus structuré du brief au lancement.", "en": "A structured process from brief to launch." },
   "services.process.1.title": { "fr": "Découverte & Stratégie", "en": "Discovery & Strategy" },
   "services.process.1.desc": { "fr": "Nous analysons votre marché, vos objectifs et concevons l'architecture et la stratégie de conversion idéale.", "en": "We analyze your market, your goals and design the ideal architecture and conversion strategy." },
   "services.process.2.title": { "fr": "UX / UI Design", "en": "UX / UI Design" },
   "services.process.2.desc": { "fr": "Création de maquettes haute fidélité. Nous validons ensemble l'aspect visuel avant toute ligne de code.", "en": "Creation of high-fidelity mockups. We validate the visual aspect together before any code is written." },
   "services.process.3.title": { "fr": "Développement", "en": "Development" },
-  "services.process.3.desc": { "fr": "Intégration pixel-perfect, développement technique fluide et optimisation complète des performances.", "en": "Pixel-perfect integration, smooth technical development and complete performance optimization." },
+  "services.process.3.desc": { "fr": "Un souci du détail irréprochable, un code soigné et une optimisation des performances.", "en": "Impeccable attention to detail, clean code and performance optimization." },
   "services.process.4.title": { "fr": "Lancement & Formation", "en": "Launch & Training" },
   "services.process.4.desc": { "fr": "Tests finaux, mise en ligne officielle et formation pour vous rendre 100% autonome sur votre outil.", "en": "Final tests, official go-live and training to make you 100% autonomous on your tool." },
   
@@ -345,14 +345,14 @@ const translations = {
   // ============================================================
   // A-PROPOS.HTML
   // ============================================================
-  "about.hero.badge": { "fr": "Mon histoire", "en": "My story" },
+  "about.hero.badge": { "fr": "Notre histoire", "en": "Our story" },
   "about.hero.title1": { "fr": "À propos de", "en": "About" },
-  "about.hero.sub": { "fr": "Une agence fondée sur une conviction simple : un bon site web doit travailler pour vous, pas juste vous représenter.", "en": "An agency founded on a simple conviction: a good website should work for you, not just represent you." },
+  "about.hero.sub": { "fr": "PIA est née d'un constat : un bon site web doit travailler pour vous, pas juste vous représenter.", "en": "PIA was born from a simple observation: a good website should work for you, not just represent you." },
 
-  "about.history.badge": { "fr": "_Mon_histoire_", "en": "_My_story_" },
+  "about.history.badge": { "fr": "_Notre_histoire_", "en": "_Our_story_" },
   "about.history.title": { "fr": "De la passion au métier.", "en": "From passion to profession." },
-  "about.history.p1": { "fr": "Prime Impact Agency est née d'une observation simple de son fondateur, <strong>Schallom</strong> : beaucoup de sites existent, mais très peu vendent réellement. Trop d'entrepreneurs voient leurs visiteurs repartir sans jamais cliquer.", "en": "Prime Impact Agency was born from a simple observation by its founder, <strong>Schallom</strong>: many sites exist, but very few actually sell. Too many entrepreneurs see their visitors leave without ever clicking." },
-  "about.history.p2": { "fr": "La mission de PIA est de transformer ces sites obsolètes en <strong>véritables machines d'acquisition digitales</strong>. J'allie esthétique premium et stratégie d'acquisition pour générer de la croissance.", "en": "PIA's mission is to transform these obsolete sites into <strong>true digital acquisition machines</strong>. I combine premium aesthetics and acquisition strategy to generate growth." },
+  "about.history.p1": { "fr": "Prime Impact Agency est née d'un constat de son fondateur, <strong>Schallom</strong> : beaucoup de sites existent, mais très peu vendent réellement. Trop d'entrepreneurs voient leurs visiteurs repartir sans jamais cliquer.", "en": "Prime Impact Agency was born from an observation by its founder, <strong>Schallom</strong>: many sites exist, but very few actually sell. Too many entrepreneurs see their visitors leave without ever clicking." },
+  "about.history.p2": { "fr": "La mission de PIA est de transformer ces sites obsolètes en <strong>machines d'acquisition digitales</strong>. Nous allions esthétique premium et stratégie marketing pour générer de la croissance.", "en": "PIA's mission is to transform these obsolete sites into <strong>digital acquisition machines</strong>. We combine premium aesthetics and marketing strategy to generate growth." },
   "about.history.p3": { "fr": "Aujourd'hui, PIA mise sur l'expertise unique d'un passionné : stratégie, design et développement, réunis au service de votre croissance.", "en": "Today, PIA relies on the unique expertise of one passionate professional: strategy, design, and development, united for your growth." },
   
   "about.metrics.team": { "fr": "Seul à bord", "en": "Solo at the helm" },
@@ -360,10 +360,10 @@ const translations = {
   
   "about.team.badge": { "fr": "_QUI_SUIS-JE_", "en": "_WHO_I_AM_" },
   "about.team.title": { "fr": "Derrière PIA.", "en": "Behind PIA." },
-  "about.team.sub": { "fr": "Un expert dédié à votre réussite, du code à la stratégie.", "en": "One expert dedicated to your success, from code to strategy." },
+  "about.team.sub": { "fr": "Un expert à vos côtés, du code à la stratégie.", "en": "An expert by your side, from code to strategy." },
   "about.team.1.tag": { "fr": "Web Master & Stratégie", "en": "Web Master & Strategy" },
   "about.team.1.role": { "fr": "Fondateur — Web Master", "en": "Founder — Web Master" },
-  "about.team.1.bio": { "fr": "Web Master et stratège marketing, je conçois des sites web performants et élabore des stratégies digitales sur-mesure pour transformer votre présence en ligne en véritable moteur d'acquisition.", "en": "Web Master and marketing strategist, I design high-performance websites and develop tailored digital strategies to turn your online presence into a true acquisition engine." },
+  "about.team.1.bio": { "fr": "Web Master et stratège marketing, je conçois des sites web performants et élabore des stratégies digitales sur-mesure pour développer votre activité.", "en": "Web Master and marketing strategist, I design high-performance websites and develop tailored digital strategies to grow your business." },
   
   "about.skills.title": { "fr": "Compétences & Outils", "en": "Skills & Tools" },
   "about.skills.sub": { "fr": "Mon stack technique au service de vos projets.", "en": "My tech stack at the service of your projects." },
@@ -376,14 +376,14 @@ const translations = {
   "about.values.title": { "fr": "Mission & Valeurs", "en": "Mission & Values" },
   "about.values.sub": { "fr": "Ce qui guide chacun de mes projets.", "en": "What guides each of my projects." },
   "about.values.1.title": { "fr": "Ma mission", "en": "My mission" },
-  "about.values.1.desc": { "fr": "Aider les entrepreneurs et PME à exploiter tout le potentiel du digital pour attirer plus de clients, automatiser leur croissance et bâtir une marque forte.", "en": "To help entrepreneurs and SMEs exploit the full potential of digital to attract more clients, automate their growth, and build a strong brand." },
+  "about.values.1.desc": { "fr": "Aider les entrepreneurs et PME à exploiter le digital pour attirer plus de clients, automatiser leur croissance et construire une marque forte.", "en": "To help entrepreneurs and SMEs leverage digital to attract more clients, automate their growth, and build a strong brand." },
   "about.values.2.title": { "fr": "Transparence", "en": "Transparency" },
   "about.values.2.desc": { "fr": "Pas de jargon inutile, pas de frais cachés. Je vous explique tout, je justifie chaque choix et je vous rends autonome sur votre propre outil.", "en": "No useless jargon, no hidden fees. I explain everything, justify each choice, and make you autonomous on your own tool." },
   "about.values.3.title": { "fr": "Excellence", "en": "Excellence" },
-  "about.values.3.desc": { "fr": "Je ne sors pas un projet dont je ne suis pas fier. Chaque ligne de code, chaque pixel, chaque mot est pensé pour maximiser votre impact.", "en": "I don't release a project I'm not proud of. Every line of code, every pixel, every word is designed to maximize your impact." },
+  "about.values.3.desc": { "fr": "Je ne sors pas un projet dont je ne suis pas fier. Chaque détail est pensé pour maximiser votre impact.", "en": "I don't release a project I'm not proud of. Every detail is designed to maximize your impact." },
   
   "about.cta.title": { "fr": "Travaillons ensemble.", "en": "Let's work together." },
-  "about.cta.sub": { "fr": "Votre projet mérite un engagement fort et des résultats concrets.", "en": "Your project deserves strong commitment and concrete results." },
+  "about.cta.sub": { "fr": "Votre projet mérite un engagement fort et des résultats mesurables.", "en": "Your project deserves strong commitment and measurable results." },
 
   // ============================================================
   // DEVIS.HTML
@@ -517,7 +517,7 @@ const translations = {
   "testi.hero.title1": { "fr": "Nos", "en": "Our" },
   "testi.hero.title2": { "fr": "Clients", "en": "Clients" },
   "testi.hero.title3": { "fr": "témoignent", "en": "testify" },
-  "testi.hero.sub": { "fr": "Des résultats concrets, des entrepreneurs satisfaits. Voici leurs retours.", "en": "Concrete results, satisfied entrepreneurs. Here is their feedback." },
+  "testi.hero.sub": { "fr": "Des entrepreneurs satisfaits partagent leur expérience avec PIA.", "en": "Satisfied entrepreneurs share their experience with PIA." },
   
   "testi.stats.1": { "fr": "Note moyenne sur 25+ avis", "en": "Average rating from 25+ reviews" },
   "testi.stats.2": { "fr": "Satisfaction client", "en": "Client satisfaction" },

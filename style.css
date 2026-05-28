@@ -403,7 +403,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 500;
   color: var(--accent-blue);
   letter-spacing: 0.3px;
@@ -558,12 +558,12 @@ img {
     letter-spacing: 2px;
   }
   .hero-line-sm {
-    font-size: clamp(34px, 9vw, 56px);
+    font-size: clamp(38px, 10vw, 62px);
     letter-spacing: -1px;
     white-space: normal;
   }
   .hero-line-lg {
-    font-size: clamp(34px, 9vw, 56px);
+    font-size: clamp(38px, 10vw, 62px);
     letter-spacing: -1px;
   }
   .hero-actions {
@@ -577,8 +577,8 @@ img {
     width: 100%;
     min-width: 0;
     justify-content: center;
-    padding: 10px 6px;
-    font-size: 11px;
+    padding: 12px 8px;
+    font-size: 13px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -591,7 +591,7 @@ img {
     height: 32px;
   }
   .hero-slider-slide {
-    font-size: 12px;
+    font-size: 14px;
     padding: 0 16px;
   }
 }
