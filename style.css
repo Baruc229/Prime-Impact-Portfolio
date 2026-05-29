@@ -77,11 +77,7 @@ body {
   overflow-x: hidden;
   max-width: 100%;
   width: 100%;
-  transition: background-color var(--transition-speed), color var(--transition-speed), opacity 0.4s ease;
-}
-
-body.page-loading {
-  opacity: 0;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
 a,
