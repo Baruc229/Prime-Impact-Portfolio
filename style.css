@@ -619,7 +619,7 @@ img {
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 85px 0 45px;
+    padding: 110px 0 45px;
     min-height: auto;
   }
   .hero-layout {
@@ -676,7 +676,7 @@ img {
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 75px 0 35px;
+    padding: 100px 0 35px;
   }
   .showcase-stack {
     height: 260px;
