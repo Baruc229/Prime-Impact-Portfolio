@@ -619,7 +619,7 @@ img {
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 80px 0 40px;
+    padding: 85px 0 45px;
     min-height: auto;
   }
   .hero-layout {
@@ -650,72 +650,7 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .hero-actions .btn i {
-    font-size: 13px;
-  }
-  .services-slide {
-    font-size: 12px;
-    padding: 8px 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-section {
-    padding: 70px 0 30px;
-  }
-  .hero-layout {
-    gap: 24px;
-  }
-  .hero-left {
-    gap: 14px;
-  }
-  .hero-badge {
-    font-size: 11px;
-    padding: 5px 14px;
-  }
-  .hero-desc {
-    font-size: 13px;
-    line-height: 1.5;
-  }
-  .hero-line-sm {
-    font-size: clamp(22px, 8vw, 30px);
-  }
-  .hero-rotator-wrapper {
-    font-size: clamp(17px, 5.5vw, 22px);
-  }
-  .hero-actions {
-    gap: 8px;
-    max-width: 240px;
-  }
-  .hero-actions .btn {
-    padding: 10px 6px;
-    font-size: 12px;
-  }
-  .hero-google-badge {
-    font-size: 11px;
-    padding: 6px 14px;
-    gap: 6px;
-  }
-  .hero-google-stars {
-    font-size: 10px;
-    letter-spacing: 1px;
-  }
-  .hero-right {
-    gap: 14px;
-  }
-  .hero-showcase {
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  }
-  .services-slide {
-    font-size: 11px;
-    padding: 6px 12px;
-  }
-}
-
-
   .hero-stat-divider {
-    display: none;
   }
   .showcase-stack {
     height: 320px;
@@ -739,7 +674,18 @@ img {
   }
 }
 
+@media (min-width: 1921px), (min-height: 1081px) {
+  .hero-section {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 100px 0 50px;
+  }
+}
+
 @media (max-width: 480px) {
+  .hero-section {
+    padding: 75px 0 35px;
+  }
   .showcase-stack {
     height: 260px;
   }
