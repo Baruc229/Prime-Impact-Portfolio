@@ -2221,7 +2221,7 @@ img {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 16px 24px;
+    padding: 16px 24px 8px;
     flex: 1;
     overflow-y: auto;
   }
@@ -2259,15 +2259,15 @@ img {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     text-align: center;
-    margin-top: 8px;
+    margin-top: 0;
   }
 
   /* FOOTER du menu latéral (Copyright + Réseaux sociaux) */
   .nav-mobile-footer {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 8px 24px;
+    gap: 6px;
+    padding: 4px 24px;
     border-top: 1px solid var(--border-color);
     flex-shrink: 0;
   }
