@@ -279,10 +279,6 @@ img {
   max-width: 600px;
   margin: 0;
   text-align: left;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.25em;
 }
 
 .hero-line {
@@ -298,12 +294,12 @@ img {
 }
 
 .hero-rotator-wrapper {
+  display: inline;
   font-size: clamp(28px, 3.5vw, 48px);
   font-weight: 900;
   letter-spacing: -1px;
   line-height: 1.1;
   color: var(--accent-blue);
-  text-align: left;
 }
 
 .text-rotator {
@@ -599,7 +595,6 @@ img {
   }
   .hero-title {
     text-align: center;
-    justify-content: center;
   }
   .hero-line-sm {
     text-align: center;
