@@ -2435,7 +2435,7 @@ img {
 }
 
 .constat-col {
-  background: var(--glass-bg);
+  background: var(--bg-card-warm);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
@@ -2567,7 +2567,7 @@ img {
 }
 
 .resultat-card {
-  background: var(--bg-secondary);
+  background: var(--bg-card-warm);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: 40px 28px;
