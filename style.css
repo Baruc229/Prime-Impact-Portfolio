@@ -303,9 +303,7 @@ img {
 }
 
 .text-rotator {
-  display: inline-block;
-  vertical-align: bottom;
-  min-height: 1.4em;
+  display: inline;
   opacity: 1;
   will-change: opacity, transform;
 }
@@ -605,6 +603,7 @@ img {
   .hero-rotator-wrapper {
     text-align: center;
     font-size: clamp(24px, 6vw, 40px);
+    min-height: 2.4em;
   }
   .hero-actions {
     justify-content: center;
@@ -635,6 +634,7 @@ img {
   }
   .hero-rotator-wrapper {
     font-size: clamp(20px, 5vw, 32px);
+    min-height: 2.4em;
   }
   .hero-actions {
     display: grid;
