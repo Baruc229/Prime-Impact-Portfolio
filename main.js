@@ -365,6 +365,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── REALISATIONS FILTER (realisations.html) ── */
   initProjectFilter();
 
+  /* ── FADE-IN : tout apparaît d'un coup ── */
+  document.body.classList.add('visible');
+
 });
 
 /* ─── Validation helpers ─── */

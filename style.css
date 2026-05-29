@@ -75,7 +75,12 @@ body {
   overflow-x: hidden;
   max-width: 100%;
   width: 100%;
-  transition: background-color var(--transition-speed), color var(--transition-speed);
+  opacity: 0;
+  transition: background-color var(--transition-speed), color var(--transition-speed), opacity 0.45s ease;
+}
+
+body.visible {
+  opacity: 1;
 }
 
 a,
