@@ -674,4 +674,9 @@ function initProjectFilter() {
       });
     });
   });
-}
+});
+
+/* ── PAGE LOAD FADE-IN (TEST) ── */
+window.addEventListener('load', () => {
+  document.body.classList.remove('page-loading');
+});
