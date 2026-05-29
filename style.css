@@ -615,6 +615,14 @@ img {
     margin: 0 auto;
     width: 100%;
   }
+  .services-slider-track {
+    scroll-snap-type: x mandatory;
+  }
+  .services-slide {
+    scroll-snap-align: start;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 @media (max-width: 768px) {
