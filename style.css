@@ -225,14 +225,14 @@ img {
    HERO SECTION
    ========================================================================== */
 .hero-section {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
   overflow: hidden;
   background: var(--bg-main);
-  padding: 80px 0 60px;
+  padding: 100px 0 60px;
 }
 
 .hero-layout {
@@ -671,14 +671,6 @@ img {
   }
   .showcase-phone {
     animation: floatDevice 6s ease-in-out infinite 1s;
-  }
-}
-
-@media (min-width: 1921px), (min-height: 1081px) {
-  .hero-section {
-    min-height: auto;
-    align-items: flex-start;
-    padding: 100px 0 50px;
   }
 }
 
