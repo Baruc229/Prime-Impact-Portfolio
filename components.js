@@ -19,7 +19,7 @@ function buildHeader() {
     { href: 'services.html',     label: 'Services', i18n: 'nav.services' },
     { href: 'realisations.html', label: 'Réalisations', i18n: 'nav.portfolio' },
     { href: 'a-propos.html',     label: 'À propos', i18n: 'nav.about' },
-    // { href: 'temoignages.html',  label: 'Témoignages', i18n: 'nav.testimonials' },
+    { href: 'temoignages.html',  label: 'Témoignages', i18n: 'nav.testimonials' },
     { href: 'contact.html',      label: 'Contact', i18n: 'nav.contact' },
   ];
   

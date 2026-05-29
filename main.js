@@ -328,48 +328,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ── COMPTEURS ANIMÉS (Section Résultats) ── 
-     Incrémente les chiffres de 0 à la valeur cible quand on scrolle dessus.
-  */
+  /* ── COMPTEURS ANIMÉS (Section Résultats) ── */
   const counters = document.querySelectorAll('.counter-val');
   if (counters.length) {
-    const cObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        const target = parseFloat(el.dataset.target);
-        const prefix = el.dataset.prefix || '';
-        const suffix = el.dataset.suffix || '';
-        const duration = 1800; // Durée de l'animation en ms
-        const start = performance.now();
-        
-        function tick(now) {
-          const p = Math.min((now - start) / duration, 1);
-          const ease = 1 - Math.pow(1 - p, 3); // Effet de lissage (OutCubic)
-          const val = target < 10 ? (target * ease).toFixed(1) : Math.round(target * ease);
-          el.textContent = prefix + val + suffix;
-          if (p < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-        cObs.unobserve(el); // L'animation ne s'exécute qu'une seule fois
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(c => cObs.observe(c));
+    counters.forEach(el => {
+      const target = parseFloat(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const duration = 1800;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        const val = target < 10 ? (target * ease).toFixed(1) : Math.round(target * ease);
+        el.textContent = prefix + val + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
   }
 
   /* ── SKILLS ANIMATION ── */
   const skillBars = document.querySelectorAll('.skill-bar-fill');
   if (skillBars.length) {
-    const sObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          el.style.width = el.dataset.width;
-          sObs.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-    skillBars.forEach(b => sObs.observe(b));
+    skillBars.forEach(el => {
+      el.style.width = el.dataset.width;
+    });
   }
 
   /* ── DEVIS MULTI-STEP (devis.html) ── */
