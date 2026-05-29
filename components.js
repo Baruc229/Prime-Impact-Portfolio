@@ -79,13 +79,13 @@ function buildHeader() {
         </button>
       </div>
 
-      <!-- Contenu du menu latéral -->
+      <!-- Contenu du menu latéral (Navigation + CTA) -->
       <div class="nav-mobile-content">
         <nav class="nav-links">
           ${navLinksHTML}
         </nav>
+        <a href="devis.html" class="btn btn-primary nav-mobile-cta" data-i18n="nav.quote">Devis gratuit</a>
       </div>
-      <a href="devis.html" class="btn btn-primary nav-mobile-cta" data-i18n="nav.quote">Devis gratuit</a>
 
       <!-- Pied du menu latéral -->
       <div class="nav-mobile-footer">
