@@ -272,11 +272,13 @@ img {
   line-height: 1.6;
   color: var(--text-muted);
   max-width: 520px;
+  width: 100%;
   margin: 0;
 }
 
 .hero-title {
   max-width: 600px;
+  width: 100%;
   margin: 0;
   text-align: left;
 }
@@ -300,6 +302,7 @@ img {
   line-height: 1.1;
   color: var(--accent-blue);
   text-align: left;
+  width: 100%;
 }
 
 .text-rotator {
