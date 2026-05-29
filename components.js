@@ -84,8 +84,8 @@ function buildHeader() {
         <nav class="nav-links">
           ${navLinksHTML}
         </nav>
-        <a href="devis.html" class="btn btn-primary nav-mobile-cta" data-i18n="nav.quote">Devis gratuit</a>
       </div>
+      <a href="devis.html" class="btn btn-primary nav-mobile-cta" data-i18n="nav.quote">Devis gratuit</a>
 
       <!-- Pied du menu latéral -->
       <div class="nav-mobile-footer">
