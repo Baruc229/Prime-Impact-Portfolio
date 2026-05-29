@@ -225,14 +225,14 @@ img {
    HERO SECTION
    ========================================================================== */
 .hero-section {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
   overflow: hidden;
   background: var(--bg-main);
-  padding: 80px 4vw 60px;
+  padding: 60px 4vw 20px;
 }
 
 .hero-layout {
@@ -241,8 +241,8 @@ img {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
+  gap: 40px;
+  align-items: flex-start;
   position: relative;
   z-index: 2;
 }
@@ -251,7 +251,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: 16px;
 }
 
 .hero-badge {
@@ -612,14 +612,14 @@ img {
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 80px 5vw 40px;
+    padding: 35px 5vw 25px;
     min-height: auto;
   }
   .hero-layout {
-    gap: 32px;
+    gap: 24px;
   }
   .hero-left {
-    gap: 18px;
+    gap: 14px;
   }
   .hero-line-sm {
     font-size: clamp(28px, 7vw, 42px);
@@ -654,13 +654,13 @@ img {
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 70px 4vw 30px;
+    padding: 25px 4vw 20px;
   }
   .hero-layout {
-    gap: 24px;
+    gap: 16px;
   }
   .hero-left {
-    gap: 14px;
+    gap: 10px;
   }
   .hero-badge {
     font-size: 11px;
