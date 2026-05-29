@@ -34,8 +34,8 @@ function buildHeader() {
   <header class="navbar" id="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">
-        <img src="assets/pia-logo-white.png" alt="PIA" class="logo-white">
-        <img src="assets/pia-logo-dark.png" alt="PIA" class="logo-dark">
+        <img src="assets/pia-logo-white-sm.png" alt="PIA" class="logo-white">
+        <img src="assets/pia-logo-dark-sm.png" alt="PIA" class="logo-dark">
       </a>
       <nav class="nav-links" id="nav-links">
         ${navLinksHTML}
@@ -71,8 +71,8 @@ function buildHeader() {
       <!-- Header du menu latéral -->
       <div class="nav-mobile-header">
         <a href="index.html" class="nav-logo">
-          <img src="assets/pia-logo-white.png" alt="PIA" class="logo-white">
-          <img src="assets/pia-logo-dark.png" alt="PIA" class="logo-dark">
+          <img src="assets/pia-logo-white-sm.png" alt="PIA" class="logo-white">
+          <img src="assets/pia-logo-dark-sm.png" alt="PIA" class="logo-dark">
         </a>
         <button class="nav-close" id="navClose" aria-label="Fermer le menu">
           <i class="ph ph-x"></i>
@@ -117,8 +117,8 @@ function buildFooter() {
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" style="text-decoration:none;color:inherit;">
-            <img src="assets/pia-logo-white.png" alt="PIA" class="logo-white" style="height:68px;">
-            <img src="assets/pia-logo-dark.png" alt="PIA" class="logo-dark" style="height:68px;">
+            <img src="assets/pia-logo-white-sm.png" alt="PIA" class="logo-white" style="height:68px;">
+            <img src="assets/pia-logo-dark-sm.png" alt="PIA" class="logo-dark" style="height:68px;">
           </a>
           <p style="color:var(--text-muted);font-size:14px;line-height:1.7;" data-i18n="footer.desc">
             Agence web & marketing digital spécialisée dans la création de sites performants, tunnels de vente et référencement SEO.

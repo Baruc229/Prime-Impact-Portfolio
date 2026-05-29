@@ -26,40 +26,70 @@
 
     <!-- ░░ HERO TEXTE ░░ -->
     <section class="hero-section" id="hero">
-      <div class="hero-inner">
-        <h1 class="hero-title">
-          <span class="hero-line hero-line-sm" data-i18n="index.hero.title">Nous concevons des sites web qui</span>
-          <span class="hero-line hero-line-lg"><span class="text-rotator" id="text-rotator" data-i18n="index.hero.rotator">vendent pour vous.</span></span>
-        </h1>
+      <div class="hero-layout">
+        <!-- LEFT COLUMN -->
+        <div class="hero-left">
+          <span class="hero-badge">Chez PIA</span>
 
-        <div class="hero-actions">
-          <a id="whatsapp-btn" href="https://wa.me/22993288212?text=salut%20pia%2C%20j%27ai%20besoin%20de%20vos%20services%20de%20developpement%20web" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="index.hero.cta.contact">Audit gratuit</span></a>
-          <a href="realisations.html" class="btn btn-primary btn-lg" data-i18n="index.hero.cta.portfolio">Mes projets</a>
-        </div>
+          <p class="hero-desc">Chaque projet qu'on livre est conçu pour une seule chose : que votre investissement vous revienne, et au-delà. Votre succès est la seule mesure de notre travail.</p>
 
-        <div class="hero-google-badge">
-          <i class="fa-brands fa-google"></i>
-          <div class="hero-google-stars">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <h1 class="hero-title">
+            <span class="hero-line hero-line-sm" data-i18n="index.hero.title">Nous concevons des sites web qui</span>
+          </h1>
+
+          <div class="hero-rotator-wrapper">
+            <span class="text-rotator" id="text-rotator" data-i18n="index.hero.rotator">vendent pour vous.</span>
           </div>
-          <span class="hero-google-score">4,8</span>
-          <span class="hero-google-sep">/</span>
-          <span class="hero-google-max">5</span>
+
+          <div class="hero-actions">
+            <a id="whatsapp-btn" href="https://wa.me/22993288212?text=salut%20pia%2C%20j%27ai%20besoin%20de%20vos%20services%20de%20developpement%20web" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="index.hero.cta.contact">Audit gratuit</span></a>
+            <a href="realisations.html" class="btn btn-primary btn-lg" data-i18n="index.hero.cta.portfolio">Mes projets</a>
+          </div>
+
+          <div class="hero-google-badge">
+            <i class="fa-brands fa-google"></i>
+            <div class="hero-google-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <span class="hero-google-score">4,8</span>
+            <span class="hero-google-sep">/</span>
+            <span class="hero-google-max">5</span>
+          </div>
         </div>
 
-        <div class="hero-slider">
-          <div class="hero-slider-line"></div>
-          <div class="hero-slider-body">
-            <div class="hero-slider-track">
-              <div class="hero-slider-slide active" data-i18n="index.slider.1">Création de site web</div>
-              <div class="hero-slider-slide" data-i18n="index.slider.2">Refonte de site web</div>
-              <div class="hero-slider-slide" data-i18n="index.slider.3">Tunnel de vente</div>
-              <div class="hero-slider-slide" data-i18n="index.slider.4">Landing page</div>
-              <div class="hero-slider-slide" data-i18n="index.slider.5">Référencement SEO</div>
-              <div class="hero-slider-slide" data-i18n="index.slider.6">Audit & stratégie</div>
+        <!-- RIGHT COLUMN -->
+        <div class="hero-right">
+          <div class="hero-showcase">
+            <div class="showcase-track" id="showcaseTrack">
+              <div class="showcase-slide active">
+                <img src="assets/project_ecommerce.webp" alt="Site e-commerce">
+              </div>
+              <div class="showcase-slide">
+                <img src="assets/slide-vitrine.webp" alt="Site vitrine">
+              </div>
+              <div class="showcase-slide">
+                <img src="assets/slide-saas.webp" alt="SaaS">
+              </div>
+              <div class="showcase-slide">
+                <img src="assets/project_immobilier.webp" alt="Site immobilier">
+              </div>
+              <div class="showcase-slide">
+                <img src="assets/project_landing.webp" alt="Landing page">
+              </div>
+            </div>
+            <div class="showcase-arrow showcase-arrow-prev" id="showcasePrev"><i class="ph ph-caret-left"></i></div>
+            <div class="showcase-arrow showcase-arrow-next" id="showcaseNext"><i class="ph ph-caret-right"></i></div>
+          </div>
+
+          <div class="hero-services-slider" id="servicesSlider">
+            <div class="services-slider-track" id="servicesTrack">
+              <span class="services-slide active" data-slide="0">Site e-commerce</span>
+              <span class="services-slide" data-slide="1">Site vitrine</span>
+              <span class="services-slide" data-slide="2">SaaS</span>
+              <span class="services-slide" data-slide="3">Site immobilier</span>
+              <span class="services-slide" data-slide="4">Landing page</span>
             </div>
           </div>
-          <div class="hero-slider-dots"></div>
         </div>
       </div>
     </section>
@@ -344,7 +374,7 @@
         </div>
         <div class="realisations-grid">
           <div class="project-card reveal">
-            <img src="assets/project_ecommerce.png" alt="Projet e-commerce" class="project-img">
+            <img src="assets/project_ecommerce.webp" alt="Projet e-commerce" class="project-img">
             <div class="project-body">
               <span class="project-tag" data-i18n="index.realisations.tag.ecom">E-commerce</span>
               <h3 class="project-title" data-i18n="index.realisations.project1.title">Boutique Mode Prestige</h3>
@@ -354,7 +384,7 @@
             </div>
           </div>
           <div class="project-card reveal delay-1">
-            <img src="assets/project_immobilier.png" alt="Projet immobilier" class="project-img">
+            <img src="assets/project_immobilier.webp" alt="Projet immobilier" class="project-img">
             <div class="project-body">
               <span class="project-tag" data-i18n="index.realisations.tag.vitrine">Site vitrine</span>
               <h3 class="project-title" data-i18n="index.realisations.project2.title">Élite Immobilier Lyon</h3>
@@ -364,7 +394,7 @@
             </div>
           </div>
           <div class="project-card reveal delay-2">
-            <img src="assets/project_landing.png" alt="Projet landing page" class="project-img">
+            <img src="assets/project_landing.webp" alt="Projet landing page" class="project-img">
             <div class="project-body">
               <span class="project-tag" data-i18n="index.realisations.tag.landing">Landing page</span>
               <h3 class="project-title" data-i18n="index.realisations.project3.title">Coaching Business Pro</h3>
@@ -469,7 +499,7 @@
     <!-- ░░ CTA FINALE ░░ -->
     <section class="cta-mega section-padding">
       <div class="container text-center reveal">
-        <h2 class="section-title" style="font-size:max(36px,clamp(44px,5vw,72px));" data-i18n="index.cta.title">Prêt à passer à l'action ?</h2>
+        <h2 class="section-title" style="font-size:max(28px,clamp(32px,3.5vw,44px));" data-i18n="index.cta.title">Prêt à passer à l'action ?</h2>
         <p class="section-subtitle" style="margin-bottom:40px;" data-i18n="index.cta.sub">Ne laissez plus un mauvais site vous coûter des clients. Démarrons ensemble.</p>
         <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
           <a href="devis.html" class="btn btn-primary" style="padding:20px 44px;font-size:18px;" data-i18n="index.hero.cta">Démarrer mon projet</a>

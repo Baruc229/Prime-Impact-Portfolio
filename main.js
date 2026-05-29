@@ -301,24 +301,29 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLang = localStorage.getItem('site_lang') || 'fr';
     window.rotatorWords = currentLang === 'en' ? wordsEN : wordsFR;
     window.rotatorIdx = 0;
+    let rotatorTimer;
     
-    setInterval(() => {
-      rotator.classList.add('fade-out');
+    function rotateWord() {
+      rotator.style.animation = 'rotator-out 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) forwards';
       setTimeout(() => {
         window.rotatorIdx = (window.rotatorIdx + 1) % window.rotatorWords.length;
         rotator.textContent = window.rotatorWords[window.rotatorIdx];
-        rotator.classList.remove('fade-out');
-        rotator.classList.add('fade-in');
-        setTimeout(() => rotator.classList.remove('fade-in'), 400);
-      }, 400);
-    }, 3000);
+        rotator.style.animation = 'rotator-in 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) forwards';
+      }, 450);
+      rotatorTimer = setTimeout(rotateWord, 3500);
+    }
+    
+    rotatorTimer = setTimeout(rotateWord, 3500);
     
     document.querySelectorAll('.lang-menu button').forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.dataset.lang;
-        words = lang === 'en' ? wordsEN : wordsFR;
-        idx = 0;
-        rotator.textContent = words[0];
+        window.rotatorWords = lang === 'en' ? wordsEN : wordsFR;
+        window.rotatorIdx = 0;
+        rotator.textContent = window.rotatorWords[0];
+        rotator.style.animation = 'none';
+        clearTimeout(rotatorTimer);
+        rotatorTimer = setTimeout(rotateWord, 3500);
       });
     });
   }
@@ -621,59 +626,44 @@ function initDevisForm() {
 }
 
 /* ════════════════════════════════════════════
-   HERO SLIDER — Service text rotator 1 à 1
+   HERO SLIDER — Synchronized showcase + services
 ════════════════════════════════════════════ */
 function initHeroSlider() {
-  const track = document.querySelector('.hero-slider-track');
-  const slides = document.querySelectorAll('.hero-slider-slide');
-  const dots = document.querySelector('.hero-slider-dots');
-  const prevBtn = document.querySelector('.hero-slider-prev');
-  const nextBtn = document.querySelector('.hero-slider-next');
-  if (!track || !slides.length) return;
+  const showcaseTrack = document.getElementById('showcaseTrack');
+  const showcaseSlides = showcaseTrack ? showcaseTrack.querySelectorAll('.showcase-slide') : [];
+  const servicesTrack = document.getElementById('servicesTrack');
+  const servicesSlides = servicesTrack ? servicesTrack.querySelectorAll('.services-slide') : [];
+  const prevBtn = document.getElementById('showcasePrev');
+  const nextBtn = document.getElementById('showcaseNext');
+  if (!showcaseSlides.length) return;
 
   let current = 0;
   let interval;
 
-  function buildDots() {
-    slides.forEach((_, i) => {
-      const dot = document.createElement('span');
-      if (i === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => goTo(i));
-      dots.appendChild(dot);
-    });
-  }
-
   function goTo(index) {
-    slides.forEach((s, i) => {
-      s.classList.remove('active', 'prev');
-      if (i === index) s.classList.add('active');
-      else s.classList.add('prev');
-    });
-    dots.querySelectorAll('span').forEach((d, i) => {
-      d.classList.toggle('active', i === index);
-    });
+    showcaseSlides.forEach((s, i) => s.classList.toggle('active', i === index));
+    servicesSlides.forEach((s, i) => s.classList.toggle('active', i === index));
+
+    if (servicesTrack && servicesSlides[index]) {
+      servicesSlides[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+
     current = index;
     resetAuto();
   }
 
-  function next() {
-    goTo((current + 1) % slides.length);
-  }
+  function next() { goTo((current + 1) % showcaseSlides.length); }
+  function prev() { goTo((current - 1 + showcaseSlides.length) % showcaseSlides.length); }
+  function resetAuto() { clearInterval(interval); interval = setInterval(next, 5000); }
 
-  function prev() {
-    goTo((current - 1 + slides.length) % slides.length);
-  }
-
-  function resetAuto() {
-    clearInterval(interval);
-    interval = setInterval(next, 4000);
-  }
-
-  buildDots();
   goTo(0);
 
   if (prevBtn) prevBtn.addEventListener('click', prev);
   if (nextBtn) nextBtn.addEventListener('click', next);
+
+  servicesSlides.forEach(slide => {
+    slide.addEventListener('click', () => goTo(parseInt(slide.dataset.slide)));
+  });
 
   resetAuto();
 }
