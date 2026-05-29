@@ -1100,7 +1100,7 @@ img {
 }
 
 .nav-links a {
-  font-size: clamp(14px, 1vw, 16px);
+  font-size: clamp(16px, 1.2vw, 18px);
   font-weight: 600;
   letter-spacing: 0.5px;
   white-space: nowrap;
