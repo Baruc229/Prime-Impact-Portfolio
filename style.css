@@ -636,6 +636,11 @@ img {
     font-size: clamp(20px, 5vw, 32px);
     min-height: 2.4em;
   }
+  .services-slider-track {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: hidden;
+  }
   .hero-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
