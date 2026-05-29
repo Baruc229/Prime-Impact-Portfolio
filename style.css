@@ -272,7 +272,6 @@ img {
   line-height: 1.6;
   color: var(--text-muted);
   max-width: 520px;
-  width: 100%;
   margin: 0;
   box-sizing: border-box;
   overflow-wrap: break-word;
@@ -280,7 +279,6 @@ img {
 
 .hero-title {
   max-width: 600px;
-  width: 100%;
   margin: 0;
   text-align: left;
   box-sizing: border-box;
@@ -305,7 +303,6 @@ img {
   line-height: 1.1;
   color: var(--accent-blue);
   text-align: left;
-  width: 100%;
 }
 
 .text-rotator {
