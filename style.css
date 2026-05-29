@@ -622,10 +622,6 @@ img {
     padding: 85px 0 45px;
     min-height: auto;
   }
-  .hero-showcase {
-    aspect-ratio: auto;
-    height: 200px;
-  }
   .hero-layout {
     gap: 32px;
   }
@@ -681,10 +677,6 @@ img {
 @media (max-width: 480px) {
   .hero-section {
     padding: 75px 0 35px;
-  }
-  .hero-showcase {
-    aspect-ratio: auto;
-    height: 150px;
   }
   .showcase-stack {
     height: 260px;
