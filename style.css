@@ -1168,7 +1168,13 @@ img {
 
 @media (min-width: 769px) {
   .nav-cta {
-    padding: 12px 24px;
+    padding: 10px 20px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .nav-cta {
+    padding: 8px 16px;
   }
 }
 
