@@ -2251,6 +2251,7 @@ img {
 
   /* CTA Devis */
   .nav-mobile-cta {
+    width: calc(100% - 48px);
     padding: 14px 24px;
     font-size: 14px;
     font-weight: 700;
