@@ -273,15 +273,12 @@ img {
   color: var(--text-muted);
   max-width: 520px;
   margin: 0;
-  box-sizing: border-box;
-  overflow-wrap: break-word;
 }
 
 .hero-title {
   max-width: 600px;
   margin: 0;
   text-align: left;
-  box-sizing: border-box;
 }
 
 .hero-line {
@@ -638,20 +635,10 @@ img {
     font-size: clamp(20px, 5vw, 32px);
   }
   .hero-actions {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
-    width: 100%;
-  }
-  .hero-actions .btn {
-    width: 100%;
-    justify-content: center;
-    padding: 14px 8px;
-    font-size: 14px;
-    white-space: nowrap;
-  }
-  .hero-actions .btn i {
-    font-size: 14px;
+    max-width: 280px;
   }
   .hero-actions .btn {
     width: 100%;
@@ -2906,14 +2893,7 @@ img {
   }
   
   .hero-actions {
-    gap: 8px;
-  }
-  .hero-actions .btn {
-    padding: 12px 8px;
-    font-size: 13px;
-  }
-  .hero-actions .btn i {
-    font-size: 13px;
+    gap: 16px;
   }
   
   .section-badge {
