@@ -806,7 +806,7 @@ img {
 }
 
 .feature-card {
-  background: var(--glass-bg);
+  background: var(--bg-card-warm);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: 16px;
@@ -1408,7 +1408,7 @@ img {
 }
 
 .step-card {
-  background: var(--glass-bg);
+  background: var(--bg-card-warm);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
@@ -1444,7 +1444,7 @@ img {
 }
 
 .methode-grid .step-card {
-  background: var(--glass-bg);
+  background: var(--bg-card-warm);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: 28px 24px;
@@ -2495,7 +2495,7 @@ img {
 }
 
 .methode-card {
-  background: var(--glass-bg);
+  background: var(--bg-card-warm);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
@@ -3020,7 +3020,7 @@ img {
 }
 
 .service-full-card {
-  background: var(--glass-bg);
+  background: var(--bg-card-warm);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
@@ -3144,7 +3144,7 @@ img {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  background: var(--glass-bg);
+  background: var(--bg-card-warm);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   padding: 24px 20px;
@@ -3974,12 +3974,10 @@ textarea.form-control {
 }
 
 .team-card-premium {
-  background: var(--glass-bg);
+  background: var(--bg-card-warm);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: 30px;
-  text-align: center;
-  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
   position: relative;
   overflow: hidden;
 }
@@ -4281,7 +4279,7 @@ textarea.form-control {
 .timeline-step {
   text-align: center;
   padding: 30px;
-  background: var(--glass-bg);
+  background: var(--bg-card-warm);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   transition: transform var(--transition-speed);
@@ -4379,7 +4377,7 @@ textarea.form-control {
 
 /* Card below each dot */
 .roadmap-card {
-  background: var(--glass-bg);
+  background: var(--bg-card-warm);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: 28px 20px;
