@@ -637,9 +637,12 @@ img {
     min-height: 2.4em;
   }
   .services-slider-track {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
-    overflow-x: hidden;
+    overflow: hidden;
+  }
+  .services-slide:not(.active) {
+    display: none;
   }
   .hero-actions {
     display: grid;
