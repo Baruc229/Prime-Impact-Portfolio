@@ -303,7 +303,9 @@ img {
 }
 
 .text-rotator {
-  display: inline;
+  display: inline-block;
+  vertical-align: bottom;
+  min-height: 1.4em;
   opacity: 1;
   will-change: opacity, transform;
 }
