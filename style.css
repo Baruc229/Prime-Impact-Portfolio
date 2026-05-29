@@ -2266,8 +2266,8 @@ img {
   .nav-mobile-footer {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 16px 24px;
+    gap: 8px;
+    padding: 8px 24px;
     border-top: 1px solid var(--border-color);
     flex-shrink: 0;
   }
