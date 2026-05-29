@@ -29,7 +29,6 @@
   --radius-md: 24px;
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-bg-solid: rgba(255, 255, 255, 0.95);
-  --bg-card-warm: #FFF5F0;
 }
 
 /* THÈME SOMBRE - Premium Dark */
@@ -49,7 +48,6 @@
   --radius-md: 24px;
   --glass-bg: rgba(20, 20, 20, 0.7);
   --glass-bg-solid: rgba(20, 20, 20, 0.95);
-  --bg-card-warm: #1E1310;
 }
 
 /* RESET & BASE 
@@ -1545,7 +1543,7 @@ img {
 .pack-card.animated-border .pack-inner {
   position: relative;
   z-index: 2;
-  background: var(--bg-card-warm);
+  background: var(--bg-secondary);
   /* Needs solid background to hide the gradient behind */
   padding: 60px;
   border-radius: calc(var(--radius-md) - 2px);
@@ -1554,7 +1552,7 @@ img {
 }
 
 [data-theme="dark"] .pack-card.animated-border .pack-inner {
-  background: var(--bg-card-warm);
+  background: var(--bg-secondary);
 }
 
 /* The spinning border layer */
@@ -1675,7 +1673,7 @@ img {
 
 .testimonial-card {
   min-width: 450px;
-  background: var(--bg-card-warm);
+  background: var(--glass-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
@@ -2611,7 +2609,7 @@ img {
 }
 
 .service-card {
-  background: var(--bg-card-warm);
+  background: var(--glass-bg);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
@@ -3634,7 +3632,7 @@ textarea.form-control {
   height: auto !important;
   padding: 30px !important;
   border-radius: 12px !important;
-  background: var(--bg-card-warm) !important;
+  background: var(--glass-bg) !important;
   border: 1px solid var(--border-color) !important;
   display: flex !important;
   flex-direction: column !important;
