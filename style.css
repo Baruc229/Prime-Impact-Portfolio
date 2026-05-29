@@ -279,10 +279,14 @@ img {
   max-width: 600px;
   margin: 0;
   text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25em;
 }
 
 .hero-line {
-  display: block;
+  display: inline;
 }
 
 .hero-line-sm {
@@ -595,6 +599,7 @@ img {
   }
   .hero-title {
     text-align: center;
+    justify-content: center;
   }
   .hero-line-sm {
     text-align: center;
