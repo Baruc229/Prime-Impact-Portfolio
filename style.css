@@ -192,7 +192,7 @@ img {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 4vw;
   position: relative;
@@ -244,7 +244,7 @@ img {
 
 .hero-layout {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 4vw;
   display: grid;
@@ -1085,7 +1085,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 4vw;
 }
