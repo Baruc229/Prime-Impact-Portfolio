@@ -629,7 +629,9 @@ function initHeroSlider() {
     servicesSlides.forEach((s, i) => s.classList.toggle('active', i === index));
 
     if (servicesTrack && servicesSlides[index]) {
-      servicesSlides[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      const slide = servicesSlides[index];
+      const targetLeft = slide.offsetLeft - servicesTrack.clientWidth / 2 + slide.offsetWidth / 2;
+      servicesTrack.scrollTo({ left: targetLeft, behavior: 'smooth' });
     }
 
     current = index;
