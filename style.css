@@ -2259,7 +2259,7 @@ img {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     text-align: center;
-    margin-top: 0;
+    margin-top: auto;
   }
 
   /* FOOTER du menu latéral (Copyright + Réseaux sociaux) */
