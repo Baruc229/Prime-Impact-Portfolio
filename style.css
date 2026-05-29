@@ -321,8 +321,14 @@ img {
 .hero-actions {
   display: flex;
   gap: 14px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-start;
+}
+
+.hero-actions .btn {
+  white-space: nowrap;
+  padding: 14px 24px;
+  font-size: clamp(14px, 0.9vw, 16px);
 }
 
 .hero-stats-row {
