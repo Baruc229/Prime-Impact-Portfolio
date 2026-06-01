@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const htmlEl = document.documentElement;
 
   // Charge le thème sauvegardé ou utilise 'dark' par défaut (premium)
-  const savedTheme = localStorage.getItem('pia-theme') || 'dark';
+  const savedTheme = localStorage.getItem('pia-theme') || 'light';
   htmlEl.setAttribute('data-theme', savedTheme);
   updateThemeIcon(savedTheme);
 
