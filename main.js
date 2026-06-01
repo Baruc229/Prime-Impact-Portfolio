@@ -668,11 +668,11 @@ function initHeroSlider() {
 }
 
 /* ════════════════════════════════════════════
-   PROJECT FILTER — realisations.html
+   PROJECT FILTER — realisations.html + index
 ════════════════════════════════════════════ */
 function initProjectFilter() {
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const projects = document.querySelectorAll('.project-card');
+  const projects = document.querySelectorAll('.project-card, .showcase-item');
   if (!filterBtns.length || !projects.length) return;
 
   filterBtns.forEach(btn => {
