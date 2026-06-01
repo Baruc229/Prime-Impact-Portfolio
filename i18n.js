@@ -1043,11 +1043,7 @@ class I18nManager {
     const storedLang = localStorage.getItem('site_lang');
     if (storedLang === 'fr' || storedLang === 'en') return storedLang;
 
-    // 3. Browser language
-    const browserLang = navigator.language || navigator.userLanguage;
-    if (browserLang && browserLang.startsWith('en')) return 'en';
-
-    // Default
+    // Default - toujours français sauf choix explicite
     return 'fr';
   }
 
