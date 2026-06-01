@@ -5,6 +5,14 @@
    Initialisation après injection des composants (components.js).
    ============================================================ */
 
+function getTranslation(key) {
+  if (typeof translations !== 'undefined' && translations[key]) {
+    const lang = window.i18n ? window.i18n.currentLang : 'fr';
+    return translations[key][lang];
+  }
+  return '';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── WHATSAPP BUTTON INITIALIZATION ── */
@@ -284,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
     orderForm.addEventListener('submit', e => {
       e.preventDefault();
       const submitBtn = e.target.querySelector('button[type="submit"]');
-      if (submitBtn) { submitBtn.textContent = 'Envoi…'; submitBtn.disabled = true; }
+      if (submitBtn) { submitBtn.textContent = getTranslation('contact.form.sending') || 'Envoi…'; submitBtn.disabled = true; }
       setTimeout(() => {
         if (formCont) formCont.style.display = 'none';
         if (succCont) succCont.style.display = 'block';
@@ -416,14 +424,14 @@ function initContactForm() {
 
       if (field.name === 'name' && !validateName(val)) {
         field.classList.add('error');
-        if (err) { err.textContent = '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
+        if (err) { err.textContent = getTranslation('contact.error.name') || '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
         valid = false;
         return;
       }
 
       if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
         field.classList.add('error');
-        if (err) { err.textContent = 'Email invalide'; err.style.display = 'block'; }
+        if (err) { err.textContent = getTranslation('contact.error.email') || 'Email invalide'; err.style.display = 'block'; }
         valid = false;
         return;
       }
@@ -445,16 +453,16 @@ function initContactForm() {
       if (!validatePhone(phoneField.value)) {
         phoneField.classList.add('error');
         const err = phoneField.parentElement.querySelector('.field-error');
-        if (err) { err.textContent = 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
+        if (err) { err.textContent = getTranslation('contact.error.phone') || 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
         valid = false;
       }
     }
 
     if (valid) {
       const btn = form.querySelector('button[type="submit"]');
-      if (btn) { btn.textContent = 'Envoi…'; btn.disabled = true; }
+      if (btn) { btn.textContent = getTranslation('contact.form.sending') || 'Envoi…'; btn.disabled = true; }
       setTimeout(() => {
-        btn.textContent = 'Envoyer le message';
+        btn.textContent = getTranslation('contact.form.btn') || 'Envoyer le message';
         btn.disabled = false;
         form.reset();
         showFormModal('contactModal');
@@ -473,7 +481,7 @@ function initContactForm() {
 
     if (!val && field.hasAttribute('required') && field.tagName !== 'SELECT') {
       field.classList.add('error');
-      if (err) { err.textContent = 'Ce champ est requis'; err.style.display = 'block'; }
+      if (err) { err.textContent = getTranslation('contact.error.required') || 'Ce champ est requis'; err.style.display = 'block'; }
       return;
     }
 
@@ -485,19 +493,19 @@ function initContactForm() {
 
     if (field.name === 'name' && val && !validateName(val)) {
       field.classList.add('error');
-      if (err) { err.textContent = '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
+      if (err) { err.textContent = getTranslation('contact.error.name') || '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
       return;
     }
 
     if (field.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
       field.classList.add('error');
-      if (err) { err.textContent = 'Email invalide'; err.style.display = 'block'; }
+      if (err) { err.textContent = getTranslation('contact.error.email') || 'Email invalide'; err.style.display = 'block'; }
       return;
     }
 
     if (field.name === 'phone' && val && !validatePhone(val)) {
       field.classList.add('error');
-      if (err) { err.textContent = 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
+      if (err) { err.textContent = getTranslation('contact.error.phone') || 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
       return;
     }
 
@@ -530,14 +538,15 @@ function initDevisForm() {
 
       if ((field.name === 'prenom' || field.name === 'nom') && !validateName(val)) {
         field.classList.add('error');
-        if (err) { err.textContent = '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
+        const errKey = field.name === 'prenom' ? 'devis.form.prenom.err' : 'devis.form.nom.err';
+        if (err) { err.textContent = getTranslation(errKey) || '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
         valid = false;
         return;
       }
 
       if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
         field.classList.add('error');
-        if (err) { err.textContent = 'Email invalide'; err.style.display = 'block'; }
+        if (err) { err.textContent = getTranslation('devis.form.email.err') || 'Email invalide'; err.style.display = 'block'; }
         valid = false;
         return;
       }
@@ -551,16 +560,16 @@ function initDevisForm() {
       if (!validatePhone(phoneField.value)) {
         phoneField.classList.add('error');
         const err = phoneField.parentElement.querySelector('.field-error');
-        if (err) { err.textContent = 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
+        if (err) { err.textContent = getTranslation('devis.form.phone.err') || 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
         valid = false;
       }
     }
 
     if (valid) {
       const btn = form.querySelector('button[type="submit"]');
-      if (btn) { btn.textContent = 'Envoi…'; btn.disabled = true; }
+      if (btn) { btn.textContent = getTranslation('devis.form.sending') || 'Envoi…'; btn.disabled = true; }
       setTimeout(() => {
-        btn.textContent = 'Demander mon devis gratuit';
+        btn.textContent = getTranslation('devis.form.submit') || 'Demander mon devis gratuit';
         btn.disabled = false;
         form.reset();
         showFormModal('devisModal');
@@ -579,7 +588,7 @@ function initDevisForm() {
 
     if (!val && field.hasAttribute('required') && field.tagName !== 'SELECT') {
       field.classList.add('error');
-      if (err) { err.textContent = 'Ce champ est requis'; err.style.display = 'block'; }
+      if (err) { err.textContent = getTranslation('contact.error.required') || 'Ce champ est requis'; err.style.display = 'block'; }
       return;
     }
 
@@ -591,19 +600,20 @@ function initDevisForm() {
 
     if ((field.name === 'prenom' || field.name === 'nom') && val && !validateName(val)) {
       field.classList.add('error');
-      if (err) { err.textContent = '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
+      const errKey = field.name === 'prenom' ? 'devis.form.prenom.err' : 'devis.form.nom.err';
+      if (err) { err.textContent = getTranslation(errKey) || '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
       return;
     }
 
     if (field.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
       field.classList.add('error');
-      if (err) { err.textContent = 'Email invalide'; err.style.display = 'block'; }
+      if (err) { err.textContent = getTranslation('devis.form.email.err') || 'Email invalide'; err.style.display = 'block'; }
       return;
     }
 
     if (field.name === 'phone' && val && !validatePhone(val)) {
       field.classList.add('error');
-      if (err) { err.textContent = 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
+      if (err) { err.textContent = getTranslation('devis.form.phone.err') || 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
       return;
     }
 

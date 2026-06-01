@@ -16,17 +16,71 @@ function buildHeader() {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const links = [
     { href: 'index.html',        label: 'Accueil', i18n: 'nav.home' },
-    { href: 'services.html',     label: 'Services', i18n: 'nav.services' },
     { href: 'realisations.html', label: 'Réalisations', i18n: 'nav.portfolio' },
     { href: 'a-propos.html',     label: 'À propos', i18n: 'nav.about' },
     { href: 'temoignages.html',  label: 'Témoignages', i18n: 'nav.testimonials' },
     { href: 'contact.html',      label: 'Contact', i18n: 'nav.contact' },
   ];
   
-  // Génère dynamiquement les liens HTML avec data-i18n pour la traduction
-  const navLinksHTML = links.map(l =>
-    `<a href="${l.href}" class="${l.href === currentPage ? 'active' : ''}" data-i18n="${l.i18n}">${l.label}</a>`
+  const servicePages = [
+    { href: 'service-creation-site.html',      label: 'Création de site web',      i18n: 'nav.services.1' },
+    { href: 'service-tunnels-vente.html',       label: 'Tunnels de vente',          i18n: 'nav.services.2' },
+    { href: 'service-referencement-seo.html',    label: 'Référencement SEO',         i18n: 'nav.services.4' },
+    { href: 'service-refonte-site.html',         label: 'Refonte de site web',       i18n: 'nav.services.6' },
+    { href: 'service-suivi-accompagnement.html', label: 'Suivi & Accompagnement',    i18n: 'nav.services.7' },
+  ];
+
+  const isServicePage = servicePages.some(s => s.href === currentPage);
+  const isActiveService = isServicePage || currentPage === 'services.html';
+
+  // Items du méga menu
+  const megaItemsHTML = servicePages.map(s =>
+    `<a href="${s.href}" class="mega-link${s.href === currentPage ? ' active' : ''}">
+      <span class="mega-link-title" data-i18n="${s.i18n}">${s.label}</span>
+    </a>`
   ).join('');
+
+  // Lien standard helper
+  const linkHTML = l => `<a href="${l.href}" class="${l.href === currentPage ? 'active' : ''}" data-i18n="${l.i18n}">${l.label}</a>`;
+
+  const serviceTrigger = `<span class="nav-mega-trigger${isActiveService ? ' active' : ''}" data-i18n="nav.services">Services <i class="ph ph-caret-down"></i></span>`;
+
+  const megaDropdown = `<div class="mega-menu">
+            <div class="mega-menu-inner">
+              <div class="mega-menu-header">
+                <span class="mega-menu-title" data-i18n="nav.services.all">Tous nos services</span>
+                <a href="services.html" class="mega-menu-cta" data-i18n="nav.services.seeAll">Voir tout →</a>
+              </div>
+              <div class="mega-menu-grid">
+                ${megaItemsHTML}
+              </div>
+            </div>
+          </div>`;
+
+  // Desktop : services inline après Accueil
+  const desktopLinks = links.map((l, i) => {
+    if (i === 0) {
+      return `${linkHTML(l)}
+        <div class="nav-item-has-mega">
+          ${serviceTrigger}
+          ${megaDropdown}
+        </div>`;
+    }
+    return linkHTML(l);
+  }).join('');
+
+  const mobileServiceHTML = servicePages.map(s =>
+    `<a href="${s.href}" class="${s.href === currentPage ? 'active' : ''}" data-i18n="${s.i18n}">${s.label}</a>`
+  ).join('');
+
+  // Mobile : services en liens directs après Accueil
+  const mobileLinks = links.map((l, i) => {
+    if (i === 0) {
+      return `${linkHTML(l)}
+        ${mobileServiceHTML}`;
+    }
+    return linkHTML(l);
+  }).join('');
 
   return `
   <div class="noise-overlay"></div>
@@ -38,7 +92,7 @@ function buildHeader() {
         <img src="assets/pia-logo-dark-sm.png" alt="PIA" class="logo-dark">
       </a>
       <nav class="nav-links" id="nav-links">
-        ${navLinksHTML}
+        ${desktopLinks}
       </nav>
       <div class="nav-actions">
         <div class="lang-switcher">
@@ -82,7 +136,7 @@ function buildHeader() {
       <!-- Contenu du menu latéral (Navigation + CTA) -->
       <div class="nav-mobile-content">
         <nav class="nav-links">
-          ${navLinksHTML}
+          ${mobileLinks}
         </nav>
         <a href="devis.html" class="btn btn-primary nav-mobile-cta" data-i18n="nav.quote">Devis gratuit</a>
       </div>
@@ -132,11 +186,11 @@ function buildFooter() {
         <div class="footer-col">
           <h4 class="footer-title" data-i18n="footer.services">Services</h4>
           <ul class="footer-links">
-            <li><a href="services.html" data-i18n="footer.services.1">Création de site web</a></li>
-            <li><a href="services.html" data-i18n="footer.services.2">Tunnels de vente</a></li>
-            <li><a href="services.html" data-i18n="footer.services.3">Landing page</a></li>
-            <li><a href="services.html" data-i18n="footer.services.4">Référencement SEO</a></li>
-            <li><a href="services.html" data-i18n="footer.services.5">Audit & stratégie</a></li>
+            <li><a href="service-creation-site.html" data-i18n="footer.services.1">Création de site web</a></li>
+            <li><a href="service-tunnels-vente.html" data-i18n="footer.services.2">Tunnels de vente</a></li>
+            <li><a href="service-referencement-seo.html" data-i18n="footer.services.4">Référencement SEO</a></li>
+            <li><a href="service-refonte-site.html" data-i18n="footer.services.6">Refonte de site web</a></li>
+            <li><a href="service-suivi-accompagnement.html" data-i18n="footer.services.7">Suivi & Accompagnement</a></li>
           </ul>
         </div>
         <div class="footer-col">

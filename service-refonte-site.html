@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light" style="overflow-x:clip;">
+<head>
+<script>!function(){var t=localStorage.getItem('pia-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);var l=localStorage.getItem('site_lang');if(l==='en')document.documentElement.lang='en'}()</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Refonte site web | PIA</title>
+<meta name="description" content="Refonte de site web professionnelle & sur mesure : vitrine, e-commerce, PME.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link rel="stylesheet" href="style.css?v=12">
+<style>
+body { overflow-x: clip !important; }
+
+/* ── Split layout ── */
+.split-wrap {
+  display: flex;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Left sticky */
+.split-left {
+  position: sticky;
+  top: 24px;
+  width: 45%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 48px 100px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  flex-shrink: 0;
+  align-self: flex-start;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.split-left-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Tags */
+.service-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.service-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  color: var(--accent-blue);
+  border: 1.5px solid rgba(37,99,235,.2);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all .25s ease;
+  text-decoration: none;
+}
+
+.service-tag:hover {
+  background: rgba(37,99,235,.08);
+  border-color: var(--accent-blue);
+}
+
+[data-theme="dark"] .service-tag {
+  border-color: rgba(96,165,250,.2);
+  color: rgba(96,165,250,.9);
+}
+
+[data-theme="dark"] .service-tag:hover {
+  background: rgba(96,165,250,.08);
+  border-color: rgba(96,165,250,.5);
+}
+
+/* Title */
+.split-title {
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.05;
+  letter-spacing: -1px;
+}
+
+.split-title .hl {
+  color: var(--accent-blue);
+}
+
+/* Left hook text */
+.split-hook {
+  font-size: max(16px, 18px);
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+.split-hook p {
+  margin-bottom: 14px;
+}
+
+.split-hook p:last-child {
+  margin-bottom: 0;
+}
+
+/* CTA */
+.split-cta {
+  margin-top: 12px;
+}
+
+.split-cta .btn {
+  width: 100%;
+  padding: 18px;
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.mobile-cta { display: none; }
+
+/* Right scrollable */
+.split-right {
+  width: 55%;
+  padding: 100px 64px 120px;
+  flex-shrink: 0;
+}
+
+.split-right-inner {
+  max-width: 620px;
+}
+
+.split-article {
+  margin-bottom: 72px;
+}
+
+.split-article:last-child {
+  margin-bottom: 0;
+}
+
+.split-article h2 {
+  font-size: clamp(24px, 2vw, 30px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -.5px;
+  margin-bottom: 6px;
+}
+
+.split-article-rule {
+  width: 50px;
+  height: 3px;
+  background: var(--accent-blue);
+  margin-bottom: 24px;
+}
+
+.split-article p {
+  font-size: max(15px, 17px);
+  line-height: 1.9;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.split-article p:last-child {
+  margin-bottom: 0;
+}
+
+.split-article ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.split-article ul li {
+  font-size: max(15px, 17px);
+  line-height: 1.6;
+  color: var(--text-main);
+  padding-left: 24px;
+  position: relative;
+}
+
+.split-article ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-blue);
+  font-weight: 700;
+}
+
+.split-article .btn {
+  margin-top: 8px;
+}
+
+/* ── Modal ── */
+.devis-modal {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: all .35s ease;
+}
+.devis-modal.open { opacity: 1; visibility: visible; }
+.devis-modal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.6); }
+.devis-modal-box {
+  position: relative;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 48px 40px;
+  width: 520px;
+  max-width: 94vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(20px);
+  transition: transform .35s cubic-bezier(.16,1,.3,1);
+}
+.devis-modal.open .devis-modal-box { transform: translateY(0); }
+.devis-modal-close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: none; font-size: 24px;
+  color: var(--text-muted); cursor: pointer; padding: 4px; line-height: 1;
+}
+.devis-modal-title { font-size: 24px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; }
+.devis-modal-sub { color: var(--text-muted); margin-bottom: 28px; font-size: 15px; }
+.devis-form-group { margin-bottom: 18px; }
+.devis-form-group label {
+  display: block; font-size: 13px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px;
+  color: var(--text-main);
+}
+.devis-form-group .form-control,
+.devis-form-group select {
+  width: 100%; padding: 12px 16px; font-size: 15px;
+  font-family: var(--font-main);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px; color: var(--text-main); outline: none;
+  transition: border-color .3s;
+}
+.devis-form-group .form-control:focus,
+.devis-form-group select:focus { border-color: var(--accent-blue); }
+.devis-form-group select { appearance: none; cursor: pointer; }
+.devis-btn-submit { width: 100%; padding: 14px; font-size: 16px; font-weight: 700; text-transform: uppercase; }
+
+/* Process steps */
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.process-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.process-step-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.process-step-text {
+  font-size: max(15px, 17px);
+  line-height: 1.7;
+  color: var(--text-muted);
+  padding-top: 4px;
+}
+
+.process-step-text strong {
+  color: var(--text-main);
+}
+
+/* ── Mobile ── */
+@media (max-width: 900px) {
+  .split-wrap {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .split-left {
+    position: static;
+    width: 100%;
+    min-height: auto;
+    padding: 110px 24px 28px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    justify-content: flex-start;
+  }
+
+  .split-left-inner {
+    gap: 20px;
+  }
+
+  .split-title {
+    font-size: clamp(28px, 6vw, 40px);
+  }
+
+  .split-cta { display: none; }
+
+  .split-right {
+    width: 100%;
+    padding: 40px 24px 24px;
+  }
+
+  .split-article {
+    margin-bottom: 48px;
+  }
+
+  .mobile-cta {
+    display: block;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    background: var(--bg-main);
+    border-top: 1px solid var(--border-color);
+    padding: 12px 24px;
+  }
+
+  .mobile-cta .btn { width: 100%; padding: 14px; font-size: 15px; font-weight: 700; text-transform: uppercase; }
+}
+
+/* ── Last article CTA style ── */
+.cta-article {
+  text-align: center;
+  padding-top: 24px;
+}
+
+.cta-article .split-article-rule {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+<section class="split-wrap">
+
+  <!-- Left sticky -->
+  <div class="split-left">
+    <div class="split-left-inner">
+      <div class="service-tags">
+        <a href="#probleme" class="service-tag" data-i18n="service-refonte.tag.1">Le problème</a>
+        <a href="#benefices" class="service-tag" data-i18n="service-refonte.tag.2">Bénéfices</a>
+        <a href="#process" class="service-tag" data-i18n="service-refonte.tag.3">Process</a>
+        <a href="#cible" class="service-tag" data-i18n="service-refonte.tag.4">Pour qui</a>
+        <a href="#inclus" class="service-tag" data-i18n="service-refonte.tag.5">Inclus</a>
+      </div>
+
+      <h1 class="split-title" data-i18n="service-refonte.h1">Votre site <span class="hl">mérite mieux</span></h1>
+
+      <div class="split-hook">
+        <p data-i18n="service-refonte.hook.p1">Votre site existe déjà. Mais ressemble-t-il encore à votre entreprise ? Est-il assez rapide, assez moderne, assez convaincant pour retenir vos visiteurs ?</p>
+        <p data-i18n="service-refonte.hook.p2">Nous redonnons vie à votre plateforme pour qu'elle travaille enfin pour vous, sans compromis.</p>
+      </div>
+    </div>
+
+    <div class="split-cta">
+      <button class="btn btn-primary" onclick="openDevisModal()" data-i18n="service-refonte.cta">Discutons de vos besoins</button>
+    </div>
+  </div>
+
+  <!-- Right content -->
+  <div class="split-right">
+    <div class="split-right-inner">
+
+      <div class="split-article" id="probleme">
+        <h2 data-i18n="service-refonte.s1.title">Le problème</h2>
+        <div class="split-article-rule"></div>
+        <p data-i18n="service-refonte.s1.p1">Votre site a été créé il y a quelques années. Il était beau, fonctionnel, vous en étiez fier. Mais le temps passe, les technologies évoluent, et ce qui séduisait vos visiteurs hier les fait fuir aujourd'hui.</p>
+        <p data-i18n="service-refonte.s1.p2">Vous le sentez : les visiteurs arrivent, puis repartent. Le taux de conversion baisse, le site est lent sur mobile, la navigation n'est plus fluide. Pire encore, votre entreprise a grandi, changé de direction, et le site ne vous ressemble plus. Il donne une image dépassée alors que vous êtes en pleine évolution.</p>
+        <p data-i18n="service-refonte.s1.lh"><strong>Les signes qui ne trompent pas :</strong></p>
+        <ul>
+          <li data-i18n="service-refonte.s1.li1">Temps de chargement trop long, les visiteurs abandonnent avant même de voir la page</li>
+          <li data-i18n="service-refonte.s1.li2">Design vieillissant qui donne une image amateur de votre entreprise</li>
+          <li data-i18n="service-refonte.s1.li3">Pas adapté au mobile — plus de la moitié de vos visiteurs ont une mauvaise expérience</li>
+          <li data-i18n="service-refonte.s1.li4">Difficile à mettre à jour, vous dépendez de quelqu'un pour chaque modification</li>
+        </ul>
+      </div>
+
+      <div class="split-article" id="benefices">
+        <h2 data-i18n="service-refonte.s2.title">Ce que la refonte change concrètement</h2>
+        <div class="split-article-rule"></div>
+        <p data-i18n="service-refonte.s2.p1">Une refonte bien menée ne se limite pas à changer les couleurs. C'est une remise à plat complète de l'expérience utilisateur, des performances et de l'image de marque.</p>
+        <ul>
+          <li data-i18n="service-refonte.s2.li1"><strong>Un site qui charge en 2 secondes</strong> — plus vos pages sont rapides, plus vos visiteurs restent et achètent</li>
+          <li data-i18n="service-refonte.s2.li2"><strong>Un design adapté à votre image actuelle</strong> — votre site reflète enfin qui vous êtes vraiment</li>
+          <li data-i18n="service-refonte.s2.li3"><strong>Une expérience parfaite sur mobile</strong> — vos clients vous consultent depuis leur téléphone, soyez irréprochable</li>
+          <li data-i18n="service-refonte.s2.li4"><strong>Un site que vous gérez vous-même</strong> — modifier un texte, ajouter un produit, publier un article sans dépendre de personne</li>
+        </ul>
+      </div>
+
+      <div class="split-article" id="process">
+        <h2 data-i18n="service-refonte.s3.title">Notre process en 5 étapes</h2>
+        <div class="split-article-rule"></div>
+        <p data-i18n="service-refonte.s3.p1">Chaque refonte suit une méthode éprouvée pour garantir un résultat à la hauteur de vos attentes.</p>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-step-num">1</div>
+            <div class="process-step-text" data-i18n="service-refonte.s3.step1"><strong>Audit complet</strong> — Nous analysons votre site actuel : performances, structure, contenu, comportement des visiteurs. Nous identifions ce qui fonctionne et ce qui doit changer.</div>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">2</div>
+            <div class="process-step-text" data-i18n="service-refonte.s3.step2"><strong>Maquettage</strong> — Nous concevons les nouvelles pages, les parcours utilisateur et l'identité visuelle. Vous validez chaque écran avant le développement.</div>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">3</div>
+            <div class="process-step-text" data-i18n="service-refonte.s3.step3"><strong>Développement</strong> — Nous construisons le nouveau site avec les technologies adaptées à vos besoins. Optimisation de la vitesse, du référencement et de l'accessibilité.</div>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">4</div>
+            <div class="process-step-text" data-i18n="service-refonte.s3.step4"><strong>Tests</strong> — Validation sur mobile, tablette et desktop. Vérification des formulaires, des liens, des performances. Rien n'est laissé au hasard.</div>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">5</div>
+            <div class="process-step-text" data-i18n="service-refonte.s3.step5"><strong>Livraison & mise en ligne</strong> — Migration du contenu, mise en production, formation à l'administration du site. Vous êtes autonome dès le premier jour.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="split-article" id="cible">
+        <h2 data-i18n="service-refonte.s4.title">Pour qui est-ce fait ?</h2>
+        <div class="split-article-rule"></div>
+        <p data-i18n="service-refonte.s4.p1">La refonte concerne tous ceux qui possèdent déjà un site mais en ont dépassé les limites. Peu importe votre secteur ou la taille de votre projet.</p>
+        <ul>
+          <li data-i18n="service-refonte.s4.li1"><strong>Artisans & commerçants</strong> — Votre site a été fait rapidement il y a des années. Il ne vous ressemble plus et ne génère plus de contacts.</li>
+          <li data-i18n="service-refonte.s4.li2"><strong>E-commerçants</strong> — Votre boutique en ligne est lente, le tunnel d'achat fait fuir vos clients, les ventes stagnent.</li>
+          <li data-i18n="service-refonte.s4.li3"><strong>PME en croissance</strong> — Vous avez changé de positionnement, élargi votre offre, embauché. Votre site doit refléter cette nouvelle dimension.</li>
+          <li data-i18n="service-refonte.s4.li4"><strong>Associations & institutions</strong> — Vous avez besoin d'un site moderne qui transmet votre message avec clarté et impact, sans maintenance complexe.</li>
+        </ul>
+      </div>
+
+      <div class="split-article" id="inclus">
+        <h2 data-i18n="service-refonte.s5.title">Ce qui est inclus</h2>
+        <div class="split-article-rule"></div>
+        <p data-i18n="service-refonte.s5.p1">Nous ne livrons pas un site, nous livrons une solution complète, prête à l'emploi.</p>
+        <ul>
+          <li data-i18n="service-refonte.s5.li1"><strong>Audit technique et fonctionnel</strong> complet de votre site existant</li>
+          <li data-i18n="service-refonte.s5.li2"><strong>Migration de tout votre contenu</strong> — textes, images, produits, sans perte de données</li>
+          <li data-i18n="service-refonte.s5.li3"><strong>Formation à l'administration</strong> — vous apprenez à gérer votre site en toute autonomie</li>
+          <li data-i18n="service-refonte.s5.li4"><strong>Support après livraison</strong> — nous restons disponibles pour les ajustements et les questions</li>
+          <li data-i18n="service-refonte.s5.li5"><strong>Garantie de satisfaction</strong> — nous travaillons avec vous jusqu'à ce que le résultat soit à la hauteur</li>
+        </ul>
+      </div>
+
+      <div class="split-article cta-article" id="convaincre">
+        <div class="split-article-rule"></div>
+        <p style="font-size: max(17px, 19px); font-weight: 600; color: var(--text-main); text-align: center;" data-i18n="service-refonte.cta-article">Pas encore convaincu ?<br>On commence juste par une conversation.</p>
+      </div>
+
+    </div>
+    <div class="mobile-cta">
+      <button class="btn btn-primary" onclick="openDevisModal()" data-i18n="service-refonte.cta">Discutons de vos besoins</button>
+    </div>
+  </div>
+
+</section>
+
+</div>
+
+<div class="devis-modal" id="devisModal">
+  <div class="devis-modal-overlay" onclick="closeDevisModal()"></div>
+  <div class="devis-modal-box">
+    <button class="devis-modal-close" onclick="closeDevisModal()"><i class="ph ph-x"></i></button>
+    <h2 class="devis-modal-title" data-i18n="service-refonte.modal.title">Discutons de vos besoins</h2>
+    <p class="devis-modal-sub" data-i18n="service-refonte.modal.sub">Parlez-nous de votre projet de refonte, nous vous proposons la solution adaptée.</p>
+    <form id="devisForm" onsubmit="return submitDevis(event)">
+      <div class="devis-form-group">
+        <label for="devisName" data-i18n="service-refonte.form.name">Votre nom</label>
+        <input type="text" id="devisName" class="form-control" data-i18n="service-refonte.form.name" required placeholder="Jean Dupont">
+      </div>
+      <div class="devis-form-group">
+        <label for="devisEmail" data-i18n="service-refonte.form.email">Votre email</label>
+        <input type="email" id="devisEmail" class="form-control" data-i18n="service-refonte.form.email" required placeholder="jean@exemple.com">
+      </div>
+      <div class="devis-form-group">
+        <label for="devisType" data-i18n="service-refonte.form.type">Type de service</label>
+        <select id="devisType" required>
+          <option value="" data-i18n="service-refonte.form.select">Sélectionnez...</option>
+          <option value="Site vitrine" data-i18n="service-refonte.form.opt1">Vitrine</option>
+          <option value="Site e-commerce" data-i18n="service-refonte.form.opt2">E-commerce</option>
+          <option value="Landing page" data-i18n="service-refonte.form.opt3">Landing page</option>
+          <option value="Blog" data-i18n="service-refonte.form.opt4">Blog</option>
+          <option value="Autre" data-i18n="service-refonte.form.opt5">Autre</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary devis-btn-submit" data-i18n="service-refonte.form.submit">Envoyer ma demande</button>
+    </form>
+  </div>
+</div>
+
+<script src="i18n.js"></script>
+<script src="config.js"></script>
+<script src="components.js"></script>
+<script src="main.js"></script>
+<script src="tracker.js"></script>
+<script>
+function openDevisModal() { document.getElementById('devisModal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeDevisModal() { document.getElementById('devisModal').classList.remove('open'); document.body.style.overflow = ''; }
+function submitDevis(e) {
+  e.preventDefault();
+  const name = document.getElementById('devisName').value.trim();
+  const email = document.getElementById('devisEmail').value.trim();
+  const type = document.getElementById('devisType').value;
+  if (!name || !email || !type) return false;
+  const msg = 'Bonjour PIA, nous avons besoin d\'une refonte de site : ' + type.toLowerCase() + '. Nom: ' + name + ', Email: ' + email;
+  const wa = typeof WA_LINK !== 'undefined' ? WA_LINK : 'https://wa.me/22993288212';
+  window.open(wa + '?text=' + encodeURIComponent(msg), '_blank');
+  closeDevisModal();
+  return false;
+}
+</script>
+</body>
+</html>
