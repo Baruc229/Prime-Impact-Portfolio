@@ -2689,27 +2689,14 @@ img {
 
 .resultat-card {
   background: var(--bg-card-warm);
-  padding: 40px 28px;
-  text-align: center;
+  padding: 36px 28px;
+  text-align: left;
   transition: all .4s cubic-bezier(.16, 1, .3, 1);
 }
 
 .resultat-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-heavy);
-}
-
-.resultat-icon {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 36px;
-  color: var(--accent-blue);
-  background: rgba(0, 86, 210, 0.1);
-  border-radius: 16px;
 }
 
 .counter-val {
