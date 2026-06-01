@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const files = ['index.html', 'a-propos.html', 'devis.html', 'contact.html', 'realisations.html', 'services.html', 'temoignages.html'];
+const files = ['index.html', '/a-propos', '/devis', '/contact', '/realisations', '/services', '/temoignages'];
 
 files.forEach(f => {
   let p = path.join(__dirname, f);

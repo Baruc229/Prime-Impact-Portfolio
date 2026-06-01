@@ -13,25 +13,25 @@ const WA_LINK = 'https://wa.me/22993288212'; // ← Remplace par le vrai numéro
  * Détecte la page active pour souligner le bon lien.
  */
 function buildHeader() {
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPage = window.location.pathname.replace(/\/$/, '') || '/';
   const links = [
-    { href: 'index.html',        label: 'Accueil', i18n: 'nav.home' },
-    { href: 'realisations.html', label: 'Réalisations', i18n: 'nav.portfolio' },
-    { href: 'a-propos.html',     label: 'À propos', i18n: 'nav.about' },
-    { href: 'temoignages.html',  label: 'Témoignages', i18n: 'nav.testimonials' },
-    { href: 'contact.html',      label: 'Contact', i18n: 'nav.contact' },
+    { href: '/',        label: 'Accueil', i18n: 'nav.home' },
+    { href: '/realisations', label: 'Réalisations', i18n: 'nav.portfolio' },
+    { href: '/a-propos',     label: 'À propos', i18n: 'nav.about' },
+    { href: '/temoignages',  label: 'Témoignages', i18n: 'nav.testimonials' },
+    { href: '/contact',      label: 'Contact', i18n: 'nav.contact' },
   ];
   
   const servicePages = [
-    { href: 'service-creation-site.html',      label: 'Création de site web',      i18n: 'nav.services.1' },
-    { href: 'service-tunnels-vente.html',       label: 'Tunnels de vente',          i18n: 'nav.services.2' },
-    { href: 'service-referencement-seo.html',    label: 'Référencement SEO',         i18n: 'nav.services.4' },
-    { href: 'service-refonte-site.html',         label: 'Refonte de site web',       i18n: 'nav.services.6' },
-    { href: 'service-suivi-accompagnement.html', label: 'Suivi & Accompagnement',    i18n: 'nav.services.7' },
+    { href: '/creation-site',      label: 'Création de site web',      i18n: 'nav.services.1' },
+    { href: '/tunnels-vente',       label: 'Tunnels de vente',          i18n: 'nav.services.2' },
+    { href: '/referencement-seo',    label: 'Référencement SEO',         i18n: 'nav.services.4' },
+    { href: '/refonte-site',         label: 'Refonte de site web',       i18n: 'nav.services.6' },
+    { href: '/suivi-accompagnement', label: 'Suivi & Accompagnement',    i18n: 'nav.services.7' },
   ];
 
   const isServicePage = servicePages.some(s => s.href === currentPage);
-  const isActiveService = isServicePage || currentPage === 'services.html';
+  const isActiveService = isServicePage || currentPage === '/services';
 
   // Items du méga menu
   const megaItemsHTML = servicePages.map(s =>
@@ -49,7 +49,7 @@ function buildHeader() {
             <div class="mega-menu-inner">
               <div class="mega-menu-header">
                 <span class="mega-menu-title" data-i18n="nav.services.all">Tous nos services</span>
-                <a href="services.html" class="mega-menu-cta" data-i18n="nav.services.seeAll">Voir tout →</a>
+                <a href="/services" class="mega-menu-cta" data-i18n="nav.services.seeAll">Voir tout →</a>
               </div>
               <div class="mega-menu-grid">
                 ${megaItemsHTML}
@@ -87,7 +87,7 @@ function buildHeader() {
 
   <header class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="index.html" class="nav-logo">
+      <a href="/" class="nav-logo">
         <img src="assets/pia-logo-white-sm.png" alt="PIA" class="logo-white">
         <img src="assets/pia-logo-dark-sm.png" alt="PIA" class="logo-dark">
       </a>
@@ -113,7 +113,7 @@ function buildHeader() {
         <a href="${WA_LINK}" class="btn-whatsapp-nav" target="_blank" rel="noopener" aria-label="WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
         </a>
-        <a href="devis.html" class="btn btn-primary nav-cta" data-i18n="nav.quote">Devis gratuit</a>
+        <a href="/devis" class="btn btn-primary nav-cta" data-i18n="nav.quote">Devis gratuit</a>
         <button class="nav-burger" id="navBurger" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -124,7 +124,7 @@ function buildHeader() {
     <div class="nav-mobile" id="navMobile">
       <!-- Header du menu latéral -->
       <div class="nav-mobile-header">
-        <a href="index.html" class="nav-logo">
+<a href="/" class="nav-logo">
           <img src="assets/pia-logo-white-sm.png" alt="PIA" class="logo-white">
           <img src="assets/pia-logo-dark-sm.png" alt="PIA" class="logo-dark">
         </a>
@@ -138,7 +138,7 @@ function buildHeader() {
         <nav class="nav-links">
           ${mobileLinks}
         </nav>
-        <a href="devis.html" class="btn btn-primary nav-mobile-cta" data-i18n="nav.quote">Devis gratuit</a>
+        <a href="/devis" class="btn btn-primary nav-mobile-cta" data-i18n="nav.quote">Devis gratuit</a>
       </div>
 
       <!-- Pied du menu latéral -->
@@ -170,7 +170,7 @@ function buildFooter() {
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" style="text-decoration:none;color:inherit;">
+          <a href="/" style="text-decoration:none;color:inherit;">
             <img src="assets/pia-logo-white-sm.png" alt="PIA" class="logo-white" style="height:68px;">
             <img src="assets/pia-logo-dark-sm.png" alt="PIA" class="logo-dark" style="height:68px;">
           </a>
@@ -186,28 +186,28 @@ function buildFooter() {
         <div class="footer-col">
           <h4 class="footer-title" data-i18n="footer.services">Services</h4>
           <ul class="footer-links">
-            <li><a href="service-creation-site.html" data-i18n="footer.services.1">Création de site web</a></li>
-            <li><a href="service-tunnels-vente.html" data-i18n="footer.services.2">Tunnels de vente</a></li>
-            <li><a href="service-referencement-seo.html" data-i18n="footer.services.4">Référencement SEO</a></li>
-            <li><a href="service-refonte-site.html" data-i18n="footer.services.6">Refonte de site web</a></li>
-            <li><a href="service-suivi-accompagnement.html" data-i18n="footer.services.7">Suivi & Accompagnement</a></li>
+            <li><a href="/creation-site" data-i18n="footer.services.1">Création de site web</a></li>
+            <li><a href="/tunnels-vente" data-i18n="footer.services.2">Tunnels de vente</a></li>
+            <li><a href="/referencement-seo" data-i18n="footer.services.4">Référencement SEO</a></li>
+            <li><a href="/refonte-site" data-i18n="footer.services.6">Refonte de site web</a></li>
+            <li><a href="/suivi-accompagnement" data-i18n="footer.services.7">Suivi & Accompagnement</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4 class="footer-title" data-i18n="footer.agency">Agence</h4>
           <ul class="footer-links">
-            <li><a href="a-propos.html" data-i18n="nav.about">À propos</a></li>
-            <li><a href="realisations.html" data-i18n="nav.portfolio">Réalisations</a></li>
-            <li><a href="temoignages.html" data-i18n="nav.testimonials">Témoignages</a></li>
-            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
-            <li><a href="mentions-legales.html">Mentions légales</a></li>
-            <li><a href="politique-confidentialite.html">Confidentialité</a></li>
+            <li><a href="/a-propos" data-i18n="nav.about">À propos</a></li>
+            <li><a href="/realisations" data-i18n="nav.portfolio">Réalisations</a></li>
+            <li><a href="/temoignages" data-i18n="nav.testimonials">Témoignages</a></li>
+            <li><a href="/contact" data-i18n="nav.contact">Contact</a></li>
+            <li><a href="/mentions-legales">Mentions légales</a></li>
+            <li><a href="/politique-confidentialite">Confidentialité</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4 class="footer-title" data-i18n="footer.start">Démarrer</h4>
           <p style="color:var(--text-muted);font-size:14px;margin-bottom:16px;" data-i18n="footer.start.text">Un projet en tête ? Parlons-en.</p>
-          <a href="devis.html" class="btn btn-primary" style="width:100%;margin-bottom:12px;" data-i18n="footer.btn.quote">Obtenir un devis</a>
+          <a href="/devis" class="btn btn-primary" style="width:100%;margin-bottom:12px;" data-i18n="footer.btn.quote">Obtenir un devis</a>
           <a id="whatsapp-btn-footer" href="${WA_LINK}" class="btn btn-whatsapp" style="width:100%;" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="index.hero.cta.contact">Contactez-moi</span></a>
         </div>
       </div>

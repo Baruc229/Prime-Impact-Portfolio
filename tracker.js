@@ -360,7 +360,7 @@ function getThemeColors() {
           <div class="pia-cookie-icon">🍪</div>
           <div style="flex: 1;">
             <h3 class="pia-cookie-title">${t('banner.title')}</h3>
-            <p class="pia-cookie-text">${t('banner.text')} ${t('banner.learnMore')} <a href="politique-confidentialite.html">${t('banner.privacyPolicy')}</a> ${t('banner.and')} <a href="mentions-legales.html">${t('banner.termsOfUse')}</a>.</p>
+            <p class="pia-cookie-text">${t('banner.text')} ${t('banner.learnMore')} <a href="/politique-confidentialite">${t('banner.privacyPolicy')}</a> ${t('banner.and')} <a href="/mentions-legales">${t('banner.termsOfUse')}</a>.</p>
           </div>
         </div>
         

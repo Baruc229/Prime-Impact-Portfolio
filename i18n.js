@@ -1118,17 +1118,17 @@ class I18nManager {
     const path = window.location.pathname;
     let pageKey = "index";
     
-    if (path.includes("services.html")) pageKey = "services";
-    else if (path.includes("a-propos.html")) pageKey = "apropos";
-    else if (path.includes("devis.html")) pageKey = "devis";
-    else if (path.includes("contact.html")) pageKey = "contact";
-    else if (path.includes("realisations.html")) pageKey = "realisations";
-    else if (path.includes("temoignages.html")) pageKey = "temoignages";
-    else if (path.includes("service-creation-site.html")) pageKey = "service-creation";
-    else if (path.includes("service-tunnels-vente.html")) pageKey = "service-tunnels";
-    else if (path.includes("service-refonte-site.html")) pageKey = "service-refonte";
-    else if (path.includes("service-referencement-seo.html")) pageKey = "service-seo";
-    else if (path.includes("service-suivi-accompagnement.html")) pageKey = "service-suivi";
+    if (path.includes("/services")) pageKey = "services";
+    else if (path.includes("/a-propos")) pageKey = "apropos";
+    else if (path.includes("/devis")) pageKey = "devis";
+    else if (path.includes("/contact")) pageKey = "contact";
+    else if (path.includes("/realisations")) pageKey = "realisations";
+    else if (path.includes("/temoignages")) pageKey = "temoignages";
+    else if (path.includes("/creation-site")) pageKey = "service-creation";
+    else if (path.includes("/tunnels-vente")) pageKey = "service-tunnels";
+    else if (path.includes("/refonte-site")) pageKey = "service-refonte";
+    else if (path.includes("/referencement-seo")) pageKey = "service-seo";
+    else if (path.includes("/suivi-accompagnement")) pageKey = "service-suivi";
 
     const titleKey = `seo.${pageKey}.title`;
     const descKey = `seo.${pageKey}.desc`;
