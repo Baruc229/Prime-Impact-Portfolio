@@ -24,7 +24,7 @@
   --accent-secondary: #06D6A0;
   --border-color: rgba(0, 0, 0, 0.08);
   --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.06);
-  --shadow-heavy: 0 20px 40px rgba(232, 93, 4, 0.1);
+  --shadow-heavy: 0 20px 40px rgba(212, 160, 23, 0.1);
   --radius-sm: 12px;
   --radius-md: 24px;
   --glass-bg: rgba(255, 255, 255, 0.7);
@@ -4501,14 +4501,14 @@ textarea.form-control {
   object-fit: contain;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   border-radius: 8px;
-  border: 1px solid rgba(232, 93, 4, 0.15);
+  border: 1px solid rgba(212, 160, 23, 0.2);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .showcase-img:hover img {
   transform: scale(1.02);
-  border-color: rgba(232, 93, 4, 0.4);
-  box-shadow: 0 6px 30px rgba(232, 93, 4, 0.12);
+  border-color: rgba(212, 160, 23, 0.5);
+  box-shadow: 0 6px 30px rgba(212, 160, 23, 0.15);
 }
 
 .showcase-img img {
