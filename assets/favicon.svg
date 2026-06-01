@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="brand" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E85D04"/>
+      <stop offset="100%" stop-color="#FF8C00"/>
+    </linearGradient>
+  </defs>
+  <!-- Background squircle -->
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#brand)"/>
+  <!-- Stylized P (custom path) -->
+  <path d="M20 48V16h14q6 0 9 3t3 8q0 5-3 8t-9 3H28v10h-8zm8-18h5q2.5 0 3.75-1.25T38 27t-1.25-3.75T33 22h-5v8z" fill="#fff"/>
+  <!-- Impact dots -->
+  <circle cx="50" cy="18" r="2.5" fill="#fff" opacity=".7"/>
+  <circle cx="54" cy="24" r="1.5" fill="#fff" opacity=".5"/>
+</svg>
