@@ -4041,6 +4041,38 @@ textarea.form-control {
   align-items: center !important;
   gap: 16px !important;
 }
+.testimonial-google {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 4px;
+}
+
+.testimonial-google .fa-google {
+  font-size: 18px;
+  background: linear-gradient(135deg, #4285F4, #EA4335, #FBBC05, #34A853);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.testimonial-stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.testimonial-stars .fa-star {
+  color: #FBBC05;
+  font-size: 13px;
+}
+
+.testimonial-rating {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary, inherit);
+}
+
 
 .author-avatar {
   width: 48px !important;
