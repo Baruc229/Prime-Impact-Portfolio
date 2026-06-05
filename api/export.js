@@ -108,7 +108,7 @@ function buildHTML(submissions) {
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f2f2f7;color:#1c1c1e;padding:24px}
 .report{max-width:800px;margin:0 auto}
 .header{text-align:center;margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid #e0e0e0}
-.header img{height:40px;margin-bottom:8px}
+.header img{height:48px;margin-bottom:8px}
 .header h1{font-size:24px;font-weight:700}
 .header p{color:#666;font-size:14px;margin-top:4px}
 .section-title{font-size:16px;font-weight:600;margin:24px 0 12px;display:flex;align-items:center;gap:8px}
@@ -149,8 +149,8 @@ function buildPDF(submissions) {
       grouped[s.form_type].push(s);
     });
 
-    doc.image(logoDark, (doc.page.width - 120) / 2, 40, { width: 120 });
-    doc.moveDown(4);
+    doc.image(logoDark, (doc.page.width - 100) / 2, 30, { width: 100 });
+    doc.moveDown(7);
     doc.font('Helvetica-Bold').fontSize(22).text('Rapport PIA', { align: 'center' });
     doc.font('Helvetica').fontSize(11).fillColor('#666').text(submissions.length + ' soumission' + (submissions.length > 1 ? 's' : '') + ' — ' + new Date().toLocaleDateString('fr-FR'), { align: 'center' });
     doc.moveDown(1.5);
@@ -253,7 +253,7 @@ function buildEmailHTML(submissions, format) {
   return '<html><body style="font-family:Inter,system-ui,sans-serif;background:#f5f5f5;padding:24px">' +
     '<div style="max-width:600px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08)">' +
     '<div style="background:#0b0c10;padding:20px 24px;display:flex;align-items:center;gap:12px">' +
-    '<img src="data:image/png;base64,' + logoWhiteB64 + '" style="height:32px" alt="PIA">' +
+    '<img src="data:image/png;base64,' + logoWhiteB64 + '" style="height:36px" alt="PIA">' +
     '<h1 style="color:#fff;font-size:18px;margin:0">Export des soumissions</h1></div>' +
     '<div style="padding:24px">' +
     '<p style="color:#333;font-size:14px;line-height:1.6">Bonjour,<br>Voici l\'export de <strong>' + total + ' soumission' + (total > 1 ? 's' : '') + '</strong> au format <strong>' + fmtLabel + '</strong>.</p>' +
