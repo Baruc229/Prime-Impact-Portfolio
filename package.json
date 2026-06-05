@@ -14,7 +14,8 @@
   "type": "commonjs",
   "dependencies": {
     "@upstash/redis": "^1.38.0",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "nodemailer": "^8.0.10"
   },
   "devDependencies": {
     "sharp": "^0.34.5"

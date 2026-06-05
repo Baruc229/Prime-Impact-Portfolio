@@ -94,6 +94,19 @@ tr.unread td:first-child { border-left: 3px solid var(--accent); }
 .refresh-btn:hover { color: var(--text); border-color: var(--accent); }
 .refresh-btn.spinning i { animation: spin 0.6s linear; }
 @keyframes spin { to { transform: rotate(360deg); } }
+.action-btn { padding: 8px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text); font-size: 12px; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+.action-btn:hover { background: var(--bg-hover); border-color: var(--accent); }
+.action-btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.action-btn.primary:hover { background: var(--accent-hover); }
+.email-input { width: 100%; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text); font-size: 14px; font-family: inherit; outline: none; margin-bottom: 16px; }
+.email-input:focus { border-color: var(--accent); }
+.email-input::placeholder { color: var(--text-muted); }
+.send-btn { width: 100%; padding: 12px; border-radius: var(--radius-sm); border: none; background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+.send-btn:hover { background: var(--accent-hover); }
+.send-btn:disabled { opacity: 0.5; cursor: default; }
+.email-status { font-size: 13px; margin-top: 12px; display: none; padding: 10px 14px; border-radius: var(--radius-sm); }
+.email-status.success { display: block; background: rgba(34,197,94,0.15); color: var(--green); }
+.email-status.error { display: block; background: rgba(239,68,68,0.15); color: var(--red); }
 @media (max-width: 768px) {
   .app-header { padding: 16px; flex-wrap: wrap; gap: 12px; }
   .stats-row { padding: 16px 16px 0; grid-template-columns: repeat(2, 1fr); }
@@ -124,6 +137,8 @@ tr.unread td:first-child { border-left: 3px solid var(--accent); }
       <div class="live-badge"><span class="live-dot"></span> Live</div>
       <span id="lastRefresh">—</span>
       <button class="refresh-btn" onclick="refresh()" id="refreshBtn"><i class="ph ph-arrows-clockwise"></i></button>
+      <button class="action-btn" onclick="exportCSV()">📥 CSV</button>
+      <button class="action-btn primary" onclick="showEmailModal()">📧 Email</button>
       <button onclick="logout()" class="logout-btn">Déconnexion</button>
     </div>
   </header>
@@ -169,6 +184,21 @@ tr.unread td:first-child { border-left: 3px solid var(--accent); }
       <div class="detail-actions">
         <button class="btn-delete" onclick="deleteSubmission()">🗑 Supprimer</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="emailModal">
+  <div class="modal" style="width:420px">
+    <div class="modal-header">
+      <h2>📧 Envoyer par email</h2>
+      <button class="modal-close" onclick="closeEmailModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">Toutes les soumissions seront exportées en CSV et envoyées en pièce jointe. Laissez vide pour utiliser l'adresse Gmail configurée.</p>
+      <input type="email" id="emailTarget" class="email-input" placeholder="Email destinataire (optionnel)">
+      <button class="send-btn" onclick="sendEmail()" id="sendEmailBtn">Envoyer</button>
+      <div class="email-status" id="emailStatus"></div>
     </div>
   </div>
 </div>
@@ -390,12 +420,76 @@ async function deleteSubmission() {
   refresh();
 }
 
+async function exportCSV() {
+  try {
+    const res = await fetch(API_BASE + '/export', {
+      headers: { 'Authorization': 'Bearer ' + authToken }
+    });
+    if (!res.ok) return;
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'pia-submissions.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (e) {}
+}
+
+function showEmailModal() {
+  document.getElementById('emailTarget').value = '';
+  document.getElementById('emailStatus').className = 'email-status';
+  document.getElementById('emailStatus').textContent = '';
+  document.getElementById('sendEmailBtn').disabled = false;
+  document.getElementById('sendEmailBtn').textContent = 'Envoyer';
+  document.getElementById('emailModal').classList.add('open');
+}
+
+function closeEmailModal() { document.getElementById('emailModal').classList.remove('open'); }
+
+async function sendEmail() {
+  const email = document.getElementById('emailTarget').value.trim();
+  const btn = document.getElementById('sendEmailBtn');
+  const status = document.getElementById('emailStatus');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+  status.className = 'email-status';
+
+  try {
+    const res = await fetch(API_BASE + '/export', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email || undefined })
+    });
+    const data = await res.json();
+    if (data.success) {
+      status.className = 'email-status success';
+      status.textContent = '✅ Envoyé à ' + data.sentTo + ' (' + data.total + ' soumissions)';
+      setTimeout(closeEmailModal, 2500);
+    } else {
+      status.className = 'email-status error';
+      status.textContent = '❌ ' + (data.error || 'Erreur inconnue');
+    }
+  } catch (e) {
+    status.className = 'email-status error';
+    status.textContent = '❌ Erreur réseau';
+  }
+  btn.disabled = false;
+  btn.textContent = 'Envoyer';
+}
+
+document.getElementById('emailModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('emailModal')) closeEmailModal();
+});
+
 function esc(str) { const div = document.createElement('div'); div.textContent = str; return div.innerHTML; }
 
 document.getElementById('detailModal').addEventListener('click', e => {
   if (e.target === document.getElementById('detailModal')) closeDetail();
 });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDetail(); closeEmailModal(); } });
 
 if (authToken) {
   document.getElementById('loginOverlay').style.display = 'none';
