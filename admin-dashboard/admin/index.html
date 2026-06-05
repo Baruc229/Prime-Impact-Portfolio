@@ -1,0 +1,765 @@
+<!DOCTYPE html><html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PIA — Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0b0c10;
+  --bg-card: #14151a;
+  --bg-surface: #1a1c23;
+  --bg-hover: #22242b;
+  --border: rgba(255,255,255,0.08);
+  --text: #e8eaed;
+  --text-muted: #9ba1a6;
+  --accent: #339af0;
+  --accent-hover: #4aabff;
+  --green: #22c55e;
+  --orange: #f59e0b;
+  --red: #ef4444;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* Login */
+.login-overlay {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100;
+}
+.login-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  width: 360px;
+  max-width: 90vw;
+}
+.login-box h1 {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+.login-box p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+.login-box input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  margin-bottom: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.login-box input:focus { border-color: var(--accent); }
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+.login-box button:hover { background: var(--accent-hover); }
+.login-error {
+  color: var(--red);
+  font-size: 13px;
+  margin-top: 12px;
+  display: none;
+}
+
+/* Layout */
+.app { display: none; }
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.app-header h1 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.header-actions { display: flex; align-items: center; gap: 16px; }
+.header-actions span {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.header-actions button {
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+.header-actions button:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent);
+}
+.logout-btn { color: var(--red) !important; border-color: rgba(239,68,68,0.3) !important; }
+.logout-btn:hover { border-color: var(--red) !important; }
+
+/* Stats */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 24px 28px 0;
+}
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.stat-card .stat-num {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.stat-card .stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.stat-card .stat-num.unread { color: var(--accent); }
+.stat-card .stat-num.today { color: var(--green); }
+.stat-card .stat-num.total { color: var(--orange); }
+
+/* Filters */
+.filters {
+  padding: 20px 28px 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.filters select {
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+}
+.filters select:focus { border-color: var(--accent); }
+.filter-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+.filter-btn:hover { color: var(--text); border-color: var(--text-muted); }
+.filter-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.search-input {
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  flex: 1;
+  min-width: 200px;
+}
+.search-input:focus { border-color: var(--accent); }
+.search-input::placeholder { color: var(--text-muted); }
+
+/* Table */
+.table-wrap {
+  padding: 16px 28px 28px;
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+th {
+  text-align: left;
+  padding: 12px 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+tr { transition: background 0.15s; cursor: pointer; }
+tr:hover { background: var(--bg-hover); }
+tr.unread { font-weight: 600; }
+tr.unread td:first-child { border-left: 3px solid var(--accent); }
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.badge-contact { background: rgba(51,154,240,0.15); color: var(--accent); }
+.badge-devis { background: rgba(34,197,94,0.15); color: var(--green); }
+.badge-order { background: rgba(245,158,11,0.15); color: var(--orange); }
+.source-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+.empty-state i { font-size: 40px; margin-bottom: 12px; opacity: 0.5; }
+
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 560px;
+  max-width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: modalIn 0.2s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg-card);
+  z-index: 1;
+}
+.modal-header h2 { font-size: 18px; font-weight: 600; }
+.modal-close {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.modal-close:hover { color: var(--text); border-color: var(--text-muted); }
+.modal-body { padding: 24px; }
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.detail-field {
+  padding: 14px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.detail-field.full { grid-column: 1 / -1; }
+.detail-field label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 6px;
+}
+.detail-field .value {
+  font-size: 14px;
+  word-break: break-word;
+}
+.detail-field .value pre {
+  font-family: inherit;
+  white-space: pre-wrap;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.detail-meta {
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.detail-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.detail-actions button {
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-delete {
+  background: rgba(239,68,68,0.15);
+  color: var(--red);
+  border: 1px solid rgba(239,68,68,0.3) !important;
+}
+.btn-delete:hover { background: rgba(239,68,68,0.25); }
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 28px 28px;
+}
+.pagination button {
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+.pagination button:hover { border-color: var(--accent); }
+.pagination button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.pagination button:disabled { opacity: 0.4; cursor: default; }
+
+/* Notification pour live */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(34,197,94,0.15);
+  color: var(--green);
+}
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.refresh-btn {
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.refresh-btn:hover { color: var(--text); border-color: var(--accent); }
+.refresh-btn.spinning i { animation: spin 0.6s linear; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 768px) {
+  .app-header { padding: 16px; flex-wrap: wrap; gap: 12px; }
+  .stats-row { padding: 16px 16px 0; grid-template-columns: repeat(2, 1fr); }
+  .filters { padding: 16px 16px 0; }
+  .table-wrap { padding: 12px 16px 16px; }
+  .detail-grid { grid-template-columns: 1fr; }
+  .pagination { padding: 0 16px 16px; }
+  .modal { border-radius: 0; max-height: 100vh; }
+}
+</style>
+</head>
+<body>
+
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <h1>🔐 Admin PIA</h1>
+    <p>Tableau de bord des formulaires</p>
+    <input type="password" id="passwordInput" placeholder="Mot de passe" autocomplete="current-password">
+    <button onclick="login()">Se connecter</button>
+    <div class="login-error" id="loginError">Mot de passe incorrect</div>
+  </div>
+</div>
+
+<div class="app" id="app">
+  <header class="app-header">
+    <h1>📊 Tableau de bord PIA</h1>
+    <div class="header-actions">
+      <div class="live-badge"><span class="live-dot"></span> Live</div>
+      <span id="lastRefresh">—</span>
+      <button class="refresh-btn" onclick="refresh()" id="refreshBtn"><i class="ph ph-arrows-clockwise"></i></button>
+      <button onclick="logout()" class="logout-btn">Déconnexion</button>
+    </div>
+  </header>
+
+  <div class="stats-row" id="statsRow">
+    <div class="stat-card"><div class="stat-num total" id="statTotal">—</div><div class="stat-label">Total soumissions</div></div>
+    <div class="stat-card"><div class="stat-num unread" id="statUnread">—</div><div class="stat-label">Non lus</div></div>
+    <div class="stat-card"><div class="stat-num today" id="statToday">—</div><div class="stat-label">Aujourd'hui</div></div>
+    <div class="stat-card"><div class="stat-num" id="statByType" style="font-size:14px;font-weight:400;color:var(--text-muted)">—</div><div class="stat-label">Par type</div></div>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="" onclick="setFilter(this)">Tous</button>
+    <button class="filter-btn" data-filter="contact" onclick="setFilter(this)">Contact</button>
+    <button class="filter-btn" data-filter="devis" onclick="setFilter(this)">Devis</button>
+    <button class="filter-btn" data-filter="order" onclick="setFilter(this)">Commande</button>
+    <input class="search-input" id="searchInput" placeholder="Rechercher (nom, email...)..." oninput="refresh()">
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Sujet / Service</th>
+          <th>Date</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr><td colspan="6" class="empty-state"><i class="ph ph-spinner"></i><br>Chargement...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination" id="pagination"></div>
+</div>
+
+<div class="modal-overlay" id="detailModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="detailTitle">Détail</h2>
+      <button class="modal-close" onclick="closeDetail()">✕</button>
+    </div>
+    <div class="modal-body" id="detailBody">
+      <div class="detail-grid" id="detailGrid"></div>
+      <div class="detail-meta" id="detailMeta"></div>
+      <div class="detail-actions">
+        <button class="btn-delete" onclick="deleteSubmission()">🗑 Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script>
+const API_BASE = '/api';
+let currentFilter = '';
+let currentPage = 1;
+let currentId = null;
+let refreshInterval = null;
+
+function login() {
+  const pwd = document.getElementById('passwordInput').value;
+  if (pwd === 'pia2026') {
+    document.getElementById('loginOverlay').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('passwordInput').value = '';
+    init();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+  }
+}
+
+function logout() {
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('loginOverlay').style.display = 'flex';
+  clearInterval(refreshInterval);
+}
+
+document.getElementById('passwordInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') login();
+});
+
+async function init() {
+  await refresh();
+  refreshInterval = setInterval(refresh, 10000);
+}
+
+async function fetchAPI(url, opts = {}) {
+  try {
+    const res = await fetch(API_BASE + url, {
+      headers: { 'Accept': 'application/json' },
+      ...opts
+    });
+    if (!res.ok) throw new Error(res.status);
+    return await res.json();
+  } catch (e) {
+    console.error('API error:', e);
+    return null;
+  }
+}
+
+async function refresh() {
+  const btn = document.getElementById('refreshBtn');
+  btn.classList.add('spinning');
+
+  const search = document.getElementById('searchInput').value.trim();
+
+  const [listData, stats] = await Promise.all([
+    fetchAPI(`/submissions?page=${currentPage}&limit=50${currentFilter ? '&form_type=' + currentFilter : ''}`),
+    fetchAPI('/stats')
+  ]);
+
+  if (stats) updateStats(stats);
+  if (listData) {
+    renderTable(listData.submissions, search);
+    renderPagination(listData);
+  }
+
+  document.getElementById('lastRefresh').textContent = new Date().toLocaleTimeString('fr-FR');
+
+  setTimeout(() => btn.classList.remove('spinning'), 400);
+}
+
+function updateStats(stats) {
+  document.getElementById('statTotal').textContent = stats.total;
+  document.getElementById('statUnread').textContent = stats.unread;
+  document.getElementById('statToday').textContent = stats.today;
+  document.getElementById('statByType').textContent = stats.byType.map(t => `${t.form_type}: ${t.count}`).join(' | ');
+}
+
+function renderTable(submissions, search) {
+  const tbody = document.getElementById('tableBody');
+
+  if (!submissions || submissions.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><i class="ph ph-file-text"></i><br>Aucune soumission</td></tr>';
+    return;
+  }
+
+  let filtered = submissions;
+  if (search) {
+    const q = search.toLowerCase();
+    filtered = submissions.filter(s => {
+      const name = (s.data?.name || s.data?.nom || '').toLowerCase();
+      const email = (s.data?.email || '').toLowerCase();
+      return name.includes(q) || email.includes(q);
+    });
+  }
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><i class="ph ph-magnifying-glass"></i><br>Aucun résultat</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(s => {
+    const badgeClass = `badge-${s.form_type}`;
+    const badgeLabel = s.form_type === 'contact' ? 'Contact' : s.form_type === 'devis' ? 'Devis' : 'Commande';
+    const date = new Date(s.created_at + 'Z').toLocaleString('fr-FR', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
+    return `<tr class="${s.read ? '' : 'unread'}" onclick="openDetail(${s.id})">
+      <td><span class="badge ${badgeClass}">${badgeLabel}</span></td>
+      <td>${s.data?.name || s.data?.prenom || s.data?.nom || '—'}</td>
+      <td>${s.data?.email || '—'}</td>
+      <td>${s.data?.subject || s.data?.prestation || s.data?.packSelect || '—'}</td>
+      <td>${date}</td>
+      <td>${s.source ? `<span class="source-tag">${s.source}</span>` : '—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderPagination(data) {
+  const el = document.getElementById('pagination');
+  if (data.totalPages <= 1) { el.innerHTML = ''; return; }
+
+  let html = '';
+  html += `<button ${data.page <= 1 ? 'disabled' : ''} onclick="goPage(${data.page - 1})">◀</button>`;
+
+  for (let i = 1; i <= data.totalPages; i++) {
+    html += `<button class="${i === data.page ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+  }
+
+  html += `<button ${data.page >= data.totalPages ? 'disabled' : ''} onclick="goPage(${data.page + 1})">▶</button>`;
+  el.innerHTML = html;
+}
+
+function goPage(page) {
+  currentPage = page;
+  refresh();
+}
+
+function setFilter(btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = btn.dataset.filter;
+  currentPage = 1;
+  refresh();
+}
+
+async function openDetail(id) {
+  currentId = id;
+  const data = await fetchAPI(`/submissions/${id}`);
+  if (!data) return;
+
+  const title = data.form_type === 'contact' ? 'Détail - Formulaire de contact'
+    : data.form_type === 'devis' ? 'Détail - Demande de devis'
+    : 'Détail - Commande rapide';
+
+  document.getElementById('detailTitle').textContent = title;
+
+  let html = '';
+  const fields = data.data || {};
+
+  const fieldLabels = {
+    name: 'Nom complet',
+    prenom: 'Prénom',
+    nom: 'Nom',
+    email: 'Email',
+    phone: 'Téléphone',
+    telephone: 'Téléphone',
+    subject: 'Sujet',
+    message: 'Message',
+    prestation: 'Type de prestation',
+    has_site: 'Site existant ?',
+    description: 'Description du projet',
+    budget: 'Budget',
+    packSelect: 'Pack choisi',
+    source: 'Source de la soumission'
+  };
+
+  let row = 0;
+  for (const [key, val] of Object.entries(fields)) {
+    if (!val) continue;
+    const label = fieldLabels[key] || key.charAt(0).toUpperCase() + key.slice(1);
+    const full = key === 'message' || key === 'description';
+    html += `<div class="detail-field${full ? ' full' : ''}">
+      <label>${label}</label>
+      <div class="value">${full ? '<pre>' + esc(val) + '</pre>' : esc(val)}</div>
+    </div>`;
+    row++;
+  }
+
+  document.getElementById('detailGrid').innerHTML = html;
+
+  const date = new Date(data.created_at + 'Z').toLocaleString('fr-FR', {
+    day: '2-digit', month: 'long', year: 'numeric',
+    hour: '2-digit', minute: '2-digit'
+  });
+  document.getElementById('detailMeta').innerHTML =
+    `Soumis le ${date} · Formulaire : ${data.form_type}${data.source ? ' · Source : ' + data.source : ''}`;
+
+  document.getElementById('detailModal').classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('detailModal').classList.remove('open');
+  currentId = null;
+}
+
+async function deleteSubmission() {
+  if (!currentId || !confirm('Supprimer cette soumission ?')) return;
+  await fetchAPI(`/submissions/${currentId}`, { method: 'DELETE' });
+  closeDetail();
+  refresh();
+}
+
+function esc(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+document.getElementById('detailModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('detailModal')) closeDetail();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeDetail();
+});
+
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+  document.getElementById('passwordInput').value = 'pia2026';
+}
+</script>
+</body>
+</html>

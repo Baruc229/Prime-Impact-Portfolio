@@ -293,11 +293,14 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const submitBtn = e.target.querySelector('button[type="submit"]');
       if (submitBtn) { submitBtn.textContent = getTranslation('contact.form.sending') || 'Envoi…'; submitBtn.disabled = true; }
-      setTimeout(() => {
-        if (formCont) formCont.style.display = 'none';
-        if (succCont) succCont.style.display = 'block';
-        if (submitBtn) { submitBtn.textContent = 'Envoyer ma demande'; submitBtn.disabled = false; }
-      }, 1200);
+      const formData = Object.fromEntries(new FormData(orderForm));
+      submitToAdmin('order', formData).then(() => {
+        setTimeout(() => {
+          if (formCont) formCont.style.display = 'none';
+          if (succCont) succCont.style.display = 'block';
+          if (submitBtn) { submitBtn.textContent = 'Envoyer ma demande'; submitBtn.disabled = false; }
+        }, 800);
+      });
     });
   }
 
@@ -400,6 +403,19 @@ function closeFormModal(id) {
 
 window.closeFormModal = closeFormModal;
 
+async function submitToAdmin(formType, data, source) {
+  try {
+    const apiUrl = window.PIA_ADMIN_API_URL || 'http://localhost:3001';
+    await fetch(apiUrl + '/api/submissions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ form_type: formType, data, source: source || 'web' })
+    });
+  } catch (e) {
+    console.warn('Admin dashboard unreachable:', e.message);
+  }
+}
+
 /* ════════════════════════════════════════════
    CONTACT FORM — Validation JS
 ════════════════════════════════════════════ */
@@ -461,12 +477,15 @@ function initContactForm() {
     if (valid) {
       const btn = form.querySelector('button[type="submit"]');
       if (btn) { btn.textContent = getTranslation('contact.form.sending') || 'Envoi…'; btn.disabled = true; }
-      setTimeout(() => {
-        btn.textContent = getTranslation('contact.form.btn') || 'Envoyer le message';
-        btn.disabled = false;
-        form.reset();
-        showFormModal('contactModal');
-      }, 1000);
+      const formData = Object.fromEntries(new FormData(form));
+      submitToAdmin('contact', formData).then(() => {
+        setTimeout(() => {
+          btn.textContent = getTranslation('contact.form.btn') || 'Envoyer le message';
+          btn.disabled = false;
+          form.reset();
+          showFormModal('contactModal');
+        }, 800);
+      });
     }
   });
 
@@ -568,12 +587,15 @@ function initDevisForm() {
     if (valid) {
       const btn = form.querySelector('button[type="submit"]');
       if (btn) { btn.textContent = getTranslation('devis.form.sending') || 'Envoi…'; btn.disabled = true; }
-      setTimeout(() => {
-        btn.textContent = getTranslation('devis.form.submit') || 'Demander mon devis gratuit';
-        btn.disabled = false;
-        form.reset();
-        showFormModal('devisModal');
-      }, 1000);
+      const formData = Object.fromEntries(new FormData(form));
+      submitToAdmin('devis', formData).then(() => {
+        setTimeout(() => {
+          btn.textContent = getTranslation('devis.form.submit') || 'Demander mon devis gratuit';
+          btn.disabled = false;
+          form.reset();
+          showFormModal('devisModal');
+        }, 800);
+      });
     }
   });
 

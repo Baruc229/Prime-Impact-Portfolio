@@ -634,6 +634,17 @@ function getThemeColors() {
   // ============================================================
   // TRACKING
   // ============================================================
+  async function submitToAdminDashboard(formType, data, source) {
+    try {
+      const adminUrl = window.PIA_ADMIN_API_URL || 'http://localhost:3001';
+      await fetch(adminUrl + '/api/submissions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ form_type: formType, data, source: source || 'web' })
+      });
+    } catch (e) {}
+  }
+
   const PIA_Tracker = {
     async trackPage() {
       const page = window.location.pathname.split('/').pop() || 'index';
@@ -646,6 +657,8 @@ function getThemeColors() {
       } catch (e) {}
     },
     async trackLead(formData, source) {
+      const formType = source === 'devis' ? 'devis' : 'contact';
+      submitToAdminDashboard(formType, formData, source);
       try {
         await fetch(`${API_URL}/api/leads`, {
           method: 'POST',

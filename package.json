@@ -4,7 +4,10 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "http-server . -p 8080 -c-1",
+    "admin": "cd admin-dashboard && node server.js",
+    "dev": "echo 'Run: npm run serve (site) and npm run admin (dashboard) in separate terminals'"
   },
   "keywords": [],
   "author": "",
