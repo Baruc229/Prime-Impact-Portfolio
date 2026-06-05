@@ -4619,10 +4619,6 @@ textarea.form-control {
     flex-direction: column;
     gap: 30px;
   }
-  .showcase-img {
-    min-height: 0;
-    padding: 0;
-  }
 }
 
 /* SERVICES - CATEGORIES & PROCESS */
