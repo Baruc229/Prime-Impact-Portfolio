@@ -476,15 +476,12 @@ function initContactForm() {
     if (valid) {
       const btn = form.querySelector('button[type="submit"]');
       if (btn) { btn.textContent = getTranslation('contact.form.sending') || 'Envoi…'; btn.disabled = true; }
-      const formData = Object.fromEntries(new FormData(form));
-      submitToAdmin('contact', formData).then(() => {
-        setTimeout(() => {
-          btn.textContent = getTranslation('contact.form.btn') || 'Envoyer le message';
-          btn.disabled = false;
-          form.reset();
-          showFormModal('contactModal');
-        }, 800);
-      });
+      setTimeout(() => {
+        btn.textContent = getTranslation('contact.form.btn') || 'Envoyer le message';
+        btn.disabled = false;
+        form.reset();
+        showFormModal('contactModal');
+      }, 1000);
     }
   });
 
@@ -586,15 +583,12 @@ function initDevisForm() {
     if (valid) {
       const btn = form.querySelector('button[type="submit"]');
       if (btn) { btn.textContent = getTranslation('devis.form.sending') || 'Envoi…'; btn.disabled = true; }
-      const formData = Object.fromEntries(new FormData(form));
-      submitToAdmin('devis', formData).then(() => {
-        setTimeout(() => {
-          btn.textContent = getTranslation('devis.form.submit') || 'Demander mon devis gratuit';
-          btn.disabled = false;
-          form.reset();
-          showFormModal('devisModal');
-        }, 800);
-      });
+      setTimeout(() => {
+        btn.textContent = getTranslation('devis.form.submit') || 'Demander mon devis gratuit';
+        btn.disabled = false;
+        form.reset();
+        showFormModal('devisModal');
+      }, 1000);
     }
   });
 

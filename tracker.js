@@ -748,8 +748,7 @@ function getThemeColors() {
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const data = Object.fromEntries(new FormData(contactForm));
-        await PIA_Tracker.trackLead(data, 'contact');
-        contactForm.submit();
+        PIA_Tracker.trackLead(data, 'contact');
       });
     }
     const devisForm = document.getElementById('devisForm');
@@ -758,8 +757,7 @@ function getThemeColors() {
       devisForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const data = Object.fromEntries(new FormData(devisForm));
-        await PIA_Tracker.trackLead(data, 'devis');
-        devisForm.submit();
+        PIA_Tracker.trackLead(data, 'devis');
       });
     }
   }, 800);
