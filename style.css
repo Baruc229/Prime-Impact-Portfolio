@@ -437,10 +437,8 @@ img {
 .showcase-slide img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
-  padding: 8px;
-  background: var(--bg-secondary);
 }
 
 .showcase-arrow {
