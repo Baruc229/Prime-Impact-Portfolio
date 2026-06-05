@@ -112,7 +112,14 @@ tr.unread td:first-child { border-left: 3px solid var(--accent); }
 .btn-delete { background: rgba(239,68,68,0.12); color: var(--red); border: 1px solid rgba(239,68,68,0.2) !important; }
 .btn-delete:hover { background: rgba(239,68,68,0.2); }
 
-.export-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 20px; }
+.format-tabs { display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap; }
+.format-tab { padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); font-size: 12px; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.15s; display: flex; align-items: center; gap: 6px; }
+.format-tab:hover { color: var(--text); border-color: var(--border-hover); }
+.format-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.format-tab i { font-size: 13px; }
+.format-select { padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: 13px; font-family: inherit; outline: none; cursor: pointer; }
+.format-select:focus { border-color: var(--accent); }
+.export-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 4px; }
 .export-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: center; cursor: pointer; transition: all 0.15s; }
 .export-card:hover { border-color: var(--accent); background: var(--surface); }
 .export-card i { font-size: 28px; margin-bottom: 10px; color: var(--text-muted); }
@@ -216,19 +223,32 @@ tr.unread td:first-child { border-left: 3px solid var(--accent); }
     </div>
 
     <div class="view" id="view-export">
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:4px">Téléchargez les soumissions au format CSV, organisé par type de formulaire.</p>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">Choisissez un format d'export puis cliquez sur un type pour télécharger.</p>
+
+      <div class="format-tabs" id="formatTabs">
+        <button class="format-tab active" data-format="csv" onclick="switchFormat('csv')"><i class="fa-solid fa-file-csv"></i> CSV</button>
+        <button class="format-tab" data-format="html" onclick="switchFormat('html')"><i class="fa-solid fa-file-lines"></i> Rapport HTML</button>
+        <button class="format-tab" data-format="pdf" onclick="switchFormat('pdf')"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+        <button class="format-tab" data-format="xlsx" onclick="switchFormat('xlsx')"><i class="fa-solid fa-file-excel"></i> Excel</button>
+      </div>
 
       <div class="export-grid" id="exportGrid">
-        <div class="export-card" onclick="exportCSV('')"><i class="fa-solid fa-file-csv" style="color:var(--orange)"></i><h3>Toutes</h3><p>Tous les types</p><div class="count" id="countAll">— soumissions</div></div>
-        <div class="export-card" onclick="exportCSV('contact')"><i class="fa-solid fa-message" style="color:var(--accent)"></i><h3>Contact</h3><p>Formulaire de contact</p><div class="count" id="countContact">— soumissions</div></div>
-        <div class="export-card" onclick="exportCSV('devis')"><i class="fa-solid fa-file-invoice" style="color:var(--green)"></i><h3>Devis</h3><p>Demande de devis</p><div class="count" id="countDevis">— soumissions</div></div>
-        <div class="export-card" onclick="exportCSV('order')"><i class="fa-solid fa-cart-shopping" style="color:var(--orange)"></i><h3>Commande</h3><p>Commande rapide</p><div class="count" id="countOrder">— soumissions</div></div>
+        <div class="export-card" onclick="downloadExport('')"><i class="fa-solid fa-download" style="color:var(--accent)"></i><h3>Toutes</h3><p>Tous les types</p><div class="count" id="countAll">— soumissions</div></div>
+        <div class="export-card" onclick="downloadExport('contact')"><i class="fa-solid fa-message" style="color:var(--accent)"></i><h3>Contact</h3><p>Formulaire de contact</p><div class="count" id="countContact">— soumissions</div></div>
+        <div class="export-card" onclick="downloadExport('devis')"><i class="fa-solid fa-file-invoice" style="color:var(--green)"></i><h3>Devis</h3><p>Demande de devis</p><div class="count" id="countDevis">— soumissions</div></div>
+        <div class="export-card" onclick="downloadExport('order')"><i class="fa-solid fa-cart-shopping" style="color:var(--orange)"></i><h3>Commande</h3><p>Commande rapide</p><div class="count" id="countOrder">— soumissions</div></div>
       </div>
 
       <div class="export-email-section">
         <h3><i class="fa-solid fa-envelope"></i> Envoyer par email</h3>
-        <p>Les soumissions seront exportées en CSV et envoyées en pièce jointe. Laissez le champ vide pour utiliser l'adresse Gmail configurée.</p>
+        <p>Choisissez le format et saisissez l'email destinataire. Laissez vide pour utiliser l'adresse Gmail configurée.</p>
         <div class="email-row">
+          <select class="format-select" id="emailFormat">
+            <option value="csv">CSV</option>
+            <option value="html">Rapport HTML</option>
+            <option value="pdf">PDF</option>
+            <option value="xlsx">Excel (XLSX)</option>
+          </select>
           <input type="email" id="emailTarget" placeholder="Email destinataire (optionnel)">
           <button onclick="sendEmail()" id="sendEmailBtn">Envoyer <i class="fa-solid fa-paper-plane"></i></button>
         </div>
@@ -259,6 +279,7 @@ const API_BASE = '/api';
 let currentFilter = '';
 let currentPage = 1;
 let currentId = null;
+let currentFormat = 'csv';
 let refreshInterval = null;
 let debounceTimer = null;
 let authToken = sessionStorage.getItem('pia_admin_token') || '';
@@ -469,18 +490,27 @@ async function deleteSubmission() {
   refresh();
 }
 
-async function exportCSV(type) {
+function switchFormat(format) {
+  currentFormat = format;
+  document.querySelectorAll('.format-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.format === format);
+  });
+  refreshExportCounts();
+}
+
+async function downloadExport(type) {
   try {
-    const qs = type ? '?type=' + type : '';
+    const qs = '?format=' + currentFormat + (type ? '&type=' + type : '');
     const res = await fetch(API_BASE + '/export' + qs, {
       headers: { 'Authorization': 'Bearer ' + authToken }
     });
     if (!res.ok) return;
     const blob = await res.blob();
     const url = URL.createObjectURL(blob);
+    const ext = { csv: 'csv', html: 'html', pdf: 'pdf', xlsx: 'xlsx' }[currentFormat] || 'csv';
     const a = document.createElement('a');
     a.href = url;
-    a.download = type ? 'pia-submissions-' + type + '.csv' : 'pia-submissions-all.csv';
+    a.download = type ? 'pia-' + type + '.' + ext : 'pia-all.' + ext;
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     URL.revokeObjectURL(url);
   } catch (e) {}
@@ -489,15 +519,17 @@ async function exportCSV(type) {
 async function refreshExportCounts() {
   const stats = await fetchAPI('/stats');
   if (!stats) return;
-  document.getElementById('countAll').textContent = stats.total + ' soumission' + (stats.total > 1 ? 's' : '');
+  const fmtLabel = { csv: 'CSV', html: 'HTML', pdf: 'PDF', xlsx: 'Excel' }[currentFormat] || 'CSV';
+  document.getElementById('countAll').textContent = stats.total + ' soumission' + (stats.total > 1 ? 's' : '') + ' (' + fmtLabel + ')';
   stats.byType.forEach(t => {
     const el = document.getElementById('count' + t.form_type.charAt(0).toUpperCase() + t.form_type.slice(1));
-    if (el) el.textContent = t.count + ' soumission' + (t.count > 1 ? 's' : '');
+    if (el) el.textContent = t.count + ' soumission' + (t.count > 1 ? 's' : '') + ' (' + fmtLabel + ')';
   });
 }
 
 async function sendEmail() {
   const email = document.getElementById('emailTarget').value.trim();
+  const format = document.getElementById('emailFormat').value;
   const btn = document.getElementById('sendEmailBtn');
   const status = document.getElementById('emailStatus');
   btn.disabled = true; btn.innerHTML = 'Envoi en cours... <i class="fa-solid fa-spinner fa-spin"></i>';
@@ -506,12 +538,12 @@ async function sendEmail() {
     const res = await fetch(API_BASE + '/export', {
       method: 'POST',
       headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email || undefined })
+      body: JSON.stringify({ email: email || undefined, format: format })
     });
     const data = await res.json();
     if (data.success) {
       status.className = 'email-status success';
-      status.textContent = 'Envoyé à ' + data.sentTo + ' (' + data.total + ' soumissions)';
+      status.textContent = 'Envoyé à ' + data.sentTo + ' (' + data.total + ' soumissions, format ' + data.format + ')';
     } else {
       status.className = 'email-status error';
       status.textContent = data.error || 'Erreur inconnue';
