@@ -1,9 +1,9 @@
-const { load } = require('./_lib/db');
+const { load, validateSession } = require('./_lib/db');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
     res.status(200).end();
@@ -11,6 +11,12 @@ module.exports = async (req, res) => {
   }
 
   if (req.method === 'GET') {
+    const auth = req.headers.authorization;
+    const token = auth && auth.startsWith('Bearer ') ? auth.slice(7) : '';
+    if (!(await validateSession(token))) {
+      res.status(401).json({ error: 'Non authentifié' });
+      return;
+    }
     try {
       const db = await load();
       const total = db.submissions.length;
@@ -27,8 +33,8 @@ module.exports = async (req, res) => {
 
       res.json({ total, unread, today, byType });
     } catch (err) {
-      console.error('Stats error:', err);
-      res.status(500).json({ error: 'Internal server error' });
+      console.error('[API] Stats error:', err);
+      res.status(500).json({ error: err.message || 'Internal server error' });
     }
     return;
   }

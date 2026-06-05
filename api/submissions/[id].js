@@ -1,12 +1,19 @@
-const { load, save } = require('../_lib/db');
+const { load, save, validateSession } = require('../_lib/db');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
     res.status(200).end();
+    return;
+  }
+
+  const auth = req.headers.authorization;
+  const token = auth && auth.startsWith('Bearer ') ? auth.slice(7) : '';
+  if (!(await validateSession(token))) {
+    res.status(401).json({ error: 'Non authentifié' });
     return;
   }
 
@@ -24,8 +31,8 @@ module.exports = async (req, res) => {
       await save(db);
       res.json(row);
     } catch (err) {
-      console.error('Get error:', err);
-      res.status(500).json({ error: 'Internal server error' });
+      console.error('[API] Get error:', err);
+      res.status(500).json({ error: err.message || 'Internal server error' });
     }
     return;
   }
@@ -42,8 +49,8 @@ module.exports = async (req, res) => {
       await save(db);
       res.json({ success: true });
     } catch (err) {
-      console.error('Delete error:', err);
-      res.status(500).json({ error: 'Internal server error' });
+      console.error('[API] Delete error:', err);
+      res.status(500).json({ error: err.message || 'Internal server error' });
     }
     return;
   }
