@@ -6,14 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "http-server . -p 8080 -c-1",
-    "admin": "cd admin-dashboard && node server.js",
-    "dev": "echo 'Run: npm run serve (site) and npm run admin (dashboard) in separate terminals'"
+    "dev": "echo 'Run: npm run serve for local site'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@upstash/redis": "^1.38.0",
     "http-server": "^14.1.1"
   },
   "devDependencies": {

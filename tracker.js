@@ -636,8 +636,7 @@ function getThemeColors() {
   // ============================================================
   async function submitToAdminDashboard(formType, data, source) {
     try {
-      const adminUrl = window.PIA_ADMIN_API_URL || 'http://localhost:3001';
-      await fetch(adminUrl + '/api/submissions', {
+      await fetch('/api/submissions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ form_type: formType, data, source: source || 'web' })
