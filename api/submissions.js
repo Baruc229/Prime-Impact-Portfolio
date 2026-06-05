@@ -28,10 +28,11 @@ module.exports = async (req, res) => {
       };
       db.submissions.unshift(submission);
       await save(db);
+      console.log('[API] Created submission', submission.id, 'type:', form_type);
       res.json({ success: true, id: submission.id });
     } catch (err) {
-      console.error('Insert error:', err);
-      res.status(500).json({ error: 'Internal server error' });
+      console.error('[API] Insert error:', err);
+      res.status(500).json({ error: err.message || 'Internal server error' });
     }
     return;
   }
@@ -61,8 +62,8 @@ module.exports = async (req, res) => {
         totalPages
       });
     } catch (err) {
-      console.error('List error:', err);
-      res.status(500).json({ error: 'Internal server error' });
+      console.error('[API] List error:', err);
+      res.status(500).json({ error: err.message || 'Internal server error' });
     }
     return;
   }
