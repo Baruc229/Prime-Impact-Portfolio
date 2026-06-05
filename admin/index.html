@@ -1,120 +1,151 @@
-<!DOCTYPE html><html lang="fr" data-theme="dark">
+<!DOCTYPE html><html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PIA — Admin Dashboard</title>
+<title>PIA Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
 :root {
-  --bg: #0b0c10; --bg-card: #14151a; --bg-surface: #1a1c23; --bg-hover: #22242b;
-  --border: rgba(255,255,255,0.08); --text: #e8eaed; --text-muted: #9ba1a6;
-  --accent: #339af0; --accent-hover: #4aabff; --green: #22c55e; --orange: #f59e0b; --red: #ef4444;
-  --radius: 12px; --radius-sm: 8px;
+  --bg: #0a0b0e; --sidebar: #111216; --card: #18191d; --surface: #1e1f24;
+  --border: rgba(255,255,255,0.06); --border-hover: rgba(255,255,255,0.1);
+  --text: #e4e6eb; --text-muted: #8a8f98; --accent: #3b82f6; --accent-hover: #60a5fa;
+  --green: #22c55e; --orange: #f59e0b; --red: #ef4444; --radius: 10px; --radius-sm: 6px;
 }
-body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); }
 .login-overlay { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 100; }
-.login-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; width: 360px; max-width: 90vw; }
-.login-box h1 { font-size: 22px; margin-bottom: 4px; }
-.login-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
-.login-box input { width: 100%; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text); font-size: 14px; font-family: inherit; margin-bottom: 16px; outline: none; transition: border-color 0.2s; }
+.login-box { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 40px; width: 360px; max-width: 92vw; }
+.login-box h1 { font-size: 22px; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
+.login-box h1 i { color: var(--accent); }
+.login-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 28px; }
+.login-box input { width: 100%; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: 14px; font-family: inherit; margin-bottom: 16px; outline: none; transition: border-color 0.2s; }
 .login-box input:focus { border-color: var(--accent); }
 .login-box button { width: 100%; padding: 12px; border-radius: var(--radius-sm); border: none; background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.2s; }
 .login-box button:hover { background: var(--accent-hover); }
 .login-error { color: var(--red); font-size: 13px; margin-top: 12px; display: none; }
-.app { display: none; }
-.app-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 28px; border-bottom: 1px solid var(--border); background: var(--bg-card); }
-.app-header h1 { font-size: 18px; font-weight: 600; }
-.header-actions { display: flex; align-items: center; gap: 16px; }
-.header-actions span { font-size: 13px; color: var(--text-muted); }
-.header-actions button { padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text); font-size: 12px; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.2s; }
-.header-actions button:hover { background: var(--bg-hover); border-color: var(--accent); }
-.logout-btn { color: var(--red) !important; border-color: rgba(239,68,68,0.3) !important; }
-.logout-btn:hover { border-color: var(--red) !important; }
-.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; padding: 24px 28px 0; }
-.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
-.stat-card .stat-num { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
-.stat-card .stat-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.app-layout { display: none; height: 100vh; overflow: hidden; }
+.sidebar { width: 240px; background: var(--sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; }
+.sidebar-brand { padding: 20px 20px; display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; border-bottom: 1px solid var(--border); }
+.sidebar-brand i { color: var(--accent); font-size: 18px; }
+.sidebar-nav { flex: 1; padding: 12px 10px; display: flex; flex-direction: column; gap: 2px; }
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: var(--radius-sm); color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+.nav-item i { width: 18px; text-align: center; font-size: 14px; }
+.nav-item:hover { background: var(--surface); color: var(--text); }
+.nav-item.active { background: rgba(59,130,246,0.12); color: var(--accent); }
+.sidebar-footer { padding: 14px 20px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.sidebar-footer span { font-size: 12px; color: var(--text-muted); }
+.sidebar-footer button { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 15px; padding: 6px; border-radius: var(--radius-sm); transition: all 0.15s; }
+.sidebar-footer button:hover { color: var(--red); background: rgba(239,68,68,0.1); }
+.main-content { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 28px; border-bottom: 1px solid var(--border); background: var(--card); flex-shrink: 0; }
+.topbar h2 { font-size: 16px; font-weight: 600; }
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+.live-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; background: rgba(34,197,94,0.12); color: var(--green); }
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+.topbar-btn { padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); font-size: 12px; cursor: pointer; font-family: inherit; transition: all 0.15s; display: flex; align-items: center; gap: 6px; }
+.topbar-btn:hover { color: var(--text); border-color: var(--border-hover); }
+.topbar-btn i { font-size: 12px; }
+.view { display: none; padding: 24px 28px; flex: 1; }
+.view.active { display: block; }
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 24px; }
+.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
+.stat-card .stat-num { font-size: 26px; font-weight: 700; margin-bottom: 2px; }
+.stat-card .stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px; }
 .stat-card .stat-num.unread { color: var(--accent); }
 .stat-card .stat-num.today { color: var(--green); }
 .stat-card .stat-num.total { color: var(--orange); }
-.filters { padding: 20px 28px 0; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-.filter-btn { padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-size: 12px; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+.stat-card .stat-sub { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+.filter-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-size: 12px; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.15s; }
 .filter-btn:hover { color: var(--text); border-color: var(--text-muted); }
 .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-.search-input { padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text); font-size: 13px; font-family: inherit; outline: none; flex: 1; min-width: 200px; }
+.search-wrap { position: relative; flex: 1; min-width: 180px; }
+.search-wrap i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 13px; pointer-events: none; }
+.search-input { width: 100%; padding: 8px 12px 8px 32px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: 13px; font-family: inherit; outline: none; }
 .search-input:focus { border-color: var(--accent); }
 .search-input::placeholder { color: var(--text-muted); }
-.table-wrap { padding: 16px 28px 28px; overflow-x: auto; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
-th { text-align: left; padding: 12px 14px; color: var(--text-muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); white-space: nowrap; }
-td { padding: 12px 14px; border-bottom: 1px solid var(--border); white-space: nowrap; }
-tr { transition: background 0.15s; cursor: pointer; }
-tr:hover { background: var(--bg-hover); }
+th { text-align: left; padding: 12px 16px; color: var(--text-muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+td { padding: 12px 16px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+tr:last-child td { border-bottom: none; }
+tr { transition: background 0.1s; cursor: pointer; }
+tr:hover { background: var(--surface); }
 tr.unread { font-weight: 600; }
 tr.unread td:first-child { border-left: 3px solid var(--accent); }
-.badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
-.badge-contact { background: rgba(51,154,240,0.15); color: var(--accent); }
-.badge-devis { background: rgba(34,197,94,0.15); color: var(--green); }
-.badge-order { background: rgba(245,158,11,0.15); color: var(--orange); }
-.source-tag { display: inline-block; padding: 2px 8px; border-radius: 8px; font-size: 11px; background: var(--bg-surface); color: var(--text-muted); border: 1px solid var(--border); }
+.badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+.badge-contact { background: rgba(59,130,246,0.12); color: var(--accent); }
+.badge-devis { background: rgba(34,197,94,0.12); color: var(--green); }
+.badge-order { background: rgba(245,158,11,0.12); color: var(--orange); }
+.source-tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 11px; background: var(--surface); color: var(--text-muted); border: 1px solid var(--border); }
 .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
-.empty-state i { font-size: 40px; margin-bottom: 12px; opacity: 0.5; }
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; }
-.modal-overlay.open { display: flex; }
-.modal { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); width: 560px; max-width: 100%; max-height: 85vh; overflow-y: auto; animation: modalIn 0.2s ease; }
-@keyframes modalIn { from { opacity: 0; transform: translateY(10px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
-.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg-card); z-index: 1; }
-.modal-header h2 { font-size: 18px; font-weight: 600; }
-.modal-close { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-surface); color: var(--text-muted); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-.modal-close:hover { color: var(--text); border-color: var(--text-muted); }
-.modal-body { padding: 24px; }
-.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.detail-field { padding: 14px; background: var(--bg-surface); border-radius: var(--radius-sm); border: 1px solid var(--border); }
-.detail-field.full { grid-column: 1 / -1; }
-.detail-field label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: block; margin-bottom: 6px; }
-.detail-field .value { font-size: 14px; word-break: break-word; }
-.detail-field .value pre { font-family: inherit; white-space: pre-wrap; font-size: 13px; line-height: 1.6; }
-.detail-meta { margin-top: 16px; padding: 12px 14px; background: var(--bg-surface); border-radius: var(--radius-sm); border: 1px solid var(--border); font-size: 12px; color: var(--text-muted); }
-.detail-actions { display: flex; gap: 10px; margin-top: 20px; }
-.detail-actions button { padding: 10px 18px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; border: none; transition: all 0.2s; }
-.btn-delete { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3) !important; }
-.btn-delete:hover { background: rgba(239,68,68,0.25); }
-.pagination { display: flex; justify-content: center; gap: 6px; padding: 0 28px 28px; }
-.pagination button { padding: 8px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text); font-size: 13px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
-.pagination button:hover { border-color: var(--accent); }
+.empty-state i { font-size: 36px; margin-bottom: 10px; opacity: 0.4; }
+.empty-state p { font-size: 13px; }
+.pagination { display: flex; justify-content: center; gap: 4px; margin-top: 16px; }
+.pagination button { padding: 7px 13px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card); color: var(--text-muted); font-size: 13px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+.pagination button:hover { color: var(--text); border-color: var(--border-hover); }
 .pagination button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-.pagination button:disabled { opacity: 0.4; cursor: default; }
-.live-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 600; background: rgba(34,197,94,0.15); color: var(--green); }
-.live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-.refresh-btn { padding: 8px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text-muted); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-.refresh-btn:hover { color: var(--text); border-color: var(--accent); }
-.refresh-btn.spinning i { animation: spin 0.6s linear; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.action-btn { padding: 8px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text); font-size: 12px; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.2s; }
-.action-btn:hover { background: var(--bg-hover); border-color: var(--accent); }
-.action-btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-.action-btn.primary:hover { background: var(--accent-hover); }
-.email-input { width: 100%; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text); font-size: 14px; font-family: inherit; outline: none; margin-bottom: 16px; }
-.email-input:focus { border-color: var(--accent); }
-.email-input::placeholder { color: var(--text-muted); }
-.send-btn { width: 100%; padding: 12px; border-radius: var(--radius-sm); border: none; background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.2s; }
-.send-btn:hover { background: var(--accent-hover); }
-.send-btn:disabled { opacity: 0.5; cursor: default; }
-.email-status { font-size: 13px; margin-top: 12px; display: none; padding: 10px 14px; border-radius: var(--radius-sm); }
-.email-status.success { display: block; background: rgba(34,197,94,0.15); color: var(--green); }
-.email-status.error { display: block; background: rgba(239,68,68,0.15); color: var(--red); }
+.pagination button:disabled { opacity: 0.3; cursor: default; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(4px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--card); border: 1px solid var(--border); border-radius: 14px; width: 580px; max-width: 100%; max-height: 88vh; overflow-y: auto; animation: modalIn 0.2s ease; box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+@keyframes modalIn { from { opacity: 0; transform: translateY(10px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--card); z-index: 1; }
+.modal-header h2 { font-size: 16px; font-weight: 600; }
+.modal-close { width: 30px; height: 30px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.modal-close:hover { color: var(--text); border-color: var(--border-hover); }
+.modal-body { padding: 20px 24px 24px; }
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.detail-field { padding: 12px 14px; background: var(--surface); border-radius: var(--radius-sm); border: 1px solid var(--border); }
+.detail-field.full { grid-column: 1 / -1; }
+.detail-field label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.detail-field .value { font-size: 14px; word-break: break-word; }
+.detail-field .value pre { font-family: inherit; white-space: pre-wrap; font-size: 13px; line-height: 1.5; }
+.detail-meta { margin-top: 12px; padding: 10px 14px; background: var(--surface); border-radius: var(--radius-sm); border: 1px solid var(--border); font-size: 12px; color: var(--text-muted); }
+.detail-actions { display: flex; gap: 8px; margin-top: 16px; }
+.detail-actions button { padding: 9px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; border: none; transition: all 0.15s; display: flex; align-items: center; gap: 6px; }
+.btn-delete { background: rgba(239,68,68,0.12); color: var(--red); border: 1px solid rgba(239,68,68,0.2) !important; }
+.btn-delete:hover { background: rgba(239,68,68,0.2); }
+
+.export-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 20px; }
+.export-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: center; cursor: pointer; transition: all 0.15s; }
+.export-card:hover { border-color: var(--accent); background: var(--surface); }
+.export-card i { font-size: 28px; margin-bottom: 10px; color: var(--text-muted); }
+.export-card:hover i { color: var(--accent); }
+.export-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.export-card p { font-size: 12px; color: var(--text-muted); }
+.export-card .count { font-size: 11px; color: var(--text-muted); margin-top: 8px; }
+.export-email-section { margin-top: 28px; padding: 20px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
+.export-email-section h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.export-email-section h3 i { color: var(--accent); }
+.export-email-section p { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
+.email-row { display: flex; gap: 10px; align-items: center; }
+.email-row input { flex: 1; padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: 13px; font-family: inherit; outline: none; }
+.email-row input:focus { border-color: var(--accent); }
+.email-row input::placeholder { color: var(--text-muted); }
+.email-row button { padding: 10px 18px; border-radius: var(--radius-sm); border: none; background: var(--accent); color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.15s; white-space: nowrap; }
+.email-row button:hover { background: var(--accent-hover); }
+.email-row button:disabled { opacity: 0.5; cursor: default; }
+.email-status { font-size: 13px; margin-top: 10px; display: none; }
+.email-status.success { display: block; color: var(--green); }
+.email-status.error { display: block; color: var(--red); }
+
 @media (max-width: 768px) {
-  .app-header { padding: 16px; flex-wrap: wrap; gap: 12px; }
-  .stats-row { padding: 16px 16px 0; grid-template-columns: repeat(2, 1fr); }
-  .filters { padding: 16px 16px 0; }
-  .table-wrap { padding: 12px 16px 16px; }
+  .sidebar { width: 56px; }
+  .sidebar-brand span, .sidebar-footer span { display: none; }
+  .nav-item span { display: none; }
+  .nav-item { justify-content: center; padding: 10px; }
+  .topbar { padding: 12px 16px; }
+  .view { padding: 16px; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
   .detail-grid { grid-template-columns: 1fr; }
-  .pagination { padding: 0 16px 16px; }
-  .modal { border-radius: 0; max-height: 100vh; }
+  .email-row { flex-direction: column; }
+  .export-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
@@ -122,7 +153,7 @@ tr.unread td:first-child { border-left: 3px solid var(--accent); }
 
 <div class="login-overlay" id="loginOverlay">
   <div class="login-box">
-    <h1>🔐 Admin PIA</h1>
+    <h1><i class="fa-solid fa-shield-halved"></i> Admin PIA</h1>
     <p>Tableau de bord des formulaires</p>
     <input type="password" id="passwordInput" placeholder="Mot de passe" autocomplete="current-password">
     <button onclick="login()" id="loginBtn">Se connecter</button>
@@ -130,80 +161,99 @@ tr.unread td:first-child { border-left: 3px solid var(--accent); }
   </div>
 </div>
 
-<div class="app" id="app">
-  <header class="app-header">
-    <h1>📊 Tableau de bord PIA</h1>
-    <div class="header-actions">
-      <div class="live-badge"><span class="live-dot"></span> Live</div>
-      <span id="lastRefresh">—</span>
-      <button class="refresh-btn" onclick="refresh()" id="refreshBtn"><i class="ph ph-arrows-clockwise"></i></button>
-      <button class="action-btn" onclick="exportCSV()">📥 CSV</button>
-      <button class="action-btn primary" onclick="showEmailModal()">📧 Email</button>
-      <button onclick="logout()" class="logout-btn">Déconnexion</button>
+<div class="app-layout" id="app">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><i class="fa-solid fa-crown"></i> <span>PIA Admin</span></div>
+    <nav class="sidebar-nav">
+      <a class="nav-item active" data-view="dashboard" onclick="switchView('dashboard')"><i class="fa-solid fa-chart-simple"></i> <span>Dashboard</span></a>
+      <a class="nav-item" data-view="export" onclick="switchView('export')"><i class="fa-solid fa-download"></i> <span>Export</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <span>Connecté</span>
+      <button onclick="logout()" title="Déconnexion"><i class="fa-solid fa-right-from-bracket"></i></button>
     </div>
-  </header>
+  </aside>
 
-  <div class="stats-row" id="statsRow">
-    <div class="stat-card"><div class="stat-num total" id="statTotal">—</div><div class="stat-label">Total soumissions</div></div>
-    <div class="stat-card"><div class="stat-num unread" id="statUnread">—</div><div class="stat-label">Non lus</div></div>
-    <div class="stat-card"><div class="stat-num today" id="statToday">—</div><div class="stat-label">Aujourd'hui</div></div>
-    <div class="stat-card"><div class="stat-num" id="statByType" style="font-size:14px;font-weight:400;color:var(--text-muted)">—</div><div class="stat-label">Par type</div></div>
+  <div class="main-content">
+    <header class="topbar">
+      <h2 id="viewTitle"><i class="fa-solid fa-chart-simple" style="margin-right:8px;color:var(--accent)"></i>Dashboard</h2>
+      <div class="topbar-right">
+        <div class="live-badge"><span class="live-dot"></span> Live</div>
+        <span style="font-size:11px;color:var(--text-muted)" id="lastRefresh">—</span>
+        <button class="topbar-btn" onclick="refresh()" id="refreshBtn"><i class="fa-solid fa-rotate"></i> Actualiser</button>
+      </div>
+    </header>
+
+    <div class="view active" id="view-dashboard">
+      <div class="stats-row" id="statsRow">
+        <div class="stat-card"><div class="stat-num total" id="statTotal">—</div><div class="stat-label">Total</div></div>
+        <div class="stat-card"><div class="stat-num unread" id="statUnread">—</div><div class="stat-label">Non lus</div></div>
+        <div class="stat-card"><div class="stat-num today" id="statToday">—</div><div class="stat-label">Aujourd'hui</div></div>
+        <div class="stat-card"><div class="stat-num" id="statByType" style="font-size:13px;font-weight:400;color:var(--text-muted)">—</div><div class="stat-label">Par type</div></div>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" data-filter="" onclick="setFilter(this)">Tous</button>
+        <button class="filter-btn" data-filter="contact" onclick="setFilter(this)">Contact</button>
+        <button class="filter-btn" data-filter="devis" onclick="setFilter(this)">Devis</button>
+        <button class="filter-btn" data-filter="order" onclick="setFilter(this)">Commande</button>
+        <div class="search-wrap">
+          <i class="fa-solid fa-search"></i>
+          <input class="search-input" id="searchInput" placeholder="Rechercher..." oninput="debounceRefresh()">
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Nom</th><th>Email</th><th>Sujet / Service</th><th>Date</th><th>Source</th></tr></thead>
+          <tbody id="tableBody">
+            <tr><td colspan="6" class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Chargement...</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination" id="pagination"></div>
+    </div>
+
+    <div class="view" id="view-export">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:4px">Téléchargez les soumissions au format CSV, organisé par type de formulaire.</p>
+
+      <div class="export-grid" id="exportGrid">
+        <div class="export-card" onclick="exportCSV('')"><i class="fa-solid fa-file-csv" style="color:var(--orange)"></i><h3>Toutes</h3><p>Tous les types</p><div class="count" id="countAll">— soumissions</div></div>
+        <div class="export-card" onclick="exportCSV('contact')"><i class="fa-solid fa-message" style="color:var(--accent)"></i><h3>Contact</h3><p>Formulaire de contact</p><div class="count" id="countContact">— soumissions</div></div>
+        <div class="export-card" onclick="exportCSV('devis')"><i class="fa-solid fa-file-invoice" style="color:var(--green)"></i><h3>Devis</h3><p>Demande de devis</p><div class="count" id="countDevis">— soumissions</div></div>
+        <div class="export-card" onclick="exportCSV('order')"><i class="fa-solid fa-cart-shopping" style="color:var(--orange)"></i><h3>Commande</h3><p>Commande rapide</p><div class="count" id="countOrder">— soumissions</div></div>
+      </div>
+
+      <div class="export-email-section">
+        <h3><i class="fa-solid fa-envelope"></i> Envoyer par email</h3>
+        <p>Les soumissions seront exportées en CSV et envoyées en pièce jointe. Laissez le champ vide pour utiliser l'adresse Gmail configurée.</p>
+        <div class="email-row">
+          <input type="email" id="emailTarget" placeholder="Email destinataire (optionnel)">
+          <button onclick="sendEmail()" id="sendEmailBtn">Envoyer <i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+        <div class="email-status" id="emailStatus"></div>
+      </div>
+    </div>
   </div>
-
-  <div class="filters">
-    <button class="filter-btn active" data-filter="" onclick="setFilter(this)">Tous</button>
-    <button class="filter-btn" data-filter="contact" onclick="setFilter(this)">Contact</button>
-    <button class="filter-btn" data-filter="devis" onclick="setFilter(this)">Devis</button>
-    <button class="filter-btn" data-filter="order" onclick="setFilter(this)">Commande</button>
-    <input class="search-input" id="searchInput" placeholder="Rechercher..." oninput="debounceRefresh()">
-  </div>
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>Type</th><th>Nom</th><th>Email</th><th>Sujet / Service</th><th>Date</th><th>Source</th></tr>
-      </thead>
-      <tbody id="tableBody">
-        <tr><td colspan="6" class="empty-state"><i class="ph ph-spinner"></i><br>Chargement...</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="pagination" id="pagination"></div>
 </div>
 
 <div class="modal-overlay" id="detailModal">
   <div class="modal">
     <div class="modal-header">
       <h2 id="detailTitle">Détail</h2>
-      <button class="modal-close" onclick="closeDetail()">✕</button>
+      <button class="modal-close" onclick="closeDetail()"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    <div class="modal-body" id="detailBody">
+    <div class="modal-body">
       <div class="detail-grid" id="detailGrid"></div>
       <div class="detail-meta" id="detailMeta"></div>
       <div class="detail-actions">
-        <button class="btn-delete" onclick="deleteSubmission()">🗑 Supprimer</button>
+        <button class="btn-delete" onclick="deleteSubmission()"><i class="fa-solid fa-trash-can"></i> Supprimer</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-overlay" id="emailModal">
-  <div class="modal" style="width:420px">
-    <div class="modal-header">
-      <h2>📧 Envoyer par email</h2>
-      <button class="modal-close" onclick="closeEmailModal()">✕</button>
-    </div>
-    <div class="modal-body">
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">Toutes les soumissions seront exportées en CSV et envoyées en pièce jointe. Laissez vide pour utiliser l'adresse Gmail configurée.</p>
-      <input type="email" id="emailTarget" class="email-input" placeholder="Email destinataire (optionnel)">
-      <button class="send-btn" onclick="sendEmail()" id="sendEmailBtn">Envoyer</button>
-      <div class="email-status" id="emailStatus"></div>
-    </div>
-  </div>
-</div>
-
-<script src="https://unpkg.com/@phosphor-icons/web"></script>
 <script>
 const API_BASE = '/api';
 let currentFilter = '';
@@ -213,13 +263,31 @@ let refreshInterval = null;
 let debounceTimer = null;
 let authToken = sessionStorage.getItem('pia_admin_token') || '';
 
+function formatDate(d) {
+  if (!d) return '—';
+  try {
+    const dateStr = d.endsWith('Z') ? d : d + 'Z';
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return '—';
+    return date.toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  } catch (e) { return '—'; }
+}
+
+function switchView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelector('.nav-item[data-view="' + name + '"]').classList.add('active');
+  const titles = { dashboard: 'Dashboard', export: 'Export' };
+  document.getElementById('viewTitle').innerHTML = '<i class="fa-solid fa-' + (name === 'dashboard' ? 'chart-simple' : 'download') + '" style="margin-right:8px;color:var(--accent)"></i>' + titles[name];
+  if (name === 'export') refreshExportCounts();
+}
+
 async function login() {
   const pwd = document.getElementById('passwordInput').value;
   const btn = document.getElementById('loginBtn');
-  btn.disabled = true;
-  btn.textContent = 'Connexion...';
+  btn.disabled = true; btn.textContent = 'Connexion...';
   document.getElementById('loginError').style.display = 'none';
-
   try {
     const res = await fetch(API_BASE + '/auth', {
       method: 'POST',
@@ -231,7 +299,7 @@ async function login() {
       authToken = data.token;
       sessionStorage.setItem('pia_admin_token', authToken);
       document.getElementById('loginOverlay').style.display = 'none';
-      document.getElementById('app').style.display = 'block';
+      document.getElementById('app').style.display = 'flex';
       document.getElementById('passwordInput').value = '';
       init();
     } else {
@@ -241,8 +309,7 @@ async function login() {
     document.getElementById('loginError').textContent = 'Erreur serveur';
     document.getElementById('loginError').style.display = 'block';
   }
-  btn.disabled = false;
-  btn.textContent = 'Se connecter';
+  btn.disabled = false; btn.textContent = 'Se connecter';
 }
 
 async function logout() {
@@ -259,9 +326,7 @@ async function logout() {
   clearInterval(refreshInterval);
 }
 
-document.getElementById('passwordInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') login();
-});
+document.getElementById('passwordInput').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
 
 async function init() {
   if (!authToken) return;
@@ -283,46 +348,39 @@ async function fetchAPI(url, opts = {}) {
       ...(opts.headers || {})
     };
     const res = await fetch(API_BASE + url, { ...opts, headers });
-    if (res.status === 401) {
-      logout();
-      return null;
-    }
+    if (res.status === 401) { logout(); return null; }
     if (!res.ok) throw new Error(res.status);
     return await res.json();
-  } catch (e) {
-    return null;
-  }
+  } catch (e) { return null; }
 }
 
 async function refresh() {
   if (!authToken) return;
   const btn = document.getElementById('refreshBtn');
-  btn.classList.add('spinning');
-
+  btn.innerHTML = '<i class="fa-solid fa-rotate fa-spin"></i>';
   const search = document.getElementById('searchInput').value.trim();
   const [listData, stats] = await Promise.all([
-    fetchAPI(`/submissions?page=${currentPage}&limit=50${currentFilter ? '&form_type=' + currentFilter : ''}`),
+    fetchAPI('/submissions?page=' + currentPage + '&limit=50' + (currentFilter ? '&form_type=' + currentFilter : '')),
     fetchAPI('/stats')
   ]);
-
   if (stats) updateStats(stats);
-  if (listData) renderTable(listData.submissions, search), renderPagination(listData);
-
+  if (listData) { renderTable(listData.submissions, search); renderPagination(listData); }
   document.getElementById('lastRefresh').textContent = new Date().toLocaleTimeString('fr-FR');
-  setTimeout(() => btn.classList.remove('spinning'), 400);
+  btn.innerHTML = '<i class="fa-solid fa-rotate"></i> Actualiser';
 }
 
 function updateStats(stats) {
+  if (!stats) return;
   document.getElementById('statTotal').textContent = stats.total;
   document.getElementById('statUnread').textContent = stats.unread;
   document.getElementById('statToday').textContent = stats.today;
-  document.getElementById('statByType').textContent = stats.byType.map(t => `${t.form_type}: ${t.count}`).join(' | ');
+  document.getElementById('statByType').textContent = stats.byType.map(t => t.form_type + ': ' + t.count).join('  |  ');
 }
 
 function renderTable(submissions, search) {
   const tbody = document.getElementById('tableBody');
   if (!submissions || submissions.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><i class="ph ph-file-text"></i><br>Aucune soumission</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><i class="fa-solid fa-inbox"></i><p>Aucune soumission</p></td></tr>';
     return;
   }
   let filtered = submissions;
@@ -336,35 +394,30 @@ function renderTable(submissions, search) {
     });
   }
   if (filtered.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><i class="ph ph-magnifying-glass"></i><br>Aucun résultat</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><i class="fa-solid fa-magnifying-glass"></i><p>Aucun résultat</p></td></tr>';
     return;
   }
-  tbody.innerHTML = filtered.map(s => {
-    const badgeClass = `badge-${s.form_type}`;
-    const badgeLabel = s.form_type === 'contact' ? 'Contact' : s.form_type === 'devis' ? 'Devis' : 'Commande';
-    const date = new Date(s.created_at + 'Z').toLocaleString('fr-FR', {
-      day: '2-digit', month: '2-digit', year: 'numeric',
-      hour: '2-digit', minute: '2-digit'
-    });
-    return `<tr class="${s.read ? '' : 'unread'}" onclick="openDetail(${s.id})">
-      <td><span class="badge ${badgeClass}">${badgeLabel}</span></td>
-      <td>${esc(s.data?.name || s.data?.prenom || s.data?.nom || '—')}</td>
-      <td>${esc(s.data?.email || '—')}</td>
-      <td>${esc(s.data?.subject || s.data?.prestation || s.data?.packSelect || '—')}</td>
-      <td>${date}</td>
-      <td>${s.source ? `<span class="source-tag">${esc(s.source)}</span>` : '—'}</td>
-    </tr>`;
-  }).join('');
+  const labelMap = { contact: 'Contact', devis: 'Devis', order: 'Commande' };
+  tbody.innerHTML = filtered.map(s =>
+    '<tr class="' + (s.read ? '' : 'unread') + '" onclick="openDetail(' + s.id + ')">' +
+      '<td><span class="badge badge-' + s.form_type + '">' + labelMap[s.form_type] + '</span></td>' +
+      '<td>' + esc(s.data?.name || s.data?.prenom || s.data?.nom || '\u2014') + '</td>' +
+      '<td>' + esc(s.data?.email || '\u2014') + '</td>' +
+      '<td>' + esc(s.data?.subject || s.data?.prestation || s.data?.packSelect || '\u2014') + '</td>' +
+      '<td>' + formatDate(s.created_at) + '</td>' +
+      '<td>' + (s.source ? '<span class="source-tag">' + esc(s.source) + '</span>' : '\u2014') + '</td>' +
+    '</tr>'
+  ).join('');
 }
 
 function renderPagination(data) {
   const el = document.getElementById('pagination');
   if (data.totalPages <= 1) { el.innerHTML = ''; return; }
-  let html = `<button ${data.page <= 1 ? 'disabled' : ''} onclick="goPage(${data.page - 1})">◀</button>`;
+  let html = '<button ' + (data.page <= 1 ? 'disabled' : '') + ' onclick="goPage(' + (data.page - 1) + ')"><i class="fa-solid fa-chevron-left"></i></button>';
   for (let i = 1; i <= data.totalPages; i++) {
-    html += `<button class="${i === data.page ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+    html += '<button class="' + (i === data.page ? 'active' : '') + '" onclick="goPage(' + i + ')">' + i + '</button>';
   }
-  html += `<button ${data.page >= data.totalPages ? 'disabled' : ''} onclick="goPage(${data.page + 1})">▶</button>`;
+  html += '<button ' + (data.page >= data.totalPages ? 'disabled' : '') + ' onclick="goPage(' + (data.page + 1) + ')"><i class="fa-solid fa-chevron-right"></i></button>';
   el.innerHTML = html;
 }
 
@@ -380,12 +433,11 @@ function setFilter(btn) {
 
 async function openDetail(id) {
   currentId = id;
-  const data = await fetchAPI(`/submissions/${id}`);
+  const data = await fetchAPI('/submissions/' + id);
   if (!data) return;
 
-  const title = data.form_type === 'contact' ? 'Détail - Formulaire de contact'
-    : data.form_type === 'devis' ? 'Détail - Demande de devis' : 'Détail - Commande rapide';
-  document.getElementById('detailTitle').textContent = title;
+  const titles = { contact: 'Contact', devis: 'Devis', order: 'Commande rapide' };
+  document.getElementById('detailTitle').textContent = titles[data.form_type] || 'Détail';
 
   const fieldLabels = {
     name: 'Nom complet', prenom: 'Prénom', nom: 'Nom',
@@ -400,14 +452,11 @@ async function openDetail(id) {
     if (!val) continue;
     const label = fieldLabels[key] || key.charAt(0).toUpperCase() + key.slice(1);
     const full = key === 'message' || key === 'description';
-    html += `<div class="detail-field${full ? ' full' : ''}"><label>${label}</label><div class="value">${full ? '<pre>' + esc(val) + '</pre>' : esc(val)}</div></div>`;
+    html += '<div class="detail-field' + (full ? ' full' : '') + '"><label>' + label + '</label><div class="value">' + (full ? '<pre>' + esc(String(val)) + '</pre>' : esc(String(val))) + '</div></div>';
   }
-  document.getElementById('detailGrid').innerHTML = html;
+  document.getElementById('detailGrid').innerHTML = html || '<p style="color:var(--text-muted)">Aucune donnée</p>';
 
-  const date = new Date(data.created_at + 'Z').toLocaleString('fr-FR', {
-    day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
-  });
-  document.getElementById('detailMeta').textContent = `Soumis le ${date} · ${data.form_type}${data.source ? ' · Source : ' + data.source : ''}`;
+  document.getElementById('detailMeta').textContent = 'Soumis le ' + formatDate(data.created_at) + ' \u00b7 ' + titles[data.form_type] + (data.source ? ' \u00b7 Source: ' + data.source : '');
   document.getElementById('detailModal').classList.add('open');
 }
 
@@ -415,14 +464,15 @@ function closeDetail() { document.getElementById('detailModal').classList.remove
 
 async function deleteSubmission() {
   if (!currentId || !confirm('Supprimer cette soumission ?')) return;
-  await fetchAPI(`/submissions/${currentId}`, { method: 'DELETE' });
+  await fetchAPI('/submissions/' + currentId, { method: 'DELETE' });
   closeDetail();
   refresh();
 }
 
-async function exportCSV() {
+async function exportCSV(type) {
   try {
-    const res = await fetch(API_BASE + '/export', {
+    const qs = type ? '?type=' + type : '';
+    const res = await fetch(API_BASE + '/export' + qs, {
       headers: { 'Authorization': 'Bearer ' + authToken }
     });
     if (!res.ok) return;
@@ -430,33 +480,28 @@ async function exportCSV() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'pia-submissions.csv';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    a.download = type ? 'pia-submissions-' + type + '.csv' : 'pia-submissions-all.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
     URL.revokeObjectURL(url);
   } catch (e) {}
 }
 
-function showEmailModal() {
-  document.getElementById('emailTarget').value = '';
-  document.getElementById('emailStatus').className = 'email-status';
-  document.getElementById('emailStatus').textContent = '';
-  document.getElementById('sendEmailBtn').disabled = false;
-  document.getElementById('sendEmailBtn').textContent = 'Envoyer';
-  document.getElementById('emailModal').classList.add('open');
+async function refreshExportCounts() {
+  const stats = await fetchAPI('/stats');
+  if (!stats) return;
+  document.getElementById('countAll').textContent = stats.total + ' soumission' + (stats.total > 1 ? 's' : '');
+  stats.byType.forEach(t => {
+    const el = document.getElementById('count' + t.form_type.charAt(0).toUpperCase() + t.form_type.slice(1));
+    if (el) el.textContent = t.count + ' soumission' + (t.count > 1 ? 's' : '');
+  });
 }
-
-function closeEmailModal() { document.getElementById('emailModal').classList.remove('open'); }
 
 async function sendEmail() {
   const email = document.getElementById('emailTarget').value.trim();
   const btn = document.getElementById('sendEmailBtn');
   const status = document.getElementById('emailStatus');
-  btn.disabled = true;
-  btn.textContent = 'Envoi en cours...';
+  btn.disabled = true; btn.innerHTML = 'Envoi en cours... <i class="fa-solid fa-spinner fa-spin"></i>';
   status.className = 'email-status';
-
   try {
     const res = await fetch(API_BASE + '/export', {
       method: 'POST',
@@ -466,34 +511,31 @@ async function sendEmail() {
     const data = await res.json();
     if (data.success) {
       status.className = 'email-status success';
-      status.textContent = '✅ Envoyé à ' + data.sentTo + ' (' + data.total + ' soumissions)';
-      setTimeout(closeEmailModal, 2500);
+      status.textContent = 'Envoyé à ' + data.sentTo + ' (' + data.total + ' soumissions)';
     } else {
       status.className = 'email-status error';
-      status.textContent = '❌ ' + (data.error || 'Erreur inconnue');
+      status.textContent = data.error || 'Erreur inconnue';
     }
   } catch (e) {
     status.className = 'email-status error';
-    status.textContent = '❌ Erreur réseau';
+    status.textContent = 'Erreur réseau';
   }
-  btn.disabled = false;
-  btn.textContent = 'Envoyer';
+  btn.disabled = false; btn.innerHTML = 'Envoyer <i class="fa-solid fa-paper-plane"></i>';
 }
 
-document.getElementById('emailModal').addEventListener('click', e => {
-  if (e.target === document.getElementById('emailModal')) closeEmailModal();
-});
-
-function esc(str) { const div = document.createElement('div'); div.textContent = str; return div.innerHTML; }
+function esc(str) {
+  if (str == null) return '';
+  const d = document.createElement('div'); d.textContent = str; return d.innerHTML;
+}
 
 document.getElementById('detailModal').addEventListener('click', e => {
   if (e.target === document.getElementById('detailModal')) closeDetail();
 });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDetail(); closeEmailModal(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
 
 if (authToken) {
   document.getElementById('loginOverlay').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
+  document.getElementById('app').style.display = 'flex';
   init();
 }
 </script>
