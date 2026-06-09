@@ -7,5 +7,10 @@
     { "source": "/referencement-seo", "destination": "/service-referencement-seo" },
     { "source": "/refonte-site", "destination": "/service-refonte-site" },
     { "source": "/suivi-accompagnement", "destination": "/service-suivi-accompagnement" }
-  ]
+  ],
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
 }
