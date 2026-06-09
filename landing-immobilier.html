@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Immobilier Pro — Livré en 7 à 25 jours | Prime Impact Agency</title>
+<meta name="description" content="Sites WordPress sur-mesure pour agents immobiliers, optimisés Google, responsive — à partir de 150 €. Livraison rapide, assistance 30 jours.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;font-weight:400;color:#1c1c1e;background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.container{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
+.section{padding:80px 0}
+.section-light{background:#fff}
+.section-gray{background:#F7F7F7}
+
+h1,h2,h3,h4{font-family:'Poppins',sans-serif;font-weight:800;line-height:1.2;font-style:normal}
+h2{font-size:clamp(24px,3.2vw,32px);margin-bottom:8px}
+p{color:#6B7280;font-size:16px;line-height:1.7}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:60px 0;background:#fff;position:relative;overflow:hidden}
+.hero .container{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
+.hero-left{text-align:center}
+.hero-badge{display:inline-flex;align-items:center;background:#EEF3FF;color:#1B3A6B;font-size:12px;font-weight:600;padding:5px 14px;border-radius:0;margin-bottom:16px;letter-spacing:0.5px;text-transform:uppercase}
+.hero h1{font-size:clamp(32px,5vw,56px);color:#1B3A6B;margin-bottom:16px;font-weight:800}
+.hero h1 .highlight{color:#F5A623}
+.hero-sub{font-size:16px;color:#6B7280;max-width:520px;margin:0 auto 28px;line-height:1.6}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:#1B3A6B;color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:16px;padding:16px 32px;border-radius:8px;border:none;cursor:pointer;transition:background 0.2s;text-decoration:none}
+.hero-cta:hover{background:#15305a}
+.hero-stats{display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:24px;justify-content:center}
+.hero-stats span{font-size:14px;color:#6B7280;display:flex;align-items:center;gap:6px}
+.hero-stats .check{color:#22C55E;font-weight:700}
+
+.section-badge{display:inline-flex;align-items:center;background:#EEF3FF;color:#1B3A6B;font-size:11px;font-weight:600;padding:4px 12px;border-radius:0;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:14px}
+
+
+
+/* ── TECH BAR ── */
+.tech-bar{background:#F7F7F7;padding:16px 0}
+.tech-bar .container{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 16px}
+.tech-bar .label{font-size:13px;color:#6B7280;font-weight:500;white-space:nowrap}
+.tech-bar .tags{display:flex;flex-wrap:wrap;gap:8px}
+.tech-bar .tag{font-size:13px;color:#9CA3AF;font-weight:400}
+
+/* ── SECTIONS GENERIC ── */
+.section-title{text-align:center;margin-bottom:48px}
+.section-title h2{color:#1B3A6B;margin-bottom:8px}
+.section-title p{color:#6B7280;font-size:16px;max-width:600px;margin:0 auto}
+
+.section-sub{text-align:center;color:#6B7280;font-size:15px;max-width:620px;margin:0 auto 48px}
+
+/* ── PROBLEM CARDS ── */
+.problem-grid{display:grid;grid-template-columns:1fr;gap:20px}
+.problem-card{background:#fff;border-radius:12px;padding:28px;border-top:4px solid #1B3A6B;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+.problem-card .icon{font-size:28px;margin-bottom:12px}
+.problem-card h3{font-family:'Poppins',sans-serif;font-size:18px;font-weight:800;color:#1B3A6B;margin-bottom:6px;font-style:normal}
+.problem-card p{font-size:14px;color:#6B7280;line-height:1.6}
+
+/* ── SOLUTION GRID ── */
+.solution-grid{display:grid;grid-template-columns:1fr;gap:24px}
+.solution-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+.solution-card .icon-circle{width:48px;height:48px;background:#EEF3FF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+.solution-card h3{font-family:'Poppins',sans-serif;font-size:17px;font-weight:800;color:#1B3A6B;margin-bottom:6px;font-style:normal}
+.solution-card p{font-size:14px;color:#6B7280;line-height:1.6}
+
+/* ── ABOUT ── */
+.about-wrap{display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
+.about-text h3{font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;color:#1B3A6B;margin-bottom:16px;font-style:normal}
+.about-text p{font-size:15px;color:#6B7280;line-height:1.7;margin-bottom:12px}
+.about-text .about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+.about-text .about-stat{text-align:center;background:#F7F7F7;border-radius:12px;padding:20px 12px}
+.about-text .about-stat .val{font-family:'Poppins',sans-serif;font-size:28px;font-weight:800;color:#1B3A6B;font-style:normal}
+.about-text .about-stat .lbl{font-size:13px;color:#6B7280;margin-top:4px}
+
+/* ── PRICING ── */
+.pricing-scroll{display:grid;grid-template-columns:1fr;gap:20px}
+.pricing-card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,0.06);border:1px solid #e5e7eb;position:relative}
+.pricing-card.featured{border:2px solid #1B3A6B;box-shadow:0 4px 24px rgba(27,58,107,0.1)}
+.pricing-card.selected-pack{border-color:#F5A623;box-shadow:0 4px 24px rgba(245,166,35,0.15)}
+.pricing-card .badge-feat{display:inline-block;background:#1B3A6B;color:#fff;font-size:10px;font-weight:600;padding:4px 12px;border-radius:0;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px}
+.pricing-card .plan-name{font-family:'Poppins',sans-serif;font-size:16px;font-weight:800;color:#1B3A6B;margin-bottom:4px;font-style:normal}
+.pricing-card .price{font-family:'Poppins',sans-serif;font-size:32px;font-weight:800;color:#1B3A6B;margin:8px 0 4px;font-style:normal}
+.pricing-card .price small{font-size:16px;font-weight:400;color:#6B7280}
+.pricing-card .delay{font-size:13px;color:#F5A623;font-weight:600;margin-bottom:12px}
+.pricing-card .desc{font-size:13px;color:#6B7280;margin-bottom:16px;line-height:1.5}
+.pricing-card ul{list-style:none;padding:0;margin-bottom:20px}
+.pricing-card ul li{font-size:13px;color:#374151;padding:4px 0;display:flex;align-items:center;gap:6px}
+.pricing-card ul li::before{content:"✓";color:#22C55E;font-weight:700}
+.pricing-card .btn-outline,.pricing-card .btn-full{display:block;width:100%;text-align:center;padding:12px;border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;border:none}
+.pricing-card .btn-outline{background:transparent;border:2px solid #F5A623;color:#F5A623}
+.pricing-card .btn-outline:hover{background:#F5A623;color:#fff}
+.pricing-card .btn-full{background:#1B3A6B;color:#fff}
+.pricing-card .btn-full:hover{background:#15305a}
+
+/* ── PROCESS ── */
+.process-wrap{position:relative}
+.process-grid{display:flex;flex-direction:column;gap:32px}
+.process-step{display:flex;align-items:flex-start;gap:16px;position:relative}
+.process-step:not(:last-child){padding-bottom:32px}
+.process-step:not(:last-child)::before{content:'';position:absolute;left:21px;top:44px;bottom:0;width:2px;background:repeating-linear-gradient(to bottom,#1B3A6B 0,#1B3A6B 6px,transparent 6px,transparent 10px)}
+.process-step .num{width:44px;height:44px;min-width:44px;background:#EEF3FF;color:#1B3A6B;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:18px;position:relative;z-index:1}
+.process-step .content h4{font-family:'Poppins',sans-serif;font-size:16px;font-weight:800;color:#1B3A6B;margin-bottom:2px;font-style:normal}
+.process-step .content p{font-size:14px;color:#6B7280}
+
+/* ── TESTIMONIALS ── */
+.testi-scroll{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;-webkit-overflow-scrolling:touch}
+.testi-scroll::-webkit-scrollbar{height:6px}
+.testi-scroll::-webkit-scrollbar-track{background:#f0f0f0;border-radius:3px}
+.testi-scroll::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
+.testi-card{flex:0 0 300px;scroll-snap-align:start;background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,0.06);border:1px solid #e5e7eb}
+.testi-card .stars{color:#F5A623;font-size:16px;margin-bottom:12px;letter-spacing:2px}
+.testi-card blockquote{font-size:14px;color:#374151;line-height:1.7;margin-bottom:16px;font-style:normal}
+.testi-card .author{font-size:13px;color:#6B7280;font-weight:500}
+
+/* ── FAQ (fond bleu) ── */
+.faq-blue{background:#1B3A6B;padding:80px 0}
+.faq-blue .section-title h2{color:#fff}
+.faq-blue .section-title p{color:rgba(255,255,255,0.7)}
+.faq-blue .faq-item{border-bottom:1px solid rgba(255,255,255,0.15)}
+.faq-blue .faq-question{color:rgba(255,255,255,0.9)}
+.faq-blue .faq-question:hover{color:#fff}
+.faq-blue .faq-question .icon{color:#F5A623}
+.faq-blue .faq-answer p{color:rgba(255,255,255,0.7)}
+.faq-item{border-bottom:1px solid #e5e7eb}
+.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 0;background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:#1c1c1e;text-align:left;gap:12px}
+.faq-question .icon{font-size:18px;transition:transform 0.2s;min-width:20px}
+.faq-item.open .faq-question .icon{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease;padding:0}
+.faq-item.open .faq-answer{max-height:300px;padding:0 0 20px}
+.faq-answer p{font-size:14px;color:#6B7280;line-height:1.7}
+
+/* ── CONTACT / FORM ── */
+.contact-section{background:#1B3A6B;padding:80px 0}
+.contact-section .container{display:grid;grid-template-columns:1fr;gap:40px}
+.contact-left{color:#fff}
+.contact-left h2{color:#fff;font-size:clamp(28px,4vw,36px);margin-bottom:12px}
+.contact-left .sub{color:rgba(255,255,255,0.8);font-size:16px;margin-bottom:24px;line-height:1.6}
+.contact-left .reassurance{display:flex;flex-direction:column;gap:12px}
+.contact-left .reassurance span{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,0.85)}
+.contact-left .reassurance .check{color:#22C55E;font-weight:700}
+.contact-left .trust-counter{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.15)}
+.contact-left .trust-counter .big{font-family:'Poppins',sans-serif;font-size:32px;font-weight:800;color:#F5A623;font-style:normal}
+.contact-left .trust-counter .lbl{font-size:13px;color:rgba(255,255,255,0.7)}
+.contact-left .testi-mini-slider{position:relative;margin-top:20px;min-height:90px}
+.contact-left .testi-mini-slide{position:absolute;top:0;left:0;width:100%;opacity:0;transition:opacity 0.6s ease;pointer-events:none;padding:14px;background:rgba(255,255,255,0.06);border-left:3px solid #F5A623;border-radius:4px}
+.contact-left .testi-mini-slide.active{opacity:1;pointer-events:auto;position:relative}
+.contact-left .testi-mini-slide blockquote{font-size:13px;color:rgba(255,255,255,0.85);line-height:1.6;font-style:normal;margin-bottom:6px}
+.contact-left .testi-mini-slide .author{font-size:12px;color:rgba(255,255,255,0.5)}
+.contact-left .testi-mini-slide .stars{color:#F5A623;font-size:12px;margin-bottom:4px;letter-spacing:1px}
+.contact-left .testi-mini-dots{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.contact-left .testi-mini-dots button{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,0.25);cursor:pointer;padding:0;transition:background 0.3s}
+.contact-left .testi-mini-dots button.active{background:#F5A623}
+
+.contact-form-wrap{background:#fff;border-radius:16px;padding:28px;box-shadow:0 8px 32px rgba(0,0,0,0.1)}
+.contact-form-wrap .form-title{font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;color:#1B3A6B;margin-bottom:4px;font-style:normal}
+.contact-form-wrap .form-sub{font-size:14px;color:#6B7280;margin-bottom:24px}
+.contact-form-wrap .form-group{margin-bottom:16px}
+.contact-form-wrap label{display:block;font-size:13px;font-weight:500;color:#374151;margin-bottom:4px}
+.contact-form-wrap input,.contact-form-wrap select{width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:8px;font-family:'Inter',sans-serif;font-size:15px;color:#1c1c1e;background:#fff;transition:border-color 0.2s;outline:none}
+.contact-form-wrap input:focus,.contact-form-wrap select:focus{border-color:#1B3A6B;box-shadow:0 0 0 3px rgba(27,58,107,0.08)}
+.contact-form-wrap .btn-submit{width:100%;height:50px;background:#1B3A6B;color:#fff;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:16px;font-weight:600;cursor:pointer;transition:background 0.2s;margin-top:4px}
+.contact-form-wrap .btn-submit:hover{background:#15305a}
+.contact-form-wrap .btn-submit:disabled{opacity:0.6;cursor:not-allowed}
+.contact-form-wrap .footnote{text-align:center;font-size:12px;color:#9CA3AF;margin-top:12px}
+.contact-form-wrap .form-guarantee{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;font-size:12px;color:#22C55E;font-weight:500}
+.contact-form-wrap .success-msg{display:none;text-align:center;padding:20px}
+.contact-form-wrap .success-msg .check-big{font-size:48px;margin-bottom:12px}
+.contact-form-wrap .success-msg h3{font-family:'Poppins',sans-serif;font-size:20px;color:#1B3A6B;margin-bottom:6px;font-style:normal}
+.contact-form-wrap .success-msg p{font-size:14px;color:#6B7280}
+
+/* ── COUNTDOWN MODAL ── */
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.modal-overlay.active{display:flex}
+.modal-box{background:#fff;border-radius:16px;padding:40px 32px;max-width:420px;width:100%;text-align:center;box-shadow:0 16px 48px rgba(0,0,0,0.15)}
+.modal-box .icon{font-size:48px;margin-bottom:12px}
+.modal-box h3{font-family:'Poppins',sans-serif;font-size:20px;font-weight:800;color:#1B3A6B;margin-bottom:8px;font-style:normal}
+.modal-box p{font-size:14px;color:#6B7280;margin-bottom:20px;line-height:1.6}
+.modal-box .countdown{font-family:'Poppins',sans-serif;font-size:48px;font-weight:800;color:#F5A623;margin-bottom:8px;font-style:normal}
+.modal-box .countdown-label{font-size:13px;color:#9CA3AF}
+.modal-box .btn-skip{display:inline-block;margin-top:16px;padding:10px 24px;background:#F7F7F7;color:#374151;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;cursor:pointer;transition:background 0.2s}
+.modal-box .btn-skip:hover{background:#e5e7eb}
+
+/* ── FOOTER ── */
+.footer{background:#0D1B35;padding:40px 0;text-align:center}
+.footer .brand{font-family:'Poppins',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:8px;font-style:normal}
+.footer .brand span{color:#F5A623}
+.footer p{font-size:13px;color:#9CA3AF;margin-bottom:12px}
+.footer .links{display:flex;justify-content:center;gap:20px;font-size:13px}
+.footer .links a{color:#9CA3AF;transition:color 0.2s}
+.footer .links a:hover{color:#fff}
+
+/* ── RESPONSIVE ── */
+@media(min-width:500px){
+  .pricing-scroll{grid-template-columns:repeat(2,1fr)}
+}
+@media(min-width:640px){
+  .problem-grid{grid-template-columns:repeat(2,1fr)}
+  .solution-grid{grid-template-columns:repeat(2,1fr)}
+  .about-text .about-stats{grid-template-columns:repeat(4,1fr)}
+}
+@media(min-width:900px){
+  .hero .container{grid-template-columns:1fr;gap:0;max-width:720px}
+  .hero-left{text-align:center}
+  .hero-sub{margin:0 auto 28px}
+  .hero h1{font-size:clamp(36px,4vw,48px)}
+  .hero-stats{justify-content:center}
+  .problem-grid{grid-template-columns:repeat(3,1fr)}
+  .solution-grid{grid-template-columns:repeat(2,1fr)}
+  .process-wrap{overflow:hidden}
+  .process-grid{flex-direction:row;gap:0;justify-content:space-between}
+  .process-step{flex-direction:column;flex:1;text-align:center;padding:0!important}
+  .process-step::before{display:none!important}
+  .process-step .num{margin:0 auto 20px;width:52px;height:52px;min-width:52px;font-size:20px}
+  .process-step .content h4{font-size:17px}
+  .process-line{display:block;position:absolute;top:26px;left:calc(50% + 26px);right:calc(50% + 26px);height:2px;background:repeating-linear-gradient(to right,#1B3A6B 0,#1B3A6B 8px,transparent 8px,transparent 12px);z-index:0}
+  .about-wrap{grid-template-columns:1fr 1fr;gap:60px}
+  .contact-section .container{grid-template-columns:1fr 1fr;align-items:center}
+  .contact-form-wrap{padding:36px}
+  .pricing-scroll{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;overflow:visible}
+  .pricing-card{flex:none;width:auto}
+  .testi-scroll{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;overflow:visible}
+  .testi-card{flex:none;width:auto}
+  .section{padding:100px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-left">
+      <div class="hero-badge">Spécialiste WordPress Immobilier</div>
+      <h1>Votre site immobilier <span class="highlight">professionnel</span>, livré en 7 à 25 jours.</h1>
+      <p class="hero-sub">Des sites WordPress sur-mesure, optimisés Google et conçus pour convertir — à partir de 150 €. Sans agence à 3 000 €.</p>
+      <a href="#offres" class="hero-cta">Démarrer mon projet gratuitement →</a>
+      <div class="hero-stats">
+        <span><span class="check">✓</span> Livraison en 7 jours minimum</span>
+        <span><span class="check">✓</span> 30 jours d'assistance incluse</span>
+        <span><span class="check">✓</span> 3 retouches offertes</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ TECH BAR ══ -->
+<section class="tech-bar">
+  <div class="container">
+    <span class="label">Technologies utilisées :</span>
+    <div class="tags">
+      <span class="tag">WordPress</span><span class="tag">·</span>
+      <span class="tag">Elementor</span><span class="tag">·</span>
+      <span class="tag">Google Maps</span><span class="tag">·</span>
+      <span class="tag">Yoast SEO</span><span class="tag">·</span>
+      <span class="tag">SSL/HTTPS</span><span class="tag">·</span>
+      <span class="tag">WooCommerce</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROBLEME ══ -->
+<section class="section section-light" id="probleme">
+  <div class="container">
+    <div class="section-title">
+      <div class="section-badge">Le constat</div>
+      <h2>Vous perdez des clients — sans le savoir</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="icon">📌</div>
+        <h3>Dépendance aux portails</h3>
+        <p>SeLoger vous coûte cher. Vous ne maîtrisez rien.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">💤</div>
+        <h3>Site qui ne convertit pas</h3>
+        <p>Vos visiteurs repartent sans vous contacter.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">💸</div>
+        <h3>Agence locale trop chère</h3>
+        <p>1 500 à 5 000 € pour un site. Inaccessible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ QUI SOMMES-NOUS ══ -->
+<section class="section section-gray" id="about">
+  <div class="container">
+    <div class="section-title">
+      <div class="section-badge">Qui sommes-nous</div>
+      <h2>Pourquoi PIA ?</h2>
+      <p>On livre des sites qui rapportent — pas des templates qu'on oublie.</p>
+    </div>
+    <div class="about-wrap">
+      <div class="about-text">
+        <p>Pas de commerciaux, pas de showroom, pas de frais d'agence. Un modèle 100% digital qui vous fait économiser 70 % sans sacrifier la qualité.</p>
+        <p><strong>Vous bossez avec le même développeur du brief à la mise en ligne.</strong> Pas d'intermédiaire, pas de perte de temps.</p>
+        <div class="about-stats">
+          <div class="about-stat"><div class="val">25+</div><div class="lbl">Sites livrés</div></div>
+          <div class="about-stat"><div class="val">4.9</div><div class="lbl">Note moyenne</div></div>
+          <div class="about-stat"><div class="val">30j</div><div class="lbl">Assistance</div></div>
+          <div class="about-stat"><div class="val">-70%</div><div class="lbl">vs agence locale</div></div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>Le résultat : un site pro, optimisé Google, livré en 7 à 25 jours. <strong>Vous payez 50 % au lancement, le solde à la livraison</strong> — une fois satisfait uniquement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTION ══ -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-title">
+      <div class="section-badge">Nos garanties</div>
+      <h2>Ce que chaque site inclut</h2>
+    </div>
+    <div class="solution-grid">
+      <div class="solution-card">
+        <div class="icon-circle">🎨</div>
+        <h3>Design sur-mesure</h3>
+        <p>Votre identité, vos couleurs, votre marché. Rien de générique.</p>
+      </div>
+      <div class="solution-card">
+        <div class="icon-circle">📈</div>
+        <h3>Optimisé pour Google</h3>
+        <p>Articles SEO, balises, vitesse — pour que vos clients vous trouvent.</p>
+      </div>
+      <div class="solution-card">
+        <div class="icon-circle">📱</div>
+        <h3>100% mobile responsive</h3>
+        <p>60% de vos visiteurs sont sur téléphone. Votre site s'adapte.</p>
+      </div>
+      <div class="solution-card">
+        <div class="icon-circle">🛡️</div>
+        <h3>Assistance 30 jours</h3>
+        <p>Je reste disponible après la mise en ligne. Vous n'êtes jamais seul.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OFFRES ══ -->
+<section class="section section-light" id="offres">
+  <div class="container">
+    <div class="section-title">
+      <div class="section-badge">Nos offres</div>
+      <h2>Un site pour chaque besoin</h2>
+      <p>Agent indépendant, propriétaire ou agence — une solution taillée pour vous.</p>
+    </div>
+    <div class="pricing-scroll">
+      <div class="pricing-card" data-pack="Site Vitrine — 150 €">
+        <div class="plan-name">Site Vitrine</div>
+        <div class="price">150 € <small>HT</small></div>
+        <div class="delay">⏱ 7 jours</div>
+        <p class="desc">Une page percutante pour être trouvé et contacté.</p>
+        <ul>
+          <li>Design responsive</li>
+          <li>Formulaire de contact</li>
+          <li>SSL inclus</li>
+          <li>Assistance 30j</li>
+        </ul>
+        <button class="btn-outline select-pack">Discutons-en</button>
+      </div>
+      <div class="pricing-card featured" data-pack="Agent Indépendant — 475 €">
+        <div class="badge-feat">Le plus demandé</div>
+        <div class="plan-name">Agent Indépendant</div>
+        <div class="price">475 € <small>HT</small></div>
+        <div class="delay">⏱ 15 jours</div>
+        <p class="desc">Attirer des clients depuis Google sans dépendre des portails.</p>
+        <ul>
+          <li>7 pages clés</li>
+          <li>10 annonces + carte Google Maps</li>
+          <li>3 articles SEO</li>
+          <li>Site bilingue FR/EN</li>
+          <li>Prise de RDV intégrée</li>
+        </ul>
+        <button class="btn-full select-pack">Discutons-en</button>
+      </div>
+      <div class="pricing-card" data-pack="Location Saisonnière — 420 €">
+        <div class="plan-name">Location Saisonnière</div>
+        <div class="price">420 € <small>HT</small></div>
+        <div class="delay">⏱ 15 jours</div>
+        <p class="desc">Louez votre bien en direct avec réservation et paiement en ligne.</p>
+        <ul>
+          <li>Réservation en ligne</li>
+          <li>Paiement CB/PayPal</li>
+          <li>Calendrier de dispo</li>
+          <li>3 articles SEO</li>
+        </ul>
+        <button class="btn-outline select-pack">Discutons-en</button>
+      </div>
+      <div class="pricing-card" data-pack="Marketplace Multi-Agents — 770 €">
+        <div class="plan-name">Marketplace Multi-Agents</div>
+        <div class="price">770 € <small>HT</small></div>
+        <div class="delay">⏱ 25 jours</div>
+        <p class="desc">Plateforme complète pour agences avec abonnements et CRM intégré.</p>
+        <ul>
+          <li>Espaces membres</li>
+          <li>Abonnements automatisés</li>
+          <li>CRM interne</li>
+          <li>Statistiques</li>
+        </ul>
+        <button class="btn-outline select-pack">Discutons-en</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESSUS ══ -->
+<section class="section section-gray">
+  <div class="container">
+    <div class="section-title">
+      <div class="section-badge">Le processus</div>
+      <h2>Comment ça se passe</h2>
+    </div>
+    <div class="process-wrap">
+      <div class="process-line"></div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="num">1</div>
+          <div class="content">
+            <h4>Échange gratuit</h4>
+            <p>On discute de votre projet. Sans engagement.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="num">2</div>
+          <div class="content">
+            <h4>Conception sur-mesure</h4>
+            <p>Design, contenu, fonctionnalités créés pour vous.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="num">3</div>
+          <div class="content">
+            <h4>Validation & retouches</h4>
+            <p>3 séries de retouches incluses, jusqu'à votre satisfaction.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="num">4</div>
+          <div class="content">
+            <h4>Mise en ligne & formation</h4>
+            <p>Site en ligne + mini-formation pour gérer seul.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TEMOIGNAGES ══ -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-title">
+      <div class="section-badge">Témoignages</div>
+      <h2>Ils nous font confiance</h2>
+    </div>
+    <div class="testi-scroll">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>Mon site a été livré en 12 jours. Dès le premier mois, 4 demandes de visite directement depuis le formulaire. Bluffant pour ce prix.</blockquote>
+        <div class="author">Marc D. — Agent immobilier indépendant, Lyon</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>J'avais un devis à 2 200 € d'une agence locale. Le résultat est identique et j'ai économisé 1 700 €. Communication parfaite du début à la fin.</blockquote>
+        <div class="author">Sophie M. — Propriétaire location saisonnière, Bordeaux</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>Site rapide, bien référencé et que je gère seul. Le rapport qualité-prix est imbattable. Je recommande sans hésiter.</blockquote>
+        <div class="author">Karim A. — Agence immobilière, Paris</div>
+      </div>
+    </div>
+    <!-- TEMOIGNAGES A REMPLACER PAR LES VRAIS CLIENTS -->
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="faq-blue" id="faq">
+  <div class="container">
+    <div class="section-title">
+      <div class="section-badge" style="background:rgba(255,255,255,0.12);color:#fff">FAQ</div>
+      <h2 style="color:#fff">Vos questions — nos réponses</h2>
+    </div>
+    <div style="max-width:700px;margin:0 auto">
+      <div class="faq-item">
+        <button class="faq-question">Je n'ai pas de nom de domaine ni d'hébergement, c'est un problème ?<span class="icon">+</span></button>
+        <div class="faq-answer"><p>Aucun problème. Je vous guide pour choisir l'hébergeur adapté à votre budget et m'occupe de toute l'installation technique.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Comment se passe le paiement depuis la France ?<span class="icon">+</span></button>
+        <div class="faq-answer"><p>Via PayPal ou Wise. 50% au démarrage, 50% à la livraison. Aucun frais caché.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Que se passe-t-il après les 30 jours d'assistance ?<span class="icon">+</span></button>
+        <div class="faq-answer"><p>Votre site vous appartient entièrement. Je vous forme pour le gérer seul. Un accompagnement mensuel est disponible si besoin.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">J'ai déjà un site mais il est vieux. Vous faites la refonte ?<span class="icon">+</span></button>
+        <div class="faq-answer"><p>Oui. Refonte complète avec ou sans SEO selon vos besoins. On en discute lors du premier échange gratuit.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Combien d'annonces puis-je publier ?<span class="icon">+</span></button>
+        <div class="faq-answer"><p>10 annonces intégrées au démarrage. Après livraison, vous en ajoutez vous-même sans limite ni frais supplémentaire.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FORMULAIRE ══ -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-left">
+      <h2>Discutons de votre projet</h2>
+      <p class="sub">Laissez vos coordonnées — je vous contacte personnellement sous 24h pour un échange gratuit.</p>
+      <div class="reassurance">
+        <span><span class="check">✓</span> 100% gratuit et sans engagement</span>
+        <span><span class="check">✓</span> Vous ne payez rien avant d'échanger sur vos besoins</span>
+        <span><span class="check">✓</span> Réponse personnalisée sous 24h</span>
+        <span><span class="check">✓</span> Satisfait ou on retravaille ensemble</span>
+      </div>
+      <div class="trust-counter">
+        <span class="big">25+</span> <span class="lbl">agents immobiliers nous ont déjà fait confiance</span>
+      </div>
+      <div class="testi-mini-slider" id="testiMiniSlider">
+        <div class="testi-mini-slide active">
+          <div class="stars">★★★★★</div>
+          <blockquote>Livré en 12 jours. 4 demandes de visite dès le 1er mois. Bluffant.</blockquote>
+          <div class="author">Marc D. — Agent, Lyon</div>
+        </div>
+        <div class="testi-mini-slide">
+          <div class="stars">★★★★★</div>
+          <blockquote>Économisé 1 700 € vs une agence locale. Résultat identique.</blockquote>
+          <div class="author">Sophie M. — Location saisonnière, Bordeaux</div>
+        </div>
+        <div class="testi-mini-slide">
+          <div class="stars">★★★★★</div>
+          <blockquote>Site rapide, bien référencé, je le gère seul. Rapport qualité-prix imbattable.</blockquote>
+          <div class="author">Karim A. — Agence, Paris</div>
+        </div>
+        <div class="testi-mini-dots" id="testiMiniDots"></div>
+      </div>
+    </div>
+    <div class="contact-form-wrap">
+      <div id="form-view">
+        <div class="form-title">Je vous réponds le plus rapidement possible</div>
+        <p class="form-sub">On échange sur WhatsApp autour de votre projet — sans engagement.</p>
+        <form id="landingForm" novalidate>
+          <div class="form-group">
+            <label for="name">Prénom et nom *</label>
+            <input type="text" id="name" name="name" placeholder="ex : Sophie Martin" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Adresse e-mail *</label>
+            <input type="email" id="email" name="email" placeholder="sophie@exemple.com" required>
+          </div>
+          <div class="form-group">
+            <label for="packSelect">Pack souhaité</label>
+            <select id="packSelect" name="pack">
+              <option value="Je ne sais pas encore">Je ne sais pas encore — on en discute</option>
+              <option value="Site Vitrine — 150 €">Site Vitrine — 150 €</option>
+              <option value="Agent Indépendant — 475 €">Agent Indépendant — 475 €</option>
+              <option value="Location Saisonnière — 420 €">Location Saisonnière — 420 €</option>
+              <option value="Marketplace Multi-Agents — 770 €">Marketplace Multi-Agents — 770 €</option>
+            </select>
+          </div>
+          <input type="hidden" id="selectedPack" name="pack_hidden" value="Je ne sais pas encore">
+          <button type="submit" class="btn-submit">Envoyer et discuter sur WhatsApp →</button>
+          <div class="form-guarantee">✓ 100% gratuit — paiement uniquement si le projet est validé ensemble</div>
+          <p class="footnote">🔒 Vos données sont confidentielles. Aucun spam.</p>
+        </form>
+      </div>
+      <div class="success-msg" id="success-msg">
+        <div class="check-big">✓</div>
+        <h3 id="success-title">Merci !</h3>
+        <p id="success-text">Je vous contacte dans les 24h.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MODAL REDIRECTION WHATSAPP ══ -->
+<div class="modal-overlay" id="waModal">
+  <div class="modal-box">
+    <div class="icon">📲</div>
+    <h3>Direction WhatsApp</h3>
+    <p>Vous allez être redirigé vers WhatsApp pour échanger sur votre projet. Si tout vous convient, on lance les travaux.</p>
+    <div class="countdown" id="countdownNum">5</div>
+    <div class="countdown-label">secondes</div>
+    <button class="btn-skip" id="skipRedirect">Rediriger maintenant</button>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="brand">Prime<span>Impact</span> Agency</div>
+    <p>© 2025 Prime Impact Agency · Tous droits réservés</p>
+    <div class="links">
+      <a href="/mentions-legales">Mentions légales</a>
+      <a href="/politique-confidentialite">Politique de confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var WA_NUMBER = '22993288212';
+
+  // FAQ Accordéon
+  document.querySelectorAll('.faq-question').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=this.closest('.faq-item');
+      var isOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open')});
+      if(!isOpen)item.classList.add('open');
+    });
+  });
+
+  // Mini témoignages slider (auto-rotation)
+  (function(){
+    var slider=document.getElementById('testiMiniSlider');
+    if(!slider)return;
+    var slides=slider.querySelectorAll('.testi-mini-slide');
+    var dotsContainer=document.getElementById('testiMiniDots');
+    if(!slides.length)return;
+    var current=0;
+    var timer;
+    function goTo(i){
+      slides.forEach(function(s){s.classList.remove('active')});
+      slides[i].classList.add('active');
+      if(dotsContainer){
+        dotsContainer.querySelectorAll('button').forEach(function(b,j){b.classList.toggle('active',j===i)});
+      }
+      current=i;
+      resetTimer();
+    }
+    function next(){goTo((current+1)%slides.length);}
+    function resetTimer(){
+      clearInterval(timer);
+      timer=setInterval(next,4000);
+    }
+    // Créer les dots
+    if(dotsContainer){
+      for(var i=0;i<slides.length;i++){
+        var btn=document.createElement('button');
+        if(i===0)btn.classList.add('active');
+        (function(idx){btn.onclick=function(){goTo(idx);}})(i);
+        dotsContainer.appendChild(btn);
+      }
+    }
+    resetTimer();
+  })();
+
+  // Sélection d'un pack depuis les cartes pricing
+  var packSelect = document.getElementById('packSelect');
+  var packInput = document.getElementById('selectedPack');
+  var formSection = document.getElementById('contact');
+
+  document.querySelectorAll('.select-pack').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card = this.closest('.pricing-card');
+      var pack = card.getAttribute('data-pack');
+      if(packSelect) packSelect.value = pack;
+      if(packInput) packInput.value = pack;
+
+      // Marquer la carte sélectionnée visuellement
+      document.querySelectorAll('.pricing-card.selected-pack').forEach(function(c){c.classList.remove('selected-pack')});
+      card.classList.add('selected-pack');
+
+      // Scroller vers le formulaire
+      if(formSection){
+        formSection.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  });
+
+  // Sync select → hidden input
+  if(packSelect && packInput){
+    packSelect.addEventListener('change',function(){
+      packInput.value = this.value;
+    });
+  }
+
+  // Formulaire
+  var form=document.getElementById('landingForm');
+  var formView=document.getElementById('form-view');
+  var successView=document.getElementById('success-msg');
+  var modalOverlay=document.getElementById('waModal');
+  var countdownEl=document.getElementById('countdownNum');
+  var skipBtn=document.getElementById('skipRedirect');
+  var redirectTimer=null;
+  var countdownValue=5;
+
+  if(!form)return;
+
+  function buildWaMessage(data,pack){
+    var lines=[];
+    lines.push('Bonjour PIA ! Je suis int\u00e9ress\u00e9(e) par le pack suivant :');
+    lines.push('');
+    if(pack) lines.push('📦 Pack : '+pack);
+    lines.push('👤 Nom : '+data.name);
+    lines.push('📧 Email : '+data.email);
+    lines.push('');
+    lines.push('Merci !');
+    return encodeURIComponent(lines.join('\n'));
+  }
+
+  function startRedirect(data,pack){
+    modalOverlay.classList.add('active');
+    countdownValue=5;
+    countdownEl.textContent=countdownValue;
+
+    var waMsg=buildWaMessage(data,pack);
+    var waUrl='https://wa.me/'+WA_NUMBER+'?text='+waMsg;
+
+    function doRedirect(){
+      clearInterval(redirectTimer);
+      window.open(waUrl,'_blank');
+      modalOverlay.classList.remove('active');
+    }
+
+    redirectTimer=setInterval(function(){
+      countdownValue--;
+      countdownEl.textContent=countdownValue;
+      if(countdownValue<=0){
+        doRedirect();
+      }
+    },1000);
+
+    skipBtn.onclick=function(){
+      doRedirect();
+    };
+  }
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+
+    var submitBtn=form.querySelector('.btn-submit');
+    submitBtn.textContent='Envoi...';
+    submitBtn.disabled=true;
+
+    var packVal = packInput ? packInput.value : 'Je ne sais pas encore';
+    var data={
+      name:form.name.value.trim(),
+      email:form.email.value.trim(),
+      pack:packVal
+    };
+
+    // Envoyer à l'admin
+    fetch('/api/submissions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({form_type:'landing',data:data,source:'facebook'})
+    })
+    .then(function(r){return r.json()})
+    .catch(function(){})
+    .finally(function(){
+      formView.style.display='none';
+      document.getElementById('success-title').textContent='Merci '+data.name.split(' ')[0]+' !';
+      successView.style.display='block';
+      // Lancer la redirection WhatsApp avec décompte
+      startRedirect(data,packVal);
+    });
+  });
+})();
+</script>
+</body>
+</html>

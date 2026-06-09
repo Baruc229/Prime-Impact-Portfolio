@@ -1,0 +1,143 @@
+/* ============================================================
+   STYLE-V2.CSS — Prime Impact Agency
+   Nouveau design system (clair, moderne, épuré)
+   Surcharge style.css — chargé après
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root{--font-main:'Inter',sans-serif;--font-heading:'Poppins',sans-serif}
+
+/* ── THEME OVERRIDE ── */
+[data-theme="light"]{
+  --bg-main:#fff;
+  --bg-secondary:#F7F7F7;
+  --bg-tertiary:#e5e7eb;
+  --text-main:#1c1c1e;
+  --text-muted:#6B7280;
+  --accent-blue:#1B3A6B;
+  --accent-gold:#F5A623;
+  --border-color:rgba(0,0,0,0.06);
+  --shadow-soft:0 2px 12px rgba(0,0,0,0.04);
+  --shadow-heavy:0 4px 24px rgba(27,58,107,0.1);
+  --radius-sm:8px;
+  --radius-md:16px;
+  --glass-bg:#fff;
+  --glass-bg-solid:#fff;
+  --bg-card-warm:#fff;
+}
+[data-theme="dark"]{--bg-main:#fff;--bg-secondary:#F7F7F7;--bg-tertiary:#e5e7eb;--text-main:#1c1c1e;--text-muted:#6B7280;--accent-blue:#1B3A6B;--accent-gold:#F5A623;--border-color:rgba(0,0,0,0.06);--shadow-soft:0 2px 12px rgba(0,0,0,0.04);--shadow-heavy:0 4px 24px rgba(27,58,107,0.1);--glass-bg:#fff;--glass-bg-solid:#fff;--bg-card-warm:#fff}
+html:not([data-theme]){--bg-main:#fff;--bg-secondary:#F7F7F7;--text-main:#1c1c1e;--text-muted:#6B7280;--accent-blue:#1B3A6B;--accent-gold:#F5A623}
+
+/* ── BASE ── */
+body{font-family:var(--font-main);font-size:16px;background:#fff!important;color:#1c1c1e;opacity:1!important}
+h1,h2,h3,h4,.hero-title,.hero-line,.step-title,.pack-name,.footer-brand h3,.form-label{font-family:var(--font-heading)!important;font-weight:800!important;font-style:normal!important}
+p,li,blockquote,.hero-desc,.step-desc,.testimonial-text,.faq-question{font-style:normal!important}
+
+/* ── HIDE CUSTOM CURSOR ── */
+.custom-cursor,.custom-cursor-dot,.cursor-follower{display:none!important}
+
+/* ── HIDE NOISE OVERLAY ── */
+.noise-overlay{display:none!important}
+
+/* ── NAVBAR ── */
+.navbar{background:#fff!important;border-bottom:1px solid var(--border-color)!important}
+.navbar.scrolled{background:#fff!important;box-shadow:0 2px 16px rgba(0,0,0,0.06)!important}
+.nav-links a,.nav-mega-trigger{font-family:var(--font-main)!important}
+.nav-links a:hover,.nav-mega-trigger:hover{color:var(--accent-blue)!important}
+
+/* ── HERO ── */
+.hero-section{background:#fff!important;padding:140px 0 80px}
+.hero-badge{background:#EEF3FF!important;color:var(--accent-blue)!important;border-radius:0!important;padding:5px 14px;font-size:12px;letter-spacing:0.5px}
+.hero-line-sm{color:var(--accent-blue)!important;letter-spacing:-0.5px}
+.hero-rotator-wrapper{color:var(--accent-gold)!important;letter-spacing:-0.5px}
+.hero-actions .btn{padding:14px 28px;font-size:15px}
+.hero-google-badge{border-radius:0!important}
+.services-slide{border-radius:0!important;font-family:var(--font-main)!important}
+.services-slide.active{background:var(--accent-blue)!important;color:#fff!important;border-color:var(--accent-blue)!important}
+
+/* ── BUTTONS ── */
+.btn{font-family:var(--font-main)!important;text-transform:none!important;letter-spacing:0!important;border-radius:8px!important}
+.btn-primary{background:var(--accent-blue)!important;border-color:var(--accent-blue)!important;color:#fff!important;box-shadow:none!important}
+.btn-primary:hover{background:#15305a!important;border-color:#15305a!important;color:#fff!important}
+.btn-secondary{border-color:var(--accent-gold)!important;color:var(--accent-gold)!important;background:transparent!important}
+.btn-secondary:hover{background:var(--accent-gold)!important;color:#fff!important}
+.btn-whatsapp{border-color:var(--accent-gold)!important}
+
+/* ── SECTION TITLES ── */
+.section-title{text-transform:none!important;font-size:clamp(24px,3.2vw,32px);color:var(--accent-blue);margin-bottom:8px}
+.section-subtitle{font-size:16px;color:var(--text-muted);max-width:600px;margin:0 auto 48px}
+.section-badge{display:inline-flex;align-items:center;background:#EEF3FF;color:var(--accent-blue);font-size:11px;font-weight:600;padding:4px 12px;border-radius:0!important;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:14px}
+
+/* ── CARDS ── */
+.step-card,.pack-card,.testimonial-card,.contact-box{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:1px solid var(--border-color)!important;box-shadow:var(--shadow-soft)!important;border-radius:var(--radius-md)!important;padding:28px!important}
+.step-card:hover,.pack-card:hover,.testimonial-card:hover,.contact-box:hover{transform:translateY(-4px)!important;box-shadow:var(--shadow-heavy)!important}
+.step-icon,.step-card>i:first-child{background:#EEF3FF!important;color:var(--accent-blue)!important;border-radius:12px!important}
+.resultat-card{border:1px solid var(--accent-gold)!important}
+
+/* ── SERVICE PAGES GOLD ACCENTS ── */
+.service-tag{color:var(--accent-gold)!important;border-color:rgba(245,166,35,0.3)!important}
+.service-tag:hover{background:rgba(245,166,35,0.08)!important;border-color:var(--accent-gold)!important}
+.split-article-rule{background:var(--accent-gold)!important}
+.slider-dot.active{background:var(--accent-gold)!important}
+.split-article ul li::before{color:var(--accent-gold)!important}
+.process-step-num{background:var(--accent-gold)!important;color:#fff!important}
+
+/* ── BADGES (square) ── */
+.badge{border-radius:0!important;background:var(--accent-blue)!important;color:#fff;padding:4px 12px;font-size:10px;top:-10px;right:20px}
+.pack-card-wrapper.highlight .badge{border-radius:0!important}
+
+/* ── PRICING ── */
+.pricing-grid{gap:20px}
+.pack-card.animated-border{background:transparent!important;border:none!important}
+.pack-card.animated-border .pack-inner{background:#fff!important;padding:28px!important;border-radius:var(--radius-md)!important;border:1px solid var(--border-color)}
+.pack-card-wrapper.highlight .pack-card.animated-border .pack-inner{border-color:var(--accent-blue);border-width:2px}
+.pack-name{text-transform:none!important;font-size:18px;color:var(--accent-blue)}
+.pack-price{font-family:var(--font-heading)!important;color:var(--accent-blue)}
+
+/* ── METRICS ── */
+.metrics-section{background:var(--bg-secondary)!important;backdrop-filter:none!important}
+.metric-number{color:var(--accent-blue)}
+.metric-label{color:var(--text-muted);font-size:13px}
+
+/* ── MARQUEE ── */
+.marquee-section{background:var(--bg-secondary)!important;backdrop-filter:none!important}
+.marquee-item{color:var(--text-muted)}
+
+/* ── PROBLEM / SOLUTION ── */
+.problem-list li,.step-desc,.faq-answer{color:var(--text-muted)}
+.step-title{text-transform:none!important;color:var(--accent-blue)}
+
+/* ── TESTIMONIALS ── */
+.testimonials-section{background:var(--bg-secondary)!important;border:0!important}
+.testimonial-text{color:var(--text-muted)}
+.stars{color:var(--accent-gold);letter-spacing:2px}
+
+/* ── FAQ ── */
+.faq-item{border-bottom:1px solid var(--border-color)}
+.faq-question{font-weight:600!important;font-size:16px}
+.faq-icon{color:var(--accent-gold)}
+.faq-answer{font-size:15px}
+
+/* ── CONTACT ── */
+.contact-box{text-align:center}
+.contact-icon{color:var(--accent-blue)}
+.modal-container{background:#fff!important;backdrop-filter:none!important;border-radius:var(--radius-md)!important}
+.form-control{background:#fff;border-color:#d1d5db;border-radius:8px;font-family:var(--font-main)}
+.form-control:focus{border-color:var(--accent-blue);box-shadow:0 0 0 3px rgba(27,58,107,0.08)}
+
+/* ── FOOTER ── */
+.footer{background:#0D1B35!important;border:0!important}
+.footer-brand h3{font-family:var(--font-heading)!important;color:#fff!important;letter-spacing:0!important}
+.footer-title,.footer-links a,.footer-bottom{color:rgba(255,255,255,0.6)!important}
+.footer-links a:hover{color:var(--accent-gold)!important}
+.social-links a{color:rgba(255,255,255,0.6)!important}
+.social-links a:hover{color:var(--accent-gold)!important}
+.newsletter-input{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff;font-family:var(--font-main)}
+.newsletter-btn{background:var(--accent-gold);color:#0D1B35;border-radius:8px}
+.newsletter-btn:hover{background:var(--accent-blue)!important;color:#fff!important}
+
+/* ── REMOVE ITALIC ── */
+em,i:not(.fas):not(.far):not(.fab):not(.ph),.testimonial-text em,.faq-question em,.step-desc em{font-style:normal!important}
+blockquote{font-style:normal!important}
+
+/* ── RESPONSIVE ── */
