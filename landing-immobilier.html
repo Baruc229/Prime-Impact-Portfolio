@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Site Immobilier Pro — Livré en 7 à 25 jours | Prime Impact Agency</title>
+<title>Site Immobilier Pro — Livré en 7 à 22 jours | Prime Impact Agency</title>
 <meta name="description" content="Sites WordPress sur-mesure pour agents immobiliers, optimisés Google, responsive — à partir de 150 €. Livraison rapide, assistance 30 jours.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600&display=swap');
 
@@ -19,77 +20,133 @@ a{text-decoration:none;color:inherit}
 .section-gray{background:#F7F7F7}
 
 h1,h2,h3,h4{font-family:'Poppins',sans-serif;font-weight:800;line-height:1.2;font-style:normal}
-h2{font-size:clamp(24px,3.2vw,32px);margin-bottom:8px}
-p{color:#6B7280;font-size:16px;line-height:1.7}
+h2{font-size:clamp(28px,3.5vw,38px);margin-bottom:8px}
+p{color:#6B7280;font-size:17px;line-height:1.7}
 
 /* ── HERO ── */
 .hero{min-height:100vh;display:flex;align-items:center;padding:60px 0;background:#fff;position:relative;overflow:hidden}
 .hero .container{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
 .hero-left{text-align:center}
-.hero-badge{display:inline-flex;align-items:center;background:#EEF3FF;color:#1B3A6B;font-size:12px;font-weight:600;padding:5px 14px;border-radius:0;margin-bottom:16px;letter-spacing:0.5px;text-transform:uppercase}
-.hero h1{font-size:clamp(32px,5vw,56px);color:#1B3A6B;margin-bottom:16px;font-weight:800}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:#EEF3FF;color:#1B3A6B;font-size:13px;font-weight:600;padding:6px 16px;border-radius:0;margin-bottom:16px;letter-spacing:0.5px;text-transform:uppercase}
+.hero-badge i{color:#F5A623;font-size:17px;animation:fireFlicker 1.2s ease-in-out infinite alternate}
+@keyframes fireFlicker{0%{transform:scale(1) rotate(0deg);opacity:0.8}50%{transform:scale(1.2) rotate(-8deg);opacity:1}100%{transform:scale(1.05) rotate(4deg);opacity:0.9}}
+.hero h1{font-size:clamp(38px,5.5vw,62px);color:#1B3A6B;margin-bottom:16px;font-weight:800}
 .hero h1 .highlight{color:#F5A623}
-.hero-sub{font-size:16px;color:#6B7280;max-width:520px;margin:0 auto 28px;line-height:1.6}
-.hero-cta{display:inline-flex;align-items:center;gap:8px;background:#1B3A6B;color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:16px;padding:16px 32px;border-radius:8px;border:none;cursor:pointer;transition:background 0.2s;text-decoration:none}
+.hero-sub{font-size:18px;color:#6B7280;max-width:640px;margin:0 auto 28px;line-height:1.6}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:#1B3A6B;color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:17px;padding:18px 36px;border-radius:8px;border:none;cursor:pointer;transition:background 0.2s;text-decoration:none}
 .hero-cta:hover{background:#15305a}
 .hero-stats{display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:24px;justify-content:center}
-.hero-stats span{font-size:14px;color:#6B7280;display:flex;align-items:center;gap:6px}
+.hero-stats span{font-size:15px;color:#6B7280;display:flex;align-items:center;gap:6px}
 .hero-stats .check{color:#22C55E;font-weight:700}
 
-.section-badge{display:inline-flex;align-items:center;background:#EEF3FF;color:#1B3A6B;font-size:11px;font-weight:600;padding:4px 12px;border-radius:0;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:14px}
+.hero-wa{margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.hero-wa .wa-label{font-size:14px;color:#9CA3AF}
+.hero-wa .wa-link{display:inline-flex;align-items:center;gap:6px;font-size:16px;font-weight:600;color:#fff;background:#25D366;padding:10px 20px;border-radius:8px;text-decoration:none;transition:background 0.2s}
+.hero-wa .wa-link:hover{background:#1da851}
+
+.section-badge{display:inline-flex;align-items:center;background:#EEF3FF;color:#1B3A6B;font-size:12px;font-weight:600;padding:5px 14px;border-radius:0;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:14px}
+
+/* ── HERO REALISATIONS SLIDER ── */
+.hero-realisations{width:100%;max-width:640px;margin:20px auto}
+.hero-realisations .hr-label{font-size:11px;color:#9CA3AF;margin-bottom:10px;text-align:center;text-transform:uppercase;letter-spacing:1.5px}
+.hero-realisations .hr-track{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;border-radius:8px;aspect-ratio:16/10;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+.hero-realisations .hr-track::-webkit-scrollbar{display:none}
+.hr-card{flex:0 0 100%;scroll-snap-align:start;overflow:hidden;border-radius:8px;position:relative;transition:transform 0.3s ease,box-shadow 0.3s ease}
+.hr-card:hover{transform:scale(1.03);box-shadow:0 8px 30px rgba(0,0,0,0.12)}
+.hr-card img{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;transition:transform 0.4s ease}
+.hr-card:hover img{transform:scale(1.08)}
+.hr-dots{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.hr-dots button{width:8px;height:8px;border-radius:50%;border:none;background:#d1d5db;cursor:pointer;padding:0;transition:background 0.3s}
+.hr-dots button.active{background:#1B3A6B}
+.contact-wa-block .wa-link i{transition:color 0.3s ease}
+.contact-wa-block:hover .wa-link i{color:#fff}
 
 
 
-/* ── TECH BAR ── */
-.tech-bar{background:#F7F7F7;padding:16px 0}
-.tech-bar .container{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 16px}
-.tech-bar .label{font-size:13px;color:#6B7280;font-weight:500;white-space:nowrap}
-.tech-bar .tags{display:flex;flex-wrap:wrap;gap:8px}
-.tech-bar .tag{font-size:13px;color:#9CA3AF;font-weight:400}
+/* ── TECH MARQUEE ── */
+.tech-marquee{padding:20px 0 40px}
+.tech-label{display:block;text-align:center;margin-bottom:24px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:1px;font-size:14px}
+.tech-marquee-wrapper{overflow:hidden;width:100%;position:relative;display:flex}
+.tech-marquee-track{display:flex;gap:16px;width:max-content;animation:scrollTech 25s linear infinite}
+.tech-item{display:flex;align-items:center;gap:8px;font-size:14px;background:#fff;padding:8px 16px;border-radius:100px;border:1px solid #e5e7eb;white-space:nowrap;transition:border-color 0.2s,box-shadow 0.2s}
+.tech-item:hover{border-color:#1B3A6B;box-shadow:0 2px 8px rgba(27,58,107,0.08)}
+.tech-item i{font-size:18px;color:#1B3A6B}
+@keyframes scrollTech{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ── SECTIONS GENERIC ── */
 .section-title{text-align:center;margin-bottom:48px}
 .section-title h2{color:#1B3A6B;margin-bottom:8px}
-.section-title p{color:#6B7280;font-size:16px;max-width:600px;margin:0 auto}
+.section-title p{color:#6B7280;font-size:18px;max-width:600px;margin:0 auto}
 
-.section-sub{text-align:center;color:#6B7280;font-size:15px;max-width:620px;margin:0 auto 48px}
+.section-sub{text-align:center;color:#6B7280;font-size:17px;max-width:640px;margin:0 auto 48px}
 
-/* ── PROBLEM CARDS ── */
+/* ── PROBLEM CARDS (négatif) ── */
 .problem-grid{display:grid;grid-template-columns:1fr;gap:20px}
-.problem-card{background:#fff;border-radius:12px;padding:28px;border-top:4px solid #1B3A6B;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+.problem-card{background:#fff;border-radius:12px;padding:28px;border-top:4px solid #ef4444;box-shadow:0 2px 12px rgba(0,0,0,0.04);transition:transform 0.3s ease,box-shadow 0.3s ease}
+.problem-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,0.08)}
 .problem-card .icon{font-size:28px;margin-bottom:12px}
-.problem-card h3{font-family:'Poppins',sans-serif;font-size:18px;font-weight:800;color:#1B3A6B;margin-bottom:6px;font-style:normal}
-.problem-card p{font-size:14px;color:#6B7280;line-height:1.6}
+.problem-card .icon i{font-size:28px;color:#ef4444;transition:color 0.3s ease}
+.problem-card:hover .icon i{color:#b91c1c}
+.problem-card h3{font-family:'Poppins',sans-serif;font-size:20px;font-weight:800;color:#dc2626;margin-bottom:6px;font-style:normal}
+.problem-card p{font-size:16px;color:#6B7280;line-height:1.6}
 
 /* ── SOLUTION GRID ── */
 .solution-grid{display:grid;grid-template-columns:1fr;gap:24px}
-.solution-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
-.solution-card .icon-circle{width:48px;height:48px;background:#EEF3FF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
-.solution-card h3{font-family:'Poppins',sans-serif;font-size:17px;font-weight:800;color:#1B3A6B;margin-bottom:6px;font-style:normal}
-.solution-card p{font-size:14px;color:#6B7280;line-height:1.6}
+.solution-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.04);transition:transform 0.3s ease,box-shadow 0.3s ease}
+.solution-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,0.08)}
+.solution-card .icon-circle{width:48px;height:48px;background:#EEF3FF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;transition:background 0.3s ease}
+.solution-card .icon-circle i{font-size:22px;color:#1B3A6B;transition:color 0.3s ease}
+.solution-card:hover .icon-circle{background:#F5A623}
+.solution-card:hover .icon-circle i{color:#fff}
+.solution-card h3{font-family:'Poppins',sans-serif;font-size:19px;font-weight:800;color:#1B3A6B;margin-bottom:6px;font-style:normal}
+.solution-card p{font-size:16px;color:#6B7280;line-height:1.6}
 
 /* ── ABOUT ── */
 .about-wrap{display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
-.about-text h3{font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;color:#1B3A6B;margin-bottom:16px;font-style:normal}
-.about-text p{font-size:15px;color:#6B7280;line-height:1.7;margin-bottom:12px}
+.about-photo{text-align:center}
+.about-photo .photo-frame{width:200px;height:200px;border-radius:50%;background:linear-gradient(135deg,#EEF3FF,#1B3A6B);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:64px;color:#fff;font-family:'Poppins',sans-serif;font-weight:800;box-shadow:0 8px 32px rgba(27,58,107,0.15)}
+.about-photo .photo-caption{font-size:14px;color:#6B7280;font-weight:500}
+.about-photo .photo-role{font-size:13px;color:#9CA3AF}
+.about-text h3{font-family:'Poppins',sans-serif;font-size:24px;font-weight:800;color:#1B3A6B;margin-bottom:16px;font-style:normal}
+.about-text p{font-size:17px;color:#6B7280;line-height:1.7;margin-bottom:12px}
 .about-text .about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
 .about-text .about-stat{text-align:center;background:#F7F7F7;border-radius:12px;padding:20px 12px}
-.about-text .about-stat .val{font-family:'Poppins',sans-serif;font-size:28px;font-weight:800;color:#1B3A6B;font-style:normal}
-.about-text .about-stat .lbl{font-size:13px;color:#6B7280;margin-top:4px}
+.about-text .about-stat .val{font-family:'Poppins',sans-serif;font-size:30px;font-weight:800;color:#1B3A6B;font-style:normal}
+.about-text .about-stat .lbl{font-size:14px;color:#6B7280;margin-top:4px}
 
 /* ── PRICING ── */
+/* ── PORTFOLIO ── */
+.portfolio-grid{display:grid;grid-template-columns:1fr;gap:24px}
+.portfolio-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.06);border:1px solid #e5e7eb;transition:transform 0.3s ease,box-shadow 0.3s ease}
+.portfolio-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.12)}
+.portfolio-card .mockup{height:200px;background:linear-gradient(135deg,#EEF3FF,#d6e0f5);display:flex;align-items:center;justify-content:center;font-size:40px;position:relative;overflow:hidden}
+.portfolio-card .mockup .mockup-label{background:rgba(255,255,255,0.9);padding:6px 16px;border-radius:6px;font-size:13px;color:#1B3A6B;font-weight:600}
+.portfolio-card .mockup-bar{position:absolute;top:0;left:0;right:0;height:28px;background:rgba(255,255,255,0.7);display:flex;align-items:center;gap:6px;padding:0 12px}
+.portfolio-card .mockup-bar .dot{width:8px;height:8px;border-radius:50%;background:#d1d5db}
+.portfolio-card .mockup-bar .dot:nth-child(1){background:#ef4444}
+.portfolio-card .mockup-bar .dot:nth-child(2){background:#F5A623}
+.portfolio-card .mockup-bar .dot:nth-child(3){background:#22C55E}
+.portfolio-card .p-info{padding:20px}
+.portfolio-card .p-info h4{font-family:'Poppins',sans-serif;font-size:17px;font-weight:800;color:#1B3A6B;margin-bottom:4px;font-style:normal}
+.portfolio-card .p-info p{font-size:14px;color:#6B7280;line-height:1.5}
+.portfolio-card .p-info .p-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.portfolio-card .p-info .p-tags span{font-size:11px;background:#EEF3FF;color:#1B3A6B;padding:3px 10px;border-radius:0;font-weight:500}
+.mockup-label .fa-house{color:#F59E0B}
+.mockup-label .fa-building{color:#3B82F6}
+.footnote .fa-lock{color:#22C55E}
+
 .pricing-scroll{display:grid;grid-template-columns:1fr;gap:20px}
-.pricing-card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,0.06);border:1px solid #e5e7eb;position:relative}
+.pricing-card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,0.06);border:1px solid #e5e7eb;position:relative;transition:transform 0.3s ease,box-shadow 0.3s ease}
+.pricing-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,0.1)}
 .pricing-card.featured{border:2px solid #1B3A6B;box-shadow:0 4px 24px rgba(27,58,107,0.1)}
 .pricing-card.selected-pack{border-color:#F5A623;box-shadow:0 4px 24px rgba(245,166,35,0.15)}
 .pricing-card .badge-feat{display:inline-block;background:#1B3A6B;color:#fff;font-size:10px;font-weight:600;padding:4px 12px;border-radius:0;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px}
-.pricing-card .plan-name{font-family:'Poppins',sans-serif;font-size:16px;font-weight:800;color:#1B3A6B;margin-bottom:4px;font-style:normal}
-.pricing-card .price{font-family:'Poppins',sans-serif;font-size:32px;font-weight:800;color:#1B3A6B;margin:8px 0 4px;font-style:normal}
+.pricing-card .plan-name{font-family:'Poppins',sans-serif;font-size:18px;font-weight:800;color:#1B3A6B;margin-bottom:4px;font-style:normal}
+.pricing-card .price{font-family:'Poppins',sans-serif;font-size:34px;font-weight:800;color:#1B3A6B;margin:8px 0 4px;font-style:normal}
 .pricing-card .price small{font-size:16px;font-weight:400;color:#6B7280}
-.pricing-card .delay{font-size:13px;color:#F5A623;font-weight:600;margin-bottom:12px}
-.pricing-card .desc{font-size:13px;color:#6B7280;margin-bottom:16px;line-height:1.5}
-.pricing-card ul{list-style:none;padding:0;margin-bottom:20px}
-.pricing-card ul li{font-size:13px;color:#374151;padding:4px 0;display:flex;align-items:center;gap:6px}
+.pricing-card .delay{font-size:14px;color:#F5A623;font-weight:600;margin-bottom:12px}
+.pricing-card .desc{font-size:15px;color:#6B7280;margin-bottom:16px;line-height:1.5}
+.pricing-card ul li{font-size:15px;color:#374151;padding:4px 0;display:flex;align-items:center;gap:6px}
 .pricing-card ul li::before{content:"✓";color:#22C55E;font-weight:700}
 .pricing-card .btn-outline,.pricing-card .btn-full{display:block;width:100%;text-align:center;padding:12px;border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;border:none}
 .pricing-card .btn-outline{background:transparent;border:2px solid #F5A623;color:#F5A623}
@@ -97,25 +154,42 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
 .pricing-card .btn-full{background:#1B3A6B;color:#fff}
 .pricing-card .btn-full:hover{background:#15305a}
 
-/* ── PROCESS ── */
-.process-wrap{position:relative}
-.process-grid{display:flex;flex-direction:column;gap:32px}
-.process-step{display:flex;align-items:flex-start;gap:16px;position:relative}
-.process-step:not(:last-child){padding-bottom:32px}
-.process-step:not(:last-child)::before{content:'';position:absolute;left:21px;top:44px;bottom:0;width:2px;background:repeating-linear-gradient(to bottom,#1B3A6B 0,#1B3A6B 6px,transparent 6px,transparent 10px)}
-.process-step .num{width:44px;height:44px;min-width:44px;background:#EEF3FF;color:#1B3A6B;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:18px;position:relative;z-index:1}
-.process-step .content h4{font-family:'Poppins',sans-serif;font-size:16px;font-weight:800;color:#1B3A6B;margin-bottom:2px;font-style:normal}
-.process-step .content p{font-size:14px;color:#6B7280}
+/* ── GUARANTEE STRIP ── */
+.guarantee-strip{background:#1B3A6B;padding:40px 0;text-align:center;position:relative}
+.guarantee-strip::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:80px;height:4px;background:#F5A623;border-radius:2px}
+.guarantee-strip .g-icon{font-size:36px;margin-bottom:8px}
+.guarantee-strip .g-icon i{font-size:36px;color:#F5A623}
+.guarantee-strip h3{font-family:'Poppins',sans-serif;font-size:clamp(20px,2.5vw,26px);font-weight:800;color:#fff;margin-bottom:6px;font-style:normal}
+.guarantee-strip p{font-size:16px;color:rgba(255,255,255,0.8);max-width:600px;margin:0 auto;line-height:1.6}
+.guarantee-strip p strong{color:#F5A623;font-weight:600}
+
+/* ── PROCESS (cool cards) ── */
+.process-scroll{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+.process-scroll::-webkit-scrollbar{height:4px}
+.process-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,0.1);border-radius:2px}
+.process-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.3);border-radius:2px}
+.process-step{flex:0 0 240px;scroll-snap-align:start;background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:32px 24px;position:relative;overflow:hidden;transition:transform 0.3s ease,border-color 0.3s ease}
+.process-step:hover{transform:translateY(-6px);border-color:rgba(255,255,255,0.25)}
+.process-step .bg-num{position:absolute;top:-10px;right:-5px;font-family:'Poppins',sans-serif;font-weight:800;font-size:72px;color:rgba(255,255,255,0.04);font-style:normal;line-height:1;pointer-events:none;user-select:none}
+.process-step .emoji{font-size:36px;margin-bottom:16px;display:block}
+.process-step h4{font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;font-style:normal;position:relative}
+.process-step p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;position:relative}
+@media(min-width:768px){
+  .process-scroll{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;overflow:visible;padding:0}
+  .process-step{flex:none;padding:36px 28px}
+  .process-step .bg-num{font-size:96px}
+}
 
 /* ── TESTIMONIALS ── */
 .testi-scroll{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;-webkit-overflow-scrolling:touch}
 .testi-scroll::-webkit-scrollbar{height:6px}
 .testi-scroll::-webkit-scrollbar-track{background:#f0f0f0;border-radius:3px}
 .testi-scroll::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
-.testi-card{flex:0 0 300px;scroll-snap-align:start;background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,0.06);border:1px solid #e5e7eb}
+.testi-card{flex:0 0 300px;scroll-snap-align:start;background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,0.06);border:1px solid #e5e7eb;transition:transform 0.3s ease,box-shadow 0.3s ease}
+.testi-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,0.1)}
 .testi-card .stars{color:#F5A623;font-size:16px;margin-bottom:12px;letter-spacing:2px}
-.testi-card blockquote{font-size:14px;color:#374151;line-height:1.7;margin-bottom:16px;font-style:normal}
-.testi-card .author{font-size:13px;color:#6B7280;font-weight:500}
+.testi-card blockquote{font-size:16px;color:#374151;line-height:1.7;margin-bottom:16px;font-style:normal}
+.testi-card .author{font-size:14px;color:#6B7280;font-weight:500}
 
 /* ── FAQ (fond bleu) ── */
 .faq-blue{background:#1B3A6B;padding:80px 0}
@@ -127,21 +201,25 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
 .faq-blue .faq-question .icon{color:#F5A623}
 .faq-blue .faq-answer p{color:rgba(255,255,255,0.7)}
 .faq-item{border-bottom:1px solid #e5e7eb}
-.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 0;background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:#1c1c1e;text-align:left;gap:12px}
+.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 0;background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:18px;font-weight:500;color:#1c1c1e;text-align:left;gap:12px}
 .faq-question .icon{font-size:18px;transition:transform 0.2s;min-width:20px}
 .faq-item.open .faq-question .icon{transform:rotate(45deg)}
 .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease;padding:0}
 .faq-item.open .faq-answer{max-height:300px;padding:0 0 20px}
-.faq-answer p{font-size:14px;color:#6B7280;line-height:1.7}
+.faq-answer p{font-size:16px;color:#6B7280;line-height:1.7}
 
 /* ── CONTACT / FORM ── */
 .contact-section{background:#1B3A6B;padding:80px 0}
 .contact-section .container{display:grid;grid-template-columns:1fr;gap:40px}
 .contact-left{color:#fff}
-.contact-left h2{color:#fff;font-size:clamp(28px,4vw,36px);margin-bottom:12px}
-.contact-left .sub{color:rgba(255,255,255,0.8);font-size:16px;margin-bottom:24px;line-height:1.6}
+.contact-left h2{color:#fff;font-size:clamp(30px,4.5vw,40px);margin-bottom:12px}
+.contact-left .sub{color:rgba(255,255,255,0.8);font-size:18px;margin-bottom:24px;line-height:1.6}
 .contact-left .reassurance{display:flex;flex-direction:column;gap:12px}
-.contact-left .reassurance span{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,0.85)}
+.contact-left .contact-wa-block{background:rgba(37,211,102,0.15);border:1px solid rgba(37,211,102,0.3);border-radius:10px;padding:16px 20px;margin-bottom:20px;text-align:center}
+.contact-left .contact-wa-block .wa-label{display:block;font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:6px}
+.contact-left .contact-wa-block .wa-link{display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:700;color:#25D366;text-decoration:none;transition:color 0.2s;background:rgba(255,255,255,0.1);padding:8px 18px;border-radius:8px}
+.contact-left .contact-wa-block .wa-link:hover{color:#fff;background:#25D366}
+.contact-left .reassurance span{display:flex;align-items:center;gap:8px;font-size:15px;color:rgba(255,255,255,0.85)}
 .contact-left .reassurance .check{color:#22C55E;font-weight:700}
 .contact-left .trust-counter{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.15)}
 .contact-left .trust-counter .big{font-family:'Poppins',sans-serif;font-size:32px;font-weight:800;color:#F5A623;font-style:normal}
@@ -157,11 +235,11 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
 .contact-left .testi-mini-dots button.active{background:#F5A623}
 
 .contact-form-wrap{background:#fff;border-radius:16px;padding:28px;box-shadow:0 8px 32px rgba(0,0,0,0.1)}
-.contact-form-wrap .form-title{font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;color:#1B3A6B;margin-bottom:4px;font-style:normal}
-.contact-form-wrap .form-sub{font-size:14px;color:#6B7280;margin-bottom:24px}
+.contact-form-wrap .form-title{font-family:'Poppins',sans-serif;font-size:24px;font-weight:800;color:#1B3A6B;margin-bottom:4px;font-style:normal}
+.contact-form-wrap .form-sub{font-size:16px;color:#6B7280;margin-bottom:24px}
 .contact-form-wrap .form-group{margin-bottom:16px}
-.contact-form-wrap label{display:block;font-size:13px;font-weight:500;color:#374151;margin-bottom:4px}
-.contact-form-wrap input,.contact-form-wrap select{width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:8px;font-family:'Inter',sans-serif;font-size:15px;color:#1c1c1e;background:#fff;transition:border-color 0.2s;outline:none}
+.contact-form-wrap label{display:block;font-size:14px;font-weight:500;color:#374151;margin-bottom:4px}
+.contact-form-wrap input,.contact-form-wrap select{width:100%;padding:14px 16px;border:1px solid #d1d5db;border-radius:8px;font-family:'Inter',sans-serif;font-size:16px;color:#1c1c1e;background:#fff;transition:border-color 0.2s;outline:none}
 .contact-form-wrap input:focus,.contact-form-wrap select:focus{border-color:#1B3A6B;box-shadow:0 0 0 3px rgba(27,58,107,0.08)}
 .contact-form-wrap .btn-submit{width:100%;height:50px;background:#1B3A6B;color:#fff;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:16px;font-weight:600;cursor:pointer;transition:background 0.2s;margin-top:4px}
 .contact-form-wrap .btn-submit:hover{background:#15305a}
@@ -178,19 +256,20 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
 .modal-overlay.active{display:flex}
 .modal-box{background:#fff;border-radius:16px;padding:40px 32px;max-width:420px;width:100%;text-align:center;box-shadow:0 16px 48px rgba(0,0,0,0.15)}
 .modal-box .icon{font-size:48px;margin-bottom:12px}
-.modal-box h3{font-family:'Poppins',sans-serif;font-size:20px;font-weight:800;color:#1B3A6B;margin-bottom:8px;font-style:normal}
-.modal-box p{font-size:14px;color:#6B7280;margin-bottom:20px;line-height:1.6}
+.modal-box .icon i{font-size:48px;color:#25D366}
+.modal-box h3{font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;color:#1B3A6B;margin-bottom:8px;font-style:normal}
+.modal-box p{font-size:16px;color:#6B7280;margin-bottom:20px;line-height:1.6}
 .modal-box .countdown{font-family:'Poppins',sans-serif;font-size:48px;font-weight:800;color:#F5A623;margin-bottom:8px;font-style:normal}
-.modal-box .countdown-label{font-size:13px;color:#9CA3AF}
-.modal-box .btn-skip{display:inline-block;margin-top:16px;padding:10px 24px;background:#F7F7F7;color:#374151;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;cursor:pointer;transition:background 0.2s}
+.modal-box .countdown-label{font-size:14px;color:#9CA3AF}
+.modal-box .btn-skip{display:inline-block;margin-top:16px;padding:10px 24px;background:#F7F7F7;color:#374151;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:15px;cursor:pointer;transition:background 0.2s}
 .modal-box .btn-skip:hover{background:#e5e7eb}
 
 /* ── FOOTER ── */
 .footer{background:#0D1B35;padding:40px 0;text-align:center}
-.footer .brand{font-family:'Poppins',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:8px;font-style:normal}
+.footer .brand{font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:8px;font-style:normal}
 .footer .brand span{color:#F5A623}
-.footer p{font-size:13px;color:#9CA3AF;margin-bottom:12px}
-.footer .links{display:flex;justify-content:center;gap:20px;font-size:13px}
+.footer p{font-size:14px;color:#9CA3AF;margin-bottom:12px}
+.footer .links{display:flex;justify-content:center;gap:20px;font-size:14px}
 .footer .links a{color:#9CA3AF;transition:color 0.2s}
 .footer .links a:hover{color:#fff}
 
@@ -201,23 +280,18 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
 @media(min-width:640px){
   .problem-grid{grid-template-columns:repeat(2,1fr)}
   .solution-grid{grid-template-columns:repeat(2,1fr)}
+  .portfolio-grid{grid-template-columns:repeat(2,1fr)}
   .about-text .about-stats{grid-template-columns:repeat(4,1fr)}
 }
 @media(min-width:900px){
-  .hero .container{grid-template-columns:1fr;gap:0;max-width:720px}
-  .hero-left{text-align:center}
+  .hero .container{grid-template-columns:1fr;gap:0}
+.hero-left{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
   .hero-sub{margin:0 auto 28px}
   .hero h1{font-size:clamp(36px,4vw,48px)}
   .hero-stats{justify-content:center}
   .problem-grid{grid-template-columns:repeat(3,1fr)}
   .solution-grid{grid-template-columns:repeat(2,1fr)}
-  .process-wrap{overflow:hidden}
-  .process-grid{flex-direction:row;gap:0;justify-content:space-between}
-  .process-step{flex-direction:column;flex:1;text-align:center;padding:0!important}
-  .process-step::before{display:none!important}
-  .process-step .num{margin:0 auto 20px;width:52px;height:52px;min-width:52px;font-size:20px}
-  .process-step .content h4{font-size:17px}
-  .process-line{display:block;position:absolute;top:26px;left:calc(50% + 26px);right:calc(50% + 26px);height:2px;background:repeating-linear-gradient(to right,#1B3A6B 0,#1B3A6B 8px,transparent 8px,transparent 12px);z-index:0}
+  .portfolio-grid{grid-template-columns:repeat(3,1fr)}
   .about-wrap{grid-template-columns:1fr 1fr;gap:60px}
   .contact-section .container{grid-template-columns:1fr 1fr;align-items:center}
   .contact-form-wrap{padding:36px}
@@ -235,31 +309,54 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
 <section class="hero">
   <div class="container">
     <div class="hero-left">
-      <div class="hero-badge">Spécialiste WordPress Immobilier</div>
-      <h1>Votre site immobilier <span class="highlight">professionnel</span>, livré en 7 à 25 jours.</h1>
-      <p class="hero-sub">Des sites WordPress sur-mesure, optimisés Google et conçus pour convertir — à partir de 150 €. Sans agence à 3 000 €.</p>
-      <a href="#offres" class="hero-cta">Démarrer mon projet gratuitement →</a>
+      <div class="hero-badge"><i class="fa-solid fa-fire"></i> Spécialiste WordPress Immobilier</div>
+      <h1>Votre site immobilier <span class="highlight">professionnel et performant</span>, à partir de 150 €, livré en 7 à 22 jours.</h1>
+
+      <div class="hero-realisations">
+        <div class="hr-label">Réalisations</div>
+        <div class="hr-track">
+          <div class="hr-card"><img src="assets/project_immobilier.webp" alt="Site immobilier" loading="lazy"></div>
+          <div class="hr-card"><img src="assets/lionimmobiliervoyageur.avif" alt="Lion Immobilier Voyageur" loading="lazy"></div>
+          <div class="hr-card"><img src="assets/project_landing.webp" alt="Landing page" loading="lazy"></div>
+        </div>
+        <div class="hr-dots" id="hrDots"></div>
+      </div>
+
+      <p class="hero-sub">Des sites WordPress sur-mesure, optimisés Google et conçus pour convertir — sans agence à 3 000 €.</p>
+      <a href="#contact" class="hero-cta">Obtenez votre devis gratuit →</a>
       <div class="hero-stats">
         <span><span class="check">✓</span> Livraison en 7 jours minimum</span>
         <span><span class="check">✓</span> 30 jours d'assistance incluse</span>
-        <span><span class="check">✓</span> 3 retouches offertes</span>
+        <span><span class="check">✓</span> <i class="fa-solid fa-fire" style="color:#F5A623"></i> Plus que <strong style="color:#F5A623">2 places</strong> ce mois-ci</span>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ══ TECH BAR ══ -->
-<section class="tech-bar">
+<!-- ══ TECH MARQUEE ══ -->
+<section class="tech-marquee">
   <div class="container">
-    <span class="label">Technologies utilisées :</span>
-    <div class="tags">
-      <span class="tag">WordPress</span><span class="tag">·</span>
-      <span class="tag">Elementor</span><span class="tag">·</span>
-      <span class="tag">Google Maps</span><span class="tag">·</span>
-      <span class="tag">Yoast SEO</span><span class="tag">·</span>
-      <span class="tag">SSL/HTTPS</span><span class="tag">·</span>
-      <span class="tag">WooCommerce</span>
+    <span class="tech-label">Technologies maîtrisées</span>
+  </div>
+  <div class="tech-marquee-wrapper">
+    <div class="tech-marquee-track">
+      <div class="tech-item"><i class="fa-brands fa-wordpress"></i><span>WordPress</span></div>
+      <div class="tech-item"><i class="fa-brands fa-elementor"></i><span>Elementor</span></div>
+      <div class="tech-item"><i class="fa-solid fa-code"></i><span>HTML/CSS/JS</span></div>
+      <div class="tech-item"><i class="fa-brands fa-google"></i><span>Google Maps</span></div>
+      <div class="tech-item"><i class="fa-solid fa-magnifying-glass"></i><span>Yoast SEO</span></div>
+      <div class="tech-item"><i class="fa-solid fa-lock"></i><span>SSL/HTTPS</span></div>
+      <div class="tech-item"><i class="fa-brands fa-woocommerce"></i><span>WooCommerce</span></div>
+      <div class="tech-item"><i class="fa-solid fa-palette"></i><span>Design UI/UX</span></div>
+      <!-- doublon pour le défilement infini -->
+      <div class="tech-item"><i class="fa-brands fa-wordpress"></i><span>WordPress</span></div>
+      <div class="tech-item"><i class="fa-brands fa-elementor"></i><span>Elementor</span></div>
+      <div class="tech-item"><i class="fa-solid fa-code"></i><span>HTML/CSS/JS</span></div>
+      <div class="tech-item"><i class="fa-brands fa-google"></i><span>Google Maps</span></div>
+      <div class="tech-item"><i class="fa-solid fa-magnifying-glass"></i><span>Yoast SEO</span></div>
+      <div class="tech-item"><i class="fa-solid fa-lock"></i><span>SSL/HTTPS</span></div>
+      <div class="tech-item"><i class="fa-brands fa-woocommerce"></i><span>WooCommerce</span></div>
+      <div class="tech-item"><i class="fa-solid fa-palette"></i><span>Design UI/UX</span></div>
     </div>
   </div>
 </section>
@@ -268,24 +365,24 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
 <section class="section section-light" id="probleme">
   <div class="container">
     <div class="section-title">
-      <div class="section-badge">Le constat</div>
+      <div class="section-badge" style="background:#fef2f2;color:#dc2626">Le constat</div>
       <h2>Vous perdez des clients — sans le savoir</h2>
     </div>
     <div class="problem-grid">
       <div class="problem-card">
-        <div class="icon">📌</div>
+        <div class="icon"><i class="fa-solid fa-link-slash"></i></div>
         <h3>Dépendance aux portails</h3>
-        <p>SeLoger vous coûte cher. Vous ne maîtrisez rien.</p>
+        <p>SeLoger, Leboncoin, PAP… vous payez chaque mois sans construire votre marque. Pas de trafic direct, pas de valeur patrimoniale. Vous travaillez pour eux.</p>
       </div>
       <div class="problem-card">
-        <div class="icon">💤</div>
+        <div class="icon"><i class="fa-solid fa-arrow-trend-down"></i></div>
         <h3>Site qui ne convertit pas</h3>
-        <p>Vos visiteurs repartent sans vous contacter.</p>
+        <p>Vitrine figée, pas de CTA, pas de formulaire. Les visiteurs repartent sans contact. Vous perdez des mandats.</p>
       </div>
       <div class="problem-card">
-        <div class="icon">💸</div>
+        <div class="icon"><i class="fa-solid fa-coins"></i></div>
         <h3>Agence locale trop chère</h3>
-        <p>1 500 à 5 000 € pour un site. Inaccessible.</p>
+        <p>1 500 à 5 000 € le site vitrine + frais mensuels + contrats verrouillés. Trop cher pour un agent.</p>
       </div>
     </div>
   </div>
@@ -300,6 +397,11 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
       <p>On livre des sites qui rapportent — pas des templates qu'on oublie.</p>
     </div>
     <div class="about-wrap">
+      <div class="about-photo">
+        <div class="photo-frame">AB</div>
+        <div class="photo-caption">Aristide B.</div>
+        <div class="photo-role">Fondateur · Prime Impact Agency</div>
+      </div>
       <div class="about-text">
         <p>Pas de commerciaux, pas de showroom, pas de frais d'agence. Un modèle 100% digital qui vous fait économiser 70 % sans sacrifier la qualité.</p>
         <p><strong>Vous bossez avec le même développeur du brief à la mise en ligne.</strong> Pas d'intermédiaire, pas de perte de temps.</p>
@@ -309,9 +411,7 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
           <div class="about-stat"><div class="val">30j</div><div class="lbl">Assistance</div></div>
           <div class="about-stat"><div class="val">-70%</div><div class="lbl">vs agence locale</div></div>
         </div>
-      </div>
-      <div class="about-text">
-        <p>Le résultat : un site pro, optimisé Google, livré en 7 à 25 jours. <strong>Vous payez 50 % au lancement, le solde à la livraison</strong> — une fois satisfait uniquement.</p>
+        <p>Le résultat : un site pro, optimisé Google, livré en 7 à 22 jours. <strong>Vous payez 50 % au lancement, le solde à la livraison</strong> — une fois satisfait uniquement.</p>
       </div>
     </div>
   </div>
@@ -326,24 +426,70 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
     </div>
     <div class="solution-grid">
       <div class="solution-card">
-        <div class="icon-circle">🎨</div>
+        <div class="icon-circle"><i class="fa-solid fa-paintbrush"></i></div>
         <h3>Design sur-mesure</h3>
         <p>Votre identité, vos couleurs, votre marché. Rien de générique.</p>
       </div>
       <div class="solution-card">
-        <div class="icon-circle">📈</div>
+        <div class="icon-circle"><i class="fa-solid fa-chart-line"></i></div>
         <h3>Optimisé pour Google</h3>
         <p>Articles SEO, balises, vitesse — pour que vos clients vous trouvent.</p>
       </div>
       <div class="solution-card">
-        <div class="icon-circle">📱</div>
+        <div class="icon-circle"><i class="fa-solid fa-mobile-screen"></i></div>
         <h3>100% mobile responsive</h3>
         <p>60% de vos visiteurs sont sur téléphone. Votre site s'adapte.</p>
       </div>
       <div class="solution-card">
-        <div class="icon-circle">🛡️</div>
+        <div class="icon-circle"><i class="fa-solid fa-shield"></i></div>
         <h3>Assistance 30 jours</h3>
         <p>Je reste disponible après la mise en ligne. Vous n'êtes jamais seul.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PORTFOLIO ══ -->
+<section class="section section-gray" id="portfolio">
+  <div class="container">
+    <div class="section-title">
+      <div class="section-badge">Nos réalisations</div>
+      <h2>Des sites qui ont transformé leurs activités</h2>
+      <p>Quelques exemples concrets de sites livrés à des agents comme vous.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <div class="mockup">
+          <div class="mockup-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <span class="mockup-label"><i class="fa-solid fa-house"></i> Cabinet Immobilier D.</span>
+        </div>
+        <div class="p-info">
+          <h4>Cabinet Immobilier D. — Lyon</h4>
+          <p>11 pages, 20 annonces, prise de RDV intégrée. +40% de contacts dès le 1er mois.</p>
+          <div class="p-tags"><span>Vitrine + Annonces</span><span>RDV</span><span>SEO</span></div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <div class="mockup">
+          <div class="mockup-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <span class="mockup-label"><i class="fa-solid fa-house"></i> Location Saisonnière M.</span>
+        </div>
+        <div class="p-info">
+          <h4>Location Saisonnière M. — Bordeaux</h4>
+          <p>Site avec réservation en ligne et paiement. 3 réservations en direct la première semaine.</p>
+          <div class="p-tags"><span>Réservation</span><span>Paiement</span><span>Bilingue</span></div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <div class="mockup">
+          <div class="mockup-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <span class="mockup-label"><i class="fa-solid fa-building"></i> Agence K.</span>
+        </div>
+        <div class="p-info">
+          <h4>Agence K. — Paris</h4>
+          <p>Marketplace multi-agents avec CRM, abonnements et espace membres. Solution complète.</p>
+          <div class="p-tags"><span>Marketplace</span><span>CRM</span><span>Membres</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -361,7 +507,7 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
       <div class="pricing-card" data-pack="Site Vitrine — 150 €">
         <div class="plan-name">Site Vitrine</div>
         <div class="price">150 € <small>HT</small></div>
-        <div class="delay">⏱ 7 jours</div>
+        <div class="delay"><i class="fa-solid fa-clock"></i> 7 jours</div>
         <p class="desc">Une page percutante pour être trouvé et contacté.</p>
         <ul>
           <li>Design responsive</li>
@@ -375,7 +521,7 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
         <div class="badge-feat">Le plus demandé</div>
         <div class="plan-name">Agent Indépendant</div>
         <div class="price">475 € <small>HT</small></div>
-        <div class="delay">⏱ 15 jours</div>
+        <div class="delay"><i class="fa-solid fa-clock"></i> 15 jours</div>
         <p class="desc">Attirer des clients depuis Google sans dépendre des portails.</p>
         <ul>
           <li>7 pages clés</li>
@@ -389,7 +535,7 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
       <div class="pricing-card" data-pack="Location Saisonnière — 420 €">
         <div class="plan-name">Location Saisonnière</div>
         <div class="price">420 € <small>HT</small></div>
-        <div class="delay">⏱ 15 jours</div>
+        <div class="delay"><i class="fa-solid fa-clock"></i> 15 jours</div>
         <p class="desc">Louez votre bien en direct avec réservation et paiement en ligne.</p>
         <ul>
           <li>Réservation en ligne</li>
@@ -402,7 +548,7 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
       <div class="pricing-card" data-pack="Marketplace Multi-Agents — 770 €">
         <div class="plan-name">Marketplace Multi-Agents</div>
         <div class="price">770 € <small>HT</small></div>
-        <div class="delay">⏱ 25 jours</div>
+        <div class="delay"><i class="fa-solid fa-clock"></i> 22 jours</div>
         <p class="desc">Plateforme complète pour agences avec abonnements et CRM intégré.</p>
         <ul>
           <li>Espaces membres</li>
@@ -416,44 +562,46 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
   </div>
 </section>
 
+<!-- ══ GARANTIE ══ -->
+<section class="guarantee-strip">
+  <div class="container">
+    <div class="g-icon"><i class="fa-solid fa-shield"></i></div>
+    <h3>Garantie "Satisfait ou remboursé"</h3>
+    <p>Vous validez chaque étape avant de passer à la suivante. <strong>3 séries de retouches sont incluses</strong>, sans aucun frais supplémentaire. Si au final le résultat ne vous convient toujours pas, je vous rembourse intégralement. Aucun risque.</p>
+  </div>
+</section>
+
 <!-- ══ PROCESSUS ══ -->
-<section class="section section-gray">
+<section class="section" style="background:#1B3A6B;padding:80px 0">
   <div class="container">
     <div class="section-title">
-      <div class="section-badge">Le processus</div>
-      <h2>Comment ça se passe</h2>
+      <div class="section-badge" style="background:rgba(255,255,255,0.1);color:#F5A623">Le processus</div>
+      <h2 style="color:#fff">Comment ça se passe</h2>
     </div>
-    <div class="process-wrap">
-      <div class="process-line"></div>
-      <div class="process-grid">
-        <div class="process-step">
-          <div class="num">1</div>
-          <div class="content">
-            <h4>Échange gratuit</h4>
-            <p>On discute de votre projet. Sans engagement.</p>
-          </div>
-        </div>
-        <div class="process-step">
-          <div class="num">2</div>
-          <div class="content">
-            <h4>Conception sur-mesure</h4>
-            <p>Design, contenu, fonctionnalités créés pour vous.</p>
-          </div>
-        </div>
-        <div class="process-step">
-          <div class="num">3</div>
-          <div class="content">
-            <h4>Validation & retouches</h4>
-            <p>3 séries de retouches incluses, jusqu'à votre satisfaction.</p>
-          </div>
-        </div>
-        <div class="process-step">
-          <div class="num">4</div>
-          <div class="content">
-            <h4>Mise en ligne & formation</h4>
-            <p>Site en ligne + mini-formation pour gérer seul.</p>
-          </div>
-        </div>
+    <div class="process-scroll">
+      <div class="process-step">
+        <span class="bg-num">01</span>
+        <span class="emoji">💬</span>
+        <h4>Échange gratuit</h4>
+        <p>On discute de votre projet, sans engagement. Vous me dites tout.</p>
+      </div>
+      <div class="process-step">
+        <span class="bg-num">02</span>
+        <span class="emoji">🎨</span>
+        <h4>Conception sur-mesure</h4>
+        <p>Design, textes et fonctionnalités pensés pour votre activité.</p>
+      </div>
+      <div class="process-step">
+        <span class="bg-num">03</span>
+        <span class="emoji">✅</span>
+        <h4>Validation & retouches</h4>
+        <p>3 séries de retouches incluses. Vous validez chaque étape.</p>
+      </div>
+      <div class="process-step">
+        <span class="bg-num">04</span>
+        <span class="emoji">🚀</span>
+        <h4>Mise en ligne & formation</h4>
+        <p>Site livré + accès pour modifier vos contenus en autonomie.</p>
       </div>
     </div>
   </div>
@@ -468,17 +616,17 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
     </div>
     <div class="testi-scroll">
       <div class="testi-card">
-        <div class="stars">★★★★★</div>
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
         <blockquote>Mon site a été livré en 12 jours. Dès le premier mois, 4 demandes de visite directement depuis le formulaire. Bluffant pour ce prix.</blockquote>
         <div class="author">Marc D. — Agent immobilier indépendant, Lyon</div>
       </div>
       <div class="testi-card">
-        <div class="stars">★★★★★</div>
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
         <blockquote>J'avais un devis à 2 200 € d'une agence locale. Le résultat est identique et j'ai économisé 1 700 €. Communication parfaite du début à la fin.</blockquote>
         <div class="author">Sophie M. — Propriétaire location saisonnière, Bordeaux</div>
       </div>
       <div class="testi-card">
-        <div class="stars">★★★★★</div>
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
         <blockquote>Site rapide, bien référencé et que je gère seul. Le rapport qualité-prix est imbattable. Je recommande sans hésiter.</blockquote>
         <div class="author">Karim A. — Agence immobilière, Paris</div>
       </div>
@@ -522,31 +670,35 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
 <!-- ══ FORMULAIRE ══ -->
 <section class="contact-section" id="contact">
   <div class="container">
-    <div class="contact-left">
-      <h2>Discutons de votre projet</h2>
-      <p class="sub">Laissez vos coordonnées — je vous contacte personnellement sous 24h pour un échange gratuit.</p>
-      <div class="reassurance">
-        <span><span class="check">✓</span> 100% gratuit et sans engagement</span>
-        <span><span class="check">✓</span> Vous ne payez rien avant d'échanger sur vos besoins</span>
-        <span><span class="check">✓</span> Réponse personnalisée sous 24h</span>
-        <span><span class="check">✓</span> Satisfait ou on retravaille ensemble</span>
-      </div>
-      <div class="trust-counter">
-        <span class="big">25+</span> <span class="lbl">agents immobiliers nous ont déjà fait confiance</span>
-      </div>
+      <div class="contact-left">
+        <h2>Discutons de votre projet</h2>
+        <p class="sub">Laissez vos coordonnées — je vous contacte personnellement sous 24h pour un échange gratuit.</p>
+        <div class="contact-wa-block">
+          <span class="wa-label">Pas envie de remplir un formulaire ?</span>
+          <a href="https://wa.me/22993288212" target="_blank" class="wa-link"><i class="fa-brands fa-whatsapp"></i> Échangez directement sur WhatsApp</a>
+        </div>
+        <div class="reassurance">
+          <span><span class="check">✓</span> 100% gratuit et sans engagement</span>
+          <span><span class="check">✓</span> Vous ne payez rien avant d'échanger sur vos besoins</span>
+          <span><span class="check">✓</span> Réponse personnalisée sous 24h</span>
+          <span><span class="check">✓</span> Satisfait ou retravaillé jusqu'à validation</span>
+        </div>
+        <div class="trust-counter">
+          <span class="big">25+</span> <span class="lbl">agents immobiliers nous ont déjà fait confiance</span>
+        </div>
       <div class="testi-mini-slider" id="testiMiniSlider">
         <div class="testi-mini-slide active">
-          <div class="stars">★★★★★</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <blockquote>Livré en 12 jours. 4 demandes de visite dès le 1er mois. Bluffant.</blockquote>
           <div class="author">Marc D. — Agent, Lyon</div>
         </div>
         <div class="testi-mini-slide">
-          <div class="stars">★★★★★</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <blockquote>Économisé 1 700 € vs une agence locale. Résultat identique.</blockquote>
           <div class="author">Sophie M. — Location saisonnière, Bordeaux</div>
         </div>
         <div class="testi-mini-slide">
-          <div class="stars">★★★★★</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <blockquote>Site rapide, bien référencé, je le gère seul. Rapport qualité-prix imbattable.</blockquote>
           <div class="author">Karim A. — Agence, Paris</div>
         </div>
@@ -579,7 +731,7 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
           <input type="hidden" id="selectedPack" name="pack_hidden" value="Je ne sais pas encore">
           <button type="submit" class="btn-submit">Envoyer et discuter sur WhatsApp →</button>
           <div class="form-guarantee">✓ 100% gratuit — paiement uniquement si le projet est validé ensemble</div>
-          <p class="footnote">🔒 Vos données sont confidentielles. Aucun spam.</p>
+          <p class="footnote"><i class="fa-solid fa-lock"></i> Vos données sont confidentielles. Aucun spam.</p>
         </form>
       </div>
       <div class="success-msg" id="success-msg">
@@ -594,7 +746,7 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
 <!-- ══ MODAL REDIRECTION WHATSAPP ══ -->
 <div class="modal-overlay" id="waModal">
   <div class="modal-box">
-    <div class="icon">📲</div>
+    <div class="icon"><i class="fa-brands fa-whatsapp"></i></div>
     <h3>Direction WhatsApp</h3>
     <p>Vous allez être redirigé vers WhatsApp pour échanger sur votre projet. Si tout vous convient, on lance les travaux.</p>
     <div class="countdown" id="countdownNum">5</div>
@@ -778,7 +930,37 @@ p{color:#6B7280;font-size:16px;line-height:1.7}
       // Lancer la redirection WhatsApp avec décompte
       startRedirect(data,packVal);
     });
-  });
+  })();
+  // Hero slider auto-slide + dots
+  (function(){
+    var track=document.querySelector('.hero-realisations .hr-track');
+    var dotsContainer=document.getElementById('hrDots');
+    if(!track||!dotsContainer||!track.children.length)return;
+    var slides=track.children;
+    for(var i=0;i<slides.length;i++){
+      var btn=document.createElement('button');
+      if(i===0)btn.classList.add('active');
+      (function(idx){btn.onclick=function(){track.scrollTo({left:track.clientWidth*idx,behavior:'smooth'});}})(i);
+      dotsContainer.appendChild(btn);
+    }
+    function updateDots(){
+      var idx=Math.round(track.scrollLeft/track.clientWidth);
+      dotsContainer.querySelectorAll('button').forEach(function(b,j){b.classList.toggle('active',j===idx)});
+    }
+    track.addEventListener('scroll',updateDots);
+    var timer=setInterval(function(){
+      var next=(Math.round(track.scrollLeft/track.clientWidth)+1)%slides.length;
+      track.scrollTo({left:track.clientWidth*next,behavior:'smooth'});
+    },4000);
+    track.addEventListener('mouseenter',function(){clearInterval(timer)});
+    track.addEventListener('mouseleave',function(){
+      clearInterval(timer);
+      timer=setInterval(function(){
+        var next=(Math.round(track.scrollLeft/track.clientWidth)+1)%slides.length;
+        track.scrollTo({left:track.clientWidth*next,behavior:'smooth'});
+      },4000);
+    });
+  })();
 })();
 </script>
 </body>
