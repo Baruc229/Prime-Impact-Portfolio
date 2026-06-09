@@ -40,7 +40,7 @@ p,li,blockquote,.hero-desc,.step-desc,.testimonial-text,.faq-question{font-style
 .noise-overlay{display:none!important}
 
 /* ── NAVBAR ── */
-.navbar{background:#fff!important;border-bottom:1px solid var(--border-color)!important}
+.navbar{background:#fff!important}
 .navbar.scrolled{background:#fff!important;box-shadow:0 2px 16px rgba(0,0,0,0.06)!important}
 .nav-links a,.nav-mega-trigger{font-family:var(--font-main)!important}
 .nav-links a:hover,.nav-mega-trigger:hover{color:var(--accent-blue)!important}
