@@ -35,8 +35,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .hero-sub{font-size:18px;color:#6B7280;max-width:640px;margin:0 auto 28px;line-height:1.6}
 .hero-cta{display:inline-flex;align-items:center;gap:8px;background:#1B3A6B;color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:17px;padding:18px 36px;border-radius:8px;border:none;cursor:pointer;transition:background 0.2s;text-decoration:none}
 .hero-cta:hover{background:#15305a}
-.hero-stats{display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:24px;justify-content:center}
-.hero-stats span{font-size:15px;color:#6B7280;display:flex;align-items:center;gap:6px}
+.hero-stats{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:20px;justify-content:center}
+.hero-stats span{font-size:14px;color:#6B7280;display:flex;align-items:center;gap:5px}
 .hero-stats .check{color:#22C55E;font-weight:700}
 
 .hero-wa{margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:4px}
@@ -67,8 +67,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .tech-marquee{padding:20px 0 40px}
 .tech-label{display:block;text-align:center;margin-bottom:24px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:1px;font-size:14px}
 .tech-marquee-wrapper{overflow:hidden;width:100%;position:relative;display:flex}
-.tech-marquee-track{display:flex;gap:16px;width:max-content;animation:scrollTech 25s linear infinite}
-.tech-item{display:flex;align-items:center;gap:8px;font-size:14px;background:#fff;padding:8px 16px;border-radius:100px;border:1px solid #e5e7eb;white-space:nowrap;transition:border-color 0.2s,box-shadow 0.2s}
+.tech-marquee-track{display:flex;width:max-content;animation:scrollTech 30s linear infinite}
+.tech-item{display:flex;align-items:center;gap:8px;font-size:14px;background:#fff;padding:8px 16px;border-radius:100px;border:1px solid #e5e7eb;white-space:nowrap;transition:border-color 0.2s,box-shadow 0.2s;margin-right:16px}
 .tech-item:hover{border-color:#1B3A6B;box-shadow:0 2px 8px rgba(27,58,107,0.08)}
 .tech-item i{font-size:18px;color:#1B3A6B}
 @keyframes scrollTech{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -164,20 +164,17 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .guarantee-strip p strong{color:#F5A623;font-weight:600}
 
 /* ── PROCESS (cool cards) ── */
-.process-scroll{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
-.process-scroll::-webkit-scrollbar{height:4px}
-.process-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,0.1);border-radius:2px}
-.process-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.3);border-radius:2px}
-.process-step{flex:0 0 240px;scroll-snap-align:start;background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:32px 24px;position:relative;overflow:hidden;transition:transform 0.3s ease,border-color 0.3s ease}
-.process-step:hover{transform:translateY(-6px);border-color:rgba(255,255,255,0.25)}
-.process-step .bg-num{position:absolute;top:-10px;right:-5px;font-family:'Poppins',sans-serif;font-weight:800;font-size:72px;color:rgba(255,255,255,0.04);font-style:normal;line-height:1;pointer-events:none;user-select:none}
-.process-step .emoji{font-size:36px;margin-bottom:16px;display:block}
-.process-step h4{font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;font-style:normal;position:relative}
-.process-step p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;position:relative}
+.process-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.process-step{background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:28px 20px;position:relative;overflow:hidden;transition:transform 0.3s ease,border-color 0.3s ease}
+.process-step:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.25)}
+.process-step .bg-num{position:absolute;top:-5px;right:0;font-family:'Poppins',sans-serif;font-weight:800;font-size:56px;color:rgba(255,255,255,0.04);font-style:normal;line-height:1;pointer-events:none;user-select:none}
+.process-step .emoji{font-size:28px;margin-bottom:12px;display:block}
+.process-step h4{font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;font-style:normal;position:relative}
+.process-step p{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.5;position:relative}
 @media(min-width:768px){
-  .process-scroll{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;overflow:visible;padding:0}
-  .process-step{flex:none;padding:36px 28px}
-  .process-step .bg-num{font-size:96px}
+  .process-grid{grid-template-columns:repeat(4,1fr);gap:24px}
+  .process-step{padding:36px 24px}
+  .process-step .bg-num{font-size:72px}
 }
 
 /* ── TESTIMONIALS ── */
@@ -578,7 +575,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
       <div class="section-badge" style="background:rgba(255,255,255,0.1);color:#F5A623">Le processus</div>
       <h2 style="color:#fff">Comment ça se passe</h2>
     </div>
-    <div class="process-scroll">
+    <div class="process-grid">
       <div class="process-step">
         <span class="bg-num">01</span>
         <span class="emoji">💬</span>
