@@ -5,7 +5,7 @@
    ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600;700&display=swap');
 
-:root{--font-main:'Inter',sans-serif;--font-heading:'Poppins',sans-serif}
+:root{--font-main:'Inter',sans-serif;--font-heading:'Roboto Condensed',sans-serif}
 
 /* ── THEME OVERRIDE ── */
 [data-theme="light"]{
