@@ -290,8 +290,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   .about-wrap{grid-template-columns:1fr 1fr;gap:60px}
   .contact-section .container{grid-template-columns:1fr 1fr;align-items:center}
   .contact-form-wrap{padding:36px}
-  .pricing-scroll{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;overflow:visible}
-  .pricing-card{flex:none;width:auto}
+  .pricing-scroll{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;overflow:visible}
+  .pricing-card{width:calc((100% - 40px) / 3);flex:none;max-width:380px}
   .testi-scroll{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;overflow:visible}
   .testi-card{flex:none;width:auto}
   .section{padding:100px 0}
