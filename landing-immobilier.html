@@ -328,7 +328,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
       <div class="hero-stats">
         <span><span class="check">✓</span> Livraison en 7 jours minimum</span>
         <span><span class="check">✓</span> 30 jours d'assistance incluse</span>
-        <span><span class="check">✓</span> <i class="fa-solid fa-fire" style="color:#F5A623"></i> Plus que <strong style="color:#F5A623">2 places</strong> ce mois-ci</span>
+        <span><span class="check">✓</span> 1 an d'hébergement offert</span>
       </div>
     </div>
   </div>
@@ -904,36 +904,59 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
     var dotsContainer=document.getElementById('hrDots');
     var prevBtn=document.getElementById('hrPrev');
     var nextBtn=document.getElementById('hrNext');
-    if(!track||!dotsContainer||!track.children.length)return;
-    var slides=track.children;
+    var slides=track?track.children:null;
+    if(!track||!dotsContainer||!slides||!slides.length)return;
+    var timer,cw;
+
+    function getW(){
+      var w=track.clientWidth;
+      if(w<=0)w=track.parentElement.clientWidth;
+      if(w<=0)w=640;
+      return w;
+    }
+    function curSlide(){return Math.round(track.scrollLeft/getW())}
+    function goSlide(idx){
+      idx=Math.max(0,Math.min(idx,slides.length-1));
+      track.scrollTo({left:getW()*idx,behavior:'smooth'});
+      updateDots();
+    }
+    function updateDots(){
+      var idx=curSlide();
+      dotsContainer.querySelectorAll('button').forEach(function(b,j){b.classList.toggle('active',j===idx)});
+    }
+    // Build dots
     for(var i=0;i<slides.length;i++){
       var btn=document.createElement('button');
       if(i===0)btn.classList.add('active');
-      (function(idx){btn.onclick=function(){track.scrollTo({left:track.clientWidth*idx,behavior:'smooth'});}})(i);
+      btn.onclick=function(idx){return function(){goSlide(idx)}}(i);
       dotsContainer.appendChild(btn);
     }
-    function goSlide(idx){
-      idx=Math.max(0,Math.min(idx,slides.length-1));
-      track.scrollTo({left:track.clientWidth*idx,behavior:'smooth'});
-    }
-    if(prevBtn)prevBtn.onclick=function(e){e.stopPropagation();goSlide(Math.round(track.scrollLeft/track.clientWidth)-1)};
-    if(nextBtn)nextBtn.onclick=function(e){e.stopPropagation();goSlide(Math.round(track.scrollLeft/track.clientWidth)+1)};
-    function updateDots(){
-      var idx=Math.round(track.scrollLeft/track.clientWidth);
-      dotsContainer.querySelectorAll('button').forEach(function(b,j){b.classList.toggle('active',j===idx)});
-    }
+    // Arrows
+    if(prevBtn)prevBtn.onclick=function(e){e.stopPropagation();goSlide(curSlide()-1)};
+    if(nextBtn)nextBtn.onclick=function(e){e.stopPropagation();goSlide(curSlide()+1)};
+    // Scroll sync for dots
     track.addEventListener('scroll',updateDots);
-    var timer;
+    // Auto-slide
     function startAuto(){
       clearInterval(timer);
       timer=setInterval(function(){
-        var next=(Math.round(track.scrollLeft/track.clientWidth)+1)%slides.length;
-        track.scrollTo({left:track.clientWidth*next,behavior:'smooth'});
+        var next=(curSlide()+1)%slides.length;
+        goSlide(next);
       },4000);
     }
-    setTimeout(startAuto,500);
     track.addEventListener('mouseenter',function(){clearInterval(timer)});
     track.addEventListener('mouseleave',startAuto);
+    // Init once width is ready
+    function waitAndInit(){
+      cw=track.clientWidth;
+      if(cw>0){
+        startAuto();
+      }else{
+        setTimeout(waitAndInit,200);
+      }
+    }
+    waitAndInit();
+    window.addEventListener('resize',updateDots);
   })();
 })();
 </script>
