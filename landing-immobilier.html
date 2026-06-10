@@ -249,17 +249,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .contact-form-wrap .success-msg p{font-size:14px;color:#6B7280}
 
 /* ── COUNTDOWN MODAL ── */
-.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
-.modal-overlay.active{display:flex}
-.modal-box{background:#fff;border-radius:16px;padding:40px 32px;max-width:420px;width:100%;text-align:center;box-shadow:0 16px 48px rgba(0,0,0,0.15)}
-.modal-box .icon{font-size:48px;margin-bottom:12px}
-.modal-box .icon i{font-size:48px;color:#25D366}
-.modal-box h3{font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;color:#1B3A6B;margin-bottom:8px;font-style:normal}
-.modal-box p{font-size:16px;color:#6B7280;margin-bottom:20px;line-height:1.6}
-.modal-box .countdown{font-family:'Poppins',sans-serif;font-size:48px;font-weight:800;color:#F5A623;margin-bottom:8px;font-style:normal}
-.modal-box .countdown-label{font-size:14px;color:#9CA3AF}
-.modal-box .btn-skip{display:inline-block;margin-top:16px;padding:10px 24px;background:#F7F7F7;color:#374151;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:15px;cursor:pointer;transition:background 0.2s}
-.modal-box .btn-skip:hover{background:#e5e7eb}
+
 
 /* ── FOOTER ── */
 .footer{background:#0D1B35;padding:40px 0;text-align:center}
@@ -720,6 +710,10 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
             <input type="email" id="email" name="email" placeholder="sophie@exemple.com" required>
           </div>
           <div class="form-group">
+            <label for="telephone">Téléphone WhatsApp *</label>
+            <input type="tel" id="telephone" name="telephone" placeholder="ex : +229 91 23 45 67" required>
+          </div>
+          <div class="form-group">
             <label for="packSelect">Pack souhaité</label>
             <select id="packSelect" name="pack">
               <option value="Je ne sais pas encore">Je ne sais pas encore — on en discute</option>
@@ -743,18 +737,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
     </div>
   </div>
 </section>
-
-<!-- ══ MODAL REDIRECTION WHATSAPP ══ -->
-<div class="modal-overlay" id="waModal">
-  <div class="modal-box">
-    <div class="icon"><i class="fa-brands fa-whatsapp"></i></div>
-    <h3>Direction WhatsApp</h3>
-    <p>Vous allez être redirigé vers WhatsApp pour échanger sur votre projet. Si tout vous convient, on lance les travaux.</p>
-    <div class="countdown" id="countdownNum">5</div>
-    <div class="countdown-label">secondes</div>
-    <button class="btn-skip" id="skipRedirect">Rediriger maintenant</button>
-  </div>
-</div>
 
 <!-- ══ FOOTER ══ -->
 <footer class="footer">
@@ -851,11 +833,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   var form=document.getElementById('landingForm');
   var formView=document.getElementById('form-view');
   var successView=document.getElementById('success-msg');
-  var modalOverlay=document.getElementById('waModal');
-  var countdownEl=document.getElementById('countdownNum');
-  var skipBtn=document.getElementById('skipRedirect');
-  var redirectTimer=null;
-  var countdownValue=5;
 
   if(!form)return;
 
@@ -866,36 +843,10 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
     if(pack) lines.push('📦 Pack : '+pack);
     lines.push('👤 Nom : '+data.name);
     lines.push('📧 Email : '+data.email);
+    if(data.telephone) lines.push('📞 T\u00e9l\u00e9phone : '+data.telephone);
     lines.push('');
     lines.push('Merci !');
     return encodeURIComponent(lines.join('\n'));
-  }
-
-  function startRedirect(data,pack){
-    modalOverlay.classList.add('active');
-    countdownValue=5;
-    countdownEl.textContent=countdownValue;
-
-    var waMsg=buildWaMessage(data,pack);
-    var waUrl='https://wa.me/'+WA_NUMBER+'?text='+waMsg;
-
-    function doRedirect(){
-      clearInterval(redirectTimer);
-      window.open(waUrl,'_blank');
-      modalOverlay.classList.remove('active');
-    }
-
-    redirectTimer=setInterval(function(){
-      countdownValue--;
-      countdownEl.textContent=countdownValue;
-      if(countdownValue<=0){
-        doRedirect();
-      }
-    },1000);
-
-    skipBtn.onclick=function(){
-      doRedirect();
-    };
   }
 
   form.addEventListener('submit',function(e){
@@ -913,14 +864,18 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
     var data={
       name:form.name.value.trim(),
       email:form.email.value.trim(),
+      telephone:form.telephone.value.trim(),
       pack:packVal
     };
 
-    // Envoyer à l'admin
+    var waMsg=buildWaMessage(data,packVal);
+    var waUrl='https://wa.me/'+WA_NUMBER+'?text='+waMsg;
+
+    // Envoyer à l'admin puis rediriger vers WhatsApp
     fetch('/api/submissions',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({form_type:'landing',data:data,source:'facebook'})
+      body:JSON.stringify({form_type:'contact',data:data,source:'facebook'})
     })
     .then(function(r){return r.json()})
     .catch(function(){})
@@ -928,8 +883,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
       formView.style.display='none';
       document.getElementById('success-title').textContent='Merci '+data.name.split(' ')[0]+' !';
       successView.style.display='block';
-      // Lancer la redirection WhatsApp avec décompte
-      startRedirect(data,packVal);
+      // Redirection directe vers WhatsApp (pas de popup bloquée)
+      window.location.href=waUrl;
     });
   })();
   // Hero slider auto-slide + dots
