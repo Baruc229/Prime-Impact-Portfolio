@@ -1,4 +1,4 @@
-const { load, save, validateSession } = require('./_lib/db');
+const { load, save, validateSession } = require('../_lib/db');
 const nodemailer = require('nodemailer');
 
 const TYPE_LABELS = { contact: 'Contact', devis: 'Devis', order: 'Commande' };
