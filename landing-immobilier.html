@@ -41,7 +41,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .hero-stats .check{color:#22C55E;font-weight:700}
 
 .hero-wa{margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:4px}
-.iti{width:100%}.iti__selected-flag{background:transparent!important}.iti--allow-dropdown input{padding-left:56px!important}.iti__country-list{font-size:14px}
+.iti{width:100%}.iti__country-list{font-size:14px;z-index:99}.iti__selected-flag{background:transparent!important;padding:10px 6px!important}.iti__flag-container:hover,.iti__flag-container:hover .iti__selected-flag{background:transparent!important}.iti--separate-dial-code .iti__selected-dial-code{font-size:14px;margin-left:2px;font-weight:500}
 .hero-wa .wa-label{font-size:14px;color:#9CA3AF}
 .hero-wa .wa-link{display:inline-flex;align-items:center;gap:6px;font-size:16px;font-weight:600;color:#fff;background:#25D366;padding:10px 20px;border-radius:8px;text-decoration:none;transition:background 0.2s}
 .hero-wa .wa-link:hover{background:#1da851}
@@ -969,22 +969,18 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 <script>
   (function(){
     var input=document.querySelector('#telephone');
-    if(input&&window.intlTelInput){
-      var iti=window.intlTelInput(input,{
-        initialCountry:'fr',
-        preferredCountries:['fr','be','ch','ca'],
-        separateDialCode:true,
-        utilsScript:'https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js'
+    if(!input||!window.intlTelInput)return;
+    var iti=window.intlTelInput(input,{
+      initialCountry:'fr',
+      preferredCountries:['fr','be','ch','ca'],
+      separateDialCode:true,
+      utilsScript:'https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js'
+    });
+    var form=input.closest('form');
+    if(form){
+      form.addEventListener('submit',function(){
+        input.value=iti.getNumber();
       });
-      // Sync hidden value on submit
-      var form=input.closest('form');
-      if(form){
-        form.addEventListener('submit',function(){
-          var code=iti.getSelectedCountryData().dialCode;
-          var num=input.value.replace(/\D/g,'');
-          input.value='+'+code+' '+num;
-        });
-      }
     }
   })();
 </script>
