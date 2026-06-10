@@ -836,11 +836,11 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 
   if(!form)return;
 
-  function buildWaMessage(data,pack){
+  function buildWaMessage(data){
     var lines=[];
     lines.push('Bonjour PIA ! Je suis int\u00e9ress\u00e9(e) par le pack suivant :');
     lines.push('');
-    if(pack) lines.push('📦 Pack : '+pack);
+    if(data.packSelect) lines.push('📦 Pack : '+data.packSelect);
     lines.push('👤 Nom : '+data.name);
     lines.push('📧 Email : '+data.email);
     if(data.telephone) lines.push('📞 T\u00e9l\u00e9phone : '+data.telephone);
@@ -865,17 +865,17 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
       name:form.name.value.trim(),
       email:form.email.value.trim(),
       telephone:form.telephone.value.trim(),
-      pack:packVal
+      packSelect:packVal
     };
 
-    var waMsg=buildWaMessage(data,packVal);
+    var waMsg=buildWaMessage(data);
     var waUrl='https://wa.me/'+WA_NUMBER+'?text='+waMsg;
 
     // Envoyer à l'admin puis rediriger vers WhatsApp
     fetch('/api/submissions',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({form_type:'contact',data:data,source:'facebook'})
+      body:JSON.stringify({form_type:'devis',data:data,source:'facebook'})
     })
     .then(function(r){return r.json()})
     .catch(function(){})

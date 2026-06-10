@@ -73,21 +73,9 @@ async function sendNotificationEmail(submission) {
   }
 }
 
-// Parse the ID from the URL path: /api/submissions/123 → 123
-function parseId(req) {
-  const base = '/api/submissions/';
-  const url = req.url;
-  if (url.startsWith(base)) {
-    const rest = url.slice(base.length).split('?')[0].split('/')[0];
-    const id = parseInt(rest);
-    if (!isNaN(id)) return id;
-  }
-  return null;
-}
-
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
@@ -95,116 +83,66 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const auth = req.headers.authorization;
-  const token = auth && auth.startsWith('Bearer ') ? auth.slice(7) : '';
-  const id = parseId(req);
-
-  // Route: GET/POST /api/submissions (list/create)
-  if (id === null) {
-    if (req.method === 'GET') {
-      if (!(await validateSession(token))) {
-        res.status(401).json({ error: 'Non authentifié' });
-        return;
-      }
-      try {
-        const db = await load();
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 50;
-        const formType = req.query.form_type || '';
-
-        let filtered = db.submissions;
-        if (formType) filtered = filtered.filter(s => s.form_type === formType);
-
-        const total = filtered.length;
-        const totalPages = Math.ceil(total / limit);
-        const offset = (page - 1) * limit;
-        const pageItems = filtered.slice(offset, offset + limit);
-
-        res.json({ submissions: pageItems, total, page, limit, totalPages });
-      } catch (err) {
-        console.error('[API] List error:', err);
-        res.status(500).json({ error: err.message || 'Internal server error' });
-      }
-      return;
-    }
-
-    if (req.method === 'POST') {
-      try {
-        const { form_type, data, source } = req.body;
-        if (!form_type || !data) {
-          res.status(400).json({ error: 'form_type and data are required' });
-          return;
-        }
-        if (!['contact', 'devis', 'order'].includes(form_type)) {
-          res.status(400).json({ error: 'Invalid form_type' });
-          return;
-        }
-        if (!data.email && !data.name && !data.nom && !data.prenom) {
-          res.status(400).json({ error: 'Missing required fields' });
-          return;
-        }
-
-        const db = await load();
-        const submission = {
-          id: db.nextId++,
-          form_type,
-          data,
-          source: source || '',
-          created_at: new Date().toISOString(),
-          read: 0
-        };
-        db.submissions.unshift(submission);
-        await save(db);
-        sendNotificationEmail(submission);
-        res.json({ success: true, id: submission.id });
-      } catch (err) {
-        console.error('[API] Insert error:', err);
-        res.status(500).json({ error: err.message || 'Internal server error' });
-      }
-      return;
-    }
-
-    res.status(405).json({ error: 'Method not allowed' });
-    return;
-  }
-
-  // Route: GET/DELETE /api/submissions/:id
-  if (!(await validateSession(token))) {
-    res.status(401).json({ error: 'Non authentifié' });
-    return;
-  }
-
   if (req.method === 'GET') {
+    const auth = req.headers.authorization;
+    const token = auth && auth.startsWith('Bearer ') ? auth.slice(7) : '';
+    if (!(await validateSession(token))) {
+      res.status(401).json({ error: 'Non authentifié' });
+      return;
+    }
     try {
       const db = await load();
-      const row = db.submissions.find(s => s.id === id);
-      if (!row) {
-        res.status(404).json({ error: 'Submission not found' });
-        return;
-      }
-      row.read = 1;
-      await save(db);
-      res.json(row);
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 50;
+      const formType = req.query.form_type || '';
+
+      let filtered = db.submissions;
+      if (formType) filtered = filtered.filter(s => s.form_type === formType);
+
+      const total = filtered.length;
+      const totalPages = Math.ceil(total / limit);
+      const offset = (page - 1) * limit;
+      const pageItems = filtered.slice(offset, offset + limit);
+
+      res.json({ submissions: pageItems, total, page, limit, totalPages });
     } catch (err) {
-      console.error('[API] Get error:', err);
+      console.error('[API] List error:', err);
       res.status(500).json({ error: err.message || 'Internal server error' });
     }
     return;
   }
 
-  if (req.method === 'DELETE') {
+  if (req.method === 'POST') {
     try {
-      const db = await load();
-      const idx = db.submissions.findIndex(s => s.id === id);
-      if (idx === -1) {
-        res.status(404).json({ error: 'Submission not found' });
+      const { form_type, data, source } = req.body;
+      if (!form_type || !data) {
+        res.status(400).json({ error: 'form_type and data are required' });
         return;
       }
-      db.submissions.splice(idx, 1);
+      if (!['contact', 'devis', 'order'].includes(form_type)) {
+        res.status(400).json({ error: 'Invalid form_type' });
+        return;
+      }
+      if (!data.email && !data.name && !data.nom && !data.prenom) {
+        res.status(400).json({ error: 'Missing required fields' });
+        return;
+      }
+
+      const db = await load();
+      const submission = {
+        id: db.nextId++,
+        form_type,
+        data,
+        source: source || '',
+        created_at: new Date().toISOString(),
+        read: 0
+      };
+      db.submissions.unshift(submission);
       await save(db);
-      res.json({ success: true });
+      sendNotificationEmail(submission);
+      res.json({ success: true, id: submission.id });
     } catch (err) {
-      console.error('[API] Delete error:', err);
+      console.error('[API] Insert error:', err);
       res.status(500).json({ error: err.message || 'Internal server error' });
     }
     return;
