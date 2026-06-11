@@ -61,11 +61,10 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .tech-marquee{padding:0 0 8px}
 .tech-label{display:block;text-align:center;margin-bottom:24px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:1px;font-size:14px}
 .tech-marquee-wrapper{overflow:hidden;width:100%;position:relative;display:flex}
-.tech-marquee-track{display:inline-flex;animation:scrollTech 30s linear infinite;gap:16px;will-change:transform}
+.tech-marquee-track{display:inline-flex;gap:16px}
 .tech-item{display:flex;align-items:center;gap:8px;font-size:14px;background:#fff;padding:8px 16px;border-radius:100px;border:1px solid #e5e7eb;white-space:nowrap;flex-shrink:0;transition:border-color 0.2s,box-shadow 0.2s}
 .tech-item:hover{border-color:#1B3A6B;box-shadow:0 2px 8px rgba(27,58,107,0.08)}
 .tech-item i{font-size:18px;color:#1B3A6B}
-@keyframes scrollTech{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ── SECTIONS GENERIC ── */
 .section-title{text-align:center;margin-bottom:48px}
@@ -404,15 +403,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   </div>
   <div class="tech-marquee-wrapper">
     <div class="tech-marquee-track">
-      <div class="tech-item"><i class="fa-brands fa-wordpress"></i><span>WordPress</span></div>
-      <div class="tech-item"><i class="fa-brands fa-elementor"></i><span>Elementor</span></div>
-      <div class="tech-item"><i class="fa-solid fa-code"></i><span>HTML/CSS/JS</span></div>
-      <div class="tech-item"><i class="fa-brands fa-google"></i><span>Google Maps</span></div>
-      <div class="tech-item"><i class="fa-solid fa-magnifying-glass"></i><span>Yoast SEO</span></div>
-      <div class="tech-item"><i class="fa-solid fa-lock"></i><span>SSL/HTTPS</span></div>
-      <div class="tech-item"><i class="fa-brands fa-woocommerce"></i><span>WooCommerce</span></div>
-      <div class="tech-item"><i class="fa-solid fa-palette"></i><span>Design UI/UX</span></div>
-      <!-- doublon pour le défilement infini -->
       <div class="tech-item"><i class="fa-brands fa-wordpress"></i><span>WordPress</span></div>
       <div class="tech-item"><i class="fa-brands fa-elementor"></i><span>Elementor</span></div>
       <div class="tech-item"><i class="fa-solid fa-code"></i><span>HTML/CSS/JS</span></div>
@@ -982,6 +972,29 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
         if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+  })();
+
+  // Tech marquee — défilement continu sans fin
+  (function(){
+    var track = document.querySelector('.tech-marquee-track');
+    if(!track || !track.children.length) return;
+
+    var speed = 0.8;
+    var pos = 0;
+
+    function step(){
+      pos -= speed;
+      var first = track.firstElementChild;
+      var firstW = first.offsetWidth + 16; // width + gap
+      if(Math.abs(pos) >= firstW){
+        pos += firstW;
+        track.appendChild(first);
+      }
+      track.style.transform = 'translateX(' + pos + 'px)';
+      requestAnimationFrame(step);
+    }
+
+    step();
   })();
 
   // Validation en temps réel
