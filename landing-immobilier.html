@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600&family=Syne:wght@700&family=Outfit:wght@400;500&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -253,21 +253,30 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .testi-card .author{font-size:14px;color:#6B7280;font-weight:500}
 
 /* ── FAQ (fond bleu) ── */
-.faq-blue{background:#1B3A6B;padding:80px 0}
-.faq-blue .section-title h2{color:#fff}
-.faq-blue .section-title p{color:rgba(255,255,255,0.7)}
-.faq-blue .faq-item{border-bottom:1px solid rgba(255,255,255,0.15)}
-.faq-blue .faq-question{color:rgba(255,255,255,0.9)}
-.faq-blue .faq-question:hover{color:#fff}
-.faq-blue .faq-question .icon{color:#F5A623}
-.faq-blue .faq-answer p{color:rgba(255,255,255,0.7)}
-.faq-item{border-bottom:1px solid #e5e7eb}
-.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 0;background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:18px;font-weight:500;color:#1c1c1e;text-align:left;gap:12px}
-.faq-question .icon{font-size:18px;transition:transform 0.2s;min-width:20px}
-.faq-item.open .faq-question .icon{transform:rotate(45deg)}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease;padding:0}
-.faq-item.open .faq-answer{max-height:300px;padding:0 0 20px}
-.faq-answer p{font-size:16px;color:#6B7280;line-height:1.7}
+/* ── FAQ ── */
+.faq-section{background:#F7F7F7;padding:80px 0}
+.faq-wrapper{background:#fff;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,0.06);padding:48px;display:grid;grid-template-columns:280px 1fr;gap:48px}
+.faq-left h2{font-family:'Syne',sans-serif;font-size:clamp(32px,3.5vw,42px);color:#0B1F3A;margin-bottom:12px;font-weight:700}
+.faq-left p{font-family:'Outfit',sans-serif;font-size:16px;color:#6B7280;line-height:1.6;max-width:240px}
+.faq-right{display:flex;flex-direction:column;gap:12px}
+.faq-card{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s}
+.faq-card.open{border-color:#F5A623;box-shadow:0 2px 12px rgba(245,166,35,0.08)}
+.faq-card-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:none;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:16px;font-weight:500;color:#0B1F3A;text-align:left;gap:12px;transition:background 0.2s}
+.faq-card.open .faq-card-btn{background:#EEF3FF}
+.faq-chevron{font-size:20px;color:#F5A623;transition:transform 0.3s;flex-shrink:0;line-height:1}
+.faq-card.open .faq-chevron{transform:rotate(90deg)}
+.faq-card-answer{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.35s ease;padding:0 20px}
+.faq-card.open .faq-card-answer{max-height:300px;padding:0 20px 20px}
+.faq-card-answer p{font-family:'Outfit',sans-serif;font-size:15px;color:#6B7280;line-height:1.7}
+.faq-footer{margin-top:24px;padding-top:20px;border-top:1px solid #e5e7eb;text-align:center}
+.faq-footer p{font-family:'Outfit',sans-serif;font-size:14px;color:#6B7280}
+.faq-footer a{color:#F5A623;font-weight:500;text-decoration:underline}
+.faq-footer a:hover{color:#d4901c}
+@media(max-width:768px){
+  .faq-section{padding:48px 0}
+  .faq-wrapper{grid-template-columns:1fr;gap:32px;padding:32px 24px}
+  .faq-left p{max-width:100%}
+}
 
 /* ── CONTACT / FORM ── */
 .contact-section{background:#1B3A6B;padding:48px 0}
@@ -756,32 +765,63 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 </section>
 
 <!-- ══ FAQ ══ -->
-<section class="faq-blue" id="faq">
+<!-- ══ FAQ ══ -->
+<section class="faq-section" id="faq">
   <div class="container">
-    <div class="section-title">
-      <div class="section-badge" style="background:rgba(255,255,255,0.12);color:#fff">FAQ</div>
-      <h2 style="color:#fff">Vos questions — nos réponses</h2>
-    </div>
-    <div style="max-width:700px;margin:0 auto">
-      <div class="faq-item">
-        <button class="faq-question">Je n'ai pas de nom de domaine ni d'hébergement, c'est un problème ?<span class="icon">+</span></button>
-        <div class="faq-answer"><p>Aucun problème. Je vous guide pour choisir l'hébergeur adapté à votre budget et m'occupe de toute l'installation technique.</p></div>
+    <div class="faq-wrapper">
+      <div class="faq-left">
+        <h2>FAQs</h2>
+        <p>Vous avez des questions ? Nous avons les réponses.</p>
       </div>
-      <div class="faq-item">
-        <button class="faq-question">Comment se passe le paiement depuis la France ?<span class="icon">+</span></button>
-        <div class="faq-answer"><p>Via PayPal ou Wise. 50% au démarrage, 50% à la livraison. Aucun frais caché.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">Que se passe-t-il après les 30 jours d'assistance ?<span class="icon">+</span></button>
-        <div class="faq-answer"><p>Votre site vous appartient entièrement. Je vous forme pour le gérer seul. Un accompagnement mensuel est disponible si besoin.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">J'ai déjà un site mais il est vieux. Vous faites la refonte ?<span class="icon">+</span></button>
-        <div class="faq-answer"><p>Oui. Refonte complète avec ou sans SEO selon vos besoins. On en discute lors du premier échange gratuit.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">Combien d'annonces puis-je publier ?<span class="icon">+</span></button>
-        <div class="faq-answer"><p>10 annonces intégrées au démarrage. Après livraison, vous en ajoutez vous-même sans limite ni frais supplémentaire.</p></div>
+      <div class="faq-right">
+        <div class="faq-card">
+          <button class="faq-card-btn">
+            <span>Je n'ai pas de nom de domaine ni d'hébergement, c'est un problème ?</span>
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-card-answer">
+            <p>Aucun problème. Je vous guide pour choisir l'hébergeur adapté à votre budget et m'occupe de toute l'installation technique.</p>
+          </div>
+        </div>
+        <div class="faq-card">
+          <button class="faq-card-btn">
+            <span>Comment se passe le paiement depuis la France ?</span>
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-card-answer">
+            <p>Via PayPal ou Wise. 50 % au démarrage, 50 % à la livraison. Aucun frais caché.</p>
+          </div>
+        </div>
+        <div class="faq-card">
+          <button class="faq-card-btn">
+            <span>Que se passe-t-il après les 30 jours d'assistance ?</span>
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-card-answer">
+            <p>Votre site vous appartient entièrement. Je vous forme pour le gérer seul. Un accompagnement mensuel est disponible si besoin.</p>
+          </div>
+        </div>
+        <div class="faq-card">
+          <button class="faq-card-btn">
+            <span>J'ai déjà un site mais il est vieux. Vous faites la refonte ?</span>
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-card-answer">
+            <p>Oui. Refonte complète avec ou sans SEO selon vos besoins. On en discute lors du premier échange gratuit.</p>
+          </div>
+        </div>
+        <div class="faq-card">
+          <button class="faq-card-btn">
+            <span>Combien d'annonces puis-je publier ?</span>
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-card-answer">
+            <p>10 annonces intégrées au démarrage. Après livraison, vous en ajoutez vous-même sans limite ni frais supplémentaire.</p>
+          </div>
+        </div>
+        <div class="faq-footer">
+          <p>Vous avez d'autres questions ? <a href="mailto:contact@prime-impact.agency">contact@prime-impact.agency</a></p>
+        </div>
       </div>
     </div>
   </div>
@@ -871,12 +911,12 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   var WA_NUMBER = '22993288212';
 
   // FAQ Accordéon
-  document.querySelectorAll('.faq-question').forEach(function(btn){
+  document.querySelectorAll('.faq-card-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
-      var item=this.closest('.faq-item');
-      var isOpen=item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open')});
-      if(!isOpen)item.classList.add('open');
+      var card=this.closest('.faq-card');
+      var isOpen=card.classList.contains('open');
+      document.querySelectorAll('.faq-card.open').forEach(function(el){el.classList.remove('open')});
+      if(!isOpen)card.classList.add('open');
     });
   });
 
