@@ -174,8 +174,12 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .realisations-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .realisations-tags span{font-size:11px;background:#EEF3FF;color:#1B3A6B;padding:3px 10px;font-weight:500}
 
-.realisations-mockup{background:linear-gradient(135deg,#EEF3FF,#d6e0f5);border-radius:12px;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative;border:1px solid rgba(0,0,0,0.04);transition:transform 0.3s ease,box-shadow 0.3s ease}
-.realisations-mockup:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(27,58,107,0.1)}
+.realisations-mockup{background:linear-gradient(135deg,#EEF3FF,#d6e0f5);border-radius:12px;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative;border:1px solid rgba(0,0,0,0.04);opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease,box-shadow 0.3s ease}
+.realisations-project.visible .realisations-mockup{opacity:1;transform:translateY(0)}
+.realisations-project:nth-child(1) .realisations-mockup{transition-delay:0s}
+.realisations-project:nth-child(2) .realisations-mockup{transition-delay:0.12s}
+.realisations-project:nth-child(3) .realisations-mockup{transition-delay:0.24s}
+.realisations-mockup:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(27,58,107,0.1);transition-delay:0s}
 .realisations-mockup .mockup-bar{position:absolute;top:0;left:0;right:0;height:24px;background:rgba(255,255,255,0.7);display:flex;align-items:center;gap:5px;padding:0 10px}
 .realisations-mockup .mockup-bar .dot{width:7px;height:7px;border-radius:50%;background:#d1d5db}
 .realisations-mockup .mockup-bar .dot:nth-child(1){background:#ef4444}
@@ -947,6 +951,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
       entries.forEach(function(entry){
         if(entry.isIntersecting){
           var id = entry.target.id;
+          entry.target.classList.add('visible');
           tabs.forEach(function(t){
             t.classList.toggle('active', t.getAttribute('data-target') === id);
           });
