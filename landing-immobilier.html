@@ -185,14 +185,18 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .realisations-mockup .mockup-content i{font-size:clamp(32px,4vw,52px);color:#1B3A6B;opacity:0.5}
 .realisations-mockup .mockup-content .mockup-label{display:block;margin-top:8px;background:rgba(255,255,255,0.9);padding:4px 14px;border-radius:6px;font-size:12px;color:#1B3A6B;font-weight:600}
 .realisations-card{position:relative}
-.realisations-cta{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.95);color:#1B3A6B;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;transition:all 0.25s;text-decoration:none;width:fit-content;box-shadow:0 4px 16px rgba(0,0,0,0.1)}
-.realisations-cta:hover{background:#1B3A6B;color:#fff}
+.realisations-cta{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#F5A623;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;padding:12px 24px;border-radius:8px;border:1.5px solid #F5A623;cursor:pointer;transition:all 0.25s;text-decoration:none;width:fit-content}
+.realisations-cta:hover{background:#F5A623;color:#fff}
 .realisations-cta i{font-size:13px;transition:transform 0.25s}
 .realisations-cta:hover i{transform:translateX(4px)}
 
 @media(min-width:1024px){
-  .realisations-card{position:relative}
-  .realisations-card .realisations-cta{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:auto;white-space:nowrap;padding:16px 32px;font-size:15px}
+  .realisations-card{position:relative;overflow:hidden;border-radius:12px}
+  .realisations-card::after{content:'';position:absolute;inset:0;background:rgba(27,58,107,0.65);opacity:0;transition:opacity 0.35s;pointer-events:none;z-index:1}
+  .realisations-card:hover::after{opacity:1}
+  .realisations-card .realisations-cta{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.9);opacity:0;z-index:2;white-space:nowrap;padding:16px 32px;font-size:15px;pointer-events:none;transition:opacity 0.35s,transform 0.35s;background:#fff;border-color:#F5A623;color:#F5A623}
+  .realisations-card:hover .realisations-cta{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+  .realisations-card .realisations-cta:hover{background:#F5A623;color:#fff}
 }
 @media(max-width:1023px){
   .realisations{padding:40px 0 0}
