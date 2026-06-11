@@ -96,17 +96,23 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .solution-card p{font-size:16px;color:#6B7280;line-height:1.6}
 
 /* ── ABOUT ── */
-.about-wrap{display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
+.about-wrap{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
 .about-photo{text-align:center}
-.about-photo .photo-frame{width:200px;height:200px;border-radius:50%;background:linear-gradient(135deg,#EEF3FF,#1B3A6B);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:64px;color:#fff;font-family:'Poppins',sans-serif;font-weight:800;box-shadow:0 8px 32px rgba(27,58,107,0.15)}
-.about-photo .photo-caption{font-size:14px;color:#6B7280;font-weight:500}
-.about-photo .photo-role{font-size:13px;color:#9CA3AF}
-.about-text h3{font-family:'Poppins',sans-serif;font-size:24px;font-weight:800;color:#1B3A6B;margin-bottom:16px;font-style:normal}
-.about-text p{font-size:17px;color:#6B7280;line-height:1.7;margin-bottom:12px}
-.about-text .about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
-.about-text .about-stat{text-align:center;background:#F7F7F7;border-radius:12px;padding:20px 12px}
-.about-text .about-stat .val{font-family:'Poppins',sans-serif;font-size:30px;font-weight:800;color:#1B3A6B;font-style:normal}
-.about-text .about-stat .lbl{font-size:14px;color:#6B7280;margin-top:4px}
+.about-photo .photo-frame{width:220px;height:220px;border-radius:50%;background:linear-gradient(135deg,#EEF3FF,#1B3A6B);display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:72px;color:#fff;font-family:'Poppins',sans-serif;font-weight:800;box-shadow:0 8px 32px rgba(27,58,107,0.15)}
+.about-content .about-label{display:inline-flex;align-items:center;background:#EEF3FF;color:#1B3A6B;font-size:12px;font-weight:600;padding:5px 14px;margin-bottom:16px;letter-spacing:0.5px;text-transform:uppercase}
+.about-content .about-name{font-family:'Poppins',sans-serif;font-size:clamp(28px,3.5vw,38px);font-weight:800;color:#1B3A6B;margin-bottom:20px;line-height:1.2;font-style:normal}
+.about-content p{font-size:17px;color:#6B7280;line-height:1.7;margin-bottom:14px}
+.about-achievements{display:flex;flex-direction:column;gap:14px;margin:24px 0}
+.about-achievements .achievement{display:flex;align-items:center;gap:14px;font-size:16px;color:#374151;line-height:1.5}
+.about-achievements .achievement .ach-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#fff}
+.about-content .about-impact{font-size:18px;font-weight:600;color:#1B3A6B;margin-top:20px;line-height:1.5}
+
+/* ── ABOUT CTA STRIP ── */
+.about-cta-strip{background:#1B3A6B;padding:20px 0}
+.about-cta-strip .container{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.about-cta-strip p{margin:0;font-size:17px;color:rgba(255,255,255,0.9);font-weight:500}
+.about-cta-strip .cta-strip-btn{display:inline-flex;align-items:center;gap:8px;background:#F5A623;color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:16px;padding:14px 32px;border-radius:8px;border:none;cursor:pointer;transition:background 0.2s;text-decoration:none;white-space:nowrap}
+.about-cta-strip .cta-strip-btn:hover{background:#d4951e}
 
 /* ── PRICING ── */
 /* ── PORTFOLIO ── */
@@ -169,6 +175,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   .process-grid{grid-template-columns:repeat(4,1fr);gap:24px}
   .process-step{padding:36px 24px}
   .process-step .bg-num{font-size:72px}
+  .about-photo .photo-frame{width:280px;height:280px;font-size:96px}
+  .about-cta-strip .container{flex-direction:row;justify-content:space-between;text-align:left}
 }
 
 /* ── TESTIMONIALS ── */
@@ -258,7 +266,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   .problem-grid{grid-template-columns:repeat(2,1fr)}
   .solution-grid{grid-template-columns:repeat(2,1fr)}
   .portfolio-grid{grid-template-columns:repeat(2,1fr)}
-  .about-text .about-stats{grid-template-columns:repeat(4,1fr)}
 }
 @media(max-width:899px){
   .hero h1{font-size:clamp(24px,5.5vw,36px)}
@@ -273,7 +280,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   .problem-grid{grid-template-columns:repeat(3,1fr)}
   .solution-grid{grid-template-columns:repeat(2,1fr)}
   .portfolio-grid{grid-template-columns:repeat(3,1fr)}
-  .about-wrap{grid-template-columns:1fr 1fr;gap:60px}
+  .about-wrap{grid-template-columns:1fr 1.2fr;gap:60px}
 }
 @media(max-width:640px){
   .hero-logo{width:44px;height:44px}
@@ -381,31 +388,31 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   </div>
 </section>
 
-<!-- ══ QUI SOMMES-NOUS ══ -->
+<!-- ══ À PROPOS ══ -->
 <section class="section section-gray" id="about">
   <div class="container">
-    <div class="section-title">
-      <div class="section-badge">Qui sommes-nous</div>
-      <h2>Pourquoi PIA ?</h2>
-      <p>On livre des sites qui rapportent — pas des templates qu'on oublie.</p>
-    </div>
     <div class="about-wrap">
       <div class="about-photo">
-        <div class="photo-frame">AB</div>
-        <div class="photo-caption">Aristide B.</div>
-        <div class="photo-role">Fondateur · Prime Impact Agency</div>
+        <div class="photo-frame">S</div>
       </div>
-      <div class="about-text">
-        <p>Pas de commerciaux, pas de showroom, pas de frais d'agence. Un modèle 100% digital qui vous fait économiser 70 % sans sacrifier la qualité.</p>
-        <p><strong>Vous bossez avec le même développeur du brief à la mise en ligne.</strong> Pas d'intermédiaire, pas de perte de temps.</p>
-        <div class="about-stats">
-          <div class="about-stat"><div class="val">25+</div><div class="lbl">Sites livrés</div></div>
-          <div class="about-stat"><div class="val">4.9</div><div class="lbl">Note moyenne</div></div>
-          <div class="about-stat"><div class="val">30j</div><div class="lbl">Assistance</div></div>
-          <div class="about-stat"><div class="val">-70%</div><div class="lbl">vs agence locale</div></div>
+      <div class="about-content">
+        <div class="about-label">#qui sommes nous?</div>
+        <h2 class="about-name">Schallom, fondateur de Prime Impact Agency,</h2>
+        <p>Je crée des sites WordPress sur-mesure pour les agents immobiliers qui veulent un résultat — pas juste un joli template. Pas de showroom, pas de frais d'agence, pas de blabla. Vous bossez directement avec moi, du brief à la mise en ligne.</p>
+        <p>Mon truc ? Des sites optimisés Google, livrés en 7 à 22 jours, avec une approche 100% digitale qui vous fait économiser jusqu'à 70% par rapport à une agence locale. Et comme je fais tout moi-même, zéro intermédiaire, zéro perte de temps.</p>
+        <div class="about-achievements">
+          <div class="achievement"><span class="ach-icon" style="background:#1B3A6B"><i class="fa-solid fa-house"></i></span> 25+ sites livrés pour des agents immobiliers</div>
+          <div class="achievement"><span class="ach-icon" style="background:#F5A623"><i class="fa-solid fa-star"></i></span> Note moyenne de 4.9/5 — 100% de clients satisfaits</div>
+          <div class="achievement"><span class="ach-icon" style="background:#22C55E"><i class="fa-solid fa-bolt"></i></span> Livraison en 7 à 22 jours, pas en 3 mois</div>
         </div>
-        <p>Le résultat : un site pro, optimisé Google, livré en 7 à 22 jours. <strong>Vous payez 50 % au lancement, le solde à la livraison</strong> — une fois satisfait uniquement.</p>
+        <p class="about-impact">Si vous lisez ces lignes, c'est que vous êtes prêt à passer à l'action. Moi aussi.</p>
       </div>
+    </div>
+  </div>
+  <div class="about-cta-strip">
+    <div class="container">
+      <p>Démarrage immédiat — 2 places disponibles cette semaine</p>
+      <a href="#contact" class="cta-strip-btn">Démarrer mon projet →</a>
     </div>
   </div>
 </section>
