@@ -16,7 +16,7 @@ body{font-family:'Inter',sans-serif;font-weight:400;color:#1c1c1e;background:#ff
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 .container{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
-.section{padding:80px 0}
+.section{padding:48px 0}
 .section-light{background:#fff}
 .section-gray{background:#F7F7F7}
 
@@ -25,7 +25,7 @@ h2{font-size:clamp(28px,3.5vw,38px);margin-bottom:8px}
 p{color:#6B7280;font-size:17px;line-height:1.7}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:flex;align-items:center;padding:60px 0;background:#fff;position:relative;overflow:hidden}
+.hero{min-height:100vh;display:flex;align-items:center;padding:40px 0;background:#fff;position:relative;overflow:hidden}
 .hero .container{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
 .hero-left{text-align:center}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;background:#EEF3FF;color:#1B3A6B;font-size:13px;font-weight:600;padding:6px 16px;border-radius:0;margin-bottom:16px;letter-spacing:0.5px;text-transform:uppercase}
@@ -37,8 +37,13 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .hero-cta{display:inline-flex;align-items:center;gap:8px;background:#1B3A6B;color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:17px;padding:18px 36px;border-radius:8px;border:none;cursor:pointer;transition:background 0.2s;text-decoration:none}
 .hero-cta:hover{background:#15305a}
 .hero-stats{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:20px;justify-content:center}
-.hero-stats span{font-size:14px;color:#6B7280;display:flex;align-items:center;gap:5px}
-.hero-stats .check{color:#22C55E;font-weight:700}
+.hero-stats span{font-size:14px;color:#6B7280;display:flex;align-items:center;gap:8px}
+.hero-stats span::before{content:"";width:6px;height:6px;border-radius:50%;background:#22C55E;flex-shrink:0}
+
+/* ── HERO LOGOS ── */
+.hero-logos{display:flex;justify-content:center;align-items:center;gap:20px;margin-top:32px;flex-wrap:wrap}
+.hero-logo{display:flex;align-items:center;justify-content:center;width:52px;height:52px;background:#fff;border:1px solid #e5e7eb;box-shadow:0 4px 20px rgba(0,0,0,0.06);border-radius:12px;transition:transform 0.3s ease,box-shadow 0.3s ease}
+.hero-logo:hover{transform:scale(1.1);box-shadow:0 8px 30px rgba(27,58,107,0.15)}
 
 .hero-wa{margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:4px}
 .iti{width:100%}.iti__country-list{font-size:14px;z-index:99}.iti__selected-flag{background:transparent!important;padding:10px 6px!important}.iti__flag-container:hover,.iti__flag-container:hover .iti__selected-flag{background:transparent!important}.iti--separate-dial-code .iti__selected-dial-code{font-size:14px;margin-left:2px;font-weight:500}
@@ -47,32 +52,13 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .hero-wa .wa-link:hover{background:#1da851}
 
 .section-badge{display:inline-flex;align-items:center;background:#EEF3FF;color:#1B3A6B;font-size:12px;font-weight:600;padding:5px 14px;border-radius:0;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:14px}
-
-/* ── HERO REALISATIONS SLIDER ── */
-.hero-realisations{width:100%;max-width:640px;margin:20px auto;position:relative}
-.hero-realisations .hr-label{font-size:11px;color:#9CA3AF;margin-bottom:10px;text-align:center;text-transform:uppercase;letter-spacing:1.5px}
-.hero-realisations .hr-track{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;border-radius:8px;aspect-ratio:16/10;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
-.hero-realisations .hr-track::-webkit-scrollbar{display:none}
-.hr-card{flex:0 0 100%;scroll-snap-align:start;overflow:hidden;border-radius:8px;position:relative;transition:transform 0.3s ease,box-shadow 0.3s ease}
-.hr-card:hover{transform:scale(1.03);box-shadow:0 8px 30px rgba(0,0,0,0.12)}
-.hr-card img{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;transition:transform 0.4s ease}
-.hr-card:hover img{transform:scale(1.08)}
-.hr-arrows{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none;z-index:2;padding:0 8px}
-.hr-arrow{width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,0.9);color:#1B3A6B;font-size:14px;cursor:pointer;pointer-events:auto;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.12);transition:all 0.2s;opacity:0}
-.hr-arrow:hover{background:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.18);transform:scale(1.1)}
-.hero-realisations:hover .hr-arrow{opacity:1}
-.hero-realisations .hr-arrow-prev{left:0}
-.hero-realisations .hr-arrow-next{right:0}
-.hr-dots{display:flex;gap:6px;justify-content:center;margin-top:10px}
-.hr-dots button{width:8px;height:8px;border-radius:50%;border:none;background:#d1d5db;cursor:pointer;padding:0;transition:background 0.3s}
-.hr-dots button.active{background:#1B3A6B}
 .contact-wa-block .wa-link i{transition:color 0.3s ease}
 .contact-wa-block:hover .wa-link i{color:#fff}
 
 
 
 /* ── TECH MARQUEE ── */
-.tech-marquee{padding:20px 0 40px}
+.tech-marquee{padding:10px 0 20px}
 .tech-label{display:block;text-align:center;margin-bottom:24px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:1px;font-size:14px}
 .tech-marquee-wrapper{overflow:hidden;width:100%;position:relative;display:flex}
 .tech-marquee-track{display:flex;width:max-content;animation:scrollTech 30s linear infinite}
@@ -163,7 +149,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .pricing-card .btn-full:hover{background:#15305a}
 
 /* ── GUARANTEE STRIP ── */
-.guarantee-strip{background:#1B3A6B;padding:40px 0;text-align:center;position:relative}
+.guarantee-strip{background:#1B3A6B;padding:32px 0;text-align:center;position:relative}
 .guarantee-strip::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:80px;height:4px;background:#F5A623;border-radius:2px}
 .guarantee-strip .g-icon{font-size:36px;margin-bottom:8px}
 .guarantee-strip .g-icon i{font-size:36px;color:#F5A623}
@@ -214,7 +200,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .faq-answer p{font-size:16px;color:#6B7280;line-height:1.7}
 
 /* ── CONTACT / FORM ── */
-.contact-section{background:#1B3A6B;padding:80px 0}
+.contact-section{background:#1B3A6B;padding:48px 0}
 .contact-section .container{display:grid;grid-template-columns:1fr;gap:40px}
 .contact-left{color:#fff}
 .contact-left h2{color:#fff;font-size:clamp(30px,4.5vw,40px);margin-bottom:12px}
@@ -288,13 +274,19 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   .solution-grid{grid-template-columns:repeat(2,1fr)}
   .portfolio-grid{grid-template-columns:repeat(3,1fr)}
   .about-wrap{grid-template-columns:1fr 1fr;gap:60px}
+}
+@media(max-width:640px){
+  .hero-logo{width:44px;height:44px}
+  .hero-logo svg{width:22px;height:22px}
+  .hero-logos{gap:14px;margin-top:24px}
+}
   .contact-section .container{grid-template-columns:1fr 1fr;align-items:center}
   .contact-form-wrap{padding:36px}
   .pricing-scroll{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;overflow:visible}
   .pricing-card{width:calc((100% - 40px) / 3);flex:none;max-width:380px}
   .testi-scroll{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;overflow:visible}
   .testi-card{flex:none;width:auto}
-  .section{padding:100px 0}
+  .section{padding:60px 0}
 }
 </style>
 </head>
@@ -304,29 +296,30 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 <section class="hero">
   <div class="container">
     <div class="hero-left">
-      <div class="hero-badge"><i class="fa-solid fa-fire"></i> Web &amp; Immobilier</div>
+      <div class="hero-badge"><i class="fa-brands fa-wordpress"></i> Site WordPress</div>
       <h1>Votre site immobilier <span class="highlight">professionnel et performant</span>, à partir de 150 € TTC, livré en 7 à 30 jours.</h1>
-
-      <div class="hero-realisations">
-        <div class="hr-label">Réalisations</div>
-        <div class="hr-track" id="hrTrack">
-          <div class="hr-card"><img src="assets/project_immobilier.webp" alt="Site immobilier" loading="lazy"></div>
-          <div class="hr-card"><img src="assets/lionimmobiliervoyageur.avif" alt="Lion Immobilier Voyageur" loading="lazy"></div>
-          <div class="hr-card"><img src="assets/project_landing.webp" alt="Landing page" loading="lazy"></div>
-        </div>
-        <div class="hr-arrows">
-          <button class="hr-arrow hr-arrow-prev" id="hrPrev"><i class="fa-solid fa-chevron-left"></i></button>
-          <button class="hr-arrow hr-arrow-next" id="hrNext"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-        <div class="hr-dots" id="hrDots"></div>
-      </div>
 
       <p class="hero-sub">Nous créons des sites qui génèrent des leads pour vous — et que vous pouvez gérer sans nous. Pas d'abonnement, pas de dépendance.</p>
       <a href="#form-view" class="hero-cta">Obtenez votre devis gratuit →</a>
       <div class="hero-stats">
-        <span><span class="check">✓</span> Livraison en 7 jours minimum</span>
-        <span><span class="check">✓</span> 30 jours d'assistance incluse</span>
-        <span><span class="check">✓</span> 1 an d'hébergement offert</span>
+        <span>Livraison en 7 jours minimum</span>
+        <span>30 jours d'assistance incluse</span>
+        <span>1 an d'hébergement offert</span>
+      </div>
+
+      <div class="hero-logos">
+        <div class="hero-logo hero-logo-1">
+          <svg viewBox="0 0 122.52 122.523" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><g fill="#21759b"><path d="m8.708 61.26c0 20.802 12.089 38.779 29.619 47.298l-25.069-68.686c-2.916 6.536-4.55 13.769-4.55 21.388z"/><path d="m96.74 58.608c0-6.495-2.333-10.993-4.334-14.494-2.664-4.329-5.161-7.995-5.161-12.324 0-4.831 3.664-9.328 8.825-9.328.233 0 .454.029.681.042-9.35-8.566-21.807-13.796-35.489-13.796-18.36 0-34.513 9.42-43.91 23.688 1.233.037 2.395.063 3.382.063 5.497 0 14.006-.667 14.006-.667 2.833-.167 3.167 3.994.337 4.329 0 0-2.847.335-6.015.501l19.138 56.925 11.501-34.493-8.188-22.434c-2.83-.166-5.511-.501-5.511-.501-2.832-.166-2.5-4.496.332-4.329 0 0 8.679.667 13.843.667 5.496 0 14.006-.667 14.006-.667 2.835-.167 3.168 3.994.337 4.329 0 0-2.853.335-6.015.501l18.992 56.494 5.242-17.517c2.272-7.269 4.001-12.49 4.001-16.989z"/><path d="m62.184 65.857-15.768 45.819c4.708 1.384 9.687 2.141 14.846 2.141 6.12 0 11.989-1.058 17.452-2.979-.141-.225-.269-.464-.374-.724z"/><path d="m107.376 36.046c.226 1.674.354 3.471.354 5.404 0 5.333-.996 11.328-3.996 18.824l-16.053 46.413c15.624-9.111 26.133-26.038 26.133-45.426.001-9.137-2.333-17.729-6.438-25.215z"/></g></svg>
+        </div>
+        <div class="hero-logo hero-logo-2">
+          <svg viewBox="0 0 448 512" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="el" x1="0" y1="0" x2="0" y2="512"><stop offset="0" stop-color="#ED345E"/><stop offset="1" stop-color="#382C74"/></linearGradient></defs><path fill="url(#el)" d="M425.6 32H22.4C10 32 0 42 0 54.4v403.2C0 470 10 480 22.4 480h403.2c12.4 0 22.4-10 22.4-22.4V54.4C448 42 438 32 425.6 32zM164.3 355.5h-39.8v-199h39.8v199zm159.3 0H204.1v-39.8h119.5v39.8zm0-79.6H204.1v-39.8h119.5v39.8zm0-79.7H204.1v-39.8h119.5v39.8z"/></svg>
+        </div>
+        <div class="hero-logo hero-logo-3">
+          <svg viewBox="0 0 448 512" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><path fill="#00A3AD" d="M224 64L32 192v256h128V320h128v128h128V192L224 64zm0 73.6L384 256v160h-64V288H128v128H64V256l160-118.4z"/></svg>
+        </div>
+        <div class="hero-logo hero-logo-4">
+          <svg viewBox="0 0 448 512" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><g fill="#1B3A6B"><rect x="24" y="256" width="112" height="224" rx="6"/><rect x="168" y="128" width="112" height="352" rx="6"/><rect x="312" y="24" width="112" height="456" rx="6"/><circle cx="368" cy="96" r="42" fill="#FF6B35"/></g></svg>
+        </div>
       </div>
     </div>
   </div>
@@ -442,7 +435,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
       <div class="solution-card">
         <div class="icon-circle"><i class="fa-solid fa-shield"></i></div>
         <h3>Assistance 30 jours</h3>
-        <p>Je reste disponible après la mise en ligne. Vous n'êtes jamais seul.</p>
+        <p>Nous restons disponibles après la mise en ligne. Vous n'êtes jamais seul.</p>
       </div>
     </div>
   </div>
@@ -583,8 +576,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
         </ul>
         <button class="btn-outline select-pack">Discutons-en</button>
       </div>
+      </div>
     </div>
-    <p style="text-align:center;color:#6B7280;font-size:15px;margin-top:20px"><i class="fa-solid fa-lock" style="color:#22C55E"></i> Rien n'est payé sur-le-champ — 50 % au lancement après discussion, le solde à la livraison</p>
   </div>
 </section>
 
@@ -593,7 +586,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   <div class="container">
     <div class="g-icon"><i class="fa-solid fa-shield"></i></div>
     <h3>Garantie "Satisfait ou remboursé"</h3>
-    <p>Vous validez chaque étape avant de passer à la suivante. <strong>3 séries de retouches sont incluses</strong>, sans aucun frais supplémentaire. Si au final le résultat ne vous convient toujours pas, je vous rembourse intégralement. Aucun risque.</p>
+    <p>Vous validez chaque étape avant de passer à la suivante. <strong>3 séries de retouches sont incluses</strong>, sans aucun frais supplémentaire.</p>
   </div>
 </section>
 
@@ -918,67 +911,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
       window.location.href=waUrl;
     });
   })();
-  // Hero slider auto-slide + dots + arrows
-  (function(){
-    var track=document.getElementById('hrTrack');
-    var dotsContainer=document.getElementById('hrDots');
-    var prevBtn=document.getElementById('hrPrev');
-    var nextBtn=document.getElementById('hrNext');
-    var slides=track?track.children:null;
-    if(!track||!dotsContainer||!slides||!slides.length)return;
-    var timer,cw;
-
-    function getW(){
-      var w=track.clientWidth;
-      if(w<=0)w=track.parentElement.clientWidth;
-      if(w<=0)w=640;
-      return w;
-    }
-    function curSlide(){return Math.round(track.scrollLeft/getW())}
-    function goSlide(idx){
-      idx=Math.max(0,Math.min(idx,slides.length-1));
-      track.scrollTo({left:getW()*idx,behavior:'smooth'});
-      updateDots();
-    }
-    function updateDots(){
-      var idx=curSlide();
-      dotsContainer.querySelectorAll('button').forEach(function(b,j){b.classList.toggle('active',j===idx)});
-    }
-    // Build dots
-    for(var i=0;i<slides.length;i++){
-      var btn=document.createElement('button');
-      if(i===0)btn.classList.add('active');
-      btn.onclick=function(idx){return function(){goSlide(idx)}}(i);
-      dotsContainer.appendChild(btn);
-    }
-    // Arrows
-    if(prevBtn)prevBtn.onclick=function(e){e.stopPropagation();goSlide(curSlide()-1)};
-    if(nextBtn)nextBtn.onclick=function(e){e.stopPropagation();goSlide(curSlide()+1)};
-    // Scroll sync for dots
-    track.addEventListener('scroll',updateDots);
-    // Auto-slide
-    function startAuto(){
-      clearInterval(timer);
-      timer=setInterval(function(){
-        var next=(curSlide()+1)%slides.length;
-        goSlide(next);
-      },4000);
-    }
-    track.addEventListener('mouseenter',function(){clearInterval(timer)});
-    track.addEventListener('mouseleave',startAuto);
-    // Init once width is ready
-    function waitAndInit(){
-      cw=track.clientWidth;
-      if(cw>0){
-        startAuto();
-      }else{
-        setTimeout(waitAndInit,200);
-      }
-    }
-    waitAndInit();
-    window.addEventListener('resize',updateDots);
   })();
-})();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 <script>
