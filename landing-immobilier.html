@@ -146,6 +146,62 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .pricing-card .btn-full{background:#1B3A6B;color:#fff}
 .pricing-card .btn-full:hover{background:#15305a}
 
+/* ── RÉALISATIONS SPLIT LAYOUT ── */
+.realisations{background:#fff;padding:60px 0 0}
+.realisations .section-title h2{color:#1B3A6B;margin-bottom:8px}
+.realisations .section-title p{color:#6B7280;font-size:17px;max-width:600px;margin:0 auto}
+
+.realisations-split{display:flex;align-items:flex-start;margin-top:48px;gap:0}
+.realisations-tabs{flex:0 0 280px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 24px 80px 0;border-right:1px solid rgba(0,0,0,0.06)}
+.realisations-tabs-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#9CA3AF;margin-bottom:24px;padding-left:20px}
+.realisations-tabs-inner{display:flex;flex-direction:column;gap:4px}
+.realisations-tab{display:flex;align-items:center;gap:14px;padding:14px 20px;border:none;background:transparent;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:#9CA3AF;transition:all 0.5s cubic-bezier(0.25,0.1,0.25,1);border-radius:8px;position:relative}
+.realisations-tab .tab-index{font-size:11px;font-weight:700;color:#d1d5db;width:22px;flex-shrink:0;transition:color 0.5s}
+.realisations-tab .tab-label{flex:1;line-height:1.3}
+.realisations-tab .tab-line{position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);width:3px;height:28px;background:#F5A623;border-radius:2px;transition:transform 0.5s cubic-bezier(0.25,0.1,0.25,1)}
+.realisations-tab:hover{color:#1B3A6B}
+.realisations-tab:hover .tab-index{color:#1B3A6B}
+.realisations-tab.active{background:#EEF3FF;color:#1B3A6B;font-weight:600}
+.realisations-tab.active .tab-index{color:#1B3A6B}
+.realisations-tab.active .tab-line{transform:translateY(-50%) scaleY(1)}
+
+.realisations-content{flex:1;min-width:0;padding:0 0 80px 32px}
+.realisations-project{scroll-margin-top:0}
+.realisations-project-header{padding:80px 0 0;margin-bottom:24px}
+.realisations-project:first-child .realisations-project-header{padding-top:0}
+.realisations-project-header h3{font-family:'Poppins',sans-serif;font-size:clamp(22px,2.8vw,30px);font-weight:800;color:#1B3A6B;margin-bottom:4px}
+.realisations-project-header p{font-size:16px;color:#6B7280;line-height:1.6;max-width:520px}
+.realisations-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.realisations-tags span{font-size:11px;background:#EEF3FF;color:#1B3A6B;padding:3px 10px;font-weight:500}
+
+.realisations-mockup{background:linear-gradient(135deg,#EEF3FF,#d6e0f5);border-radius:12px;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative;border:1px solid rgba(0,0,0,0.04);transition:transform 0.3s ease,box-shadow 0.3s ease}
+.realisations-mockup:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(27,58,107,0.1)}
+.realisations-mockup .mockup-bar{position:absolute;top:0;left:0;right:0;height:24px;background:rgba(255,255,255,0.7);display:flex;align-items:center;gap:5px;padding:0 10px}
+.realisations-mockup .mockup-bar .dot{width:7px;height:7px;border-radius:50%;background:#d1d5db}
+.realisations-mockup .mockup-bar .dot:nth-child(1){background:#ef4444}
+.realisations-mockup .mockup-bar .dot:nth-child(2){background:#F5A623}
+.realisations-mockup .mockup-bar .dot:nth-child(3){background:#22C55E}
+.realisations-mockup .mockup-content{text-align:center}
+.realisations-mockup .mockup-content i{font-size:clamp(32px,4vw,52px);color:#1B3A6B;opacity:0.5}
+.realisations-mockup .mockup-content .mockup-label{display:block;margin-top:8px;background:rgba(255,255,255,0.9);padding:4px 14px;border-radius:6px;font-size:12px;color:#1B3A6B;font-weight:600}
+.realisations-cta{display:inline-flex;align-items:center;gap:8px;margin-top:20px;background:transparent;color:#F5A623;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;padding:12px 24px;border-radius:8px;border:1.5px solid #F5A623;cursor:pointer;transition:all 0.25s;text-decoration:none;width:fit-content}
+.realisations-cta:hover{background:#F5A623;color:#fff}
+.realisations-cta i{font-size:13px;transition:transform 0.25s}
+.realisations-cta:hover i{transform:translateX(4px)}
+
+@media(max-width:1023px){
+  .realisations{padding:40px 0 0}
+  .realisations-split{flex-direction:column;align-items:stretch;margin-top:24px}
+  .realisations-tabs{display:none}
+  .realisations-content{padding:0 0 60px;flex:none;width:100%}
+  .realisations-project-header{padding-top:40px}
+  .realisations-project:first-child .realisations-project-header{padding-top:0}
+  .realisations-mockup{aspect-ratio:16/9}
+  .realisations-cta{width:100%;justify-content:center;padding:14px 28px;font-size:15px}
+  .realisations-project-header h3{font-size:22px}
+}
+
+
 /* ── GUARANTEE STRIP ── */
 .guarantee-strip{background:#1B3A6B;padding:32px 0;text-align:center;position:relative}
 .guarantee-strip::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:80px;height:4px;background:#F5A623;border-radius:2px}
@@ -429,49 +485,94 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   </div>
 </section>
 
-<!-- ══ PORTFOLIO ══ -->
-<section class="section section-gray" id="portfolio">
+<!-- ══ RÉALISATIONS ══ -->
+<section class="realisations" id="portfolio">
   <div class="container">
     <div class="section-title">
       <div class="section-badge">Nos réalisations</div>
       <h2>Des sites qui ont transformé leurs activités</h2>
       <p>Quelques exemples concrets de sites livrés à des agents comme vous.</p>
     </div>
-    <div class="portfolio-grid">
-      <div class="portfolio-card">
-        <div class="mockup">
-          <div class="mockup-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <span class="mockup-label"><i class="fa-solid fa-house"></i> Cabinet Immobilier D.</span>
-        </div>
-        <div class="p-info">
-          <h4>Cabinet Immobilier D. — Lyon</h4>
-          <p>11 pages, 20 annonces, prise de RDV intégrée. +40% de contacts dès le 1er mois.</p>
-          <div class="p-tags"><span>Vitrine + Annonces</span><span>RDV</span><span>SEO</span></div>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <div class="mockup">
-          <div class="mockup-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <span class="mockup-label"><i class="fa-solid fa-house"></i> Location Saisonnière M.</span>
-        </div>
-        <div class="p-info">
-          <h4>Location Saisonnière M. — Bordeaux</h4>
-          <p>Site avec réservation en ligne et paiement. 3 réservations en direct la première semaine.</p>
-          <div class="p-tags"><span>Réservation</span><span>Paiement</span><span>Bilingue</span></div>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <div class="mockup">
-          <div class="mockup-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <span class="mockup-label"><i class="fa-solid fa-building"></i> Agence K.</span>
-        </div>
-        <div class="p-info">
-          <h4>Agence K. — Paris</h4>
-          <p>Marketplace multi-agents avec CRM, abonnements et espace membres. Solution complète.</p>
-          <div class="p-tags"><span>Marketplace</span><span>CRM</span><span>Membres</span></div>
-        </div>
+  </div>
+
+  <div class="container">
+  <div class="realisations-split">
+    <!-- COLONNE GAUCHE : Onglets sticky -->
+    <div class="realisations-tabs" id="realisationsTabs">
+      <div class="realisations-tabs-inner">
+        <div class="realisations-tabs-label">Projets</div>
+        <button class="realisations-tab active" data-target="proj-1">
+          <span class="tab-index">01</span>
+          <span class="tab-label">Cabinet Immobilier D.</span>
+          <span class="tab-line"></span>
+        </button>
+        <button class="realisations-tab" data-target="proj-2">
+          <span class="tab-index">02</span>
+          <span class="tab-label">Location Saisonnière M.</span>
+          <span class="tab-line"></span>
+        </button>
+        <button class="realisations-tab" data-target="proj-3">
+          <span class="tab-index">03</span>
+          <span class="tab-label">Agence K.</span>
+          <span class="tab-line"></span>
+        </button>
       </div>
     </div>
+
+    <!-- COLONNE DROITE : Contenu qui défile -->
+    <div class="realisations-content" id="realisationsContent">
+      <!-- Projet 1 -->
+      <div class="realisations-project" id="proj-1">
+        <div class="realisations-project-header">
+          <h3>Cabinet Immobilier D. — Lyon</h3>
+          <p>11 pages, 20 annonces, prise de RDV intégrée. +40% de contacts dès le 1er mois.</p>
+          <div class="realisations-tags"><span>Vitrine + Annonces</span><span>RDV</span><span>SEO</span></div>
+        </div>
+        <div class="realisations-mockup" style="aspect-ratio:16/9">
+          <div class="mockup-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="mockup-content">
+            <i class="fa-solid fa-house"></i>
+            <span class="mockup-label">Cabinet Immobilier D.</span>
+          </div>
+        </div>
+        <a href="#" class="realisations-cta">Voir ce site <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Projet 2 -->
+      <div class="realisations-project" id="proj-2">
+        <div class="realisations-project-header">
+          <h3>Location Saisonnière M. — Bordeaux</h3>
+          <p>Site avec réservation en ligne et paiement. 3 réservations en direct la première semaine.</p>
+          <div class="realisations-tags"><span>Réservation</span><span>Paiement</span><span>Bilingue</span></div>
+        </div>
+        <div class="realisations-mockup" style="aspect-ratio:16/9">
+          <div class="mockup-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="mockup-content">
+            <i class="fa-solid fa-calendar"></i>
+            <span class="mockup-label">Location Saisonnière M.</span>
+          </div>
+        </div>
+        <a href="#" class="realisations-cta">Voir ce site <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Projet 3 -->
+      <div class="realisations-project" id="proj-3">
+        <div class="realisations-project-header">
+          <h3>Agence K. — Paris</h3>
+          <p>Marketplace multi-agents avec CRM, abonnements et espace membres. Solution complète.</p>
+          <div class="realisations-tags"><span>Marketplace</span><span>CRM</span><span>Membres</span></div>
+        </div>
+        <div class="realisations-mockup" style="aspect-ratio:16/9">
+          <div class="mockup-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="mockup-content">
+            <i class="fa-solid fa-building"></i>
+            <span class="mockup-label">Agence K.</span>
+          </div>
+        </div>
+        <a href="#" class="realisations-cta">Voir ce site <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
   </div>
 </section>
 
@@ -831,6 +932,34 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
       packInput.value = this.value;
     });
   }
+
+  // Réalisations — Scroll spy avec IntersectionObserver
+  (function(){
+    var tabs = document.querySelectorAll('.realisations-tab');
+    var projects = document.querySelectorAll('.realisations-project');
+    if(!tabs.length || !projects.length) return;
+
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var id = entry.target.id;
+          tabs.forEach(function(t){
+            t.classList.toggle('active', t.getAttribute('data-target') === id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+
+    projects.forEach(function(p){ observer.observe(p); });
+
+    // Clic sur un onglet → scroll fluide
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        var target = document.getElementById(this.getAttribute('data-target'));
+        if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  })();
 
   // Validation en temps réel
   document.querySelectorAll('#landingForm input, #landingForm select').forEach(function(el){
