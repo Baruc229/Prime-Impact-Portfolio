@@ -184,11 +184,16 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .realisations-mockup .mockup-content{text-align:center}
 .realisations-mockup .mockup-content i{font-size:clamp(32px,4vw,52px);color:#1B3A6B;opacity:0.5}
 .realisations-mockup .mockup-content .mockup-label{display:block;margin-top:8px;background:rgba(255,255,255,0.9);padding:4px 14px;border-radius:6px;font-size:12px;color:#1B3A6B;font-weight:600}
-.realisations-cta{display:inline-flex;align-items:center;gap:8px;margin-top:20px;background:transparent;color:#F5A623;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;padding:12px 24px;border-radius:8px;border:1.5px solid #F5A623;cursor:pointer;transition:all 0.25s;text-decoration:none;width:fit-content}
-.realisations-cta:hover{background:#F5A623;color:#fff}
+.realisations-card{position:relative}
+.realisations-cta{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.95);color:#1B3A6B;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;transition:all 0.25s;text-decoration:none;width:fit-content;box-shadow:0 4px 16px rgba(0,0,0,0.1)}
+.realisations-cta:hover{background:#1B3A6B;color:#fff}
 .realisations-cta i{font-size:13px;transition:transform 0.25s}
 .realisations-cta:hover i{transform:translateX(4px)}
 
+@media(min-width:1024px){
+  .realisations-card{position:relative}
+  .realisations-card .realisations-cta{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:auto;white-space:nowrap;padding:16px 32px;font-size:15px}
+}
 @media(max-width:1023px){
   .realisations{padding:40px 0 0}
   .realisations-split{flex-direction:column;align-items:stretch;margin-top:24px}
@@ -197,7 +202,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   .realisations-project-header{padding-top:40px}
   .realisations-project:first-child .realisations-project-header{padding-top:0}
   .realisations-mockup{aspect-ratio:16/9}
-  .realisations-cta{width:100%;justify-content:center;padding:14px 28px;font-size:15px}
+  .realisations-card{margin-bottom:0}
+  .realisations-card .realisations-cta{width:100%;justify-content:center;padding:14px 28px;font-size:15px;margin-top:16px}
   .realisations-project-header h3{font-size:22px}
 }
 
@@ -503,17 +509,17 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
         <div class="realisations-tabs-label">Projets</div>
         <button class="realisations-tab active" data-target="proj-1">
           <span class="tab-index">01</span>
-          <span class="tab-label">Cabinet Immobilier D.</span>
+          <span class="tab-label">Orbite Benin</span>
           <span class="tab-line"></span>
         </button>
         <button class="realisations-tab" data-target="proj-2">
           <span class="tab-index">02</span>
-          <span class="tab-label">Location Saisonnière M.</span>
+          <span class="tab-label">Lion Immobilier Voyageur</span>
           <span class="tab-line"></span>
         </button>
         <button class="realisations-tab" data-target="proj-3">
           <span class="tab-index">03</span>
-          <span class="tab-label">Agence K.</span>
+          <span class="tab-label">Comptalink</span>
           <span class="tab-line"></span>
         </button>
       </div>
@@ -521,55 +527,49 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 
     <!-- COLONNE DROITE : Contenu qui défile -->
     <div class="realisations-content" id="realisationsContent">
-      <!-- Projet 1 -->
+      <!-- Projet 1 : Orbite Benin -->
       <div class="realisations-project" id="proj-1">
         <div class="realisations-project-header">
-          <h3>Cabinet Immobilier D. — Lyon</h3>
-          <p>11 pages, 20 annonces, prise de RDV intégrée. +40% de contacts dès le 1er mois.</p>
-          <div class="realisations-tags"><span>Vitrine + Annonces</span><span>RDV</span><span>SEO</span></div>
+          <h3>Orbite Benin — Cotonou</h3>
+          <p>Agence immobilière avec WordPress et le thème Houzez. Site performant, bien référencé et optimisé pour la recherche de biens.</p>
+          <div class="realisations-tags"><span>Immobilier</span><span>WordPress</span><span>Houzez</span></div>
         </div>
-        <div class="realisations-mockup" style="aspect-ratio:16/9">
-          <div class="mockup-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <div class="mockup-content">
-            <i class="fa-solid fa-house"></i>
-            <span class="mockup-label">Cabinet Immobilier D.</span>
+        <div class="realisations-card">
+          <div class="realisations-mockup" style="background: none; overflow: hidden;">
+            <img src="assets/orbitebenin.webp" alt="Orbite Benin" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">
           </div>
+          <a href="https://orbitebenin.com" target="_blank" class="realisations-cta">Voir ce site <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-        <a href="#" class="realisations-cta">Voir ce site <i class="fa-solid fa-arrow-right"></i></a>
       </div>
 
-      <!-- Projet 2 -->
+      <!-- Projet 2 : Lion Immobilier Voyageur -->
       <div class="realisations-project" id="proj-2">
         <div class="realisations-project-header">
-          <h3>Location Saisonnière M. — Bordeaux</h3>
-          <p>Site avec réservation en ligne et paiement. 3 réservations en direct la première semaine.</p>
-          <div class="realisations-tags"><span>Réservation</span><span>Paiement</span><span>Bilingue</span></div>
+          <h3>Lion Immobilier Voyageur</h3>
+          <p>Plateforme immobilière pour réserver des séjours et des logements. Site complet avec recherche, fiches détaillées et système de réservation intégré.</p>
+          <div class="realisations-tags"><span>Immobilier</span><span>Réservation</span><span>Site vitrine</span></div>
         </div>
-        <div class="realisations-mockup" style="aspect-ratio:16/9">
-          <div class="mockup-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <div class="mockup-content">
-            <i class="fa-solid fa-calendar"></i>
-            <span class="mockup-label">Location Saisonnière M.</span>
+        <div class="realisations-card">
+          <div class="realisations-mockup" style="background: none; overflow: hidden;">
+            <img src="assets/lionimmobiliervoyageur.avif" alt="Lion Immobilier Voyageur" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">
           </div>
+          <a href="https://www.lionimmobiliervoyageur.com" target="_blank" class="realisations-cta">Voir ce site <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-        <a href="#" class="realisations-cta">Voir ce site <i class="fa-solid fa-arrow-right"></i></a>
       </div>
 
-      <!-- Projet 3 -->
+      <!-- Projet 3 : Comptalink -->
       <div class="realisations-project" id="proj-3">
         <div class="realisations-project-header">
-          <h3>Agence K. — Paris</h3>
-          <p>Marketplace multi-agents avec CRM, abonnements et espace membres. Solution complète.</p>
-          <div class="realisations-tags"><span>Marketplace</span><span>CRM</span><span>Membres</span></div>
+          <h3>Comptalink</h3>
+          <p>Site vitrine SaaS avec Hostinger et Codex ChatGPT. Abonnement intégré, email Omnisend, paiements par carte bancaire et PayPal.</p>
+          <div class="realisations-tags"><span>SaaS</span><span>Site vitrine</span><span>Paiement</span></div>
         </div>
-        <div class="realisations-mockup" style="aspect-ratio:16/9">
-          <div class="mockup-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <div class="mockup-content">
-            <i class="fa-solid fa-building"></i>
-            <span class="mockup-label">Agence K.</span>
+        <div class="realisations-card">
+          <div class="realisations-mockup" style="background: none; overflow: hidden;">
+            <img src="assets/slide vitrine comptalink.avif" alt="Comptalink" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">
           </div>
+          <a href="https://comptalink.me" target="_blank" class="realisations-cta">Voir ce site <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-        <a href="#" class="realisations-cta">Voir ce site <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
   </div>
