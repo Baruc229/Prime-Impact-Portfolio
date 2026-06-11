@@ -58,7 +58,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 
 
 /* ── TECH MARQUEE ── */
-.tech-marquee{padding:0 0 8px}
+.tech-marquee{width:100%;padding:0 0 8px}
 .tech-label{display:block;text-align:center;margin-bottom:24px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:1px;font-size:14px}
 .tech-marquee-wrapper{overflow:hidden;width:100%;position:relative;display:flex}
 .tech-marquee-track{display:inline-flex;gap:16px}
@@ -979,13 +979,23 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
     var track = document.querySelector('.tech-marquee-track');
     if(!track || !track.children.length) return;
 
+    // Dupliquer les items jusqu'à remplir 2x la largeur de l'écran
+    var orig = [].slice.call(track.children);
+    var trackW = track.scrollWidth;
+    while(trackW < window.innerWidth * 2){
+      for(var i = 0; i < orig.length; i++){
+        track.appendChild(orig[i].cloneNode(true));
+      }
+      trackW = track.scrollWidth;
+    }
+
     var speed = 0.8;
     var pos = 0;
 
     function step(){
       pos -= speed;
       var first = track.firstElementChild;
-      var firstW = first.offsetWidth + 16; // width + gap
+      var firstW = first.offsetWidth + 16;
       if(Math.abs(pos) >= firstW){
         pos += firstW;
         track.appendChild(first);
