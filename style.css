@@ -3681,6 +3681,22 @@ img {
   border-color: #e55;
 }
 
+.form-control.is-valid {
+  border-color: #22C55E;
+  background: #f0fdf4;
+}
+
+.devis-form-group .form-control.error,
+.devis-form-group select.error {
+  border-color: #e55;
+}
+
+.devis-form-group .form-control.is-valid,
+.devis-form-group select.is-valid {
+  border-color: #22C55E;
+  background: #f0fdf4;
+}
+
 textarea.form-control {
   resize: vertical;
   min-height: 120px;

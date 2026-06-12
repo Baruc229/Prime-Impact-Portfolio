@@ -370,6 +370,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── DEVIS MULTI-STEP (devis.html) ── */
   initDevisForm();
 
+  /* ── SERVICE PAGES (service-*.html) ── */
+  initServiceForms();
+
   /* ── CONTACT FORM VALIDATION (contact.html) ── */
   initContactForm();
 
@@ -387,7 +390,6 @@ function validateName(val) {
 }
 
 function validatePhone(val) {
-  if (!val.trim()) return true;
   return /^\+?[\d\s]{4,}$/.test(val.trim().replace(/\s/g, ''));
 }
 
@@ -462,9 +464,9 @@ function initContactForm() {
       if (err) err.style.display = 'none';
     });
 
-    // Phone validation (optional but validated if filled)
+    // Phone validation (required)
     const phoneField = form.querySelector('[name="phone"]');
-    if (phoneField && phoneField.value.trim()) {
+    if (phoneField) {
       if (!validatePhone(phoneField.value)) {
         phoneField.classList.add('error');
         const err = phoneField.parentElement.querySelector('.field-error');
@@ -488,43 +490,55 @@ function initContactForm() {
   form.querySelectorAll('input, textarea, select').forEach(f => {
     f.addEventListener('input', () => validateContactField(f));
     f.addEventListener('blur', () => validateContactField(f));
+    // Input filtering
+    if (f.name === 'name') {
+      f.addEventListener('input', function(){ this.value = this.value.replace(/[^\p{L}\s'-]/gu,''); });
+    }
+    if (f.name === 'phone') {
+      f.addEventListener('input', function(){ this.value = this.value.replace(/[^\d+\s]/g,''); });
+    }
   });
+
+  function setFieldState(field, ok) {
+    field.classList.toggle('error', !ok);
+    field.classList.toggle('is-valid', ok && field.value.trim().length > 0);
+  }
 
   function validateContactField(field) {
     const err = field.parentElement.querySelector('.field-error');
     const val = field.value.trim();
 
     if (!val && field.hasAttribute('required') && field.tagName !== 'SELECT') {
-      field.classList.add('error');
+      setFieldState(field, false);
       if (err) { err.textContent = getTranslation('contact.error.required') || 'Ce champ est requis'; err.style.display = 'block'; }
       return;
     }
 
     if (field.name === 'subject' && field.tagName === 'SELECT') {
-      if (val) { field.classList.remove('error'); if (err) err.style.display = 'none'; }
-      else { field.classList.add('error'); if (err) err.style.display = 'block'; }
+      if (val) { setFieldState(field, true); if (err) err.style.display = 'none'; }
+      else { setFieldState(field, false); if (err) err.style.display = 'block'; }
       return;
     }
 
     if (field.name === 'name' && val && !validateName(val)) {
-      field.classList.add('error');
+      setFieldState(field, false);
       if (err) { err.textContent = getTranslation('contact.error.name') || '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
       return;
     }
 
     if (field.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-      field.classList.add('error');
+      setFieldState(field, false);
       if (err) { err.textContent = getTranslation('contact.error.email') || 'Email invalide'; err.style.display = 'block'; }
       return;
     }
 
-    if (field.name === 'phone' && val && !validatePhone(val)) {
-      field.classList.add('error');
+    if (field.name === 'phone' && !validatePhone(val)) {
+      setFieldState(field, false);
       if (err) { err.textContent = getTranslation('contact.error.phone') || 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
       return;
     }
 
-    field.classList.remove('error');
+    setFieldState(field, true);
     if (err) err.style.display = 'none';
   }
 }
@@ -535,6 +549,8 @@ function initContactForm() {
 function initDevisForm() {
   const form = document.getElementById('devisForm');
   if (!form) return;
+  // Skip service page forms (use telephone naming)
+  if (form.querySelector('[name="telephone"]')) return;
 
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -551,7 +567,7 @@ function initDevisForm() {
         return;
       }
 
-      if ((field.name === 'prenom' || field.name === 'nom') && !validateName(val)) {
+        if ((field.name === 'prenom' || field.name === 'nom') && !validateName(val)) {
         field.classList.add('error');
         const errKey = field.name === 'prenom' ? 'devis.form.prenom.err' : 'devis.form.nom.err';
         if (err) { err.textContent = getTranslation(errKey) || '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
@@ -571,7 +587,7 @@ function initDevisForm() {
     });
 
     const phoneField = form.querySelector('[name="phone"]');
-    if (phoneField && phoneField.value.trim()) {
+    if (phoneField) {
       if (!validatePhone(phoneField.value)) {
         phoneField.classList.add('error');
         const err = phoneField.parentElement.querySelector('.field-error');
@@ -595,6 +611,13 @@ function initDevisForm() {
   form.querySelectorAll('input, textarea, select').forEach(f => {
     f.addEventListener('input', () => validateDevisField(f));
     f.addEventListener('blur', () => validateDevisField(f));
+    // Input filtering
+    if (f.name === 'prenom' || f.name === 'nom') {
+      f.addEventListener('input', function(){ this.value = this.value.replace(/[^\p{L}\s'-]/gu,''); });
+    }
+    if (f.name === 'phone') {
+      f.addEventListener('input', function(){ this.value = this.value.replace(/[^\d+\s]/g,''); });
+    }
   });
 
   function validateDevisField(field) {
@@ -603,18 +626,20 @@ function initDevisForm() {
 
     if (!val && field.hasAttribute('required') && field.tagName !== 'SELECT') {
       field.classList.add('error');
+      field.classList.remove('is-valid');
       if (err) { err.textContent = getTranslation('contact.error.required') || 'Ce champ est requis'; err.style.display = 'block'; }
       return;
     }
 
     if (field.name === 'prestation' && field.tagName === 'SELECT') {
-      if (val) { field.classList.remove('error'); if (err) err.style.display = 'none'; }
-      else { field.classList.add('error'); if (err) err.style.display = 'block'; }
+      if (val) { field.classList.remove('error'); field.classList.add('is-valid'); if (err) err.style.display = 'none'; }
+      else { field.classList.add('error'); field.classList.remove('is-valid'); if (err) err.style.display = 'block'; }
       return;
     }
 
     if ((field.name === 'prenom' || field.name === 'nom') && val && !validateName(val)) {
       field.classList.add('error');
+      field.classList.remove('is-valid');
       const errKey = field.name === 'prenom' ? 'devis.form.prenom.err' : 'devis.form.nom.err';
       if (err) { err.textContent = getTranslation(errKey) || '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
       return;
@@ -622,17 +647,20 @@ function initDevisForm() {
 
     if (field.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
       field.classList.add('error');
+      field.classList.remove('is-valid');
       if (err) { err.textContent = getTranslation('devis.form.email.err') || 'Email invalide'; err.style.display = 'block'; }
       return;
     }
 
-    if (field.name === 'phone' && val && !validatePhone(val)) {
+    if (field.name === 'phone' && !validatePhone(val)) {
       field.classList.add('error');
+      field.classList.remove('is-valid');
       if (err) { err.textContent = getTranslation('devis.form.phone.err') || 'Numéro invalide (chiffres et + uniquement, 4 car. min)'; err.style.display = 'block'; }
       return;
     }
 
     field.classList.remove('error');
+    field.classList.add('is-valid');
     if (err) err.style.display = 'none';
   }
 }
@@ -680,6 +708,92 @@ function initHeroSlider() {
   });
 
   resetAuto();
+}
+
+/* ════════════════════════════════════════════
+   SERVICE FORMS — service-*.html (modal forms)
+════════════════════════════════════════════ */
+function initServiceForms() {
+  const form = document.getElementById('devisForm');
+  if (!form) return;
+  // Only handle service page forms (with name="telephone")
+  if (!form.querySelector('[name="telephone"]')) return;
+
+  const modal = document.getElementById('devisModal');
+  if (!modal) return;
+
+  // Input filtering
+  form.querySelectorAll('input, select').forEach(f => {
+    if (f.name === 'name') {
+      f.addEventListener('input', function(){ this.value = this.value.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿŒœ\s'-]/g,''); });
+    }
+    if (f.name === 'telephone') {
+      f.addEventListener('input', function(){ this.value = this.value.replace(/[^\d+\s]/g,''); });
+    }
+  });
+
+  function validName(v){ return /^[\p{L}\s'-]{3,}$/u.test(v.trim()); }
+  function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); }
+  function validPhone(v){ return v.trim().replace(/\s/g,'').length >= 4; }
+
+  function setFieldState(field, ok) {
+    field.classList.toggle('error', !ok);
+    field.classList.toggle('is-valid', ok && field.value.trim().length > 0);
+    const err = field.parentElement.querySelector('.field-error');
+    if (err) err.style.display = !ok ? 'block' : 'none';
+  }
+
+  function validateField(field) {
+    const val = field.value.trim();
+    if (!val && field.hasAttribute('required')) {
+      setFieldState(field, false);
+      return;
+    }
+    if (field.name === 'name' && val && !validName(val)) { setFieldState(field, false); return; }
+    if (field.type === 'email' && val && !validEmail(val)) { setFieldState(field, false); return; }
+    if (field.name === 'telephone' && val && !validPhone(val)) { setFieldState(field, false); return; }
+    setFieldState(field, true);
+  }
+
+  form.querySelectorAll('input, select').forEach(f => {
+    f.addEventListener('input', () => validateField(f));
+    f.addEventListener('blur', () => validateField(f));
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('devisName').value.trim();
+    const email = document.getElementById('devisEmail').value.trim();
+    const tel = document.getElementById('devisTel').value.trim();
+    const type = document.getElementById('devisType').value;
+
+    const nameOk = validName(name);
+    const emailOk = validEmail(email);
+    const telOk = validPhone(tel);
+    const typeOk = !!type;
+
+    [document.getElementById('devisName'), document.getElementById('devisEmail'), document.getElementById('devisTel'), document.getElementById('devisType')].forEach(f => validateField(f));
+
+    if (!nameOk || !emailOk || !telOk || !typeOk) return;
+
+    const btn = form.querySelector('.devis-btn-submit');
+    btn.textContent = 'Envoi…';
+    btn.disabled = true;
+
+    const data = { name, email, telephone: tel, subject: type };
+    submitToAdmin('devis', data, 'service');
+
+    const msg = 'Bonjour PIA, nous avons besoin d\'un ' + type.toLowerCase() + '. Nom: ' + name + ', Email: ' + email + ', Tel: ' + tel;
+    const wa = typeof WA_LINK !== 'undefined' ? WA_LINK : 'https://wa.me/22993288212';
+    window.open(wa + '?text=' + encodeURIComponent(msg), '_blank');
+
+    // Close modal + reset
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    form.reset();
+    btn.textContent = 'Envoyé ✓';
+    setTimeout(() => { btn.textContent = 'Envoyer ma demande'; btn.disabled = false; }, 2000);
+  });
 }
 
 /* ════════════════════════════════════════════
