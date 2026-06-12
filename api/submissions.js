@@ -51,26 +51,27 @@ function buildNotificationHTML(submission) {
 async function sendNotificationEmail(submission) {
   const gmailUser = process.env.GMAIL_USER;
   const gmailPass = process.env.GMAIL_APP_PASSWORD;
-  if (!gmailUser || !gmailPass) return;
+  if (!gmailUser || !gmailPass) throw new Error('GMAIL_USER ou GMAIL_APP_PASSWORD non configurés');
 
   const typeLabel = TYPE_LABELS[submission.form_type] || submission.form_type;
   const name = submission.data?.name || submission.data?.prenom || submission.data?.nom || '';
 
-  try {
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com', port: 465, secure: true,
-      auth: { user: gmailUser, pass: gmailPass }
-    });
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: { user: gmailUser, pass: gmailPass },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000
+  });
 
-    await transporter.sendMail({
-      from: '"PIA" <' + gmailUser + '>',
-      to: gmailUser,
-      subject: 'Nouveau ' + typeLabel + (name ? ' — ' + name : ''),
-      html: buildNotificationHTML(submission)
-    });
-  } catch (err) {
-    console.error('[EMAIL] Notification error:', err);
-  }
+  await transporter.sendMail({
+    from: '"PIA" <' + gmailUser + '>',
+    to: gmailUser,
+    subject: 'Nouveau ' + typeLabel + (name ? ' — ' + name : ''),
+    html: buildNotificationHTML(submission)
+  });
 }
 
 module.exports = async (req, res) => {
@@ -119,7 +120,7 @@ module.exports = async (req, res) => {
         res.status(400).json({ error: 'form_type and data are required' });
         return;
       }
-      if (!['contact', 'devis', 'order'].includes(form_type)) {
+      if (!['contact', 'devis', 'order', 'newsletter'].includes(form_type)) {
         res.status(400).json({ error: 'Invalid form_type' });
         return;
       }
@@ -139,7 +140,9 @@ module.exports = async (req, res) => {
       };
       db.submissions.unshift(submission);
       await save(db);
-      sendNotificationEmail(submission);
+      await sendNotificationEmail(submission).catch(err => {
+        console.error('[EMAIL] Notification error:', err);
+      });
       res.json({ success: true, id: submission.id });
     } catch (err) {
       console.error('[API] Insert error:', err);

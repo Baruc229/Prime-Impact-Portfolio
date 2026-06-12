@@ -11,6 +11,13 @@
  */
 const translations = {
   // --- Navigation & Header (Barre de navigation) ---
+  "nav.aria.lang": { "fr": "Changer la langue", "en": "Change language" },
+  "nav.aria.theme": { "fr": "Changer le thème", "en": "Toggle theme" },
+  "nav.aria.whatsapp": { "fr": "WhatsApp", "en": "WhatsApp" },
+  "nav.aria.menu": { "fr": "Menu", "en": "Menu" },
+  "nav.aria.close": { "fr": "Fermer le menu", "en": "Close menu" },
+  "nav.aria.linkedin": { "fr": "LinkedIn", "en": "LinkedIn" },
+  "nav.aria.facebook": { "fr": "Facebook", "en": "Facebook" },
   "nav.home": { "fr": "Accueil", "en": "Home" },
   "nav.services": { "fr": "Services", "en": "Services" },
   "nav.portfolio": { "fr": "Réalisations", "en": "Portfolio" },
@@ -63,8 +70,12 @@ const translations = {
   "modal.name": { "fr": "Votre nom", "en": "Your name" },
   "modal.email": { "fr": "Email", "en": "Email" },
   "modal.phone": { "fr": "Téléphone", "en": "Phone" },
+  "modal.phone.input": { "fr": "", "en": "" },
+  "modal.phone.input.ph": { "fr": "06 12 34 56 78", "en": "+33 6 12 34 56 78" },
   "modal.message": { "fr": "Message", "en": "Message" },
   "modal.message.ph": { "fr": "Décrivez brièvement votre projet...", "en": "Briefly describe your project..." },
+  "modal.name.input": { "fr": "", "en": "" },
+  "modal.email.input": { "fr": "", "en": "" },
   "modal.submit": { "fr": "Envoyer ma demande", "en": "Send my request" },
   "modal.success.title": { "fr": "Demande reçue !", "en": "Request received!" },
   "modal.success.text": { "fr": "Nous vous contactons très vite.", "en": "We will contact you very soon." },
@@ -473,6 +484,11 @@ const translations = {
   "devis.form.type.err": { "fr": "Veuillez sélectionner une option", "en": "Please select an option" },
   "devis.form.desc.err": { "fr": "Ce champ est requis", "en": "This field is required" },
   "devis.form.ok": { "fr": "OK", "en": "OK" },
+  "devis.form.prenom": { "fr": "", "en": "" },
+  "devis.form.nom": { "fr": "", "en": "" },
+  "devis.form.email": { "fr": "", "en": "" },
+  "devis.form.phone": { "fr": "", "en": "" },
+  "devis.form.desc": { "fr": "", "en": "" },
 
   // ============================================================
   // CONTACT.HTML
@@ -519,6 +535,9 @@ const translations = {
   "contact.process.3.desc": { "fr": "Nous vous envoyons une proposition commerciale détaillée, transparente et sur-mesure pour votre projet.", "en": "We send you a detailed, transparent, and tailor-made commercial proposal for your project." },
 
   // --- Additional contact keys ---
+  "contact.form.email": { "fr": "", "en": "" },
+  "contact.form.name": { "fr": "", "en": "" },
+  "contact.form.phone": { "fr": "", "en": "" },
   "contact.info.wapp.label": { "fr": "WhatsApp", "en": "WhatsApp" },
   "contact.info.email.label": { "fr": "Email", "en": "Email" },
   "contact.form.email.label": { "fr": "Email *", "en": "Email *" },
@@ -705,6 +724,7 @@ const translations = {
   "service-creation.form.opt3": { "fr": "Plateforme immobilier", "en": "Real estate platform" },
   "service-creation.form.opt4": { "fr": "Site de réservation", "en": "Booking site" },
   "service-creation.form.submit": { "fr": "Envoyer ma demande", "en": "Send my request" },
+  "service-creation.form.phone": { "fr": "", "en": "" },
   "service-creation.form.name.ph": { "fr": "Jean Dupont", "en": "John Doe" },
   "service-creation.form.email.ph": { "fr": "jean@exemple.com", "en": "john@example.com" },
 
@@ -766,6 +786,7 @@ const translations = {
   "service-tunnels.form.opt3": { "fr": "Automatisation email", "en": "Email automation" },
   "service-tunnels.form.opt4": { "fr": "Autre", "en": "Other" },
   "service-tunnels.form.submit": { "fr": "Envoyer ma demande", "en": "Send my request" },
+  "service-tunnels.form.phone": { "fr": "", "en": "" },
   "service-tunnels.form.name.ph": { "fr": "Jean Dupont", "en": "John Doe" },
   "service-tunnels.form.email.ph": { "fr": "jean@exemple.com", "en": "john@example.com" },
 
@@ -826,6 +847,7 @@ const translations = {
   "service-refonte.form.opt4": { "fr": "Blog", "en": "Blog" },
   "service-refonte.form.opt5": { "fr": "Autre", "en": "Other" },
   "service-refonte.form.submit": { "fr": "Envoyer ma demande", "en": "Send my request" },
+  "service-refonte.form.phone": { "fr": "", "en": "" },
   "service-refonte.form.name.ph": { "fr": "Jean Dupont", "en": "John Doe" },
   "service-refonte.form.email.ph": { "fr": "jean@exemple.com", "en": "john@example.com" },
 
@@ -885,6 +907,7 @@ const translations = {
   "service-seo.form.opt3": { "fr": "Netlinking", "en": "Netlinking" },
   "service-seo.form.opt4": { "fr": "Autre", "en": "Other" },
   "service-seo.form.submit": { "fr": "Envoyer ma demande", "en": "Send my request" },
+  "service-seo.form.phone": { "fr": "", "en": "" },
   "service-seo.form.name.ph": { "fr": "Jean Dupont", "en": "John Doe" },
   "service-seo.form.email.ph": { "fr": "jean@exemple.com", "en": "john@example.com" },
 
@@ -944,6 +967,7 @@ const translations = {
   "service-suivi.form.opt3": { "fr": "Formation", "en": "Training" },
   "service-suivi.form.opt4": { "fr": "Autre", "en": "Other" },
   "service-suivi.form.submit": { "fr": "Envoyer ma demande", "en": "Send my request" },
+  "service-suivi.form.phone": { "fr": "", "en": "" },
   "service-suivi.form.name.ph": { "fr": "Jean Dupont", "en": "John Doe" },
   "service-suivi.form.email.ph": { "fr": "jean@exemple.com", "en": "john@example.com" },
 
@@ -1089,23 +1113,29 @@ class I18nManager {
   }
 
   /**
-   * Parcourt le DOM pour traduire tous les éléments avec [data-i18n]
+   * Parcourt le DOM pour traduire tous les éléments avec [data-i18n] et [data-i18n-aria]
    */
   applyTranslations() {
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (translations[key] && translations[key][this.currentLang]) {
-        // Cas particulier : Champs de formulaire (Placeholder)
         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
            const placeholderKey = key + '.ph';
            if(translations[placeholderKey] && translations[placeholderKey][this.currentLang]) {
               el.setAttribute('placeholder', translations[placeholderKey][this.currentLang]);
            }
         } else {
-           // Injection du texte ou HTML traduit
            el.innerHTML = translations[key][this.currentLang];
         }
+      }
+    });
+
+    const ariaElements = document.querySelectorAll('[data-i18n-aria]');
+    ariaElements.forEach(el => {
+      const key = el.getAttribute('data-i18n-aria');
+      if (translations[key] && translations[key][this.currentLang]) {
+        el.setAttribute('aria-label', translations[key][this.currentLang]);
       }
     });
   }

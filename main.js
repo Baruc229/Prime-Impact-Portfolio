@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (whatsappButtons.length && typeof i18nManager !== 'undefined') {
       const lang = i18nManager.currentLang || 'fr';
       const phoneNumber = '22993288212';
-      const message = lang === 'en' 
-        ? 'I need your services for my business' 
-        : 'salut pia, j\'ai besoin de vos services de developpement web';
+      const message = lang === 'en'
+        ? (getTranslation('index.hero.whatsapp.message.en') || 'I need your services for my business')
+        : (getTranslation('index.hero.whatsapp.message.fr') || 'salut pia, j\'ai besoin de vos services de developpement web');
       const encodedMessage = encodeURIComponent(message);
       whatsappButtons.forEach(btn => {
         btn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -373,6 +373,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── SERVICE PAGES (service-*.html) ── */
   initServiceForms();
 
+  /* ── NEWSLETTER FORM (services.html) ── */
+  initNewsletterForm();
+
   /* ── CONTACT FORM VALIDATION (contact.html) ── */
   initContactForm();
 
@@ -415,6 +418,30 @@ async function submitToAdmin(formType, data, source) {
   } catch (e) {
     console.warn('Admin dashboard unreachable:', e.message);
   }
+}
+
+/* ════════════════════════════════════════════
+   NEWSLETTER FORM — services.html
+════════════════════════════════════════════ */
+function initNewsletterForm() {
+  const form = document.getElementById('newsletterForm');
+  if (!form) return;
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = form.querySelector('[name="name"]')?.value.trim();
+    const email = form.querySelector('[name="email"]')?.value.trim();
+    if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.textContent = 'Envoi…'; btn.disabled = true; }
+
+    submitToAdmin('newsletter', { name, email }, 'newsletter');
+
+    btn.textContent = '✓ Abonné';
+    form.reset();
+    setTimeout(() => { if (btn) { btn.textContent = getTranslation('services.newsletter.btn') || 'S\'abonner'; btn.disabled = false; } }, 2000);
+  });
 }
 
 /* ════════════════════════════════════════════
@@ -478,6 +505,8 @@ function initContactForm() {
     if (valid) {
       const btn = form.querySelector('button[type="submit"]');
       if (btn) { btn.textContent = getTranslation('contact.form.sending') || 'Envoi…'; btn.disabled = true; }
+      const formData = Object.fromEntries(new FormData(form));
+      submitToAdmin('contact', formData);
       setTimeout(() => {
         btn.textContent = getTranslation('contact.form.btn') || 'Envoyer le message';
         btn.disabled = false;
@@ -510,7 +539,7 @@ function initContactForm() {
 
     if (!val && field.hasAttribute('required') && field.tagName !== 'SELECT') {
       setFieldState(field, false);
-      if (err) { err.textContent = getTranslation('contact.error.required') || 'Ce champ est requis'; err.style.display = 'block'; }
+      if (err) { err.textContent = getTranslation('contact.error.req') || 'Ce champ est requis'; err.style.display = 'block'; }
       return;
     }
 
@@ -599,6 +628,8 @@ function initDevisForm() {
     if (valid) {
       const btn = form.querySelector('button[type="submit"]');
       if (btn) { btn.textContent = getTranslation('devis.form.sending') || 'Envoi…'; btn.disabled = true; }
+      const formData = Object.fromEntries(new FormData(form));
+      submitToAdmin('devis', formData);
       setTimeout(() => {
         btn.textContent = getTranslation('devis.form.submit') || 'Demander mon devis gratuit';
         btn.disabled = false;
@@ -627,7 +658,7 @@ function initDevisForm() {
     if (!val && field.hasAttribute('required') && field.tagName !== 'SELECT') {
       field.classList.add('error');
       field.classList.remove('is-valid');
-      if (err) { err.textContent = getTranslation('contact.error.required') || 'Ce champ est requis'; err.style.display = 'block'; }
+      if (err) { err.textContent = getTranslation('contact.error.req') || 'Ce champ est requis'; err.style.display = 'block'; }
       return;
     }
 

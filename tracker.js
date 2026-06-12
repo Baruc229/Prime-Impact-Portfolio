@@ -656,8 +656,6 @@ function getThemeColors() {
       } catch (e) {}
     },
     async trackLead(formData, source) {
-      const formType = source === 'devis' ? 'devis' : 'contact';
-      submitToAdminDashboard(formType, formData, source);
       try {
         await fetch(`${API_URL}/api/leads`, {
           method: 'POST',

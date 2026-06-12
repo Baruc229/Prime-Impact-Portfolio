@@ -100,21 +100,21 @@ function buildHeader() {
           <span>|</span>
           <button data-lang="en">EN</button>
         </div>
-        <button class="lang-btn" id="langToggle" aria-label="Changer la langue">
+        <button class="lang-btn" id="langToggle" data-i18n-aria="nav.aria.lang" aria-label="Changer la langue">
           <i class="fa-solid fa-globe"></i>
         </button>
         <div class="lang-menu" id="langMenu">
           <button data-lang="fr" class="active">FR</button>
           <button data-lang="en">EN</button>
         </div>
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+        <button class="theme-toggle" id="themeToggle" data-i18n-aria="nav.aria.theme" aria-label="Changer le thème">
           <i class="ph ph-sun"></i>
         </button>
-        <a href="${WA_LINK}" class="btn-whatsapp-nav" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <a href="${WA_LINK}" class="btn-whatsapp-nav" target="_blank" rel="noopener" data-i18n-aria="nav.aria.whatsapp" aria-label="WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
         </a>
         <a href="/devis" class="btn btn-primary nav-cta" data-i18n="nav.quote">Devis gratuit</a>
-        <button class="nav-burger" id="navBurger" aria-label="Menu">
+        <button class="nav-burger" id="navBurger" data-i18n-aria="nav.aria.menu" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -128,7 +128,7 @@ function buildHeader() {
           <img src="assets/pia-logo-white-sm.png" alt="PIA" class="logo-white">
           <img src="assets/pia-logo-dark-sm.png" alt="PIA" class="logo-dark">
         </a>
-        <button class="nav-close" id="navClose" aria-label="Fermer le menu">
+        <button class="nav-close" id="navClose" data-i18n-aria="nav.aria.close" aria-label="Fermer le menu">
           <i class="ph ph-x"></i>
         </button>
       </div>
@@ -144,13 +144,13 @@ function buildHeader() {
       <!-- Pied du menu latéral -->
       <div class="nav-mobile-footer">
         <div class="nav-socials">
-          <a href="https://www.linkedin.com/in/schallom-sogbossi-4a6040322" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/schallom-sogbossi-4a6040322" target="_blank" rel="noopener" data-i18n-aria="nav.aria.linkedin" aria-label="LinkedIn">
             <i class="fa-brands fa-linkedin"></i>
           </a>
-          <a href="https://www.facebook.com/share/196KYqfDUw/" target="_blank" rel="noopener" aria-label="Facebook">
+          <a href="https://www.facebook.com/share/196KYqfDUw/" target="_blank" rel="noopener" data-i18n-aria="nav.aria.facebook" aria-label="Facebook">
             <i class="fa-brands fa-facebook"></i>
           </a>
-          <a href="${WA_LINK}" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <a href="${WA_LINK}" target="_blank" rel="noopener" data-i18n-aria="nav.aria.whatsapp" aria-label="WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
           </a>
         </div>
@@ -177,9 +177,9 @@ function buildFooter() {
             Agence web & marketing digital spécialisée dans la création de sites performants, tunnels de vente et référencement SEO.
           </p>
           <div class="social-links">
-            <a href="https://www.linkedin.com/in/schallom-sogbossi-4a6040322" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://www.facebook.com/share/196KYqfDUw/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            <a href="${WA_LINK}" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.linkedin.com/in/schallom-sogbossi-4a6040322" target="_blank" data-i18n-aria="nav.aria.linkedin" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/share/196KYqfDUw/" target="_blank" data-i18n-aria="nav.aria.facebook" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="${WA_LINK}" target="_blank" data-i18n-aria="nav.aria.whatsapp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
         <div class="footer-col">
@@ -234,7 +234,7 @@ function buildFooter() {
           </div>
           <div class="form-group">
             <label class="form-label" data-i18n="modal.phone">Téléphone</label>
-            <input type="tel" class="form-control" placeholder="06 12 34 56 78">
+            <input type="tel" class="form-control" data-i18n="modal.phone.input" placeholder="06 12 34 56 78">
           </div>
           <div class="form-group">
             <label class="form-label" data-i18n="modal.message">Message</label>
