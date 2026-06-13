@@ -1254,19 +1254,6 @@ img {
   gap: 20px;
 }
 
-.theme-toggle {
-  background: none;
-  border: none;
-  color: var(--text-main);
-  font-size: 24px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.theme-toggle:hover {
-  transform: scale(1.1);
-}
-
 .lang-btn, .lang-menu {
   display: none !important;
 }
@@ -5025,17 +5012,6 @@ textarea.form-control {
     position: relative;
   }
 
-  .theme-toggle {
-    background: none;
-    border: none;
-    color: var(--text-main);
-    font-size: 22px;
-    cursor: pointer;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
 
 

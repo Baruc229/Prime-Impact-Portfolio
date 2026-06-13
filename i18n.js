@@ -75,7 +75,9 @@ const translations = {
   "modal.message": { "fr": "Message", "en": "Message" },
   "modal.message.ph": { "fr": "Décrivez brièvement votre projet...", "en": "Briefly describe your project..." },
   "modal.name.input": { "fr": "", "en": "" },
+  "modal.name.input.ph": { "fr": "Jean Dupont", "en": "John Doe" },
   "modal.email.input": { "fr": "", "en": "" },
+  "modal.email.input.ph": { "fr": "jean@exemple.com", "en": "john@example.com" },
   "modal.submit": { "fr": "Envoyer ma demande", "en": "Send my request" },
   "modal.success.title": { "fr": "Demande reçue !", "en": "Request received!" },
   "modal.success.text": { "fr": "Nous vous contactons très vite.", "en": "We will contact you very soon." },
@@ -378,7 +380,9 @@ const translations = {
   "services.newsletter.title": { "fr": "Recevez nos actualités", "en": "Get our latest news" },
   "services.newsletter.sub": { "fr": "Conseils web, tendances digitales et offres exclusives — une fois par mois.", "en": "Web tips, digital trends and exclusive offers — once a month." },
   "services.newsletter.name": { "fr": "Votre prénom", "en": "Your first name" },
+  "services.newsletter.name.ph": { "fr": "Votre prénom", "en": "Your first name" },
   "services.newsletter.email": { "fr": "Votre email", "en": "Your email" },
+  "services.newsletter.email.ph": { "fr": "Votre email", "en": "Your email" },
   "services.newsletter.btn": { "fr": "S'abonner", "en": "Subscribe" },
 
   // ============================================================
@@ -535,9 +539,7 @@ const translations = {
   "contact.process.3.desc": { "fr": "Nous vous envoyons une proposition commerciale détaillée, transparente et sur-mesure pour votre projet.", "en": "We send you a detailed, transparent, and tailor-made commercial proposal for your project." },
 
   // --- Additional contact keys ---
-  "contact.form.email": { "fr": "", "en": "" },
-  "contact.form.name": { "fr": "", "en": "" },
-  "contact.form.phone": { "fr": "", "en": "" },
+  "contact.form.email": { "fr": "Email", "en": "Email" },
   "contact.info.wapp.label": { "fr": "WhatsApp", "en": "WhatsApp" },
   "contact.info.email.label": { "fr": "Email", "en": "Email" },
   "contact.form.email.label": { "fr": "Email *", "en": "Email *" },
@@ -724,7 +726,8 @@ const translations = {
   "service-creation.form.opt3": { "fr": "Plateforme immobilier", "en": "Real estate platform" },
   "service-creation.form.opt4": { "fr": "Site de réservation", "en": "Booking site" },
   "service-creation.form.submit": { "fr": "Envoyer ma demande", "en": "Send my request" },
-  "service-creation.form.phone": { "fr": "", "en": "" },
+  "service-creation.form.phone": { "fr": "Votre téléphone", "en": "Your phone" },
+  "service-creation.form.phone.ph": { "fr": "Votre numéro de téléphone", "en": "Your phone number" },
   "service-creation.form.name.ph": { "fr": "Jean Dupont", "en": "John Doe" },
   "service-creation.form.email.ph": { "fr": "jean@exemple.com", "en": "john@example.com" },
 
@@ -786,7 +789,8 @@ const translations = {
   "service-tunnels.form.opt3": { "fr": "Automatisation email", "en": "Email automation" },
   "service-tunnels.form.opt4": { "fr": "Autre", "en": "Other" },
   "service-tunnels.form.submit": { "fr": "Envoyer ma demande", "en": "Send my request" },
-  "service-tunnels.form.phone": { "fr": "", "en": "" },
+  "service-tunnels.form.phone": { "fr": "Votre téléphone", "en": "Your phone" },
+  "service-tunnels.form.phone.ph": { "fr": "Votre numéro de téléphone", "en": "Your phone number" },
   "service-tunnels.form.name.ph": { "fr": "Jean Dupont", "en": "John Doe" },
   "service-tunnels.form.email.ph": { "fr": "jean@exemple.com", "en": "john@example.com" },
 
@@ -847,7 +851,8 @@ const translations = {
   "service-refonte.form.opt4": { "fr": "Blog", "en": "Blog" },
   "service-refonte.form.opt5": { "fr": "Autre", "en": "Other" },
   "service-refonte.form.submit": { "fr": "Envoyer ma demande", "en": "Send my request" },
-  "service-refonte.form.phone": { "fr": "", "en": "" },
+  "service-refonte.form.phone": { "fr": "Votre téléphone", "en": "Your phone" },
+  "service-refonte.form.phone.ph": { "fr": "Votre numéro de téléphone", "en": "Your phone number" },
   "service-refonte.form.name.ph": { "fr": "Jean Dupont", "en": "John Doe" },
   "service-refonte.form.email.ph": { "fr": "jean@exemple.com", "en": "john@example.com" },
 
@@ -907,7 +912,8 @@ const translations = {
   "service-seo.form.opt3": { "fr": "Netlinking", "en": "Netlinking" },
   "service-seo.form.opt4": { "fr": "Autre", "en": "Other" },
   "service-seo.form.submit": { "fr": "Envoyer ma demande", "en": "Send my request" },
-  "service-seo.form.phone": { "fr": "", "en": "" },
+  "service-seo.form.phone": { "fr": "Votre téléphone", "en": "Your phone" },
+  "service-seo.form.phone.ph": { "fr": "Votre numéro de téléphone", "en": "Your phone number" },
   "service-seo.form.name.ph": { "fr": "Jean Dupont", "en": "John Doe" },
   "service-seo.form.email.ph": { "fr": "jean@exemple.com", "en": "john@example.com" },
 
@@ -967,9 +973,17 @@ const translations = {
   "service-suivi.form.opt3": { "fr": "Formation", "en": "Training" },
   "service-suivi.form.opt4": { "fr": "Autre", "en": "Other" },
   "service-suivi.form.submit": { "fr": "Envoyer ma demande", "en": "Send my request" },
-  "service-suivi.form.phone": { "fr": "", "en": "" },
+  "service-suivi.form.phone": { "fr": "Votre téléphone", "en": "Your phone" },
+  "service-suivi.form.phone.ph": { "fr": "Votre numéro de téléphone", "en": "Your phone number" },
   "service-suivi.form.name.ph": { "fr": "Jean Dupont", "en": "John Doe" },
   "service-suivi.form.email.ph": { "fr": "jean@exemple.com", "en": "john@example.com" },
+
+  // --- Generic form keys ---
+  "form.err.name": { "fr": "3 caractères minimum, lettres uniquement", "en": "Min 3 characters, letters only" },
+  "form.err.email": { "fr": "Email invalide", "en": "Invalid email" },
+  "form.err.phone": { "fr": "Au moins 4 chiffres", "en": "At least 4 digits" },
+  "form.sending": { "fr": "Envoi…", "en": "Sending…" },
+  "form.sent": { "fr": "Envoyé ✓", "en": "Sent ✓" },
 
   // ============================================================
   // MENTIONS LÉGALES
@@ -1120,13 +1134,16 @@ class I18nManager {
     elements.forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (translations[key] && translations[key][this.currentLang]) {
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-           const placeholderKey = key + '.ph';
-           if(translations[placeholderKey] && translations[placeholderKey][this.currentLang]) {
-              el.setAttribute('placeholder', translations[placeholderKey][this.currentLang]);
-           }
-        } else {
-           el.innerHTML = translations[key][this.currentLang];
+        if (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') {
+          el.innerHTML = translations[key][this.currentLang];
+        }
+      }
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        const placeholderKey = key + '.ph';
+        if (translations[placeholderKey] && translations[placeholderKey][this.currentLang]) {
+          el.setAttribute('placeholder', translations[placeholderKey][this.currentLang]);
+        } else if (translations[key] && translations[key][this.currentLang]) {
+          el.setAttribute('placeholder', translations[key][this.currentLang]);
         }
       }
     });

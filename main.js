@@ -70,33 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
   //   });
   // }
 
-  /* ── GESTION DU THÈME (Sombre / Clair) ── */
-  const themeToggle = document.getElementById('themeToggle');
-  const htmlEl = document.documentElement;
-
-  // Charge le thème sauvegardé ou utilise 'dark' par défaut (premium)
-  const savedTheme = localStorage.getItem('pia-theme') || 'light';
-  htmlEl.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      // Alterne entre 'light' et 'dark'
-      const next = htmlEl.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      htmlEl.setAttribute('data-theme', next);
-      localStorage.setItem('pia-theme', next);
-      updateThemeIcon(next);
-    });
-  }
-
-  function updateThemeIcon(theme) {
-    if (!themeToggle) return;
-    const icon = themeToggle.querySelector('i');
-    if (!icon) return;
-    // Change l'icône : Soleil pour le mode sombre, Lune pour le mode clair
-    icon.className = theme === 'dark' ? 'ph ph-sun' : 'ph ph-moon';
-  }
-
   /* ── EFFET SCROLL NAVBAR ── 
      Ajoute une classe quand on scrolle pour changer l'apparence du header
   */
@@ -298,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           if (formCont) formCont.style.display = 'none';
           if (succCont) succCont.style.display = 'block';
-          if (submitBtn) { submitBtn.textContent = 'Envoyer ma demande'; submitBtn.disabled = false; }
+          if (submitBtn) { submitBtn.textContent = getTranslation('modal.submit') || 'Envoyer ma demande'; submitBtn.disabled = false; }
         }, 800);
       });
     });
@@ -434,11 +407,11 @@ function initNewsletterForm() {
     if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
 
     const btn = form.querySelector('button[type="submit"]');
-    if (btn) { btn.textContent = 'Envoi…'; btn.disabled = true; }
+    if (btn) { btn.textContent = getTranslation('form.sending') || 'Envoi…'; btn.disabled = true; }
 
     submitToAdmin('newsletter', { name, email }, 'newsletter');
 
-    btn.textContent = '✓ Abonné';
+    btn.textContent = getTranslation('form.sent') || '✓ Abonné';
     form.reset();
     setTimeout(() => { if (btn) { btn.textContent = getTranslation('services.newsletter.btn') || 'S\'abonner'; btn.disabled = false; } }, 2000);
   });
@@ -808,7 +781,8 @@ function initServiceForms() {
     if (!nameOk || !emailOk || !telOk || !typeOk) return;
 
     const btn = form.querySelector('.devis-btn-submit');
-    btn.textContent = 'Envoi…';
+    const btnKey = btn.dataset.i18n;
+    btn.textContent = getTranslation('form.sending') || 'Envoi…';
     btn.disabled = true;
 
     const data = { name, email, telephone: tel, subject: type };
@@ -822,8 +796,8 @@ function initServiceForms() {
     modal.classList.remove('open');
     document.body.style.overflow = '';
     form.reset();
-    btn.textContent = 'Envoyé ✓';
-    setTimeout(() => { btn.textContent = 'Envoyer ma demande'; btn.disabled = false; }, 2000);
+    btn.textContent = getTranslation('form.sent') || 'Envoyé ✓';
+    setTimeout(() => { btn.textContent = getTranslation(btnKey) || 'Envoyer ma demande'; btn.disabled = false; }, 2000);
   });
 }
 

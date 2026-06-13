@@ -107,9 +107,6 @@ function buildHeader() {
           <button data-lang="fr" class="active">FR</button>
           <button data-lang="en">EN</button>
         </div>
-        <button class="theme-toggle" id="themeToggle" data-i18n-aria="nav.aria.theme" aria-label="Changer le thème">
-          <i class="ph ph-sun"></i>
-        </button>
         <a href="${WA_LINK}" class="btn-whatsapp-nav" target="_blank" rel="noopener" data-i18n-aria="nav.aria.whatsapp" aria-label="WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
         </a>
