@@ -46,11 +46,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .hero-logo{display:flex;align-items:center;justify-content:center;width:52px;height:52px;background:#fff;border:1px solid #e5e7eb;box-shadow:0 4px 20px rgba(0,0,0,0.06);border-radius:12px;transition:transform 0.3s ease,box-shadow 0.3s ease}
 .hero-logo:hover{transform:scale(1.1);box-shadow:0 8px 30px rgba(27,58,107,0.15)}
 
-.hero-wa{margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:4px}
 .iti{width:100%}.iti__country-list{font-size:14px;z-index:99}.iti__selected-flag{background:transparent!important;padding:10px 6px!important}.iti__flag-container:hover,.iti__flag-container:hover .iti__selected-flag{background:transparent!important}.iti--separate-dial-code .iti__selected-dial-code{font-size:14px;margin-left:2px;font-weight:500}
-.hero-wa .wa-label{font-size:14px;color:#9CA3AF}
-.hero-wa .wa-link{display:inline-flex;align-items:center;gap:6px;font-size:16px;font-weight:600;color:#fff;background:#25D366;padding:10px 20px;border-radius:8px;text-decoration:none;transition:background 0.2s}
-.hero-wa .wa-link:hover{background:#1da851}
 
 .section-badge{display:inline-flex;align-items:center;background:#EEF3FF;color:#1B3A6B;font-size:12px;font-weight:600;padding:5px 14px;border-radius:0;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:14px}
 
@@ -94,7 +90,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .solution-card p{font-size:16px;color:#6B7280;line-height:1.6}
 
 /* ── ABOUT ── */
-.about-section{display:none}
+.about-section{display:block}
 .about-wrap{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
 .about-photo{text-align:center}
 .about-photo img{width:100%;max-width:360px;height:auto;border-radius:12px;box-shadow:0 20px 60px rgba(27,58,107,0.12);display:block;margin:0 auto}
@@ -151,6 +147,20 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .pricing-card .btn-full{background:#0E1E3A;color:#fff;border:1.5px solid #0E1E3A}
 .pricing-card .btn-full:hover{background:#1B3A6B;border-color:#1B3A6B}
 .pricing-card.selected-pack{border-color:#FFB432;box-shadow:0 4px 24px rgba(255,180,50,0.15)}
+
+/* ── ACCORDÉON FONCTIONNALITÉS ── */
+.features-hidden{display:none}
+.features-hidden.open{display:block}
+.features-toggle{display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#1B3A6B;font-weight:600;cursor:pointer;margin-top:4px;padding:6px 0;border:none;background:none;font-family:'Outfit',sans-serif;transition:color 0.2s;line-height:1;width:100%;text-align:left}
+.features-toggle i{font-size:11px;transition:transform 0.3s;color:#FFB432}
+.features-toggle.is-open i{transform:rotate(180deg)}
+.features-toggle:hover{color:#FFB432}
+.pricing-wide .features-toggle{color:rgba(255,255,255,0.7)}
+.pricing-wide .features-toggle:hover{color:#FFB432}
+.pricing-cta-top{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#1B3A6B;cursor:pointer;border:none;background:none;font-family:'Outfit',sans-serif;padding:4px 0;margin:4px 0 10px;transition:color 0.2s;text-decoration:none}
+.pricing-cta-top:hover{color:#FFB432}
+.pricing-cta-top i{font-size:12px;transition:transform 0.2s}
+.pricing-cta-top:hover i{transform:translateX(3px)}
 
 /* Carte large du bas */
 .pricing-card.pricing-wide{grid-column:1 / -1;background:#0E1E3A;border:0.5px solid #0E1E3A;border-radius:20px;padding:32px 36px}
@@ -364,8 +374,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .contact-left h2{font-family:'Outfit',sans-serif;font-weight:700;font-size:32px;color:#FFFFFF;margin-bottom:12px;line-height:1.2}
 .contact-left h2 .dot{color:#FFB432}
 .contact-left .sub{font-family:'Outfit',sans-serif;font-weight:300;font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:24px}
-.contact-left .wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#25D366;color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.2s;text-decoration:none;margin-bottom:28px}
-.contact-left .wa-btn:hover{background:#1da851}
+.contact-left .wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#0E1E3A;color:#fff;border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px 24px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.2s,border-color 0.2s;text-decoration:none;margin-bottom:28px}
+.contact-left .wa-btn:hover{background:#1B3A6B;border-color:rgba(255,255,255,0.2)}
 .contact-left .wa-btn svg{flex-shrink:0}
 .contact-left .separator{height:1px;background:rgba(255,255,255,0.1);margin-bottom:28px}
 .contact-left .reassurance{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
@@ -467,27 +477,27 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   <div class="container">
     <div class="hero-left">
       <div class="hero-badge"><i class="fa-solid fa-fire"></i> Site WordPress</div>
-      <h1>Votre site immobilier <span class="highlight">professionnel et performant</span>, à partir de 150 € TTC, livré en 7 à 30 jours.</h1>
+      <h1>Votre site immobilier <span class="highlight">professionnel et performant</span>, sans abonnement, livré en 7 à 30 jours.</h1>
 
       <p class="hero-sub">Nous créons des sites qui génèrent des leads pour vous — et que vous pouvez gérer sans nous. Pas d'abonnement, pas de dépendance.</p>
       <a href="#form-view" class="hero-cta">Obtenez votre devis gratuit →</a>
       <div class="hero-stats">
-        <span>Livraison en 7 jours minimum</span>
+        <span>Livraison rapide (7 à 30 jours)</span>
         <span>30 jours d'assistance incluse</span>
         <span>1 an d'hébergement offert</span>
       </div>
 
       <div class="hero-logos">
-        <div class="hero-logo hero-logo-1">
+        <div class="hero-logo hero-logo-1" title="WordPress">
           <svg viewBox="0 0 122.52 122.523" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><g fill="#21759b"><path d="m8.708 61.26c0 20.802 12.089 38.779 29.619 47.298l-25.069-68.686c-2.916 6.536-4.55 13.769-4.55 21.388z"/><path d="m96.74 58.608c0-6.495-2.333-10.993-4.334-14.494-2.664-4.329-5.161-7.995-5.161-12.324 0-4.831 3.664-9.328 8.825-9.328.233 0 .454.029.681.042-9.35-8.566-21.807-13.796-35.489-13.796-18.36 0-34.513 9.42-43.91 23.688 1.233.037 2.395.063 3.382.063 5.497 0 14.006-.667 14.006-.667 2.833-.167 3.167 3.994.337 4.329 0 0-2.847.335-6.015.501l19.138 56.925 11.501-34.493-8.188-22.434c-2.83-.166-5.511-.501-5.511-.501-2.832-.166-2.5-4.496.332-4.329 0 0 8.679.667 13.843.667 5.496 0 14.006-.667 14.006-.667 2.835-.167 3.168 3.994.337 4.329 0 0-2.853.335-6.015.501l18.992 56.494 5.242-17.517c2.272-7.269 4.001-12.49 4.001-16.989z"/><path d="m62.184 65.857-15.768 45.819c4.708 1.384 9.687 2.141 14.846 2.141 6.12 0 11.989-1.058 17.452-2.979-.141-.225-.269-.464-.374-.724z"/><path d="m107.376 36.046c.226 1.674.354 3.471.354 5.404 0 5.333-.996 11.328-3.996 18.824l-16.053 46.413c15.624-9.111 26.133-26.038 26.133-45.426.001-9.137-2.333-17.729-6.438-25.215z"/></g></svg>
         </div>
-        <div class="hero-logo hero-logo-2">
+        <div class="hero-logo hero-logo-2" title="Elementor">
           <svg viewBox="0 0 448 512" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="el" x1="0" y1="0" x2="0" y2="512"><stop offset="0" stop-color="#ED345E"/><stop offset="1" stop-color="#382C74"/></linearGradient></defs><path fill="url(#el)" d="M425.6 32H22.4C10 32 0 42 0 54.4v403.2C0 470 10 480 22.4 480h403.2c12.4 0 22.4-10 22.4-22.4V54.4C448 42 438 32 425.6 32zM164.3 355.5h-39.8v-199h39.8v199zm159.3 0H204.1v-39.8h119.5v39.8zm0-79.6H204.1v-39.8h119.5v39.8zm0-79.7H204.1v-39.8h119.5v39.8z"/></svg>
         </div>
-        <div class="hero-logo hero-logo-3">
+        <div class="hero-logo hero-logo-3" title="SiteGround / Hébergement">
           <svg viewBox="0 0 448 512" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><path fill="#00A3AD" d="M224 64L32 192v256h128V320h128v128h128V192L224 64zm0 73.6L384 256v160h-64V288H128v128H64V256l160-118.4z"/></svg>
         </div>
-        <div class="hero-logo hero-logo-4">
+        <div class="hero-logo hero-logo-4" title="SEO & Analytics">
           <svg viewBox="0 0 448 512" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><g fill="#1B3A6B"><rect x="24" y="256" width="112" height="224" rx="6"/><rect x="168" y="128" width="112" height="352" rx="6"/><rect x="312" y="24" width="112" height="456" rx="6"/><circle cx="368" cy="96" r="42" fill="#FF6B35"/></g></svg>
         </div>
       </div>
@@ -523,17 +533,17 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
     </div>
     <div class="problem-grid">
       <div class="problem-card">
-        <div class="icon"><i class="fa-solid fa-link-slash"></i></div>
+        <div class="icon"><i class="fa-regular fa-handshake"></i></div>
         <h3>Dépendance aux portails</h3>
         <p>SeLoger, Leboncoin, PAP… vous payez chaque mois sans construire votre marque. Pas de trafic direct, pas de valeur patrimoniale. Vous travaillez pour eux.</p>
       </div>
       <div class="problem-card">
-        <div class="icon"><i class="fa-solid fa-arrow-trend-down"></i></div>
+        <div class="icon"><i class="fa-regular fa-circle-down"></i></div>
         <h3>Site qui ne convertit pas</h3>
         <p>Vitrine figée, pas de CTA, pas de formulaire. Les visiteurs repartent sans contact. Vous perdez des mandats.</p>
       </div>
       <div class="problem-card">
-        <div class="icon"><i class="fa-solid fa-coins"></i></div>
+        <div class="icon"><i class="fa-regular fa-credit-card"></i></div>
         <h3>Agence locale trop chère</h3>
         <p>1 500 à 5 000 € le site vitrine + frais mensuels + contrats verrouillés. Trop cher pour un agent.</p>
       </div>
@@ -541,21 +551,11 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   </div>
 </section>
 
-<!-- ══ À PROPOS ══ -->
-<section class="section about-section" id="about">
+<!-- ══ TRANSITION ══ -->
+<section style="background:#fff;padding:32px 0;text-align:center">
   <div class="container">
-    <div class="about-wrap">
-      <div class="about-photo">
-        <img src="assets/schallom-_2_.avif" alt="Schallom - Fondateur Prime Impact Agency" loading="lazy">
-      </div>
-      <div class="about-content">
-        <div class="about-label">#qui est schallom ?</div>
-        <h2 class="about-name">Schallom, fondateur de Prime Impact Agency</h2>
-        <p>Schallom conçoit des sites WordPress sur-mesure pour les agents immobiliers qui veulent du résultat — pas un simple template oublié au fond d'un tiroir. Pas de showroom, pas de frais d'agence, pas de blabla. Chaque client travaille directement avec lui, du brief à la mise en ligne.</p>
-        <p>Sa philosophie : des sites optimisés Google, livrés en 7 à 22 jours, avec une approche 100% digitale qui fait économiser jusqu'à 70% par rapport à une agence locale. Zéro intermédiaire, zéro perte de temps, zéro compromis.</p>
-        <p class="about-stats-line"><strong>25+</strong> sites livrés · <strong>4.9/5</strong> de satisfaction · <strong>7-22 jours</strong> de livraison</p>
-      </div>
-    </div>
+    <p style="font-size:clamp(18px,2.5vw,22px);font-weight:700;color:#1B3A6B;margin-bottom:6px">C'est pourquoi nous avons créé une alternative transparente et accessible.</p>
+    <p style="font-size:16px;color:#6B7280;max-width:560px;margin:0 auto">Des sites immobiliers sur-mesure, sans intermédiaire, à prix juste.</p>
   </div>
 </section>
 
@@ -683,126 +683,11 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   </div>
 </section>
 
-<!-- ══ OFFRES ══ -->
-<section class="section section-light" id="offres">
+<!-- ══ TRANSITION PROCESS ══ -->
+<section style="background:#fff;padding:40px 0;text-align:center">
   <div class="container">
-    <div class="section-title">
-      <div class="section-badge">Nos offres</div>
-      <h2>Un site pour chaque besoin</h2>
-      <p>Agent indépendant, propriétaire ou agence — une solution taillée pour vous.</p>
-    </div>
-    <div class="pricing-scroll">
-      <div class="pricing-card" data-pack="Site Vitrine — 150 €">
-        <div class="pricing-category">Démarrage</div>
-        <div class="plan-name">Site Vitrine</div>
-        <div class="pricing-price-wrap">
-          <span class="price">150</span>
-          <span class="price-eur">€</span>
-          <span class="price-ttc">TTC</span>
-        </div>
-        <div class="delay"><span class="delay-dot"></span> 7 jours</div>
-        <p class="desc">1 page, 5 sections — la base solide pour tout agent qui démarre.</p>
-        <hr>
-        <ul>
-          <li><span class="check-circle">✓</span> Brief &amp; entretien préalable</li>
-          <li><span class="check-circle">✓</span> WordPress + thème responsive</li>
-          <li><span class="check-circle">✓</span> SSL, cache, sécurité</li>
-          <li><span class="check-circle">✓</span> Logo &amp; favicon</li>
-          <li><span class="check-circle">✓</span> Formulaire de contact + RGPD</li>
-          <li><span class="check-circle">✓</span> Bannière cookies RGPD conforme</li>
-          <li><span class="check-circle">✓</span> Bouton rappel sous 24h avec horodatage</li>
-          <li><span class="check-circle">✓</span> Google Analytics + Search Console</li>
-          <li><span class="check-circle">✓</span> Installation de pixel (Meta, Google)</li>
-          <li><span class="check-circle">✓</span> Pagespeed &gt; 80</li>
-          <li><span class="check-circle">✓</span> 3 retouches + formation prise en main</li>
-        </ul>
-        <button class="btn-outline select-pack">Discutons-en</button>
-      </div>
-      <div class="pricing-card featured" data-pack="Agent Indépendant — 575 €">
-        <div class="badge-feat">Le plus demandé</div>
-        <div class="pricing-category">Croissance</div>
-        <div class="plan-name">Agent Indépendant</div>
-        <div class="pricing-price-wrap">
-          <span class="price">575</span>
-          <span class="price-eur">€</span>
-          <span class="price-ttc">TTC</span>
-        </div>
-        <div class="delay"><span class="delay-dot"></span> 20 jours</div>
-        <p class="desc">Générez des leads qualifiés sans dépendre des portails.</p>
-        <hr>
-        <ul>
-          <li><span class="check-circle">✓</span> Jusqu'à 7 pages clés</li>
-          <li><span class="check-circle">✓</span> 10 annonces (photos, 3D, vidéo, plan)</li>
-          <li><span class="check-circle">✓</span> Import de biens depuis SeLoger ou LeBonCoin</li>
-          <li><span class="check-circle">✓</span> Recherche avancée + carte interactive</li>
-          <li><span class="check-circle">✓</span> Prise de RDV intégrée</li>
-          <li><span class="check-circle">✓</span> Chat en direct + WhatsApp</li>
-          <li><span class="check-circle">✓</span> Bilingue FR / EN</li>
-          <li><span class="check-circle">✓</span> Estimation de bien en ligne</li>
-          <li><span class="check-circle">✓</span> DPE sur chaque annonce</li>
-          <li><span class="check-circle">✓</span> Calculateur de mensualités / crédit</li>
-          <li><span class="check-circle">✓</span> Installation de pixel (Meta, Google)</li>
-        </ul>
-        <button class="btn-full select-pack">Discutons-en</button>
-      </div>
-      <div class="pricing-card" data-pack="Location Saisonnière — 480 €">
-        <div class="pricing-category">Spécialisation</div>
-        <div class="plan-name">Location Saisonnière</div>
-        <div class="pricing-price-wrap">
-          <span class="price">480</span>
-          <span class="price-eur">€</span>
-          <span class="price-ttc">TTC</span>
-        </div>
-        <div class="delay"><span class="delay-dot"></span> 20 jours</div>
-        <p class="desc">Réservez directement, sans commission Airbnb.</p>
-        <hr>
-        <ul>
-          <li><span class="check-circle">✓</span> 5 pages + annonce détaillée</li>
-          <li><span class="check-circle">✓</span> Calendrier + réservation en ligne</li>
-          <li><span class="check-circle">✓</span> Paiement CB, PayPal, virement</li>
-          <li><span class="check-circle">✓</span> WhatsApp + appel direct + galerie photo</li>
-          <li><span class="check-circle">✓</span> Espace client (suivi / modif réservation)</li>
-          <li><span class="check-circle">✓</span> Installation de pixel (Meta, Google)</li>
-          <li><span class="check-circle">✓</span> 3 articles SEO + vitesse</li>
-          <li><span class="check-circle">✓</span> Avis Google vérifiés</li>
-          <li><span class="check-circle">✓</span> Synchro iCal (Airbnb, Booking)</li>
-          <li><span class="check-circle">✓</span> Bilingue FR / EN</li>
-        </ul>
-        <button class="btn-outline select-pack">Discutons-en</button>
-      </div>
-      <div class="pricing-card pricing-wide" data-pack="Marketplace Multi-Agents — 990 €">
-        <div class="pricing-wide-inner">
-          <div class="pricing-wide-left">
-            <div class="pricing-category">Réseau</div>
-            <div class="plan-name">Marketplace Multi-Agents</div>
-            <div class="pricing-price-wrap">
-              <span class="price">990</span>
-              <span class="price-eur">€</span>
-              <span class="price-ttc">TTC</span>
-            </div>
-            <div class="delay"><span class="delay-dot"></span> 30 jours</div>
-            <p class="desc">Chaque agent publie ses biens, vous encaissez les abonnements.</p>
-            <button class="btn-cta select-pack">Discutons-en</button>
-          </div>
-          <div class="pricing-wide-right">
-            <ul>
-              <li><span class="check-circle">✓</span> 10 pages + profils agents</li>
-              <li><span class="check-circle">✓</span> Espace membre (dashboard, annonces, stats)</li>
-              <li><span class="check-circle">✓</span> Adhésion payante (abonnement ou par annonce)</li>
-              <li><span class="check-circle">✓</span> CRM + notifications automatiques</li>
-              <li><span class="check-circle">✓</span> Installation de pixel (Meta, Google)</li>
-              <li><span class="check-circle">✓</span> Calculateur hypothécaire + carte interactive</li>
-              <li><span class="check-circle">✓</span> Sauvegarde + sécurité</li>
-              <li><span class="check-circle">✓</span> Bilingue FR/EN + SEO complet</li>
-              <li><span class="check-circle">✓</span> Annonces premium</li>
-              <li><span class="check-circle">✓</span> Alertes email/SMS</li>
-              <li><span class="check-circle">✓</span> Import de biens depuis SeLoger ou LeBonCoin</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
+    <p style="font-size:clamp(18px,2.5vw,22px);font-weight:600;color:#1B3A6B;margin-bottom:4px">Chaque site est conçu sur-mesure, de A à Z.</p>
+    <p style="font-size:16px;color:#6B7280;max-width:560px;margin:0 auto">Pas de template, pas de chaîne. Un accompagnement réel.</p>
   </div>
 </section>
 
@@ -817,8 +702,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
     <div class="process-guarantee">
       <div class="g-icon">🛡</div>
       <div class="g-body">
-        <div class="g-title">Garantie "Satisfait ou remboursé"</div>
-        <div class="g-desc">Vous validez chaque étape avant de passer à la suivante. <strong>3 séries de retouches sont incluses</strong>, sans aucun frais supplémentaire.</div>
+        <div class="g-title">Garantie "Validé étape par étape"</div>
+        <div class="g-desc">Vous approuvez chaque étape avant la suivante. <strong>3 séries de retouches incluses</strong>. Si des ajustements supplémentaires sont nécessaires au-delà, on en discute ensemble — sans mauvaise surprise.</div>
       </div>
     </div>
 
@@ -857,7 +742,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
           <div class="tl-eyebrow">Révision</div>
           <h4>Validation &amp; retouches</h4>
           <p>3 séries de retouches incluses. Vous validez chaque étape.</p>
-          <div class="tl-note"><span class="tl-arrow">→</span> Jusqu'à votre validation</div>
+          <div class="tl-note"><span class="tl-arrow">→</span> 3 séries incluses, sans mauvaise surprise</div>
         </div>
       </div>
 
@@ -871,6 +756,24 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
           <h4>Mise en ligne &amp; formation</h4>
           <p>Site livré + accès pour modifier vos contenus en autonomie.</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ À PROPOS ══ -->
+<section class="section about-section" id="about">
+  <div class="container">
+    <div class="about-wrap">
+      <div class="about-photo">
+        <img src="assets/schallom-_2_.avif" alt="Schallom - Fondateur Prime Impact Agency" loading="lazy">
+      </div>
+      <div class="about-content">
+        <div class="about-label">#qui est schallom ?</div>
+        <h2 class="about-name">Schallom, fondateur de Prime Impact Agency</h2>
+        <p>Schallom conçoit des sites WordPress sur-mesure pour les agents immobiliers qui veulent du résultat — pas un simple template oublié au fond d'un tiroir. Pas de showroom, pas de frais d'agence, pas de blabla. Chaque client travaille directement avec lui, du brief à la mise en ligne.</p>
+        <p>Sa philosophie : des sites optimisés Google, livrés en 7 à 22 jours, avec une approche 100% digitale qui fait économiser jusqu'à 70% par rapport à une agence locale. Zéro intermédiaire, zéro perte de temps, zéro compromis.</p>
+        <p class="about-stats-line"><strong>25+</strong> sites livrés · <strong>4.9/5</strong> de satisfaction · <strong>7-22 jours</strong> de livraison</p>
       </div>
     </div>
   </div>
@@ -969,6 +872,151 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   </div>
 </section>
 
+<!-- ══ OFFRES ══ -->
+<section class="section section-light" id="offres">
+  <div class="container">
+    <div class="section-title">
+      <div class="section-badge">Nos offres</div>
+      <h2>Un site pour chaque besoin</h2>
+      <p>Agent indépendant, propriétaire ou agence — une solution taillée pour vous.</p>
+    </div>
+    <div class="pricing-scroll">
+      <div class="pricing-card" data-pack="Site Vitrine — 150 €">
+        <div class="pricing-category">Démarrage</div>
+        <div class="plan-name">Site Vitrine</div>
+        <div class="pricing-price-wrap">
+          <span class="price">150</span>
+          <span class="price-eur">€</span>
+          <span class="price-ttc">TTC</span>
+        </div>
+        <div class="delay"><span class="delay-dot"></span> 7 jours</div>
+        <button class="pricing-cta-top select-pack">Discutons-en <i class="fa-solid fa-arrow-right"></i></button>
+        <p class="desc">1 page, 5 sections — la base solide pour tout agent qui démarre.</p>
+        <hr>
+        <ul>
+          <li><span class="check-circle">✓</span> Brief &amp; entretien préalable</li>
+          <li><span class="check-circle">✓</span> WordPress + thème responsive</li>
+          <li><span class="check-circle">✓</span> SSL, cache, sécurité</li>
+          <li><span class="check-circle">✓</span> Logo &amp; favicon</li>
+          <li><span class="check-circle">✓</span> Formulaire de contact + RGPD</li>
+        </ul>
+        <div class="features-hidden">
+          <ul>
+            <li><span class="check-circle">✓</span> Bannière cookies RGPD conforme</li>
+            <li><span class="check-circle">✓</span> Bouton rappel sous 24h avec horodatage</li>
+            <li><span class="check-circle">✓</span> Google Analytics + Search Console</li>
+            <li><span class="check-circle">✓</span> Installation de pixel (Meta, Google)</li>
+            <li><span class="check-circle">✓</span> Pagespeed &gt; 80</li>
+            <li><span class="check-circle">✓</span> 3 retouches + formation prise en main</li>
+          </ul>
+        </div>
+        <button class="features-toggle">Voir toutes les fonctionnalités <i class="fa-solid fa-chevron-down"></i></button>
+        <button class="btn-outline select-pack">Discutons-en</button>
+      </div>
+      <div class="pricing-card featured" data-pack="Agent Indépendant — 575 €">
+        <div class="badge-feat">Le plus demandé</div>
+        <div class="pricing-category">Croissance</div>
+        <div class="plan-name">Agent Indépendant</div>
+        <div class="pricing-price-wrap">
+          <span class="price">575</span>
+          <span class="price-eur">€</span>
+          <span class="price-ttc">TTC</span>
+        </div>
+        <div class="delay"><span class="delay-dot"></span> 20 jours</div>
+        <button class="pricing-cta-top select-pack">Discutons-en <i class="fa-solid fa-arrow-right"></i></button>
+        <p class="desc">Générez des leads qualifiés sans dépendre des portails.</p>
+        <hr>
+        <ul>
+          <li><span class="check-circle">✓</span> Jusqu'à 7 pages clés</li>
+          <li><span class="check-circle">✓</span> 10 annonces (photos, 3D, vidéo, plan)</li>
+          <li><span class="check-circle">✓</span> Import de biens depuis SeLoger ou LeBonCoin</li>
+          <li><span class="check-circle">✓</span> Recherche avancée + carte interactive</li>
+          <li><span class="check-circle">✓</span> Prise de RDV intégrée</li>
+        </ul>
+        <div class="features-hidden">
+          <ul>
+            <li><span class="check-circle">✓</span> Chat en direct + WhatsApp</li>
+            <li><span class="check-circle">✓</span> Bilingue FR / EN</li>
+            <li><span class="check-circle">✓</span> Estimation de bien en ligne</li>
+            <li><span class="check-circle">✓</span> DPE sur chaque annonce</li>
+            <li><span class="check-circle">✓</span> Calculateur de mensualités / crédit</li>
+            <li><span class="check-circle">✓</span> Installation de pixel (Meta, Google)</li>
+          </ul>
+        </div>
+        <button class="features-toggle">Voir toutes les fonctionnalités <i class="fa-solid fa-chevron-down"></i></button>
+        <button class="btn-full select-pack">Discutons-en</button>
+      </div>
+      <div class="pricing-card" data-pack="Location Saisonnière — 480 €">
+        <div class="pricing-category">Spécialisation</div>
+        <div class="plan-name">Location Saisonnière</div>
+        <div class="pricing-price-wrap">
+          <span class="price">480</span>
+          <span class="price-eur">€</span>
+          <span class="price-ttc">TTC</span>
+        </div>
+        <div class="delay"><span class="delay-dot"></span> 20 jours</div>
+        <button class="pricing-cta-top select-pack">Discutons-en <i class="fa-solid fa-arrow-right"></i></button>
+        <p class="desc">Réservez directement, sans commission Airbnb.</p>
+        <hr>
+        <ul>
+          <li><span class="check-circle">✓</span> 5 pages + annonce détaillée</li>
+          <li><span class="check-circle">✓</span> Calendrier + réservation en ligne</li>
+          <li><span class="check-circle">✓</span> Paiement CB, PayPal, virement</li>
+          <li><span class="check-circle">✓</span> WhatsApp + appel direct + galerie photo</li>
+          <li><span class="check-circle">✓</span> Espace client (suivi / modif réservation)</li>
+        </ul>
+        <div class="features-hidden">
+          <ul>
+            <li><span class="check-circle">✓</span> Installation de pixel (Meta, Google)</li>
+            <li><span class="check-circle">✓</span> 3 articles SEO + vitesse</li>
+            <li><span class="check-circle">✓</span> Avis Google vérifiés</li>
+            <li><span class="check-circle">✓</span> Synchro iCal (Airbnb, Booking)</li>
+            <li><span class="check-circle">✓</span> Bilingue FR / EN</li>
+          </ul>
+        </div>
+        <button class="features-toggle">Voir toutes les fonctionnalités <i class="fa-solid fa-chevron-down"></i></button>
+        <button class="btn-outline select-pack">Discutons-en</button>
+      </div>
+      <div class="pricing-card pricing-wide" data-pack="Marketplace Multi-Agents — 990 €">
+        <div class="pricing-wide-inner">
+          <div class="pricing-wide-left">
+            <div class="pricing-category">Réseau</div>
+            <div class="plan-name">Marketplace Multi-Agents</div>
+            <div class="pricing-price-wrap">
+              <span class="price">990</span>
+              <span class="price-eur">€</span>
+              <span class="price-ttc">TTC</span>
+            </div>
+            <div class="delay"><span class="delay-dot"></span> 30 jours</div>
+            <p class="desc">Chaque agent publie ses biens, vous encaissez les abonnements.</p>
+            <button class="btn-cta select-pack">Discutons-en</button>
+          </div>
+          <div class="pricing-wide-right">
+            <ul>
+              <li><span class="check-circle">✓</span> 10 pages + profils agents</li>
+              <li><span class="check-circle">✓</span> Espace membre (dashboard, annonces, stats)</li>
+              <li><span class="check-circle">✓</span> Adhésion payante (abonnement ou par annonce)</li>
+              <li><span class="check-circle">✓</span> CRM + notifications automatiques</li>
+              <li><span class="check-circle">✓</span> Installation de pixel (Meta, Google)</li>
+            </ul>
+            <div class="features-hidden">
+              <ul>
+                <li><span class="check-circle">✓</span> Calculateur hypothécaire + carte interactive</li>
+                <li><span class="check-circle">✓</span> Sauvegarde + sécurité</li>
+                <li><span class="check-circle">✓</span> Bilingue FR/EN + SEO complet</li>
+                <li><span class="check-circle">✓</span> Annonces premium</li>
+                <li><span class="check-circle">✓</span> Alertes email/SMS</li>
+                <li><span class="check-circle">✓</span> Import de biens depuis SeLoger ou LeBonCoin</li>
+              </ul>
+            </div>
+            <button class="features-toggle">Voir toutes les fonctionnalités <i class="fa-solid fa-chevron-down"></i></button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- ══ FAQ ══ -->
 <!-- ══ FAQ ══ -->
 <section class="faq-section" id="faq">
@@ -1021,7 +1069,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
             <span class="faq-chevron">›</span>
           </button>
           <div class="faq-card-answer">
-            <p>10 annonces intégrées au démarrage. Après livraison, vous en ajoutez vous-même sans limite ni frais supplémentaire.</p>
+            <p>Le pack Agent Indépendant intègre 10 annonces au démarrage. Après livraison, vous pouvez en ajouter vous-même sans limite. Le pack Vitrine est une page de présentation sans module d'annonces — idéal pour débuter avant d'évoluer.</p>
           </div>
         </div>
         <div class="faq-footer">
@@ -1045,7 +1093,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
         <h2>Discutons de votre projet<span class="dot">.</span></h2>
         <p class="sub">Laissez vos coordonnées — je vous contacte personnellement sous 24h pour un échange gratuit.</p>
         <a href="https://wa.me/22993288212" target="_blank" class="wa-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#25D366"/></svg>
           Échangez directement sur WhatsApp
         </a>
         <div class="separator"></div>
@@ -1169,6 +1217,20 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
       var isOpen=card.classList.contains('open');
       document.querySelectorAll('.faq-card.open').forEach(function(el){el.classList.remove('open')});
       if(!isOpen)card.classList.add('open');
+    });
+  });
+
+  // Accordéon fonctionnalités
+  document.querySelectorAll('.features-toggle').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card=this.closest('.pricing-card') || this.parentNode;
+      var hidden=card.querySelector('.features-hidden');
+      if(!hidden)return;
+      var isOpen=hidden.classList.toggle('open');
+      this.classList.toggle('is-open');
+      this.innerHTML=isOpen
+        ? '▲ Voir moins'
+        : 'Voir toutes les fonctionnalités <i class="fa-solid fa-chevron-down"></i>';
     });
   });
 
