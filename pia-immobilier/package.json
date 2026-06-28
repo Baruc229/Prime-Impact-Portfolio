@@ -1,0 +1,11 @@
+{
+  "name": "pia-immobilier",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "dependencies": {
+    "@upstash/redis": "^1.38.0",
+    "nodemailer": "^8.0.10",
+    "pdfkit": "^0.18.0",
+    "xlsx": "^0.18.5"
+  }
+}
