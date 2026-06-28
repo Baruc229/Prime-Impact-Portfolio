@@ -148,15 +148,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .pricing-card .btn-full:hover{background:#1B3A6B;border-color:#1B3A6B}
 .pricing-card.selected-pack{border-color:#FFB432;box-shadow:0 4px 24px rgba(255,180,50,0.15)}
 
-/* ── ACCORDÉON FONCTIONNALITÉS ── */
-.features-hidden{display:none}
-.features-hidden.open{display:block}
-.features-toggle{display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#1B3A6B;font-weight:600;cursor:pointer;margin-top:4px;padding:6px 0;border:none;background:none;font-family:'Outfit',sans-serif;transition:color 0.2s;line-height:1;width:100%;text-align:left}
-.features-toggle i{font-size:11px;transition:transform 0.3s;color:#FFB432}
-.features-toggle.is-open i{transform:rotate(180deg)}
-.features-toggle:hover{color:#FFB432}
-.pricing-wide .features-toggle{color:rgba(255,255,255,0.7)}
-.pricing-wide .features-toggle:hover{color:#FFB432}
 .pricing-cta-top{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#1B3A6B;cursor:pointer;border:none;background:none;font-family:'Outfit',sans-serif;padding:4px 0;margin:4px 0 10px;transition:color 0.2s;text-decoration:none}
 .pricing-cta-top:hover{color:#FFB432}
 .pricing-cta-top i{font-size:12px;transition:transform 0.2s}
@@ -476,31 +467,18 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 <section class="hero">
   <div class="container">
     <div class="hero-left">
-      <div class="hero-badge"><i class="fa-solid fa-fire"></i> Site WordPress</div>
+      <div class="hero-badge" style="font-size:11px;padding:4px 12px"><i class="fa-solid fa-fire" style="font-size:13px"></i> WordPress</div>
       <h1>Votre site immobilier <span class="highlight">professionnel et performant</span>, sans abonnement, livré en 7 à 30 jours.</h1>
 
       <p class="hero-sub">Nous créons des sites qui génèrent des leads pour vous — et que vous pouvez gérer sans nous. Pas d'abonnement, pas de dépendance.</p>
-      <a href="#form-view" class="hero-cta">Obtenez votre devis gratuit →</a>
       <div class="hero-stats">
         <span>Livraison rapide (7 à 30 jours)</span>
         <span>30 jours d'assistance incluse</span>
+        <span>Fonctionnalités complètes &amp; site performant</span>
         <span>1 an d'hébergement offert</span>
+        <span>Design responsive &amp; optimisé SEO</span>
       </div>
-
-      <div class="hero-logos">
-        <div class="hero-logo hero-logo-1" title="WordPress">
-          <svg viewBox="0 0 122.52 122.523" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><g fill="#21759b"><path d="m8.708 61.26c0 20.802 12.089 38.779 29.619 47.298l-25.069-68.686c-2.916 6.536-4.55 13.769-4.55 21.388z"/><path d="m96.74 58.608c0-6.495-2.333-10.993-4.334-14.494-2.664-4.329-5.161-7.995-5.161-12.324 0-4.831 3.664-9.328 8.825-9.328.233 0 .454.029.681.042-9.35-8.566-21.807-13.796-35.489-13.796-18.36 0-34.513 9.42-43.91 23.688 1.233.037 2.395.063 3.382.063 5.497 0 14.006-.667 14.006-.667 2.833-.167 3.167 3.994.337 4.329 0 0-2.847.335-6.015.501l19.138 56.925 11.501-34.493-8.188-22.434c-2.83-.166-5.511-.501-5.511-.501-2.832-.166-2.5-4.496.332-4.329 0 0 8.679.667 13.843.667 5.496 0 14.006-.667 14.006-.667 2.835-.167 3.168 3.994.337 4.329 0 0-2.853.335-6.015.501l18.992 56.494 5.242-17.517c2.272-7.269 4.001-12.49 4.001-16.989z"/><path d="m62.184 65.857-15.768 45.819c4.708 1.384 9.687 2.141 14.846 2.141 6.12 0 11.989-1.058 17.452-2.979-.141-.225-.269-.464-.374-.724z"/><path d="m107.376 36.046c.226 1.674.354 3.471.354 5.404 0 5.333-.996 11.328-3.996 18.824l-16.053 46.413c15.624-9.111 26.133-26.038 26.133-45.426.001-9.137-2.333-17.729-6.438-25.215z"/></g></svg>
-        </div>
-        <div class="hero-logo hero-logo-2" title="Elementor">
-          <svg viewBox="0 0 448 512" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="el" x1="0" y1="0" x2="0" y2="512"><stop offset="0" stop-color="#ED345E"/><stop offset="1" stop-color="#382C74"/></linearGradient></defs><path fill="url(#el)" d="M425.6 32H22.4C10 32 0 42 0 54.4v403.2C0 470 10 480 22.4 480h403.2c12.4 0 22.4-10 22.4-22.4V54.4C448 42 438 32 425.6 32zM164.3 355.5h-39.8v-199h39.8v199zm159.3 0H204.1v-39.8h119.5v39.8zm0-79.6H204.1v-39.8h119.5v39.8zm0-79.7H204.1v-39.8h119.5v39.8z"/></svg>
-        </div>
-        <div class="hero-logo hero-logo-3" title="SiteGround / Hébergement">
-          <svg viewBox="0 0 448 512" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><path fill="#00A3AD" d="M224 64L32 192v256h128V320h128v128h128V192L224 64zm0 73.6L384 256v160h-64V288H128v128H64V256l160-118.4z"/></svg>
-        </div>
-        <div class="hero-logo hero-logo-4" title="SEO & Analytics">
-          <svg viewBox="0 0 448 512" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><g fill="#1B3A6B"><rect x="24" y="256" width="112" height="224" rx="6"/><rect x="168" y="128" width="112" height="352" rx="6"/><rect x="312" y="24" width="112" height="456" rx="6"/><circle cx="368" cy="96" r="42" fill="#FF6B35"/></g></svg>
-        </div>
-      </div>
+      <a href="#form-view" class="hero-cta">Obtenez votre devis gratuit →</a>
     </div>
   </div>
 </section>
@@ -539,8 +517,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
       </div>
       <div class="problem-card">
         <div class="icon"><i class="fa-regular fa-circle-down"></i></div>
-        <h3>Site qui ne convertit pas</h3>
-        <p>Vitrine figée, pas de CTA, pas de formulaire. Les visiteurs repartent sans contact. Vous perdez des mandats.</p>
+        <h3>Parcours qui ne convertit pas</h3>
+        <p>CTA mal placé, formulaires trop longs ou mal conçus, parcours visiteur décousu. Le problème n'est pas l'absence d'outils, c'est leur agencement.</p>
       </div>
       <div class="problem-card">
         <div class="icon"><i class="fa-regular fa-credit-card"></i></div>
@@ -556,6 +534,41 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   <div class="container">
     <p style="font-size:clamp(18px,2.5vw,22px);font-weight:700;color:#1B3A6B;margin-bottom:6px">C'est pourquoi nous avons créé une alternative transparente et accessible.</p>
     <p style="font-size:16px;color:#6B7280;max-width:560px;margin:0 auto">Des sites immobiliers sur-mesure, sans intermédiaire, à prix juste.</p>
+  </div>
+</section>
+
+<!-- ══ NOS GARANTIES ══ -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-title">
+      <div class="section-badge">Nos garanties</div>
+      <h2>Ce que chaque site inclut</h2>
+    </div>
+    <div class="solution-grid">
+      <div class="solution-card">
+        <div class="icon-circle"><i class="fa-solid fa-paintbrush"></i></div>
+        <h3>Design sur-mesure</h3>
+        <p>Votre identité, vos couleurs, votre marché. Rien de générique.</p>
+      </div>
+      <div class="solution-card">
+        <div class="icon-circle"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Optimisé pour Google</h3>
+        <p>Articles SEO, balises, vitesse — pour que vos clients vous trouvent.</p>
+      </div>
+      <div class="solution-card">
+        <div class="icon-circle"><i class="fa-solid fa-mobile-screen"></i></div>
+        <h3>100% mobile responsive</h3>
+        <p>60% de vos visiteurs sont sur téléphone. Votre site s'adapte.</p>
+      </div>
+      <div class="solution-card">
+        <div class="icon-circle"><i class="fa-solid fa-shield"></i></div>
+        <h3>Assistance 30 jours</h3>
+        <p>Nous restons disponibles après la mise en ligne. Vous n'êtes jamais seul.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="#contact" class="hero-cta" style="font-size:15px;padding:16px 32px">Parler à un expert →</a>
+    </div>
   </div>
 </section>
 
@@ -644,41 +657,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
     <div style="text-align:center;margin-top:48px;padding-bottom:80px">
       <p style="font-size:18px;font-weight:600;color:#1B3A6B;margin-bottom:16px">Prêt à avoir le vôtre ?</p>
       <a href="#contact" class="hero-cta" style="font-size:15px;padding:16px 32px">Obtenez votre devis gratuit →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SOLUTION ══ -->
-<section class="section section-light">
-  <div class="container">
-    <div class="section-title">
-      <div class="section-badge">Nos garanties</div>
-      <h2>Ce que chaque site inclut</h2>
-    </div>
-    <div class="solution-grid">
-      <div class="solution-card">
-        <div class="icon-circle"><i class="fa-solid fa-paintbrush"></i></div>
-        <h3>Design sur-mesure</h3>
-        <p>Votre identité, vos couleurs, votre marché. Rien de générique.</p>
-      </div>
-      <div class="solution-card">
-        <div class="icon-circle"><i class="fa-solid fa-chart-line"></i></div>
-        <h3>Optimisé pour Google</h3>
-        <p>Articles SEO, balises, vitesse — pour que vos clients vous trouvent.</p>
-      </div>
-      <div class="solution-card">
-        <div class="icon-circle"><i class="fa-solid fa-mobile-screen"></i></div>
-        <h3>100% mobile responsive</h3>
-        <p>60% de vos visiteurs sont sur téléphone. Votre site s'adapte.</p>
-      </div>
-      <div class="solution-card">
-        <div class="icon-circle"><i class="fa-solid fa-shield"></i></div>
-        <h3>Assistance 30 jours</h3>
-        <p>Nous restons disponibles après la mise en ligne. Vous n'êtes jamais seul.</p>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:40px">
-      <a href="#contact" class="hero-cta" style="font-size:15px;padding:16px 32px">Parler à un expert →</a>
     </div>
   </div>
 </section>
@@ -871,7 +849,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
           <li><span class="check-circle">✓</span> Logo &amp; favicon</li>
           <li><span class="check-circle">✓</span> Formulaire de contact + RGPD</li>
         </ul>
-        <div class="features-hidden">
           <ul>
             <li><span class="check-circle">✓</span> Bannière cookies RGPD conforme</li>
             <li><span class="check-circle">✓</span> Bouton rappel sous 24h avec horodatage</li>
@@ -880,8 +857,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
             <li><span class="check-circle">✓</span> Pagespeed &gt; 80</li>
             <li><span class="check-circle">✓</span> 3 retouches + formation prise en main</li>
           </ul>
-        </div>
-        <button class="features-toggle">Voir toutes les fonctionnalités <i class="fa-solid fa-chevron-down"></i></button>
         <button class="btn-outline select-pack">Discutons-en</button>
       </div>
       <div class="pricing-card featured" data-pack="Agent Indépendant — 575 €">
@@ -904,7 +879,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
           <li><span class="check-circle">✓</span> Recherche avancée + carte interactive</li>
           <li><span class="check-circle">✓</span> Prise de RDV intégrée</li>
         </ul>
-        <div class="features-hidden">
           <ul>
             <li><span class="check-circle">✓</span> Chat en direct + WhatsApp</li>
             <li><span class="check-circle">✓</span> Bilingue FR / EN</li>
@@ -913,8 +887,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
             <li><span class="check-circle">✓</span> Calculateur de mensualités / crédit</li>
             <li><span class="check-circle">✓</span> Installation de pixel (Meta, Google)</li>
           </ul>
-        </div>
-        <button class="features-toggle">Voir toutes les fonctionnalités <i class="fa-solid fa-chevron-down"></i></button>
         <button class="btn-full select-pack">Discutons-en</button>
       </div>
       <div class="pricing-card" data-pack="Location Saisonnière — 480 €">
@@ -936,7 +908,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
           <li><span class="check-circle">✓</span> WhatsApp + appel direct + galerie photo</li>
           <li><span class="check-circle">✓</span> Espace client (suivi / modif réservation)</li>
         </ul>
-        <div class="features-hidden">
           <ul>
             <li><span class="check-circle">✓</span> Installation de pixel (Meta, Google)</li>
             <li><span class="check-circle">✓</span> 3 articles SEO + vitesse</li>
@@ -944,8 +915,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
             <li><span class="check-circle">✓</span> Synchro iCal (Airbnb, Booking)</li>
             <li><span class="check-circle">✓</span> Bilingue FR / EN</li>
           </ul>
-        </div>
-        <button class="features-toggle">Voir toutes les fonctionnalités <i class="fa-solid fa-chevron-down"></i></button>
         <button class="btn-outline select-pack">Discutons-en</button>
       </div>
       <div class="pricing-card pricing-wide" data-pack="Marketplace Multi-Agents — 990 €">
@@ -970,7 +939,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
               <li><span class="check-circle">✓</span> CRM + notifications automatiques</li>
               <li><span class="check-circle">✓</span> Installation de pixel (Meta, Google)</li>
             </ul>
-            <div class="features-hidden">
               <ul>
                 <li><span class="check-circle">✓</span> Calculateur hypothécaire + carte interactive</li>
                 <li><span class="check-circle">✓</span> Sauvegarde + sécurité</li>
@@ -979,8 +947,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
                 <li><span class="check-circle">✓</span> Alertes email/SMS</li>
                 <li><span class="check-circle">✓</span> Import de biens depuis SeLoger ou LeBonCoin</li>
               </ul>
-            </div>
-            <button class="features-toggle">Voir toutes les fonctionnalités <i class="fa-solid fa-chevron-down"></i></button>
           </div>
         </div>
       </div>
@@ -1207,20 +1173,6 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
       var isOpen=card.classList.contains('open');
       document.querySelectorAll('.faq-card.open').forEach(function(el){el.classList.remove('open')});
       if(!isOpen)card.classList.add('open');
-    });
-  });
-
-  // Accordéon fonctionnalités
-  document.querySelectorAll('.features-toggle').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var card=this.closest('.pricing-card') || this.parentNode;
-      var hidden=card.querySelector('.features-hidden');
-      if(!hidden)return;
-      var isOpen=hidden.classList.toggle('open');
-      this.classList.toggle('is-open');
-      this.innerHTML=isOpen
-        ? '▲ Voir moins'
-        : 'Voir toutes les fonctionnalités <i class="fa-solid fa-chevron-down"></i>';
     });
   });
 
