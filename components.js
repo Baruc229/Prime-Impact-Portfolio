@@ -18,7 +18,6 @@ function buildHeader() {
     { href: '/',        label: 'Accueil', i18n: 'nav.home' },
     { href: '/realisations', label: 'Réalisations', i18n: 'nav.portfolio' },
     { href: '/a-propos',     label: 'À propos', i18n: 'nav.about' },
-    { href: '/temoignages',  label: 'Témoignages', i18n: 'nav.testimonials' },
     { href: '/contact',      label: 'Contact', i18n: 'nav.contact' },
   ];
   
@@ -49,7 +48,6 @@ function buildHeader() {
             <div class="mega-menu-inner">
               <div class="mega-menu-header">
                 <span class="mega-menu-title" data-i18n="nav.services.all">Tous nos services</span>
-                <a href="/services" class="mega-menu-cta" data-i18n="nav.services.seeAll">Voir tout →</a>
               </div>
               <div class="mega-menu-grid">
                 ${megaItemsHTML}
