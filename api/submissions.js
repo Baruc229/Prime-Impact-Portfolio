@@ -1,6 +1,24 @@
 const { load, save, validateSession } = require('./_lib/db');
 const nodemailer = require('nodemailer');
 
+function stripHTML(s) {
+  if (s == null) return '';
+  return String(s).replace(/<[^>]*>/g, '').replace(/[<>]/g, '');
+}
+
+function sanitize(str) {
+  if (str == null) return '';
+  return stripHTML(String(str)).trim();
+}
+
+function validEmail(v) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+}
+
+function validPhone(v) {
+  return /^\+?[\d\s]{4,}$/.test(v.trim().replace(/\s/g, ''));
+}
+
 const TYPE_LABELS = { contact: 'Contact', devis: 'Devis', order: 'Commande' };
 const FIELD_LABELS = {
   prenom: 'Prénom', nom: 'Nom', name: 'Nom',
@@ -129,11 +147,38 @@ module.exports = async (req, res) => {
         return;
       }
 
+      // Server-side validation & sanitization
+      const clean = {};
+      for (const [key, val] of Object.entries(data)) {
+        clean[key] = sanitize(val || '');
+      }
+
+      if (clean.email && !validEmail(clean.email)) {
+        res.status(400).json({ error: 'Email invalide' });
+        return;
+      }
+      if (clean.phone && !validPhone(clean.phone)) {
+        res.status(400).json({ error: 'Numéro de téléphone invalide' });
+        return;
+      }
+      if (clean.telephone && !validPhone(clean.telephone)) {
+        res.status(400).json({ error: 'Numéro de téléphone invalide' });
+        return;
+      }
+      if (clean.message && clean.message.length > 10000) {
+        res.status(400).json({ error: 'Message trop long' });
+        return;
+      }
+      if (clean.description && clean.description.length > 10000) {
+        res.status(400).json({ error: 'Description trop longue' });
+        return;
+      }
+
       const db = await load();
       const submission = {
         id: db.nextId++,
         form_type,
-        data,
+        data: clean,
         source: source || '',
         created_at: new Date().toISOString(),
         read: 0
