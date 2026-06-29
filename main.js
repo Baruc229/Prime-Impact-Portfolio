@@ -510,9 +510,9 @@ function initContactForm() {
     const err = field.parentElement.querySelector('.field-error');
     const val = field.value.trim();
 
-    if (!val && field.hasAttribute('required') && field.tagName !== 'SELECT') {
-      setFieldState(field, false);
-      if (err) { err.textContent = getTranslation('contact.error.req') || 'Ce champ est requis'; err.style.display = 'block'; }
+    if (!val) {
+      setFieldState(field, true);
+      if (err) err.style.display = 'none';
       return;
     }
 
@@ -522,13 +522,13 @@ function initContactForm() {
       return;
     }
 
-    if (field.name === 'name' && val && !validateName(val)) {
+    if (field.name === 'name' && !validateName(val)) {
       setFieldState(field, false);
       if (err) { err.textContent = getTranslation('contact.error.name') || '3 caractères minimum, lettres uniquement'; err.style.display = 'block'; }
       return;
     }
 
-    if (field.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+    if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
       setFieldState(field, false);
       if (err) { err.textContent = getTranslation('contact.error.email') || 'Email invalide'; err.style.display = 'block'; }
       return;
@@ -628,10 +628,9 @@ function initDevisForm() {
     const err = field.parentElement.querySelector('.field-error');
     const val = field.value.trim();
 
-    if (!val && field.hasAttribute('required') && field.tagName !== 'SELECT') {
-      field.classList.add('error');
-      field.classList.remove('is-valid');
-      if (err) { err.textContent = getTranslation('contact.error.req') || 'Ce champ est requis'; err.style.display = 'block'; }
+    if (!val) {
+      field.classList.remove('error', 'is-valid');
+      if (err) err.style.display = 'none';
       return;
     }
 
@@ -641,7 +640,7 @@ function initDevisForm() {
       return;
     }
 
-    if ((field.name === 'prenom' || field.name === 'nom') && val && !validateName(val)) {
+    if ((field.name === 'prenom' || field.name === 'nom') && !validateName(val)) {
       field.classList.add('error');
       field.classList.remove('is-valid');
       const errKey = field.name === 'prenom' ? 'devis.form.prenom.err' : 'devis.form.nom.err';
@@ -649,7 +648,7 @@ function initDevisForm() {
       return;
     }
 
-    if (field.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+    if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
       field.classList.add('error');
       field.classList.remove('is-valid');
       if (err) { err.textContent = getTranslation('devis.form.email.err') || 'Email invalide'; err.style.display = 'block'; }
@@ -749,13 +748,13 @@ function initServiceForms() {
 
   function validateField(field) {
     const val = field.value.trim();
-    if (!val && field.hasAttribute('required')) {
-      setFieldState(field, false);
+    if (!val) {
+      setFieldState(field, true);
       return;
     }
-    if (field.name === 'name' && val && !validName(val)) { setFieldState(field, false); return; }
-    if (field.type === 'email' && val && !validEmail(val)) { setFieldState(field, false); return; }
-    if (field.name === 'telephone' && val && !validPhone(val)) { setFieldState(field, false); return; }
+    if (field.name === 'name' && !validName(val)) { setFieldState(field, false); return; }
+    if (field.type === 'email' && !validEmail(val)) { setFieldState(field, false); return; }
+    if (field.name === 'telephone' && !validPhone(val)) { setFieldState(field, false); return; }
     setFieldState(field, true);
   }
 
