@@ -504,7 +504,7 @@ const translations = {
   "contact.info.wapp": { "fr": "Disponible lun–sam, 9h–19h", "en": "Available Mon–Sat, 9am–7pm" },
   "contact.info.email": { "fr": "Réponse sous 24h ouvrées", "en": "Response within 24 business hours" },
   "contact.info.loc": { "fr": "Localisation", "en": "Location" },
-  "contact.info.loc.val": { "fr": "Cotonou", "en": "Cotonou" },
+  "contact.info.loc.val": { "fr": "Paris", "en": "Paris" },
   "contact.info.loc.sub": { "fr": "On travaille partout dans le monde — freelance", "en": "We work worldwide — freelance" },
   "contact.badge.time": { "fr": "Réponse sous 24h", "en": "Response within 24h" },
   "contact.badge.trust": { "fr": "Sans engagement", "en": "No commitment" },
