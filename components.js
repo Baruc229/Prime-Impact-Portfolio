@@ -42,7 +42,7 @@ function buildHeader() {
   // Lien standard helper
   const linkHTML = l => `<a href="${l.href}" class="${l.href === currentPage ? 'active' : ''}" data-i18n="${l.i18n}">${l.label}</a>`;
 
-  const serviceTrigger = `<span class="nav-mega-trigger${isActiveService ? ' active' : ''}" data-i18n="nav.services">Services <i class="ph ph-caret-down"></i></span>`;
+  const serviceTrigger = `<span class="nav-mega-trigger${isActiveService ? ' active' : ''}" data-i18n="nav.services">Services <i class="fa-solid fa-caret-down"></i></span>`;
 
   const megaDropdown = `<div class="mega-menu">
             <div class="mega-menu-inner">
@@ -124,7 +124,7 @@ function buildHeader() {
           <img src="assets/pia-logo-dark-sm.png" alt="PIA" class="logo-dark">
         </a>
         <button class="nav-close" id="navClose" data-i18n-aria="nav.aria.close" aria-label="Fermer le menu">
-          <i class="ph ph-x"></i>
+          <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
@@ -214,7 +214,7 @@ function buildFooter() {
   <!-- MODAL COMMANDE -->
   <div class="modal-overlay" id="orderModal">
     <div class="modal-container">
-      <button class="modal-close" id="modalClose"><i class="ph ph-x"></i></button>
+      <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
       <div id="form-content">
         <h2 style="font-size:28px;margin-bottom:8px;text-transform:uppercase;" data-i18n="modal.title">Démarrer un projet</h2>
         <p style="color:var(--text-muted);margin-bottom:28px;" data-i18n="modal.subtitle">Un expert vous rappelle sous 24h.</p>
@@ -239,7 +239,7 @@ function buildFooter() {
         </form>
       </div>
       <div id="success-content" style="display:none;text-align:center;padding:40px 0;">
-        <i class="ph ph-check-circle" style="font-size:72px;color:var(--accent-blue);margin-bottom:16px;"></i>
+        <i class="fa-solid fa-circle-check" style="font-size:72px;color:var(--accent-blue);margin-bottom:16px;"></i>
         <h2 style="font-size:28px;margin-bottom:8px;text-transform:uppercase;" data-i18n="modal.success.title">Demande reçue !</h2>
         <p style="color:var(--text-muted);" data-i18n="modal.success.text">Nous vous contactons très vite.</p>
       </div>
