@@ -58,6 +58,7 @@ async function handler(req, res) {
     param = parts[1] || '';
     searchParams = url.searchParams;
   }
+  console.log('[Blog API]', req.method, req.url, '→ resource:', resource, 'param:', param);
 
   try {
     switch (resource) {

@@ -250,7 +250,7 @@ function readingTime(content) {
 }
 
 async function fetchAPI(url) {
-  try { const r = await fetch(url); if (!r.ok) { const body = await r.json().catch(()=>null); return { _error: body?.error || 'Erreur ' + r.status }; } return await r.json(); } catch(e) { return { _error: e.message }; }
+  try { const r = await fetch(url); if (!r.ok) { const body = await r.json().catch(()=>null); const err = body?.error || 'Erreur ' + r.status; return { _error: typeof err === 'object' ? JSON.stringify(err) : err }; } return await r.json(); } catch(e) { return { _error: e.message }; }
 }
 
 function selectCommentType(btn) {
@@ -318,7 +318,7 @@ async function init() {
     fetchAPI('/api/blog/badges'),
     fetchAPI('/api/blog/authors')
   ]);
-  if (!postData || postData._error) { document.getElementById('postContent').innerHTML = '<p style="text-align:center;padding:60px 0;color:var(--text-muted)">' + (postData?._error || 'Article non trouvé.') + '</p>'; document.getElementById('commentsSection').style.display = 'none'; return; }
+  if (!postData || postData._error) { const errMsg = postData?._error; document.getElementById('postContent').innerHTML = '<p style="text-align:center;padding:60px 0;color:var(--text-muted)">' + (typeof errMsg === 'object' ? JSON.stringify(errMsg) : (errMsg || 'Article non trouvé.')) + '</p>'; document.getElementById('commentsSection').style.display = 'none'; return; }
 
   post = postData;
   badges = badgesData || [];

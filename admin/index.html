@@ -474,7 +474,8 @@ async function fetchAPI(url, opts = {}) {
     if (res.status === 401) { logout(); return null; }
     if (!res.ok) {
       const body = await res.json().catch(() => ({}));
-      return { _error: body.error || 'Erreur ' + res.status };
+      const err = body.error || 'Erreur ' + res.status;
+      return { _error: typeof err === 'object' ? JSON.stringify(err) : err };
     }
     if (opts.raw) return res;
     return await res.json();
@@ -840,7 +841,9 @@ async function openPostEditor(slug) {
         if (el) el.classList.add('selected');
       });
     } else if (post && post._error) {
-      alert('Erreur lors du chargement : ' + post._error);
+      const errMsg = typeof post._error === 'object' ? JSON.stringify(post._error) : post._error;
+      console.error('[openPostEditor] Erreur chargement article:', post._error);
+      alert('Erreur lors du chargement : ' + errMsg);
     }
   }
 

@@ -24,7 +24,9 @@
 [data-theme="dark"]{--bg-main:#fff;--bg-secondary:#F7F7F7;--bg-tertiary:#e5e7eb;--text-main:#1c1c1e;--text-muted:#6B7280;--accent-blue:#1B3A6B;--accent-gold:#F5A623;--border-color:rgba(0,0,0,0.06);--shadow-soft:0 2px 12px rgba(0,0,0,0.04);--shadow-heavy:0 4px 24px rgba(27,58,107,0.1);--glass-bg:#fff;--glass-bg-solid:#fff;--bg-card-warm:#fff}
 body{font-family:var(--font-main)!important;background:var(--bg-main)!important;color:var(--text-main);opacity:1!important}
 h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
-.blog-header{padding:140px 0 50px;text-align:center;background:var(--bg-main)}
+.blog-header{padding:140px 0 50px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--bg-main)0%,rgba(27,58,107,0.02)100%)}
+.blog-header::before{content:'';position:absolute;top:-40%;right:-10%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(27,58,107,0.04)0%,transparent 70%);pointer-events:none}
+.blog-header .container{position:relative;z-index:1}
 .blog-header h1{font-size:clamp(34px,5vw,56px);color:var(--accent-blue);margin-bottom:8px}
 .blog-header p{color:var(--text-muted);font-size:16px;max-width:520px;margin:0 auto}
 .blog-tools{max-width:1200px;margin:0 auto 32px;padding:0 24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
@@ -37,6 +39,11 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .badge-filter{padding:8px 18px;border-radius:var(--radius-sm);border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--accent-blue);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-main);transition:all .2s;white-space:nowrap}
 .badge-filter:hover{border-color:var(--accent-gold);color:var(--accent-gold)}
 .badge-filter.active{background:var(--accent-blue);color:#fff;border-color:var(--accent-blue)}
+.badge-filter.is-resource{position:relative}
+.badge-filter.is-resource::after{content:'\f019';font-family:'Font Awesome 6 Free';font-weight:900;font-size:10px;margin-left:6px;opacity:0;transition:opacity .2s}
+.badge-filter.is-resource:hover::after,.badge-filter.is-resource.active::after{opacity:1}
+.badge-filter.is-resource.active{background:rgba(27,58,107,0.08);color:var(--accent-blue);border-color:var(--accent-blue)}
+.badge-filter.is-resource.active::after{opacity:1}
 .blog-container{max-width:1200px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:1fr 320px;gap:40px}
 .blog-main{min-width:0}
 .featured-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-color);background:var(--bg-main);box-shadow:var(--shadow-soft);margin-bottom:40px;transition:box-shadow .3s}
@@ -44,7 +51,10 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .featured-image{position:relative;aspect-ratio:16/10;overflow:hidden}
 .featured-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .featured-card:hover .featured-image img{transform:scale(1.03)}
-.featured-badge{position:absolute;top:12px;left:12px;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;color:#fff;z-index:2}
+.featured-badges{position:absolute;top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap;z-index:2}
+.featured-badge{padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;color:#fff;pointer-events:none}
+.featured-badge.is-resource{background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,0.6);display:inline-flex;align-items:center;gap:4px}
+.featured-badge.is-resource i{font-size:10px}
 .featured-content{padding:30px;display:flex;flex-direction:column;justify-content:center}
 .featured-content h2{font-size:24px;margin-bottom:10px;color:var(--text-main)}
 .featured-content h2 a{color:inherit;text-decoration:none}
@@ -58,24 +68,28 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .post-card-image{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg-tertiary);flex-shrink:0}
 .post-card-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .post-card:hover .post-card-image img{transform:scale(1.05)}
-.post-card-badge{position:absolute;top:10px;left:10px;padding:3px 12px;border-radius:20px;font-size:10px;font-weight:600;color:#fff;z-index:2}
-.post-card-resource-icon{position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.9);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;z-index:2}
+.post-card-badges{position:absolute;top:10px;left:10px;display:flex;gap:4px;flex-wrap:wrap;z-index:2}
+.post-card-badge{padding:3px 12px;border-radius:20px;font-size:10px;font-weight:600;color:#fff;pointer-events:none;transition:opacity .2s}
+.post-card-badge.is-resource{background:rgba(255,255,255,0.15);backdrop-filter:blur(6px);border:1.5px solid rgba(255,255,255,0.6);display:inline-flex;align-items:center;gap:3px}
+.post-card-badge.is-resource i{font-size:9px}
 .post-card-body{padding:18px;flex:1;display:flex;flex-direction:column}
 .post-card-body h3{font-size:16px;margin-bottom:8px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .post-card-body h3 a{color:var(--text-main);text-decoration:none}
 .post-card-body h3 a:hover{color:var(--accent-blue)}
-.post-card-body p{font-size:13px;color:var(--text-muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:14px;flex:1}
-.post-card-footer{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border-color);padding:12px 18px;flex-shrink:0}
+.post-card-body p{font-size:13px;color:var(--text-muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;flex:1}
+.post-card-read-more{font-size:12px;font-weight:600;color:var(--accent-blue);text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:gap .2s;margin-top:auto}
+.post-card-read-more i{font-size:10px;transition:transform .2s}
+.post-card:hover .post-card-read-more i{transform:translateX(3px)}
+.post-card-footer{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border-color);padding:12px 18px;flex-shrink:0;flex-wrap:wrap}
 .post-card-footer img{width:24px;height:24px;border-radius:50%;object-fit:cover}
+.post-card-footer .card-footer-right{margin-left:auto;display:flex;align-items:center;gap:8px}
 .pagination{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:8px}
 .pagination button{padding:10px 18px;border-radius:var(--radius-sm);border:1px solid var(--border-color);background:var(--bg-main);color:var(--text-muted);font-size:14px;cursor:pointer;font-family:var(--font-main);transition:all .15s}
 .pagination button:hover{border-color:var(--accent-blue);color:var(--accent-blue)}
 .pagination button.active{background:var(--accent-blue);color:#fff;border-color:var(--accent-blue)}
 .pagination button:disabled{opacity:.3;cursor:default}
-.load-more-wrap{text-align:center;margin-top:8px}
-.load-more{padding:14px 40px;border-radius:var(--radius-sm);border:none;background:var(--accent-blue);color:#fff;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--font-main);transition:all .2s}
-.load-more:hover{background:var(--accent-gold)}
-.load-more:disabled{opacity:.5;cursor:default}
+.pagination .page-prev-next{background:transparent;border-color:transparent;font-size:13px;color:var(--text-muted)}
+.pagination .page-prev-next:hover{color:var(--accent-blue)}
 
 .blog-sidebar{display:flex;flex-direction:column;gap:24px}
 .sidebar-card{background:var(--bg-main);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:24px;box-shadow:var(--shadow-soft)}
@@ -97,19 +111,40 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .empty-blog h3{font-size:20px;color:var(--text-main);margin-bottom:6px}
 
 @media(max-width:1024px){
-  .blog-container{grid-template-columns:1fr}
-  .blog-sidebar{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  .posts-grid{grid-template-columns:repeat(2,1fr)}
+  .blog-container{grid-template-columns:1fr;padding:0 20px 60px}
+  .blog-sidebar{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+  .posts-grid{grid-template-columns:repeat(2,1fr);gap:20px}
+  .pagination button{padding:8px 14px;font-size:13px}
 }
 @media(max-width:768px){
   .blog-header{padding:100px 0 30px}
+  .blog-header h1{font-size:clamp(28px,8vw,34px)}
+  .blog-tools{padding:0 20px;flex-direction:column;gap:10px}
+  .badge-filters{flex-wrap:nowrap;overflow-x:auto;width:100%;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+  .badge-filter{flex-shrink:0}
   .featured-card{grid-template-columns:1fr}
+  .featured-image{aspect-ratio:16/9}
   .featured-content{padding:20px}
   .featured-content h2{font-size:20px}
-  .posts-grid{grid-template-columns:1fr}
-  .blog-sidebar{grid-template-columns:1fr}
-  .blog-tools{flex-direction:column}
-  .badge-filters{flex-wrap:nowrap;overflow-x:auto;width:100%;-webkit-overflow-scrolling:touch}
+  .post-card-body{padding:14px}
+  .post-card-footer{padding:10px 14px;font-size:11px}
+  .posts-grid{grid-template-columns:1fr;gap:16px}
+  .blog-sidebar{grid-template-columns:1fr;gap:20px}
+  .blog-container{padding:0 16px 40px}
+  .pagination{gap:4px}
+  .pagination button{padding:8px 12px;font-size:12px;min-width:36px}
+  .pagination .page-prev-next{padding:8px 10px}
+}
+@media(max-width:480px){
+  .blog-header{padding:90px 0 24px}
+  .blog-header h1{font-size:26px}
+  .blog-header p{font-size:14px}
+  .featured-content{padding:16px}
+  .featured-content h2{font-size:18px}
+  .featured-content p{font-size:13px}
+  .sidebar-card{padding:18px}
+  .popular-item{padding:8px 0}
+  .pagination button{padding:6px 10px;font-size:11px;min-width:32px}
 }
 </style>
 </head><body>
@@ -141,9 +176,6 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
     <div class="featured-card" id="featuredCard" style="display:none"></div>
     <div class="posts-grid" id="postsGrid"></div>
     <div class="pagination" id="pagination"></div>
-    <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
-      <button class="load-more" id="loadMoreBtn" onclick="loadMore()" data-i18n="blog.archive.loadmore">Charger plus d'articles</button>
-    </div>
   </div>
 
   <aside class="blog-sidebar">
@@ -173,7 +205,6 @@ let allPosts = [];
 let badges = [];
 let authors = [];
 let filteredPosts = [];
-let isLoading = false;
 let pageSize = 9;
 
 function esc(str) { if (str == null) return ''; const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
@@ -228,7 +259,7 @@ function renderBadges() {
   const container = document.getElementById('badgeFilters');
   badges.forEach(b => {
     const btn = document.createElement('button');
-    btn.className = 'badge-filter';
+    btn.className = 'badge-filter' + (b.type === 'ressource' ? ' is-resource' : '');
     btn.dataset.badge = b.id;
     btn.textContent = b.name;
     btn.style.setProperty('--badge-color', b.color);
@@ -264,25 +295,27 @@ function renderPosts() {
   const grid = document.getElementById('postsGrid');
   const featured = document.getElementById('featuredCard');
   const empty = document.getElementById('emptyState');
-  const start = 0;
-  const end = currentPage * pageSize;
-  const pagePosts = filteredPosts.slice(start, end);
 
   if (filteredPosts.length === 0) {
     featured.style.display = 'none';
     grid.innerHTML = '';
     empty.style.display = 'block';
+    renderPagination();
     return;
   }
   empty.style.display = 'none';
 
-  const featuredPost = pagePosts.length > 0 ? pagePosts[0] : null;
-  if (featuredPost) {
+  const totalPages = Math.ceil(filteredPosts.length / pageSize);
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  let displayPosts;
+  if (currentPage === 1) {
+    const featuredPost = filteredPosts[0];
     const featuredBadges = (featuredPost.badgeIds || []).map(id => badges.find(b => b.id === id)).filter(Boolean);
     featured.style.display = 'grid';
     featured.innerHTML = `
       <a href="/blog/${featuredPost.slug}" class="featured-image">
-        ${featuredBadges[0] ? '<span class="featured-badge" style="background:' + featuredBadges[0].color + '">' + esc(featuredBadges[0].name) + '</span>' : ''}
+        <div class="featured-badges">${featuredBadges.map(b => '<span class="featured-badge' + (b.type === 'ressource' ? ' is-resource' : '') + '" style="background:' + b.color + '">' + (b.type === 'ressource' ? '<i class="fa-solid fa-download"></i> ' : '') + esc(b.name) + '</span>').join('')}</div>
         <img src="${featuredPost.coverImage || '../assets/pia-logo-dark-sm.png'}" alt="${esc(featuredPost.title)}" loading="lazy">
       </a>
       <div class="featured-content">
@@ -298,31 +331,36 @@ function renderPosts() {
         </div>
       </div>
     `;
+    displayPosts = filteredPosts.slice(1, pageSize);
   } else {
     featured.style.display = 'none';
+    const start = (currentPage - 1) * pageSize;
+    displayPosts = filteredPosts.slice(start, start + pageSize);
   }
 
-  const gridPosts = featuredPost ? pagePosts.slice(1) : pagePosts;
-  if (gridPosts.length === 0) { grid.innerHTML = ''; return; }
+  if (displayPosts.length === 0) { grid.innerHTML = ''; renderPagination(); return; }
 
-  grid.innerHTML = gridPosts.map(post => {
+  grid.innerHTML = displayPosts.map(post => {
     const postBadges = (post.badgeIds || []).map(id => badges.find(b => b.id === id)).filter(Boolean);
-    const isResource = postBadges.some(b => b.type === 'ressource');
     const author = authors.find(a => a.id === post.authorId);
     return '<div class="post-card" onclick="window.location.href=\'/blog/' + post.slug + '\'">' +
       '<div class="post-card-image">' +
         '<img src="' + (post.coverImage || '../assets/pia-logo-dark-sm.png') + '" alt="' + esc(post.title) + '" loading="lazy">' +
-        (postBadges[0] ? '<span class="post-card-badge" style="background:' + postBadges[0].color + '">' + esc(postBadges[0].name) + '</span>' : '') +
-        (isResource ? '<span class="post-card-resource-icon"><i class="fa-solid fa-download"></i></span>' : '') +
+        '<div class="post-card-badges">' + postBadges.map(b => '<span class="post-card-badge' + (b.type === 'ressource' ? ' is-resource' : '') + '" style="background:' + b.color + '">' + (b.type === 'ressource' ? '<i class="fa-solid fa-download"></i> ' : '') + esc(b.name) + '</span>').join('') + '</div>' +
       '</div>' +
       '<div class="post-card-body">' +
         '<h3><a href="/blog/' + post.slug + '">' + esc(post.title) + '</a></h3>' +
         '<p>' + esc(post.excerpt) + '</p>' +
+        '<a href="/blog/' + post.slug + '" class="post-card-read-more">' + (lang === 'fr' ? 'Lire plus' : 'Read more') + ' <i class="fa-solid fa-arrow-right"></i></a>' +
       '</div>' +
       '<div class="post-card-footer">' +
         (author && author.avatar ? '<img src="' + author.avatar + '" alt="">' : '<i class="fa-solid fa-user" style="font-size:14px;opacity:.4"></i>') +
         '<span>' + (author?.name || 'PIA') + '</span>' +
-        '<span style="margin-left:auto">' + formatDate(post.publishedAt) + '</span>' +
+        '<span class="card-footer-right">' +
+          '<span>' + readingTime(post.content) + '</span>' +
+          '<span>·</span>' +
+          '<span>' + formatDate(post.publishedAt) + '</span>' +
+        '</span>' +
       '</div>' +
     '</div>';
   }).join('');
@@ -332,37 +370,23 @@ function renderPosts() {
 
 function renderPagination() {
   const pag = document.getElementById('pagination');
-  const loadMore = document.getElementById('loadMoreWrap');
   const totalPages = Math.ceil(filteredPosts.length / pageSize);
-  if (totalPages <= 1) { pag.innerHTML = ''; loadMore.style.display = 'none'; return; }
+  if (totalPages <= 1) { pag.innerHTML = ''; return; }
 
-  const hasMore = currentPage < totalPages;
-  if (hasMore) {
-    loadMore.style.display = 'block';
-    document.getElementById('loadMoreBtn').disabled = isLoading;
-    document.getElementById('loadMoreBtn').innerHTML = isLoading ? '<i class="fa-solid fa-spinner fa-spin"></i> Chargement...' : (lang === 'fr' ? 'Charger plus d\'articles' : 'Load more articles');
-    pag.innerHTML = '';
-  } else {
-    loadMore.style.display = 'none';
-    let html = '';
-    for (let i = 1; i <= totalPages; i++) {
-      html += '<button class="' + (i === currentPage ? 'active' : '') + '" onclick="goPage(' + i + ')">' + i + '</button>';
-    }
-    pag.innerHTML = html;
+  let html = '';
+  html += '<button class="page-prev-next" onclick="goPage(' + (currentPage - 1) + ')"' + (currentPage <= 1 ? ' disabled' : '') + '><i class="fa-solid fa-chevron-left"></i></button>';
+  for (let i = 1; i <= totalPages; i++) {
+    html += '<button class="' + (i === currentPage ? 'active' : '') + '" onclick="goPage(' + i + ')">' + i + '</button>';
   }
+  html += '<button class="page-prev-next" onclick="goPage(' + (currentPage + 1) + ')"' + (currentPage >= totalPages ? ' disabled' : '') + '><i class="fa-solid fa-chevron-right"></i></button>';
+  pag.innerHTML = html;
 }
 
-function goPage(page) { currentPage = page; renderPosts(); window.scrollTo({ top: document.getElementById('blogMain').offsetTop - 100, behavior: 'smooth' }); }
-
-async function loadMore() {
-  if (isLoading) return;
-  isLoading = true;
-  const totalPages = Math.ceil(filteredPosts.length / pageSize);
-  if (currentPage < totalPages) {
-    currentPage++;
-    renderPosts();
-  }
-  isLoading = false;
+function goPage(page) {
+  if (page < 1 || page > Math.ceil(filteredPosts.length / pageSize)) return;
+  currentPage = page;
+  renderPosts();
+  window.scrollTo({ top: document.getElementById('blogMain').offsetTop - 100, behavior: 'smooth' });
 }
 
 async function renderSidebar() {
