@@ -46,7 +46,7 @@ async function requireAdmin(req, res) {
 async function handler(req, res) {
   let resource, param, searchParams;
   if (req.query && req.query.slug) {
-    const s = Array.isArray(req.query.slug) ? req.query.slug : [req.query.slug];
+    const s = Array.isArray(req.query.slug) ? req.query.slug : req.query.slug.split('/');
     resource = s[0] || '';
     param = s[1] || '';
     searchParams = new URL('http://localhost' + req.url).searchParams;
