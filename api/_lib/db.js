@@ -131,6 +131,7 @@ const BLOG_KEYS = {
   authors: 'blog_authors',
   badges: 'blog_badges',
   comments: 'blog_comments',
+  newsletters: 'blog_newsletters',
 };
 
 const BLOG_FILES = {
@@ -138,6 +139,7 @@ const BLOG_FILES = {
   authors: path.join(os.tmpdir(), 'pia-blog-authors.json'),
   badges: path.join(os.tmpdir(), 'pia-blog-badges.json'),
   comments: path.join(os.tmpdir(), 'pia-blog-comments.json'),
+  newsletters: path.join(os.tmpdir(), 'pia-blog-newsletters.json'),
 };
 
 async function blogLoad(collection) {

@@ -277,19 +277,38 @@ async function handler(req, res) {
         return json(res, 405, { error: 'Method not allowed' });
       }
 
+      case 'newsletters': {
+        if (req.method === 'GET') {
+          if (!(await requireAdmin(req, res))) return;
+          const newsletters = await blogLoad('newsletters');
+          return json(res, 200, newsletters);
+        }
+        if (req.method === 'POST') {
+          const data = await readBody(req);
+          if (!data.email || !data.email.includes('@')) return json(res, 400, { error: 'Email invalide' });
+          const newsletters = await blogLoad('newsletters');
+          if (newsletters.some(n => n.email === data.email)) return json(res, 200, { success: true, message: 'Déjà inscrit' });
+          newsletters.push({ email: data.email, subscribedAt: new Date().toISOString(), source: data.source || 'blog' });
+          await blogSave('newsletters', newsletters);
+          return json(res, 201, { success: true });
+        }
+        return json(res, 405, { error: 'Method not allowed' });
+      }
+
       case 'stats': {
         if (req.method !== 'GET') return json(res, 405, { error: 'Method not allowed' });
         if (!(await requireAdmin(req, res))) return;
         const posts = await blogLoad('posts');
         const comments = await blogLoad('comments');
         const badges = await blogLoad('badges');
+        const newsletters = await blogLoad('newsletters');
         const topPosts = [...posts].sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0)).slice(0, 5).map(p => ({ slug: p.slug, title: p.title, views: p.viewCount || 0 }));
         return json(res, 200, {
           totalPosts: posts.length, publishedPosts: posts.filter(p => p.status === 'published').length,
           draftPosts: posts.filter(p => p.status === 'draft').length,
           totalViews: posts.reduce((s, p) => s + (p.viewCount || 0), 0),
           totalComments: comments.length, pendingComments: comments.filter(c => c.status === 'pending').length,
-          totalBadges: badges.length, topPosts,
+          totalBadges: badges.length, totalNewsletters: newsletters.length, topPosts,
         });
       }
 

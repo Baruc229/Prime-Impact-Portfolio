@@ -226,6 +226,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
       <a class="nav-item" data-view="blog-comments" onclick="switchView('blog-comments')"><i class="fa-solid fa-comments"></i> <span>Commentaires</span></a>
       <a class="nav-item" data-view="blog-badges" onclick="switchView('blog-badges')"><i class="fa-solid fa-tags"></i> <span>Badges</span></a>
       <a class="nav-item" data-view="blog-authors" onclick="switchView('blog-authors')"><i class="fa-solid fa-users"></i> <span>Auteurs</span></a>
+      <a class="nav-item" data-view="blog-newsletter" onclick="switchView('blog-newsletter')"><i class="fa-solid fa-envelope"></i> <span>Newsletter</span></a>
       <a class="nav-item" data-view="blog-stats" onclick="switchView('blog-stats')"><i class="fa-solid fa-chart-bar"></i> <span>Statistiques</span></a>
     </nav>
     <div class="sidebar-footer">
@@ -342,6 +343,13 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
       </div>
     </div>
 
+    <!-- Blog: Newsletter -->
+    <div class="view" id="view-blog-newsletter">
+      <div class="table-wrap">
+        <table><thead><tr><th>Email</th><th>Date d'inscription</th><th>Source</th></tr></thead><tbody id="blogNewsletterBody"><tr><td colspan="3" class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Chargement...</p></td></tr></tbody></table>
+      </div>
+    </div>
+
     <!-- Blog: Stats -->
     <div class="view" id="view-blog-stats">
       <div class="stats-row" id="blogStatsRow">
@@ -351,6 +359,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
         <div class="stat-card"><div class="stat-num" id="bsViews" style="color:var(--accent)">—</div><div class="stat-label">Vues totales</div></div>
         <div class="stat-card"><div class="stat-num" id="bsComments" style="color:var(--green)">—</div><div class="stat-label">Commentaires</div></div>
         <div class="stat-card"><div class="stat-num" id="bsPendingComments" style="color:var(--orange)">—</div><div class="stat-label">En attente</div></div>
+        <div class="stat-card"><div class="stat-num" id="bsNewsletters" style="color:var(--accent)">—</div><div class="stat-label">Newsletter</div></div>
       </div>
       <div class="stat-card" style="margin-top:16px"><div class="stat-label" style="margin-bottom:12px">Articles les plus vus</div><div id="bsTopPosts"><p style="color:var(--text-muted);font-size:13px">Chargement...</p></div></div>
     </div>
@@ -486,13 +495,13 @@ const titles = {
   dashboard: 'Dashboard', 'export': 'Export',
   'blog-posts': 'Articles', 'blog-comments': 'Commentaires & Avis',
   'blog-badges': 'Badges & Catégories', 'blog-authors': 'Auteurs',
-  'blog-stats': 'Statistiques du blog'
+  'blog-newsletter': 'Newsletter', 'blog-stats': 'Statistiques du blog'
 };
 const icons = {
   dashboard: 'chart-simple', 'export': 'download',
   'blog-posts': 'newspaper', 'blog-comments': 'comments',
   'blog-badges': 'tags', 'blog-authors': 'users',
-  'blog-stats': 'chart-bar'
+  'blog-newsletter': 'envelope', 'blog-stats': 'chart-bar'
 };
 
 function switchView(name) {
@@ -507,6 +516,7 @@ function switchView(name) {
   if (name === 'blog-comments') { loadPostsForFilter(); loadComments(); }
   if (name === 'blog-badges') loadBadges();
   if (name === 'blog-authors') loadAuthors();
+  if (name === 'blog-newsletter') loadNewsletters();
   if (name === 'blog-stats') loadBlogStats();
   if (name === 'dashboard') { if (authToken) refresh(); }
 }
@@ -1041,6 +1051,18 @@ async function loadAuthors() {
     '</div></td></tr>').join('');
 }
 
+async function loadNewsletters() {
+  const tbody = document.getElementById('blogNewsletterBody');
+  const data = await fetchAPI('/blog/newsletters');
+  if (data?._error) { tbody.innerHTML = '<tr><td colspan="3" class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>' + esc(data._error) + '</p></td></tr>'; return; }
+  if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="3" class="empty-state"><i class="fa-solid fa-envelope-open-text"></i><p>Aucun inscrit pour le moment.</p></td></tr>'; return; }
+  tbody.innerHTML = [...data].reverse().map(n => '<tr>' +
+    '<td>' + esc(n.email) + '</td>' +
+    '<td>' + (n.subscribedAt ? formatDate(n.subscribedAt) : '—') + '</td>' +
+    '<td>' + esc(n.source || 'blog') + '</td>' +
+  '</tr>').join('');
+}
+
 function openAuthorEditor(data) {
   editingAuthorId = data?.id || null;
   document.getElementById('authorEditorTitle').textContent = editingAuthorId ? 'Modifier l\'auteur' : 'Nouvel auteur';
@@ -1093,6 +1115,7 @@ async function loadBlogStats() {
   document.getElementById('bsViews').textContent = stats.totalViews;
   document.getElementById('bsComments').textContent = stats.totalComments;
   document.getElementById('bsPendingComments').textContent = stats.pendingComments;
+  document.getElementById('bsNewsletters').textContent = stats.totalNewsletters || 0;
   const top = document.getElementById('bsTopPosts');
   if (stats.topPosts && stats.topPosts.length > 0) {
     top.innerHTML = stats.topPosts.map((p, i) =>

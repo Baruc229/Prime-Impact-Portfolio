@@ -104,8 +104,16 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .sidebar-cta{background:#0D1B35!important;border-color:#0D1B35!important;text-align:center}
 .sidebar-cta h3{color:#fff!important}
 .sidebar-cta p{color:rgba(255,255,255,0.7);font-size:13px;margin-bottom:18px;line-height:1.5}
-.sidebar-cta .btn{width:100%;padding:12px;border-radius:var(--radius-sm);border:none;background:var(--accent-gold);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-main);text-decoration:none;display:inline-block}
-.sidebar-cta .btn:hover{opacity:.9}
+.sidebar-cta .newsletter-form{display:flex;gap:8px}
+.sidebar-cta .newsletter-form input{flex:1;padding:10px 14px;border-radius:var(--radius-sm);border:none;background:rgba(255,255,255,0.1);color:#fff;font-size:13px;font-family:var(--font-main);outline:none;transition:background .2s;min-width:0}
+.sidebar-cta .newsletter-form input::placeholder{color:rgba(255,255,255,0.4)}
+.sidebar-cta .newsletter-form input:focus{background:rgba(255,255,255,0.18)}
+.sidebar-cta .newsletter-form button{padding:10px 16px;border-radius:var(--radius-sm);border:none;background:var(--accent-gold);color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-main);transition:opacity .2s;white-space:nowrap;flex-shrink:0}
+.sidebar-cta .newsletter-form button:hover{opacity:.85}
+.sidebar-cta .newsletter-form button:disabled{opacity:.5;cursor:default}
+.sidebar-cta .newsletter-msg{font-size:12px;margin-top:10px;line-height:1.4;min-height:0;transition:all .2s}
+.sidebar-cta .newsletter-msg.success{color:#4ade80}
+.sidebar-cta .newsletter-msg.error{color:#f87171}
 .empty-blog{text-align:center;padding:80px 20px;color:var(--text-muted);grid-column:1/-1}
 .empty-blog i{font-size:48px;margin-bottom:12px;opacity:.4}
 .empty-blog h3{font-size:20px;color:var(--text-main);margin-bottom:6px}
@@ -144,6 +152,7 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
   .featured-content p{font-size:13px}
   .sidebar-card{padding:18px}
   .popular-item{padding:8px 0}
+  .sidebar-cta .newsletter-form{flex-direction:column;gap:6px}
   .pagination button{padding:6px 10px;font-size:11px;min-width:32px}
 }
 </style>
@@ -186,7 +195,11 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
     <div class="sidebar-card sidebar-cta" id="newsletterCard" style="display:none">
       <h3 data-i18n="blog.sidebar.cta.title">Restez informé</h3>
       <p data-i18n="blog.sidebar.cta.desc">Recevez nos derniers articles et conseils directement par email.</p>
-      <a href="/contact" class="btn" data-i18n="blog.sidebar.cta.btn">S'abonner</a>
+      <div class="newsletter-form">
+        <input type="email" id="newsletterEmail" placeholder="Votre email" data-i18n="blog.sidebar.cta.placeholder">
+        <button id="newsletterBtn" onclick="subscribeNewsletter()" data-i18n="blog.sidebar.cta.btn">S'abonner</button>
+      </div>
+      <div class="newsletter-msg" id="newsletterMsg"></div>
     </div>
   </aside>
 </div>
@@ -406,6 +419,42 @@ async function renderSidebar() {
     '</div>'
   ).join('');
   document.getElementById('newsletterCard').style.display = 'block';
+}
+
+async function subscribeNewsletter() {
+  const input = document.getElementById('newsletterEmail');
+  const btn = document.getElementById('newsletterBtn');
+  const msg = document.getElementById('newsletterMsg');
+  const email = input.value.trim();
+  if (!email || !email.includes('@')) {
+    msg.className = 'newsletter-msg error';
+    msg.textContent = lang === 'fr' ? 'Email invalide.' : 'Invalid email.';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = lang === 'fr' ? 'Envoi...' : 'Sending...';
+  msg.textContent = '';
+  try {
+    const res = await fetch('/api/blog/newsletters', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, source: 'blog' })
+    });
+    const data = await res.json();
+    if (res.ok) {
+      msg.className = 'newsletter-msg success';
+      msg.textContent = lang === 'fr' ? 'Merci ! Vous êtes inscrit.' : 'Thanks! You are subscribed.';
+      input.value = '';
+    } else {
+      msg.className = 'newsletter-msg error';
+      msg.textContent = data?.error || (lang === 'fr' ? 'Erreur lors de l\'inscription.' : 'Subscription error.');
+    }
+  } catch(e) {
+    msg.className = 'newsletter-msg error';
+    msg.textContent = lang === 'fr' ? 'Erreur réseau.' : 'Network error.';
+  }
+  btn.disabled = false;
+  btn.textContent = lang === 'fr' ? 'S\'abonner' : 'Subscribe';
 }
 
 document.addEventListener('DOMContentLoaded', init);

@@ -60,6 +60,7 @@ const translations = {
   "blog.sidebar.loading": { "fr": "Chargement...", "en": "Loading..." },
   "blog.sidebar.cta.title": { "fr": "Restez informé", "en": "Stay informed" },
   "blog.sidebar.cta.desc": { "fr": "Recevez nos derniers articles et conseils directement par email.", "en": "Get our latest articles and tips directly by email." },
+  "blog.sidebar.cta.placeholder": { "fr": "Votre email", "en": "Your email" },
   "blog.sidebar.cta.btn": { "fr": "S'abonner", "en": "Subscribe" },
   "blog.post.toc": { "fr": "Sommaire", "en": "Table of contents" },
   "blog.post.related": { "fr": "Articles similaires", "en": "Related articles" },
