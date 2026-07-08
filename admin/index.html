@@ -11,7 +11,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-:root{--bg:#0a0b0e;--sidebar:#111216;--card:#18191d;--surface:#1e1f24;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.1);--text:#e4e6eb;--text-muted:#8a8f98;--accent:#3b82f6;--accent-hover:#60a5fa;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--radius:10px;--radius-sm:6px}
+:root{--bg:#f3f4f6;--sidebar:#ffffff;--card:#ffffff;--surface:#eef0f2;--border:rgba(0,0,0,0.08);--border-hover:rgba(0,0,0,0.15);--text:#111827;--text-muted:#6b7280;--accent:#2563eb;--accent-hover:#1d4ed8;--green:#16a34a;--orange:#d97706;--red:#dc2626;--radius:10px;--radius-sm:6px}
 body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text)}
 .login-overlay{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:100}
 .login-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:40px;width:360px;max-width:92vw}
@@ -203,7 +203,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
 
 <div class="login-overlay" id="loginOverlay">
   <div class="login-box">
-    <h1><img src="/assets/pia-logo-white-sm.png" style="height:36px" alt="PIA"></h1>
+    <h1><img src="/assets/pia-logo-dark-sm.png" style="height:36px" alt="PIA"></h1>
     <p>Tableau de bord</p>
     <input type="password" id="passwordInput" placeholder="Mot de passe" autocomplete="current-password">
     <button onclick="login()" id="loginBtn">Se connecter</button>
@@ -213,7 +213,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
 
 <div class="app-layout" id="app">
   <aside class="sidebar">
-    <div class="sidebar-brand"><img src="/assets/pia-logo-white-sm.png" style="height:48px" alt="PIA"></div>
+    <div class="sidebar-brand"><img src="/assets/pia-logo-dark-sm.png" style="height:48px" alt="PIA"></div>
     <nav class="sidebar-nav">
       <div class="nav-label">Formulaires</div>
       <a class="nav-item active" data-view="dashboard" onclick="switchView('dashboard')"><i class="fa-solid fa-chart-simple"></i> <span>Dashboard</span></a>
@@ -831,9 +831,9 @@ async function openPostEditor(slug) {
         menubar: false,
         plugins: 'lists link image code table autoresize',
         toolbar: 'undo redo | blocks | bold italic underline | bullist numlist | link image | code | removeformat',
-        content_style: 'body{font-family:Inter,sans-serif;font-size:15px;color:#e4e6eb;background:#18191d;line-height:1.7}',
-        skin: 'oxide-dark',
-        content_css: 'dark',
+        content_style: 'body{font-family:Inter,sans-serif;font-size:15px;color:#111827;background:#ffffff;line-height:1.7}',
+        skin: 'oxide',
+        content_css: 'default',
         setup: function(editor) { tinyInitialized = true; }
       });
     }
