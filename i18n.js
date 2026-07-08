@@ -61,6 +61,7 @@ const translations = {
   "blog.sidebar.cta.title": { "fr": "Restez informé", "en": "Stay informed" },
   "blog.sidebar.cta.desc": { "fr": "Recevez nos derniers articles et conseils directement par email.", "en": "Get our latest articles and tips directly by email." },
   "blog.sidebar.cta.btn": { "fr": "S'abonner", "en": "Subscribe" },
+  "blog.post.toc": { "fr": "Sommaire", "en": "Table of contents" },
   "blog.post.related": { "fr": "Articles similaires", "en": "Related articles" },
   "blog.post.comments.title": { "fr": "Avis & Questions", "en": "Reviews & Questions" },
   "blog.post.comments.leave": { "fr": "Laisser un avis ou poser une question", "en": "Leave a review or ask a question" },
