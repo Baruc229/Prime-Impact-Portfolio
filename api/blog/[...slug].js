@@ -43,24 +43,33 @@ async function requireAdmin(req, res) {
   return true;
 }
 
-async function handle(req, res) {
-  const url = new URL(req.url, 'http://localhost');
-  const path = url.pathname.replace(/\/api\/blog\/?/, '').replace(/\/$/, '');
-  const parts = path.split('/');
-  const resource = parts[0];
-  const param = parts[1] || '';
+async function handler(req, res) {
+  let resource, param, searchParams;
+  if (req.query && req.query.slug) {
+    const s = Array.isArray(req.query.slug) ? req.query.slug : [req.query.slug];
+    resource = s[0] || '';
+    param = s[1] || '';
+    searchParams = new URL('http://localhost' + req.url).searchParams;
+  } else {
+    const url = new URL(req.url, 'http://localhost');
+    const p = url.pathname.replace(/^\/api\/blog\/?/, '').replace(/\/$/, '');
+    const parts = p.split('/');
+    resource = parts[0];
+    param = parts[1] || '';
+    searchParams = url.searchParams;
+  }
 
   try {
     switch (resource) {
       case 'posts': {
         if (!param) {
           if (req.method === 'GET') {
-            const page = parseInt(url.searchParams.get('page')) || 1;
-            const limit = parseInt(url.searchParams.get('limit')) || 20;
-            const status = url.searchParams.get('status') || '';
-            const badge = url.searchParams.get('badge') || '';
-            const search = url.searchParams.get('search') || '';
-            const lang = url.searchParams.get('lang') || '';
+            const page = parseInt(searchParams.get('page')) || 1;
+            const limit = parseInt(searchParams.get('limit')) || 20;
+            const status = searchParams.get('status') || '';
+            const badge = searchParams.get('badge') || '';
+            const search = searchParams.get('search') || '';
+            const lang = searchParams.get('lang') || '';
             const posts = await blogLoad('posts');
             let filtered = [...posts];
             if (status) filtered = filtered.filter(p => p.status === status);
@@ -217,10 +226,10 @@ async function handle(req, res) {
           if (req.method === 'GET') {
             const auth = req.headers['authorization'];
             const isAdmin = auth && (await validateSession(auth.replace('Bearer ', '')));
-            const postSlug = url.searchParams.get('post') || '';
-            const status = url.searchParams.get('status') || '';
-            const page = parseInt(url.searchParams.get('page')) || 1;
-            const limit = parseInt(url.searchParams.get('limit')) || 50;
+            const postSlug = searchParams.get('post') || '';
+            const status = searchParams.get('status') || '';
+            const page = parseInt(searchParams.get('page')) || 1;
+            const limit = parseInt(searchParams.get('limit')) || 50;
             const comments = await blogLoad('comments');
             let filtered = [...comments];
             if (postSlug) filtered = filtered.filter(c => c.postSlug === postSlug);
@@ -291,4 +300,4 @@ async function handle(req, res) {
   }
 }
 
-module.exports = { handler: handle, generateSlug };
+module.exports = handler;

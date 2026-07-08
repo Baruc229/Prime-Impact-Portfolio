@@ -394,7 +394,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
 <div class="modal-overlay" id="badgeEditorModal">
   <div class="modal"><div class="modal-header"><h2 id="badgeEditorTitle">Nouveau badge</h2><button class="modal-close" onclick="closeBadgeEditor()"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body">
     <div class="form-group"><label>Nom</label><input type="text" id="beName" placeholder="Ex: Web, SEO, Ressource"></div>
-    <div class="form-group"><div class="color-picker-wrap"><label>Couleur</label><input type="color" id="beColor" value="#1B3A6B"></div></div>
+    <div class="form-group"><label>Couleur de fond du badge</label><div class="color-picker-wrap"><input type="color" id="beColor" value="#1B3A6B"><span style="font-size:12px;color:var(--text-muted)">Choisissez la couleur d'arrière-plan du badge</span></div></div>
     <div class="form-group"><label>Type</label><select id="beType"><option value="category">Catégorie</option><option value="ressource">Ressource (téléchargement)</option></select></div>
     <div class="form-actions">
       <button class="btn-delete" onclick="closeBadgeEditor()">Annuler</button>
@@ -990,11 +990,11 @@ async function saveBadge() {
     color: document.getElementById('beColor').value,
     type: document.getElementById('beType').value
   };
-  if (!data.name) return;
+  if (!data.name) { alert('Veuillez saisir un nom pour le badge.'); return; }
   const method = editingBadgeId ? 'PUT' : 'POST';
   const url = editingBadgeId ? '/blog/badges/' + editingBadgeId : '/blog/badges';
   const result = await fetchAPI(url, { method, body: JSON.stringify(data) });
-  if (result) { closeBadgeEditor(); loadBadges(); }
+  if (result) { closeBadgeEditor(); loadBadges(); } else { alert('Erreur lors de l\'enregistrement du badge.'); }
 }
 
 async function delBadge(id) {
@@ -1047,11 +1047,11 @@ async function saveAuthor() {
     bio: document.getElementById('aeBio').value.trim(),
     socialLinks: { linkedin: document.getElementById('aeLinkedin').value.trim() }
   };
-  if (!data.name) return;
+  if (!data.name) { alert('Veuillez saisir un nom pour l\'auteur.'); return; }
   const method = editingAuthorId ? 'PUT' : 'POST';
   const url = editingAuthorId ? '/blog/authors/' + editingAuthorId : '/blog/authors';
   const result = await fetchAPI(url, { method, body: JSON.stringify(data) });
-  if (result) { closeAuthorEditor(); loadAuthors(); }
+  if (result) { closeAuthorEditor(); loadAuthors(); } else { alert('Erreur lors de l\'enregistrement de l\'auteur.'); }
 }
 
 async function delAuthor(id) {
