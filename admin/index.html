@@ -181,6 +181,8 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
 .quick-actions button:hover{color:var(--text)}
 .quick-actions .pub{color:var(--green)}
 .quick-actions .pub:hover{background:rgba(34,197,94,0.1)}
+.quick-actions .edit{color:var(--accent)}
+.quick-actions .edit:hover{background:rgba(27,58,107,0.1)}
 .quick-actions .hid{color:var(--text-muted)}
 .quick-actions .del{color:var(--red)}
 .quick-actions .del:hover{background:rgba(239,68,68,0.1)}
@@ -712,7 +714,7 @@ async function loadBlogPosts() {
   tbody.innerHTML = data.posts.map(p => {
     const pBadges = (p.badgeIds || []).map(id => (badges || []).find(b => b.id === id)).filter(Boolean);
     const author = (authors || []).find(a => a.id === p.authorId);
-    return '<tr onclick="openPostEditor(\'' + p.slug + '\')">' +
+    return '<tr onclick="openPostEditor(\'' + esc(p.slug) + '\')">' +
       '<td><span class="status-badge status-' + p.status + '">' + (p.status === 'published' ? 'Publié' : 'Brouillon') + '</span></td>' +
       '<td>' + esc(p.title) + '</td>' +
       '<td>' + pBadges.map(b => '<span class="badge-tag" style="background:' + b.color + ';color:#fff;padding:2px 8px;font-size:10px">' + esc(b.name) + '</span>').join('') + '</td>' +
@@ -721,8 +723,9 @@ async function loadBlogPosts() {
       '<td>' + (p.viewCount || 0) + '</td>' +
       '<td>' + formatDate(p.publishedAt || p.createdAt) + '</td>' +
       '<td><div class="quick-actions" onclick="event.stopPropagation()">' +
-        '<button class="pub" onclick="if(confirm(\'Publier ?\')){quickPub(\'' + p.slug + '\')}"><i class="fa-solid fa-check"></i></button>' +
-        '<button class="del" onclick="if(confirm(\'Supprimer ?\')){quickDel(\'' + p.slug + '\')}"><i class="fa-solid fa-trash-can"></i></button>' +
+        '<button class="edit" onclick="openPostEditor(\'' + esc(p.slug) + '\')" title="Modifier"><i class="fa-solid fa-pen"></i></button>' +
+        '<button class="pub" onclick="if(confirm(\'Publier ?\')){quickPub(\'' + esc(p.slug) + '\')}"><i class="fa-solid fa-check"></i></button>' +
+        '<button class="del" onclick="if(confirm(\'Supprimer ?\')){quickDel(\'' + esc(p.slug) + '\')}"><i class="fa-solid fa-trash-can"></i></button>' +
       '</div></td></tr>';
   }).join('');
   const pag = document.getElementById('blogPagination');
@@ -777,21 +780,20 @@ async function openPostEditor(slug) {
   document.getElementById('postEditorTitle').textContent = slug ? 'Modifier l\'article' : 'Nouvel article';
   document.getElementById('peSaveBtn').textContent = slug ? 'Mettre à jour' : 'Enregistrer';
 
-  if (!slug) {
-    document.getElementById('peTitle').value = '';
-    document.getElementById('peSlug').value = '';
-    document.getElementById('peExcerpt').value = '';
-    document.getElementById('peMetaTitle').value = '';
-    document.getElementById('peMetaDesc').value = '';
-    document.getElementById('peResource').value = '';
-    document.getElementById('peStatus').value = 'draft';
-    document.getElementById('peLang').value = 'fr';
-    coverImageUrl = '';
-    selectedBadges = [];
-    document.getElementById('coverUpload').classList.remove('has-image');
-    document.getElementById('coverUpload').innerHTML = '<input type="file" id="coverInput" accept="image/*" onchange="previewCover(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:28px;display:block;margin-bottom:6px;color:var(--accent)"></i>Cliquez pour uploader une image</p>';
-    if (typeof tinymce !== 'undefined' && tinymce.get('peContent')) tinymce.get('peContent').setContent('');
-  }
+  // Always reset form first
+  document.getElementById('peTitle').value = '';
+  document.getElementById('peSlug').value = '';
+  document.getElementById('peExcerpt').value = '';
+  document.getElementById('peMetaTitle').value = '';
+  document.getElementById('peMetaDesc').value = '';
+  document.getElementById('peResource').value = '';
+  document.getElementById('peStatus').value = 'draft';
+  document.getElementById('peLang').value = 'fr';
+  coverImageUrl = '';
+  selectedBadges = [];
+  document.getElementById('coverUpload').classList.remove('has-image');
+  document.getElementById('coverUpload').innerHTML = '<input type="file" id="coverInput" accept="image/*" onchange="previewCover(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:28px;display:block;margin-bottom:6px;color:var(--accent)"></i>Cliquez pour uploader une image</p>';
+  if (typeof tinymce !== 'undefined' && tinymce.get('peContent')) tinymce.get('peContent').setContent('');
 
   const [badges, authors] = await Promise.all([fetchAPI('/blog/badges'), fetchAPI('/blog/authors')]);
   if (token !== _editorToken) return;
@@ -816,7 +818,7 @@ async function openPostEditor(slug) {
   if (slug) {
     const post = await fetchAPI('/blog/posts/' + slug);
     if (token !== _editorToken) return;
-    if (post) {
+    if (post && !post._error) {
       document.getElementById('peTitle').value = post.title || '';
       document.getElementById('peSlug').value = post.slug || '';
       document.getElementById('peExcerpt').value = post.excerpt || '';
@@ -837,6 +839,8 @@ async function openPostEditor(slug) {
         const el = badgeContainer.querySelector('[data-id="' + id + '"]');
         if (el) el.classList.add('selected');
       });
+    } else if (post && post._error) {
+      alert('Erreur lors du chargement : ' + post._error);
     }
   }
 
