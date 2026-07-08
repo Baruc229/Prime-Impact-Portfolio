@@ -32,7 +32,9 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
 .post-hero-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;color:#fff;margin-bottom:12px}
 .post-hero h1{font-size:clamp(28px,4vw,42px);color:var(--text-main);margin-bottom:16px;line-height:1.15}
 .post-hero-meta{display:flex;align-items:center;gap:14px;font-size:14px;color:var(--text-muted);flex-wrap:wrap;margin-bottom:24px}
-.post-hero-meta img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.post-hero-meta .author-wrap{display:flex;align-items:center;gap:10px}
+.post-hero-meta .author-wrap img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.post-hero-meta .author-wrap .author-role{display:block;font-size:11px;color:var(--text-muted);opacity:.65;margin-top:-1px}
 .post-hero-meta .sep{color:var(--border-color)}
 .post-cover{max-width:900px;margin:0 auto 40px;padding:0 24px}
 .post-cover img{width:100%;border-radius:var(--radius-md);box-shadow:var(--shadow-soft);display:block}
@@ -350,11 +352,13 @@ function renderPost() {
   const meta = document.getElementById('postMeta');
   let metaHTML = '';
   if (author) {
-    metaHTML += '<img src="' + (author.avatar || '../assets/pia-logo-dark-sm.png') + '" alt="">';
-    metaHTML += '<span>' + esc(author.name) + '</span>';
+    metaHTML += '<div class="author-wrap"><img src="' + (author.avatar || '../assets/pia-logo-dark-sm.png') + '" alt="">';
+    metaHTML += '<div><span>' + esc(author.name) + '</span>';
+    if (author.role) metaHTML += '<span class="author-role">' + esc(author.role) + '</span>';
+    metaHTML += '</div></div>';
   } else {
-    metaHTML += '<i class="fa-solid fa-user" style="font-size:16px;opacity:.4"></i>';
-    metaHTML += '<span>PIA</span>';
+    metaHTML += '<div class="author-wrap"><i class="fa-solid fa-user" style="font-size:16px;opacity:.4"></i>';
+    metaHTML += '<div><span>PIA</span></div></div>';
   }
   metaHTML += '<span class="sep">·</span>';
   metaHTML += '<span>' + formatDate(post.publishedAt || post.createdAt) + '</span>';

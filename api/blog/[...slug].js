@@ -247,7 +247,7 @@ async function handler(req, res) {
             if (!(await requireAdmin(req, res))) return;
             const data = await readBody(req);
             const authors = await blogLoad('authors');
-            const author = { id: uuid(), name: data.name || '', avatar: data.avatar || '', bio: data.bio || '', socialLinks: data.socialLinks || {}, createdAt: new Date().toISOString() };
+            const author = { id: uuid(), name: data.name || '', role: data.role || '', avatar: data.avatar || '', bio: data.bio || '', socialLinks: data.socialLinks || {}, createdAt: new Date().toISOString() };
             authors.push(author);
             await blogSave('authors', authors);
             return json(res, 201, author);

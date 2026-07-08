@@ -339,7 +339,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
         <button class="btn-primary-solid" onclick="openAuthorEditor()"><i class="fa-solid fa-plus"></i> Nouvel auteur</button>
       </div>
       <div class="table-wrap">
-        <table><thead><tr><th>Avatar</th><th>Nom</th><th>Bio</th><th>Actions</th></tr></thead><tbody id="blogAuthorsBody"><tr><td colspan="4" class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Chargement...</p></td></tr></tbody></table>
+        <table><thead><tr><th>Avatar</th><th>Nom</th><th>Rôle</th><th>Bio</th><th>Actions</th></tr></thead><tbody id="blogAuthorsBody"><tr><td colspan="5" class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Chargement...</p></td></tr></tbody></table>
       </div>
     </div>
 
@@ -418,6 +418,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
 <div class="modal-overlay" id="authorEditorModal">
   <div class="modal"><div class="modal-header"><h2 id="authorEditorTitle">Nouvel auteur</h2><button class="modal-close" onclick="closeAuthorEditor()"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body">
     <div class="form-group"><label>Nom</label><input type="text" id="aeName" placeholder="Nom de l'auteur"></div>
+    <div class="form-group"><label>Rôle / Titre</label><input type="text" id="aeRole" placeholder="Ex: CEO, Designer, Développeur"></div>
     <div class="form-group"><label>Avatar (URL)</label><input type="text" id="aeAvatar" placeholder="https://exemple.com/avatar.jpg"><div style="margin-top:6px"><img id="aeAvatarPreview" class="avatar-preview" src="" style="display:none"></div></div>
     <div class="form-group"><label>Bio</label><textarea id="aeBio" rows="2" placeholder="Courte biographie"></textarea></div>
     <div class="form-group"><label>LinkedIn (optionnel)</label><input type="text" id="aeLinkedin" placeholder="URL LinkedIn"></div>
@@ -1052,11 +1053,12 @@ async function delBadge(id) {
 async function loadAuthors() {
   const tbody = document.getElementById('blogAuthorsBody');
   const data = await fetchAPI('/blog/authors');
-  if (data?._error) { tbody.innerHTML = '<tr><td colspan="4" class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>' + esc(data._error) + '</p></td></tr>'; return; }
-  if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="4" class="empty-state"><i class="fa-solid fa-users"></i><p>Aucun auteur. Ajoutez-en un !</p></td></tr>'; return; }
+  if (data?._error) { tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>' + esc(data._error) + '</p></td></tr>'; return; }
+  if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><i class="fa-solid fa-users"></i><p>Aucun auteur. Ajoutez-en un !</p></td></tr>'; return; }
   tbody.innerHTML = data.map(a => '<tr>' +
     '<td>' + (a.avatar ? '<img src="' + a.avatar + '" class="avatar-preview" style="width:36px;height:36px">' : '<i class="fa-solid fa-user" style="font-size:20px;color:var(--text-muted)"></i>') + '</td>' +
     '<td>' + esc(a.name) + '</td>' +
+    '<td style="font-size:12px;color:var(--text-muted)">' + esc(a.role || '—') + '</td>' +
     '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;font-size:12px;color:var(--text-muted)">' + esc(a.bio || '—') + '</td>' +
     '<td><div class="quick-actions">' +
       '<button onclick="editAuthor(\'' + a.id + '\')"><i class="fa-solid fa-pen"></i></button>' +
@@ -1080,6 +1082,7 @@ function openAuthorEditor(data) {
   editingAuthorId = data?.id || null;
   document.getElementById('authorEditorTitle').textContent = editingAuthorId ? 'Modifier l\'auteur' : 'Nouvel auteur';
   document.getElementById('aeName').value = data?.name || '';
+  document.getElementById('aeRole').value = data?.role || '';
   document.getElementById('aeAvatar').value = data?.avatar || '';
   document.getElementById('aeBio').value = data?.bio || '';
   document.getElementById('aeLinkedin').value = data?.socialLinks?.linkedin || '';
@@ -1102,6 +1105,7 @@ document.getElementById('aeAvatar').addEventListener('input', function() {
 async function saveAuthor() {
   const data = {
     name: document.getElementById('aeName').value.trim(),
+    role: document.getElementById('aeRole').value.trim(),
     avatar: document.getElementById('aeAvatar').value.trim(),
     bio: document.getElementById('aeBio').value.trim(),
     socialLinks: { linkedin: document.getElementById('aeLinkedin').value.trim() }
