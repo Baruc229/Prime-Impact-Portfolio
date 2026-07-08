@@ -418,7 +418,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
   <div class="modal"><div class="modal-header"><h2 id="authorEditorTitle">Nouvel auteur</h2><button class="modal-close" onclick="closeAuthorEditor()"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body">
     <div class="form-group"><label>Nom</label><input type="text" id="aeName" placeholder="Nom de l'auteur"></div>
     <div class="form-group"><label>Rôle / Titre</label><input type="text" id="aeRole" placeholder="Ex: CEO, Designer, Développeur"></div>
-    <div class="form-group"><label>Avatar (URL)</label><input type="text" id="aeAvatar" placeholder="https://exemple.com/avatar.jpg"><div style="margin-top:6px"><img id="aeAvatarPreview" class="avatar-preview" src="" style="display:none"></div></div>
+    <div class="form-group"><label>Photo</label><div class="image-upload-wrap" id="avatarUpload" onclick="document.getElementById('avatarInput').click()"><input type="file" id="avatarInput" accept="image/*" onchange="previewAvatar(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:24px;display:block;margin-bottom:4px;color:var(--accent)"></i>Cliquez pour uploader une photo</p></div><input type="hidden" id="aeAvatar"></div>
     <div class="form-group"><label>Bio</label><textarea id="aeBio" rows="2" placeholder="Courte biographie"></textarea></div>
     <div class="form-group"><label>LinkedIn (optionnel)</label><input type="text" id="aeLinkedin" placeholder="URL LinkedIn"></div>
     <div class="form-actions">
@@ -791,6 +791,30 @@ function previewCover(e) {
   img.src = URL.createObjectURL(file);
 }
 
+function previewAvatar(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const img = new Image();
+  img.onload = function() {
+    const canvas = document.createElement('canvas');
+    let w = img.width, h = img.height;
+    const maxDim = 400;
+    if (w > maxDim || h > maxDim) {
+      if (w > h) { h = h * maxDim / w; w = maxDim; }
+      else { w = w * maxDim / h; h = maxDim; }
+    }
+    canvas.width = w; canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, w, h);
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+    document.getElementById('aeAvatar').value = dataUrl;
+    const wrap = document.getElementById('avatarUpload');
+    wrap.classList.add('has-image');
+    wrap.innerHTML = '<img src="' + dataUrl + '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm)"><input type="file" accept="image/*" onchange="previewAvatar(event)" style="display:none"><p style="font-size:11px;color:var(--text-muted);margin-top:4px">Cliquez pour changer</p>';
+  };
+  img.src = URL.createObjectURL(file);
+}
+
 async function openPostEditor(slug) {
   const token = ++_editorToken;
   editingPostId = slug || null;
@@ -1083,8 +1107,14 @@ function openAuthorEditor(data) {
   document.getElementById('aeAvatar').value = data?.avatar || '';
   document.getElementById('aeBio').value = data?.bio || '';
   document.getElementById('aeLinkedin').value = data?.socialLinks?.linkedin || '';
-  const preview = document.getElementById('aeAvatarPreview');
-  if (data?.avatar) { preview.src = data.avatar; preview.style.display = 'block'; } else { preview.style.display = 'none'; }
+  const wrap = document.getElementById('avatarUpload');
+  if (data?.avatar) {
+    wrap.classList.add('has-image');
+    wrap.innerHTML = '<img src="' + data.avatar + '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm)"><input type="file" accept="image/*" onchange="previewAvatar(event)" style="display:none"><p style="font-size:11px;color:var(--text-muted);margin-top:4px">Cliquez pour changer</p>';
+  } else {
+    wrap.classList.remove('has-image');
+    wrap.innerHTML = '<input type="file" id="avatarInput" accept="image/*" onchange="previewAvatar(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:24px;display:block;margin-bottom:4px;color:var(--accent)"></i>Cliquez pour uploader une photo</p>';
+  }
   document.getElementById('authorEditorModal').classList.add('open');
 }
 
@@ -1093,11 +1123,6 @@ function closeAuthorEditor() { document.getElementById('authorEditorModal').clas
 function editAuthor(id) {
   fetchAPI('/blog/authors').then(authors => { const a = authors.find(aa => aa.id === id); if (a) openAuthorEditor(a); });
 }
-
-document.getElementById('aeAvatar').addEventListener('input', function() {
-  const preview = document.getElementById('aeAvatarPreview');
-  if (this.value) { preview.src = this.value; preview.style.display = 'block'; } else { preview.style.display = 'none'; }
-});
 
 async function saveAuthor() {
   const data = {

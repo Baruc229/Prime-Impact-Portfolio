@@ -352,7 +352,7 @@ function renderPost() {
   const meta = document.getElementById('postMeta');
   let metaHTML = '';
   if (author) {
-    metaHTML += '<div class="author-wrap"><img src="' + (author.avatar || '../assets/pia-logo-dark-sm.png') + '" alt="">';
+    metaHTML += '<div class="author-wrap">' + (author.avatar ? '<img src="' + author.avatar + '" alt="">' : '<i class="fa-solid fa-user" style="font-size:16px;opacity:.4"></i>');
     metaHTML += '<div><span>' + esc(author.name) + '</span>';
     if (author.role) metaHTML += '<span class="author-role">' + esc(author.role) + '</span>';
     metaHTML += '</div></div>';

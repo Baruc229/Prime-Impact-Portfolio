@@ -336,7 +336,7 @@ function renderPosts() {
         <h2><a href="/blog/${featuredPost.slug}">${esc(featuredPost.title)}</a></h2>
         <p>${esc(featuredPost.excerpt)}</p>
         <div class="featured-meta">
-          ${(() => { const a = authors.find(aa => aa.id === featuredPost.authorId); return a ? '<img src="' + (a.avatar || '../assets/pia-logo-dark-sm.png') + '" alt="">' : ''; })()}
+          ${(() => { const a = authors.find(aa => aa.id === featuredPost.authorId); return a && a.avatar ? '<img src="' + a.avatar + '" alt="">' : ''; })()}
           <span>${authors.find(a => a.id === featuredPost.authorId)?.name || 'PIA'}</span>
           <span>·</span>
           <span>${formatDate(featuredPost.publishedAt)}</span>
@@ -368,7 +368,7 @@ function renderPosts() {
         '<a href="/blog/' + post.slug + '" class="post-card-read-more">' + (lang === 'fr' ? 'Lire plus' : 'Read more') + ' <i class="fa-solid fa-arrow-right"></i></a>' +
       '</div>' +
       '<div class="post-card-footer">' +
-        '<span class="footer-avatar">' + (author && author.avatar ? '<img src="' + author.avatar + '" alt="" style="width:24px;height:24px;border-radius:50%;object-fit:cover">' : '<i class="fa-solid fa-user" style="font-size:12px;opacity:.4"></i>') + '</span>' +
+        '<span class="footer-avatar">' + (author && author.avatar ? '<img src="' + author.avatar + '" alt="" style="width:24px;height:24px;border-radius:50%;object-fit:cover">' : '') + '</span>' +
         '<span class="footer-author">' + (author?.name || 'PIA') + '</span>' +
         '<span class="card-footer-right">' +
           '<span>' + readingTime(post.content) + '</span>' +
