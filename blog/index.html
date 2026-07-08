@@ -273,7 +273,7 @@ function renderBadges() {
   const container = document.getElementById('badgeFilters');
   badges.forEach(b => {
     const btn = document.createElement('button');
-    btn.className = 'badge-filter' + (b.type === 'ressource' ? ' is-resource' : '');
+    btn.className = 'badge-filter';
     btn.dataset.badge = b.id;
     btn.textContent = b.name;
     btn.style.setProperty('--badge-color', b.color);
@@ -329,7 +329,7 @@ function renderPosts() {
     featured.style.display = 'grid';
     featured.innerHTML = `
       <a href="/blog/${featuredPost.slug}" class="featured-image">
-        <div class="featured-badges">${featuredBadges.map(b => '<span class="featured-badge' + (b.type === 'ressource' ? ' is-resource' : '') + '" style="background:' + b.color + '">' + (b.type === 'ressource' ? '<i class="fa-solid fa-download"></i> ' : '') + esc(b.name) + '</span>').join('')}</div>
+        <div class="featured-badges">${featuredBadges.map(b => '<span class="featured-badge" style="background:' + b.color + '">' + esc(b.name) + '</span>').join('')}</div>
         <img src="${featuredPost.coverImage || '../assets/pia-logo-dark-sm.png'}" alt="${esc(featuredPost.title)}" loading="lazy">
       </a>
       <div class="featured-content">
@@ -360,7 +360,7 @@ function renderPosts() {
     return '<div class="post-card" onclick="window.location.href=\'/blog/' + post.slug + '\'">' +
       '<div class="post-card-image">' +
         '<img src="' + (post.coverImage || '../assets/pia-logo-dark-sm.png') + '" alt="' + esc(post.title) + '" loading="lazy">' +
-        '<div class="post-card-badges">' + postBadges.map(b => '<span class="post-card-badge' + (b.type === 'ressource' ? ' is-resource' : '') + '" style="background:' + b.color + '">' + (b.type === 'ressource' ? '<i class="fa-solid fa-download"></i> ' : '') + esc(b.name) + '</span>').join('') + '</div>' +
+        '<div class="post-card-badges">' + postBadges.map(b => '<span class="post-card-badge" style="background:' + b.color + '">' + esc(b.name) + '</span>').join('') + '</div>' +
       '</div>' +
       '<div class="post-card-body">' +
         '<h3><a href="/blog/' + post.slug + '">' + esc(post.title) + '</a></h3>' +

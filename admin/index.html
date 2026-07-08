@@ -329,7 +329,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
         <button class="btn-primary-solid" onclick="openBadgeEditor()"><i class="fa-solid fa-plus"></i> Nouvelle catégorie</button>
       </div>
       <div class="table-wrap">
-        <table><thead><tr><th>Nom</th><th>Couleur</th><th>Type</th><th>Articles</th><th>Actions</th></tr></thead><tbody id="blogBadgesBody"><tr><td colspan="5" class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Chargement...</p></td></tr></tbody></table>
+        <table><thead><tr><th>Nom</th><th>Couleur</th><th>Articles</th><th>Actions</th></tr></thead><tbody id="blogBadgesBody"><tr><td colspan="4" class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Chargement...</p></td></tr></tbody></table>
       </div>
     </div>
 
@@ -404,9 +404,8 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
 <!-- Modal: Badge Editor -->
 <div class="modal-overlay" id="badgeEditorModal">
   <div class="modal"><div class="modal-header"><h2 id="badgeEditorTitle">Nouvelle catégorie</h2><button class="modal-close" onclick="closeBadgeEditor()"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body">
-    <div class="form-group"><label>Nom</label><input type="text" id="beName" placeholder="Ex: Web, SEO, Ressource"></div>
-    <div class="form-group"><label>Couleur de fond du badge</label><div class="color-picker-wrap"><input type="color" id="beColor" value="#1B3A6B"><span style="font-size:12px;color:var(--text-muted)">Choisissez la couleur d'arrière-plan du badge</span></div></div>
-    <div class="form-group"><label>Type</label><select id="beType"><option value="category">Catégorie</option><option value="ressource">Ressource (téléchargement)</option></select></div>
+    <div class="form-group"><label>Nom</label><input type="text" id="beName" placeholder="Ex: Web, SEO, Design"></div>
+    <div class="form-group"><label>Couleur</label><div class="color-picker-wrap"><input type="color" id="beColor" value="#1B3A6B"><span style="font-size:12px;color:var(--text-muted)">Choisissez la couleur d'arrière-plan</span></div></div>
     <div class="form-actions">
       <button class="btn-delete" onclick="closeBadgeEditor()">Annuler</button>
       <button class="btn-primary-solid" onclick="saveBadge()"><i class="fa-solid fa-floppy-disk"></i> Enregistrer</button>
@@ -1005,7 +1004,6 @@ async function loadBadges() {
   tbody.innerHTML = data.map(b => '<tr>' +
     '<td>' + esc(b.name) + '</td>' +
     '<td><span style="display:inline-block;width:20px;height:20px;border-radius:4px;background:' + b.color + ';vertical-align:middle"></span> <span style="font-size:12px;color:var(--text-muted)">' + b.color + '</span></td>' +
-    '<td>' + (b.type === 'ressource' ? '<span class="badge-tag" style="background:var(--orange);color:#fff;padding:2px 10px;font-size:10px">Ressource</span>' : '<span style="font-size:12px;color:var(--text-muted)">Catégorie</span>') + '</td>' +
     '<td>' + (b.postCount || 0) + '</td>' +
     '<td><div class="quick-actions">' +
       '<button onclick="editBadge(\'' + b.id + '\')"><i class="fa-solid fa-pen"></i></button>' +
@@ -1018,7 +1016,6 @@ function openBadgeEditor(data) {
   document.getElementById('badgeEditorTitle').textContent = editingBadgeId ? 'Modifier la catégorie' : 'Nouvelle catégorie';
   document.getElementById('beName').value = data?.name || '';
   document.getElementById('beColor').value = data?.color || '#1B3A6B';
-  document.getElementById('beType').value = data?.type || 'category';
   document.getElementById('badgeEditorModal').classList.add('open');
 }
 
@@ -1035,7 +1032,7 @@ async function saveBadge() {
   const data = {
     name: document.getElementById('beName').value.trim(),
     color: document.getElementById('beColor').value,
-    type: document.getElementById('beType').value
+    type: 'category'
   };
   if (!data.name) { alert('Veuillez saisir un nom pour le badge.'); return; }
   const method = editingBadgeId ? 'PUT' : 'POST';
