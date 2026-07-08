@@ -250,7 +250,7 @@ function readingTime(content) {
 }
 
 async function fetchAPI(url) {
-  try { const r = await fetch(url); if (!r.ok) { const body = await r.json().catch(()=>null); const err = body?.error || 'Erreur ' + r.status; return { _error: typeof err === 'object' ? JSON.stringify(err) : err }; } return await r.json(); } catch(e) { return { _error: e.message }; }
+  try { const r = await fetch(url); if (!r.ok) { const body = await r.json().catch(()=>null); const rawErr = body?.error; let errMsg; if (typeof rawErr === 'object' && rawErr !== null) { errMsg = rawErr.message || rawErr.code || JSON.stringify(rawErr); } else { errMsg = rawErr || 'Erreur ' + r.status; } return { _error: errMsg }; } return await r.json(); } catch(e) { return { _error: e.message }; }
 }
 
 function selectCommentType(btn) {

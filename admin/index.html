@@ -483,8 +483,14 @@ async function fetchAPI(url, opts = {}) {
     if (res.status === 401) { logout(); return null; }
     if (!res.ok) {
       const body = await res.json().catch(() => ({}));
-      const err = body.error || 'Erreur ' + res.status;
-      return { _error: typeof err === 'object' ? JSON.stringify(err) : err };
+      const rawErr = body.error;
+      let errMsg;
+      if (typeof rawErr === 'object' && rawErr !== null) {
+        errMsg = rawErr.message || rawErr.code || JSON.stringify(rawErr);
+      } else {
+        errMsg = rawErr || 'Erreur ' + res.status;
+      }
+      return { _error: errMsg };
     }
     if (opts.raw) return res;
     return await res.json();
@@ -827,8 +833,16 @@ async function openPostEditor(slug) {
   });
 
   if (slug) {
-    const post = await fetchAPI('/blog/posts/' + slug);
+    let post = await fetchAPI('/blog/posts/' + slug);
     if (token !== _editorToken) return;
+    // Fallback: if individual fetch fails, try from listing
+    if (!post || post._error) {
+      const allData = await fetchAPI('/blog/posts?limit=200');
+      if (token !== _editorToken) return;
+      if (allData && !allData._error) {
+        post = (allData.posts || []).find(p => p.slug === slug);
+      }
+    }
     if (post && !post._error) {
       document.getElementById('peTitle').value = post.title || '';
       document.getElementById('peSlug').value = post.slug || '';
