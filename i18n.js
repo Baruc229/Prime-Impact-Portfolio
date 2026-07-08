@@ -19,6 +19,7 @@ const translations = {
   "nav.aria.linkedin": { "fr": "LinkedIn", "en": "LinkedIn" },
   "nav.aria.facebook": { "fr": "Facebook", "en": "Facebook" },
   "nav.home": { "fr": "Accueil", "en": "Home" },
+  "nav.blog": { "fr": "Blog", "en": "Blog" },
   "nav.services": { "fr": "Services", "en": "Services" },
   "nav.portfolio": { "fr": "Réalisations", "en": "Portfolio" },
   "nav.about": { "fr": "À propos", "en": "About us" },
@@ -46,6 +47,32 @@ const translations = {
    * 
    * Pour les placeholders de formulaires, utilisez .ph à la fin de la clé.
    */
+
+  // --- Blog ---
+  "blog.archive.title": { "fr": "Blog", "en": "Blog" },
+  "blog.archive.sub": { "fr": "Actualités, conseils et stratégies pour votre croissance digitale.", "en": "News, tips and strategies for your digital growth." },
+  "blog.archive.search": { "fr": "Rechercher un article...", "en": "Search articles..." },
+  "blog.archive.all": { "fr": "Tous", "en": "All" },
+  "blog.archive.empty": { "fr": "Aucun article trouvé", "en": "No articles found" },
+  "blog.archive.empty.sub": { "fr": "Revenez bientôt ou explorez d'autres catégories.", "en": "Come back soon or explore other categories." },
+  "blog.archive.loadmore": { "fr": "Charger plus d'articles", "en": "Load more articles" },
+  "blog.sidebar.popular": { "fr": "Articles populaires", "en": "Popular articles" },
+  "blog.sidebar.loading": { "fr": "Chargement...", "en": "Loading..." },
+  "blog.sidebar.cta.title": { "fr": "Restez informé", "en": "Stay informed" },
+  "blog.sidebar.cta.desc": { "fr": "Recevez nos derniers articles et conseils directement par email.", "en": "Get our latest articles and tips directly by email." },
+  "blog.sidebar.cta.btn": { "fr": "S'abonner", "en": "Subscribe" },
+  "blog.post.related": { "fr": "Articles similaires", "en": "Related articles" },
+  "blog.post.comments.title": { "fr": "Avis & Questions", "en": "Reviews & Questions" },
+  "blog.post.comments.leave": { "fr": "Laisser un avis ou poser une question", "en": "Leave a review or ask a question" },
+  "blog.post.comments.question": { "fr": "Question", "en": "Question" },
+  "blog.post.comments.review": { "fr": "Avis", "en": "Review" },
+  "blog.post.comments.rating": { "fr": "Votre note", "en": "Your rating" },
+  "blog.post.comments.name": { "fr": "Votre nom", "en": "Your name" },
+  "blog.post.comments.email": { "fr": "Votre email (non publié)", "en": "Your email (not published)" },
+  "blog.post.comments.message": { "fr": "Écrivez votre message...", "en": "Write your message..." },
+  "blog.post.comments.submit": { "fr": "Envoyer", "en": "Send" },
+  "blog.post.comments.moderation": { "fr": "Votre message apparaîtra après modération.", "en": "Your message will appear after moderation." },
+  "blog.post.comments.success": { "fr": "Merci ! Votre message a été envoyé et sera visible après validation.", "en": "Thanks! Your message has been sent and will be visible after approval." },
 
   // --- Footer (Pied de page) ---
   "footer.desc": { 
@@ -667,6 +694,8 @@ const translations = {
   "seo.service-seo.desc": { "fr": "Optimisation technique et sémantique pour être visible sur Google et attirer les bons visiteurs.", "en": "Technical and semantic optimization to be visible on Google and attract the right visitors." },
   "seo.service-suivi.title": { "fr": "Suivi & Accompagnement | PIA", "en": "Support & Maintenance | PIA" },
   "seo.service-suivi.desc": { "fr": "Maintenance technique, mises à jour sécurité, support prioritaire et formation pour rester autonome après le lancement.", "en": "Technical maintenance, security updates, priority support, and training to stay autonomous after launch." },
+  "seo.blog.title": { "fr": "Blog — Prime Impact Agency", "en": "Blog — Prime Impact Agency" },
+  "seo.blog.desc": { "fr": "Actualités, conseils et stratégies webmarketing par Prime Impact Agency.", "en": "News, tips and web marketing strategies by Prime Impact Agency." },
 
   // ── Création site web ──
   "service-creation.tag.1": { "fr": "Pourquoi un site", "en": "Why a website" },
@@ -1176,6 +1205,7 @@ class I18nManager {
     else if (path.includes("/refonte-site")) pageKey = "service-refonte";
     else if (path.includes("/referencement-seo")) pageKey = "service-seo";
     else if (path.includes("/suivi-accompagnement")) pageKey = "service-suivi";
+    else if (path.match(/^\/blog(\/|$)/)) pageKey = "blog";
 
     const titleKey = `seo.${pageKey}.title`;
     const descKey = `seo.${pageKey}.desc`;

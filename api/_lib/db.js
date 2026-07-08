@@ -125,4 +125,46 @@ async function destroySession(token) {
   saveAuthLocal(auth);
 }
 
-module.exports = { load, save, createSession, validateSession, destroySession };
+// ─── Blog Collections ─────────────────────────────────────────
+const BLOG_KEYS = {
+  posts: 'blog_posts',
+  authors: 'blog_authors',
+  badges: 'blog_badges',
+  comments: 'blog_comments',
+};
+
+const BLOG_FILES = {
+  posts: path.join(os.tmpdir(), 'pia-blog-posts.json'),
+  authors: path.join(os.tmpdir(), 'pia-blog-authors.json'),
+  badges: path.join(os.tmpdir(), 'pia-blog-badges.json'),
+  comments: path.join(os.tmpdir(), 'pia-blog-comments.json'),
+};
+
+async function blogLoad(collection) {
+  if (redis) {
+    try {
+      const raw = await redis.get(BLOG_KEYS[collection]);
+      return raw || [];
+    } catch (e) { console.error('[DB] Redis blog load error:', e.message); }
+  }
+  try {
+    if (fs.existsSync(BLOG_FILES[collection])) {
+      return JSON.parse(fs.readFileSync(BLOG_FILES[collection], 'utf8'));
+    }
+  } catch (e) {}
+  return [];
+}
+
+async function blogSave(collection, data) {
+  if (redis) {
+    try {
+      await redis.set(BLOG_KEYS[collection], data);
+      return;
+    } catch (e) { console.error('[DB] Redis blog save error:', e.message); }
+  }
+  try {
+    fs.writeFileSync(BLOG_FILES[collection], JSON.stringify(data, null, 2), 'utf8');
+  } catch (e) { console.error('[DB] Local blog save error:', e.message); }
+}
+
+module.exports = { load, save, createSession, validateSession, destroySession, blogLoad, blogSave };

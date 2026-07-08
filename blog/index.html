@@ -1,0 +1,391 @@
+<!DOCTYPE html><html lang="fr" data-theme="light"><head>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.svg">
+<meta name="theme-color" content="#1B3A6B">
+<script>!function(){var l=localStorage.getItem('site_lang');if(l==='en')document.documentElement.lang='en'}()</script>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self';">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Prime Impact Agency</title>
+<meta name="description" content="Actualités, conseils et stratégies webmarketing par Prime Impact Agency.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=13">
+<link rel="stylesheet" href="../style-v2.css?v=3">
+<style>
+:root{--font-main:'Inter',sans-serif;--font-heading:'Roboto Condensed',sans-serif}
+[data-theme="light"]{--bg-main:#fff;--bg-secondary:#F7F7F7;--bg-tertiary:#e5e7eb;--text-main:#1c1c1e;--text-muted:#6B7280;--accent-blue:#1B3A6B;--accent-gold:#F5A623;--border-color:rgba(0,0,0,0.06);--shadow-soft:0 2px 12px rgba(0,0,0,0.04);--shadow-heavy:0 4px 24px rgba(27,58,107,0.1);--radius-sm:8px;--radius-md:16px;--glass-bg:#fff;--glass-bg-solid:#fff;--bg-card-warm:#fff}
+[data-theme="dark"]{--bg-main:#fff;--bg-secondary:#F7F7F7;--bg-tertiary:#e5e7eb;--text-main:#1c1c1e;--text-muted:#6B7280;--accent-blue:#1B3A6B;--accent-gold:#F5A623;--border-color:rgba(0,0,0,0.06);--shadow-soft:0 2px 12px rgba(0,0,0,0.04);--shadow-heavy:0 4px 24px rgba(27,58,107,0.1);--glass-bg:#fff;--glass-bg-solid:#fff;--bg-card-warm:#fff}
+body{font-family:var(--font-main)!important;background:var(--bg-main)!important;color:var(--text-main);opacity:1!important}
+h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
+.blog-header{padding:140px 0 50px;text-align:center;background:var(--bg-main)}
+.blog-header h1{font-size:clamp(34px,5vw,56px);color:var(--accent-blue);margin-bottom:8px}
+.blog-header p{color:var(--text-muted);font-size:16px;max-width:520px;margin:0 auto}
+.blog-tools{max-width:1200px;margin:0 auto 32px;padding:0 24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.blog-search{flex:1;min-width:200px;position:relative}
+.blog-search i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:14px;pointer-events:none}
+.blog-search input{width:100%;padding:12px 16px 12px 42px;border-radius:var(--radius-md);border:1px solid var(--border-color);background:var(--bg-main);color:var(--text-main);font-size:14px;font-family:var(--font-main);outline:none;transition:border-color .2s}
+.blog-search input:focus{border-color:var(--accent-blue)}
+.blog-search input::placeholder{color:var(--text-muted)}
+.badge-filters{display:flex;gap:8px;flex-wrap:wrap;overflow-x:auto;padding-bottom:4px}
+.badge-filter{padding:8px 18px;border-radius:var(--radius-sm);border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--accent-blue);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-main);transition:all .2s;white-space:nowrap}
+.badge-filter:hover{border-color:var(--accent-gold);color:var(--accent-gold)}
+.badge-filter.active{background:var(--accent-blue);color:#fff;border-color:var(--accent-blue)}
+.blog-container{max-width:1200px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:1fr 320px;gap:40px}
+.blog-main{min-width:0}
+.featured-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-color);background:var(--bg-main);box-shadow:var(--shadow-soft);margin-bottom:40px;transition:box-shadow .3s}
+.featured-card:hover{box-shadow:var(--shadow-heavy)}
+.featured-image{position:relative;aspect-ratio:16/10;overflow:hidden}
+.featured-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.featured-card:hover .featured-image img{transform:scale(1.03)}
+.featured-badge{position:absolute;top:12px;left:12px;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;color:#fff;z-index:2}
+.featured-content{padding:30px;display:flex;flex-direction:column;justify-content:center}
+.featured-content h2{font-size:24px;margin-bottom:10px;color:var(--text-main)}
+.featured-content h2 a{color:inherit;text-decoration:none}
+.featured-content h2 a:hover{color:var(--accent-blue)}
+.featured-content p{font-size:14px;line-height:1.6;color:var(--text-muted);margin-bottom:16px}
+.featured-meta{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--text-muted)}
+.featured-meta img{width:28px;height:28px;border-radius:50%;object-fit:cover}
+.posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px}
+.post-card{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-color);background:var(--bg-main);box-shadow:var(--shadow-soft);transition:all .3s;cursor:pointer}
+.post-card:hover{box-shadow:var(--shadow-heavy);transform:translateY(-3px)}
+.post-card-image{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg-tertiary)}
+.post-card-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.post-card:hover .post-card-image img{transform:scale(1.05)}
+.post-card-badge{position:absolute;top:10px;left:10px;padding:3px 12px;border-radius:20px;font-size:10px;font-weight:600;color:#fff;z-index:2}
+.post-card-resource-icon{position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.9);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;z-index:2}
+.post-card-body{padding:18px}
+.post-card-body h3{font-size:16px;margin-bottom:8px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.post-card-body h3 a{color:var(--text-main);text-decoration:none}
+.post-card-body h3 a:hover{color:var(--accent-blue)}
+.post-card-body p{font-size:13px;color:var(--text-muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:14px}
+.post-card-footer{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border-color);padding:12px 18px}
+.post-card-footer img{width:24px;height:24px;border-radius:50%;object-fit:cover}
+.pagination{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:8px}
+.pagination button{padding:10px 18px;border-radius:var(--radius-sm);border:1px solid var(--border-color);background:var(--bg-main);color:var(--text-muted);font-size:14px;cursor:pointer;font-family:var(--font-main);transition:all .15s}
+.pagination button:hover{border-color:var(--accent-blue);color:var(--accent-blue)}
+.pagination button.active{background:var(--accent-blue);color:#fff;border-color:var(--accent-blue)}
+.pagination button:disabled{opacity:.3;cursor:default}
+.load-more-wrap{text-align:center;margin-top:8px}
+.load-more{padding:14px 40px;border-radius:var(--radius-sm);border:none;background:var(--accent-blue);color:#fff;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--font-main);transition:all .2s}
+.load-more:hover{background:var(--accent-gold)}
+.load-more:disabled{opacity:.5;cursor:default}
+
+.blog-sidebar{display:flex;flex-direction:column;gap:24px}
+.sidebar-card{background:var(--bg-main);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:24px;box-shadow:var(--shadow-soft)}
+.sidebar-card h3{font-size:16px;color:var(--accent-blue);margin-bottom:16px;font-weight:700}
+.popular-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-color);cursor:pointer}
+.popular-item:last-child{border-bottom:none}
+.popular-num{width:28px;height:28px;border-radius:50%;background:var(--bg-secondary);color:var(--accent-blue);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.popular-item h4{font-size:13px;font-weight:600;margin-bottom:2px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.popular-item h4 a{color:var(--text-main);text-decoration:none}
+.popular-item h4 a:hover{color:var(--accent-blue)}
+.popular-item span{font-size:11px;color:var(--text-muted)}
+.sidebar-cta{background:#0D1B35!important;border-color:#0D1B35!important;text-align:center}
+.sidebar-cta h3{color:#fff!important}
+.sidebar-cta p{color:rgba(255,255,255,0.7);font-size:13px;margin-bottom:18px;line-height:1.5}
+.sidebar-cta .btn{width:100%;padding:12px;border-radius:var(--radius-sm);border:none;background:var(--accent-gold);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-main);text-decoration:none;display:inline-block}
+.sidebar-cta .btn:hover{opacity:.9}
+.empty-blog{text-align:center;padding:80px 20px;color:var(--text-muted);grid-column:1/-1}
+.empty-blog i{font-size:48px;margin-bottom:12px;opacity:.4}
+.empty-blog h3{font-size:20px;color:var(--text-main);margin-bottom:6px}
+
+@media(max-width:1024px){
+  .blog-container{grid-template-columns:1fr}
+  .blog-sidebar{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .posts-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .blog-header{padding:100px 0 30px}
+  .featured-card{grid-template-columns:1fr}
+  .featured-content{padding:20px}
+  .featured-content h2{font-size:20px}
+  .posts-grid{grid-template-columns:1fr}
+  .blog-sidebar{grid-template-columns:1fr}
+  .blog-tools{flex-direction:column}
+  .badge-filters{flex-wrap:nowrap;overflow-x:auto;width:100%;-webkit-overflow-scrolling:touch}
+}
+</style>
+</head><body>
+<div id="app">
+<section class="blog-header">
+  <div class="container">
+    <h1 data-i18n="blog.archive.title">Blog</h1>
+    <p data-i18n="blog.archive.sub">Actualités, conseils et stratégies pour votre croissance digitale.</p>
+  </div>
+</section>
+
+<div class="blog-tools">
+  <div class="blog-search">
+    <i class="fa-solid fa-search"></i>
+    <input type="text" id="searchInput" placeholder="Rechercher un article..." data-i18n="blog.archive.search" data-i18n-ph="blog.archive.search">
+  </div>
+  <div class="badge-filters" id="badgeFilters">
+    <button class="badge-filter active" data-badge="" onclick="filterBadge(this)"><span data-i18n="blog.archive.all">Tous</span></button>
+  </div>
+</div>
+
+<div class="blog-container">
+  <div class="blog-main" id="blogMain">
+    <div class="empty-blog" id="emptyState" style="display:none">
+      <i class="fa-solid fa-newspaper"></i>
+      <h3 data-i18n="blog.archive.empty">Aucun article trouvé</h3>
+      <p data-i18n="blog.archive.empty.sub">Revenez bientôt ou explorez d'autres catégories.</p>
+    </div>
+    <div class="featured-card" id="featuredCard" style="display:none"></div>
+    <div class="posts-grid" id="postsGrid"></div>
+    <div class="pagination" id="pagination"></div>
+    <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
+      <button class="load-more" id="loadMoreBtn" onclick="loadMore()" data-i18n="blog.archive.loadmore">Charger plus d'articles</button>
+    </div>
+  </div>
+
+  <aside class="blog-sidebar">
+    <div class="sidebar-card" id="popularCard">
+      <h3 data-i18n="blog.sidebar.popular">Articles populaires</h3>
+      <div id="popularList"><p style="font-size:13px;color:var(--text-muted)" data-i18n="blog.sidebar.loading">Chargement...</p></div>
+    </div>
+    <div class="sidebar-card sidebar-cta" id="newsletterCard" style="display:none">
+      <h3 data-i18n="blog.sidebar.cta.title">Restez informé</h3>
+      <p data-i18n="blog.sidebar.cta.desc">Recevez nos derniers articles et conseils directement par email.</p>
+      <a href="/contact" class="btn" data-i18n="blog.sidebar.cta.btn">S'abonner</a>
+    </div>
+  </aside>
+</div>
+</div>
+
+<script src="../i18n.js"></script>
+<script src="../components.js"></script>
+<script src="../main.js"></script>
+<script>
+const lang = localStorage.getItem('site_lang') || 'fr';
+let currentPage = 1;
+let currentBadge = '';
+let currentSearch = '';
+let currentLang = lang;
+let allPosts = [];
+let badges = [];
+let authors = [];
+let filteredPosts = [];
+let isLoading = false;
+let pageSize = 9;
+
+function esc(str) { if (str == null) return ''; const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+
+function formatDate(d) {
+  if (!d) return '';
+  try {
+    const date = new Date(d.endsWith('Z') ? d : d + 'Z');
+    if (isNaN(date.getTime())) return '';
+    return date.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+  } catch(e) { return ''; }
+}
+
+function readingTime(content) {
+  if (!content) return '1 min';
+  const words = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+  const min = Math.max(1, Math.ceil(words / 200));
+  return min + ' min ' + (lang === 'fr' ? 'de lecture' : 'read');
+}
+
+async function fetchAPI(url) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch(e) { return null; }
+}
+
+async function init() {
+  const [postsData, badgesData, authorsData] = await Promise.all([
+    fetchAPI('/api/blog/posts?status=published&lang=' + currentLang + '&limit=200'),
+    fetchAPI('/api/blog/badges'),
+    fetchAPI('/api/blog/authors')
+  ]);
+  allPosts = postsData?.posts || [];
+  badges = badgesData || [];
+  authors = authorsData || [];
+  filteredPosts = [...allPosts];
+
+  renderBadges();
+  renderPosts();
+  renderSidebar();
+
+  document.getElementById('searchInput').addEventListener('input', function() {
+    currentSearch = this.value.toLowerCase();
+    currentPage = 1;
+    filterAndRender();
+  });
+}
+
+function renderBadges() {
+  const container = document.getElementById('badgeFilters');
+  badges.forEach(b => {
+    const btn = document.createElement('button');
+    btn.className = 'badge-filter';
+    btn.dataset.badge = b.id;
+    btn.textContent = b.name;
+    btn.style.setProperty('--badge-color', b.color);
+    btn.onclick = function() { filterBadge(this); };
+    container.appendChild(btn);
+  });
+}
+
+function filterBadge(btn) {
+  document.querySelectorAll('.badge-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentBadge = btn.dataset.badge;
+  currentPage = 1;
+  filterAndRender();
+}
+
+function filterAndRender() {
+  let posts = [...allPosts];
+  if (currentBadge) posts = posts.filter(p => p.badgeIds && p.badgeIds.includes(currentBadge));
+  if (currentSearch) {
+    const q = currentSearch;
+    posts = posts.filter(p =>
+      (p.title || '').toLowerCase().includes(q) ||
+      (p.excerpt || '').toLowerCase().includes(q)
+    );
+  }
+  filteredPosts = posts;
+  renderPosts();
+  renderPagination();
+}
+
+function renderPosts() {
+  const grid = document.getElementById('postsGrid');
+  const featured = document.getElementById('featuredCard');
+  const empty = document.getElementById('emptyState');
+  const start = 0;
+  const end = currentPage * pageSize;
+  const pagePosts = filteredPosts.slice(start, end);
+
+  if (filteredPosts.length === 0) {
+    featured.style.display = 'none';
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  const featuredPost = pagePosts.length > 0 ? pagePosts[0] : null;
+  if (featuredPost) {
+    const featuredBadges = (featuredPost.badgeIds || []).map(id => badges.find(b => b.id === id)).filter(Boolean);
+    featured.style.display = 'grid';
+    featured.innerHTML = `
+      <a href="/blog/${featuredPost.slug}" class="featured-image">
+        ${featuredBadges[0] ? '<span class="featured-badge" style="background:' + featuredBadges[0].color + '">' + esc(featuredBadges[0].name) + '</span>' : ''}
+        <img src="${featuredPost.coverImage || '../assets/pia-logo-dark-sm.png'}" alt="${esc(featuredPost.title)}" loading="lazy">
+      </a>
+      <div class="featured-content">
+        <h2><a href="/blog/${featuredPost.slug}">${esc(featuredPost.title)}</a></h2>
+        <p>${esc(featuredPost.excerpt)}</p>
+        <div class="featured-meta">
+          ${(() => { const a = authors.find(aa => aa.id === featuredPost.authorId); return a ? '<img src="' + (a.avatar || '../assets/pia-logo-dark-sm.png') + '" alt="">' : ''; })()}
+          <span>${authors.find(a => a.id === featuredPost.authorId)?.name || 'PIA'}</span>
+          <span>·</span>
+          <span>${formatDate(featuredPost.publishedAt)}</span>
+          <span>·</span>
+          <span>${readingTime(featuredPost.content)}</span>
+        </div>
+      </div>
+    `;
+  } else {
+    featured.style.display = 'none';
+  }
+
+  const gridPosts = featuredPost ? pagePosts.slice(1) : pagePosts;
+  if (gridPosts.length === 0) { grid.innerHTML = ''; return; }
+
+  grid.innerHTML = gridPosts.map(post => {
+    const postBadges = (post.badgeIds || []).map(id => badges.find(b => b.id === id)).filter(Boolean);
+    const isResource = postBadges.some(b => b.type === 'ressource');
+    const author = authors.find(a => a.id === post.authorId);
+    return '<div class="post-card" onclick="window.location.href=\'/blog/' + post.slug + '\'">' +
+      '<div class="post-card-image">' +
+        '<img src="' + (post.coverImage || '../assets/pia-logo-dark-sm.png') + '" alt="' + esc(post.title) + '" loading="lazy">' +
+        (postBadges[0] ? '<span class="post-card-badge" style="background:' + postBadges[0].color + '">' + esc(postBadges[0].name) + '</span>' : '') +
+        (isResource ? '<span class="post-card-resource-icon"><i class="fa-solid fa-download"></i></span>' : '') +
+      '</div>' +
+      '<div class="post-card-body">' +
+        '<h3><a href="/blog/' + post.slug + '">' + esc(post.title) + '</a></h3>' +
+        '<p>' + esc(post.excerpt) + '</p>' +
+      '</div>' +
+      '<div class="post-card-footer">' +
+        (author && author.avatar ? '<img src="' + author.avatar + '" alt="">' : '<i class="fa-solid fa-user" style="font-size:14px;opacity:.4"></i>') +
+        '<span>' + (author?.name || 'PIA') + '</span>' +
+        '<span style="margin-left:auto">' + formatDate(post.publishedAt) + '</span>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  renderPagination();
+}
+
+function renderPagination() {
+  const pag = document.getElementById('pagination');
+  const loadMore = document.getElementById('loadMoreWrap');
+  const totalPages = Math.ceil(filteredPosts.length / pageSize);
+  if (totalPages <= 1) { pag.innerHTML = ''; loadMore.style.display = 'none'; return; }
+
+  const hasMore = currentPage < totalPages;
+  if (hasMore) {
+    loadMore.style.display = 'block';
+    document.getElementById('loadMoreBtn').disabled = isLoading;
+    document.getElementById('loadMoreBtn').innerHTML = isLoading ? '<i class="fa-solid fa-spinner fa-spin"></i> Chargement...' : (lang === 'fr' ? 'Charger plus d\'articles' : 'Load more articles');
+    pag.innerHTML = '';
+  } else {
+    loadMore.style.display = 'none';
+    let html = '';
+    for (let i = 1; i <= totalPages; i++) {
+      html += '<button class="' + (i === currentPage ? 'active' : '') + '" onclick="goPage(' + i + ')">' + i + '</button>';
+    }
+    pag.innerHTML = html;
+  }
+}
+
+function goPage(page) { currentPage = page; renderPosts(); window.scrollTo({ top: document.getElementById('blogMain').offsetTop - 100, behavior: 'smooth' }); }
+
+async function loadMore() {
+  if (isLoading) return;
+  isLoading = true;
+  const totalPages = Math.ceil(filteredPosts.length / pageSize);
+  if (currentPage < totalPages) {
+    currentPage++;
+    renderPosts();
+  }
+  isLoading = false;
+}
+
+async function renderSidebar() {
+  const topPosts = [...allPosts].sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0)).slice(0, 5);
+  const list = document.getElementById('popularList');
+  if (topPosts.length === 0) {
+    list.innerHTML = '<p style="font-size:13px;color:var(--text-muted)">' + (lang === 'fr' ? 'Aucun article pour le moment.' : 'No articles yet.') + '</p>';
+    return;
+  }
+  list.innerHTML = topPosts.map((p, i) =>
+    '<div class="popular-item" onclick="window.location.href=\'/blog/' + p.slug + '\'">' +
+      '<div class="popular-num">' + (i + 1) + '</div>' +
+      '<div>' +
+        '<h4><a href="/blog/' + p.slug + '">' + esc(p.title) + '</a></h4>' +
+        '<span>' + formatDate(p.publishedAt) + '</span>' +
+      '</div>' +
+    '</div>'
+  ).join('');
+  document.getElementById('newsletterCard').style.display = 'block';
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+<script src="../config.js"></script>
+<script src="../tracker.js"></script>
+</body></html>

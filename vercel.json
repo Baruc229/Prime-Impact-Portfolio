@@ -6,6 +6,8 @@
     { "source": "/tunnels-vente", "destination": "/service-tunnels-vente" },
     { "source": "/referencement-seo", "destination": "/service-referencement-seo" },
     { "source": "/refonte-site", "destination": "/service-refonte-site" },
-    { "source": "/suivi-accompagnement", "destination": "/service-suivi-accompagnement" }
+    { "source": "/suivi-accompagnement", "destination": "/service-suivi-accompagnement" },
+    { "source": "/blog", "destination": "/blog/index" },
+    { "source": "/blog/:slug", "destination": "/blog/post" }
   ]
 }

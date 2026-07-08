@@ -17,6 +17,7 @@ function buildHeader() {
   const links = [
     { href: '/',        label: 'Accueil', i18n: 'nav.home' },
     { href: '/realisations', label: 'Réalisations', i18n: 'nav.portfolio' },
+    { href: '/blog',          label: 'Blog', i18n: 'nav.blog' },
     { href: '/a-propos',     label: 'À propos', i18n: 'nav.about' },
     { href: '/contact',      label: 'Contact', i18n: 'nav.contact' },
   ];
@@ -40,7 +41,8 @@ function buildHeader() {
   ).join('');
 
   // Lien standard helper
-  const linkHTML = l => `<a href="${l.href}" class="${l.href === currentPage ? 'active' : ''}" data-i18n="${l.i18n}">${l.label}</a>`;
+  const isActiveLink = l => l.href === currentPage || (l.href === '/blog' && currentPage.startsWith('/blog/'));
+  const linkHTML = l => `<a href="${l.href}" class="${isActiveLink(l) ? 'active' : ''}" data-i18n="${l.i18n}">${l.label}</a>`;
 
   const serviceTrigger = `<span class="nav-mega-trigger${isActiveService ? ' active' : ''}" data-i18n="nav.services">Services <i class="fa-solid fa-caret-down"></i></span>`;
 
@@ -192,6 +194,7 @@ function buildFooter() {
           <ul class="footer-links">
             <li><a href="/a-propos" data-i18n="nav.about">À propos</a></li>
             <li><a href="/realisations" data-i18n="nav.portfolio">Réalisations</a></li>
+            <li><a href="/blog" data-i18n="nav.blog">Blog</a></li>
             <li><a href="/temoignages" data-i18n="nav.testimonials">Témoignages</a></li>
             <li><a href="/contact" data-i18n="nav.contact">Contact</a></li>
             <li><a href="/mentions-legales">Mentions légales</a></li>
