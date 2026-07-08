@@ -224,7 +224,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
       <div class="nav-label">Blog</div>
       <a class="nav-item" data-view="blog-posts" onclick="switchView('blog-posts')"><i class="fa-solid fa-newspaper"></i> <span>Articles</span></a>
       <a class="nav-item" data-view="blog-comments" onclick="switchView('blog-comments')"><i class="fa-solid fa-comments"></i> <span>Commentaires</span></a>
-      <a class="nav-item" data-view="blog-badges" onclick="switchView('blog-badges')"><i class="fa-solid fa-tags"></i> <span>Badges</span></a>
+      <a class="nav-item" data-view="blog-badges" onclick="switchView('blog-badges')"><i class="fa-solid fa-tags"></i> <span>Catégories</span></a>
       <a class="nav-item" data-view="blog-authors" onclick="switchView('blog-authors')"><i class="fa-solid fa-users"></i> <span>Auteurs</span></a>
       <a class="nav-item" data-view="blog-newsletter" onclick="switchView('blog-newsletter')"><i class="fa-solid fa-envelope"></i> <span>Newsletter</span></a>
       <a class="nav-item" data-view="blog-stats" onclick="switchView('blog-stats')"><i class="fa-solid fa-chart-bar"></i> <span>Statistiques</span></a>
@@ -326,7 +326,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
     <!-- Blog: Badges -->
     <div class="view" id="view-blog-badges">
       <div class="filters">
-        <button class="btn-primary-solid" onclick="openBadgeEditor()"><i class="fa-solid fa-plus"></i> Nouveau badge</button>
+        <button class="btn-primary-solid" onclick="openBadgeEditor()"><i class="fa-solid fa-plus"></i> Nouvelle catégorie</button>
       </div>
       <div class="table-wrap">
         <table><thead><tr><th>Nom</th><th>Couleur</th><th>Type</th><th>Articles</th><th>Actions</th></tr></thead><tbody id="blogBadgesBody"><tr><td colspan="5" class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Chargement...</p></td></tr></tbody></table>
@@ -403,7 +403,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
 
 <!-- Modal: Badge Editor -->
 <div class="modal-overlay" id="badgeEditorModal">
-  <div class="modal"><div class="modal-header"><h2 id="badgeEditorTitle">Nouveau badge</h2><button class="modal-close" onclick="closeBadgeEditor()"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body">
+  <div class="modal"><div class="modal-header"><h2 id="badgeEditorTitle">Nouvelle catégorie</h2><button class="modal-close" onclick="closeBadgeEditor()"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body">
     <div class="form-group"><label>Nom</label><input type="text" id="beName" placeholder="Ex: Web, SEO, Ressource"></div>
     <div class="form-group"><label>Couleur de fond du badge</label><div class="color-picker-wrap"><input type="color" id="beColor" value="#1B3A6B"><span style="font-size:12px;color:var(--text-muted)">Choisissez la couleur d'arrière-plan du badge</span></div></div>
     <div class="form-group"><label>Type</label><select id="beType"><option value="category">Catégorie</option><option value="ressource">Ressource (téléchargement)</option></select></div>
@@ -500,7 +500,7 @@ async function fetchAPI(url, opts = {}) {
 const titles = {
   dashboard: 'Dashboard', 'export': 'Export',
   'blog-posts': 'Articles', 'blog-comments': 'Commentaires & Avis',
-  'blog-badges': 'Badges & Catégories', 'blog-authors': 'Auteurs',
+  'blog-badges': 'Catégories & Badges', 'blog-authors': 'Auteurs',
   'blog-newsletter': 'Newsletter', 'blog-stats': 'Statistiques du blog'
 };
 const icons = {
@@ -753,11 +753,11 @@ async function loadBlogPosts() {
 }
 
 async function quickPub(slug) {
-  const data = await fetchAPI('/blog/posts/' + slug, { method: 'PUT', body: JSON.stringify({ status: 'published' }) });
+  const data = await fetchAPI('/blog/posts?slug=' + slug, { method: 'PUT', body: JSON.stringify({ status: 'published' }) });
   if (data) loadBlogPosts();
 }
 async function quickDel(slug) {
-  await fetchAPI('/blog/posts/' + slug, { method: 'DELETE' });
+  await fetchAPI('/blog/posts?slug=' + slug, { method: 'DELETE' });
   loadBlogPosts();
 }
 
@@ -833,9 +833,8 @@ async function openPostEditor(slug) {
   });
 
   if (slug) {
-    let post = await fetchAPI('/blog/posts/' + slug);
+    let post = await fetchAPI('/blog/posts?slug=' + slug);
     if (token !== _editorToken) return;
-    // Fallback: if individual fetch fails, try from listing
     if (!post || post._error) {
       const allData = await fetchAPI('/blog/posts?limit=200');
       if (token !== _editorToken) return;
@@ -918,7 +917,7 @@ async function savePost() {
   };
 
   const method = editingPostId ? 'PUT' : 'POST';
-  const url = editingPostId ? '/blog/posts/' + editingPostId : '/blog/posts';
+  const url = editingPostId ? '/blog/posts?slug=' + editingPostId : '/blog/posts';
   const result = await fetchAPI(url, { method, body: JSON.stringify(data) });
   if (result && !result._error) { closePostEditor(); loadBlogPosts(); } else { alert(result?._error || 'Erreur lors de l\'enregistrement.'); }
 }
@@ -971,12 +970,12 @@ async function loadComments() {
 }
 
 async function modComment(id, status) {
-  const data = await fetchAPI('/blog/comments/' + id, { method: 'PUT', body: JSON.stringify({ status }) });
+  const data = await fetchAPI('/blog/comments?id=' + id, { method: 'PUT', body: JSON.stringify({ status }) });
   if (data) loadComments();
 }
 
 async function delComment(id) {
-  await fetchAPI('/blog/comments/' + id, { method: 'DELETE' });
+  await fetchAPI('/blog/comments?id=' + id, { method: 'DELETE' });
   loadComments();
 }
 
@@ -992,7 +991,7 @@ function closeReply() { document.getElementById('replyModal').classList.remove('
 async function sendReply() {
   const content = document.getElementById('replyContent').value.trim();
   if (!content || !replyingCommentId) return;
-  const data = await fetchAPI('/blog/comments/' + replyingCommentId, { method: 'PUT', body: JSON.stringify({ adminReply: content, status: 'published' }) });
+  const data = await fetchAPI('/blog/comments?id=' + replyingCommentId, { method: 'PUT', body: JSON.stringify({ adminReply: content, status: 'published' }) });
   if (data) { closeReply(); loadComments(); }
 }
 
@@ -1015,7 +1014,7 @@ async function loadBadges() {
 
 function openBadgeEditor(data) {
   editingBadgeId = data?.id || null;
-  document.getElementById('badgeEditorTitle').textContent = editingBadgeId ? 'Modifier le badge' : 'Nouveau badge';
+  document.getElementById('badgeEditorTitle').textContent = editingBadgeId ? 'Modifier la catégorie' : 'Nouvelle catégorie';
   document.getElementById('beName').value = data?.name || '';
   document.getElementById('beColor').value = data?.color || '#1B3A6B';
   document.getElementById('beType').value = data?.type || 'category';
@@ -1039,13 +1038,13 @@ async function saveBadge() {
   };
   if (!data.name) { alert('Veuillez saisir un nom pour le badge.'); return; }
   const method = editingBadgeId ? 'PUT' : 'POST';
-  const url = editingBadgeId ? '/blog/badges/' + editingBadgeId : '/blog/badges';
+  const url = editingBadgeId ? '/blog/badges?id=' + editingBadgeId : '/blog/badges';
   const result = await fetchAPI(url, { method, body: JSON.stringify(data) });
   if (result && !result._error) { closeBadgeEditor(); loadBadges(); } else { alert(result?._error || 'Erreur lors de l\'enregistrement du badge.'); }
 }
 
 async function delBadge(id) {
-  await fetchAPI('/blog/badges/' + id, { method: 'DELETE' });
+  await fetchAPI('/blog/badges?id=' + id, { method: 'DELETE' });
   loadBadges();
 }
 
@@ -1109,13 +1108,13 @@ async function saveAuthor() {
   };
   if (!data.name) { alert('Veuillez saisir un nom pour l\'auteur.'); return; }
   const method = editingAuthorId ? 'PUT' : 'POST';
-  const url = editingAuthorId ? '/blog/authors/' + editingAuthorId : '/blog/authors';
+  const url = editingAuthorId ? '/blog/authors?id=' + editingAuthorId : '/blog/authors';
   const result = await fetchAPI(url, { method, body: JSON.stringify(data) });
   if (result && !result._error) { closeAuthorEditor(); loadAuthors(); } else { alert(result?._error || 'Erreur lors de l\'enregistrement de l\'auteur.'); }
 }
 
 async function delAuthor(id) {
-  await fetchAPI('/blog/authors/' + id, { method: 'DELETE' });
+  await fetchAPI('/blog/authors?id=' + id, { method: 'DELETE' });
   loadAuthors();
 }
 

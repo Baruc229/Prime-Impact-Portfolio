@@ -314,7 +314,7 @@ async function init() {
   if (!currentSlug) { document.getElementById('postContent').innerHTML = '<p style="text-align:center;padding:60px 0;color:var(--text-muted)">Article non trouvé.</p>'; return; }
 
   const [postData, badgesData, authorsData] = await Promise.all([
-    fetchAPI('/api/blog/posts/' + currentSlug),
+    fetchAPI('/api/blog/posts?slug=' + currentSlug),
     fetchAPI('/api/blog/badges'),
     fetchAPI('/api/blog/authors')
   ]);

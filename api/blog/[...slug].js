@@ -45,19 +45,12 @@ async function requireAdmin(req, res) {
 
 async function handler(req, res) {
   let resource, param, searchParams;
-  if (req.query && req.query.slug) {
-    const s = Array.isArray(req.query.slug) ? req.query.slug : req.query.slug.split('/');
-    resource = s[0] || '';
-    param = s[1] || '';
-    searchParams = new URL('http://localhost' + req.url).searchParams;
-  } else {
-    const url = new URL(req.url, 'http://localhost');
-    const p = url.pathname.replace(/^\/api\/blog\/?/, '').replace(/\/$/, '');
-    const parts = p.split('/');
-    resource = parts[0];
-    param = parts[1] || '';
-    searchParams = url.searchParams;
-  }
+  const url = new URL(req.url, 'http://localhost');
+  const p = url.pathname.replace(/^\/api\/blog\/?/, '').replace(/\/$/, '');
+  const parts = p.split('/');
+  resource = parts[0] || '';
+  param = parts[1] || '';
+  searchParams = url.searchParams;
   console.log('[Blog API]', req.method, req.url, '→ resource:', resource, 'param:', param);
 
   try {
@@ -71,7 +64,16 @@ async function handler(req, res) {
             const badge = searchParams.get('badge') || '';
             const search = searchParams.get('search') || '';
             const lang = searchParams.get('lang') || '';
+            const singleSlug = searchParams.get('slug') || '';
             const posts = await blogLoad('posts');
+            if (singleSlug) {
+              const post = posts.find(p => p.slug === singleSlug);
+              if (!post) return json(res, 404, { error: 'Not found' });
+              const auth = req.headers['authorization'];
+              const isAdmin = auth && (await validateSession(auth.replace('Bearer ', '')));
+              if (!isAdmin && post.status !== 'published') return json(res, 404, { error: 'Not found' });
+              return json(res, 200, post);
+            }
             let filtered = [...posts];
             if (status) filtered = filtered.filter(p => p.status === status);
             if (badge) filtered = filtered.filter(p => p.badgeIds && p.badgeIds.includes(badge));
@@ -107,6 +109,35 @@ async function handler(req, res) {
             await blogSave('posts', posts);
             return json(res, 201, post);
           }
+
+          // PUT/DELETE with ?slug= query param (Vercel catch‑all workaround)
+          const editSlug = searchParams.get('slug') || '';
+          if (editSlug) {
+            const posts = await blogLoad('posts');
+            const idx = posts.findIndex(p => p.slug === editSlug);
+            if (idx === -1) return json(res, 404, { error: 'Not found' });
+
+            if (req.method === 'PUT') {
+              if (!(await requireAdmin(req, res))) return;
+              const data = await readBody(req);
+              const newSlug = data.title && data.title !== posts[idx].title
+                ? await generateSlug(data.title, posts, posts[idx].id) : posts[idx].slug;
+              const now = new Date().toISOString();
+              posts[idx] = { ...posts[idx], ...data, slug: newSlug, updatedAt: now,
+                publishedAt: data.status === 'published' && !posts[idx].publishedAt ? now : posts[idx].publishedAt };
+              await blogSave('posts', posts);
+              return json(res, 200, posts[idx]);
+            }
+
+            if (req.method === 'DELETE') {
+              if (!(await requireAdmin(req, res))) return;
+              posts.splice(idx, 1);
+              await blogSave('posts', posts);
+              return json(res, 200, { success: true });
+            }
+            return json(res, 405, { error: 'Method not allowed' });
+          }
+
           return json(res, 405, { error: 'Method not allowed' });
         }
 
@@ -160,6 +191,28 @@ async function handler(req, res) {
             await blogSave('badges', badges);
             return json(res, 201, badge);
           }
+
+          const editBadgeId = searchParams.get('id') || '';
+          if (editBadgeId) {
+            const badges = await blogLoad('badges');
+            const bIdx = badges.findIndex(b => b.id === editBadgeId);
+            if (bIdx === -1) return json(res, 404, { error: 'Not found' });
+            if (!(await requireAdmin(req, res))) return;
+            if (req.method === 'PUT') {
+              const data = await readBody(req);
+              badges[bIdx] = { ...badges[bIdx], ...data, id: badges[bIdx].id, createdAt: badges[bIdx].createdAt };
+              if (data.name) badges[bIdx].slug = data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+              await blogSave('badges', badges);
+              return json(res, 200, badges[bIdx]);
+            }
+            if (req.method === 'DELETE') {
+              badges.splice(bIdx, 1);
+              await blogSave('badges', badges);
+              return json(res, 200, { success: true });
+            }
+            return json(res, 405, { error: 'Method not allowed' });
+          }
+
           return json(res, 405, { error: 'Method not allowed' });
         }
 
@@ -199,6 +252,27 @@ async function handler(req, res) {
             await blogSave('authors', authors);
             return json(res, 201, author);
           }
+
+          const editAuthorId = searchParams.get('id') || '';
+          if (editAuthorId) {
+            const authors = await blogLoad('authors');
+            const aIdx = authors.findIndex(a => a.id === editAuthorId);
+            if (aIdx === -1) return json(res, 404, { error: 'Not found' });
+            if (!(await requireAdmin(req, res))) return;
+            if (req.method === 'PUT') {
+              const data = await readBody(req);
+              authors[aIdx] = { ...authors[aIdx], ...data, id: authors[aIdx].id, createdAt: authors[aIdx].createdAt };
+              await blogSave('authors', authors);
+              return json(res, 200, authors[aIdx]);
+            }
+            if (req.method === 'DELETE') {
+              authors.splice(aIdx, 1);
+              await blogSave('authors', authors);
+              return json(res, 200, { success: true });
+            }
+            return json(res, 405, { error: 'Method not allowed' });
+          }
+
           return json(res, 405, { error: 'Method not allowed' });
         }
 
@@ -252,6 +326,29 @@ async function handler(req, res) {
             await blogSave('comments', comments);
             return json(res, 201, comment);
           }
+
+          const editCommentId = searchParams.get('id') || '';
+          if (editCommentId) {
+            const comments = await blogLoad('comments');
+            const cIdx = comments.findIndex(c => c.id === editCommentId);
+            if (cIdx === -1) return json(res, 404, { error: 'Not found' });
+            if (!(await requireAdmin(req, res))) return;
+            if (req.method === 'PUT') {
+              const data = await readBody(req);
+              if (data.adminReply !== undefined) comments[cIdx].adminReply = { content: data.adminReply, createdAt: new Date().toISOString() };
+              if (data.status) comments[cIdx].status = data.status;
+              if (data.content) comments[cIdx].content = data.content;
+              await blogSave('comments', comments);
+              return json(res, 200, comments[cIdx]);
+            }
+            if (req.method === 'DELETE') {
+              comments.splice(cIdx, 1);
+              await blogSave('comments', comments);
+              return json(res, 200, { success: true });
+            }
+            return json(res, 405, { error: 'Method not allowed' });
+          }
+
           return json(res, 405, { error: 'Method not allowed' });
         }
 
