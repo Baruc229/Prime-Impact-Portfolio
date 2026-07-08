@@ -291,4 +291,4 @@ async function handle(req, res) {
   }
 }
 
-module.exports = { handle, generateSlug };
+module.exports = { handler: handle, generateSlug };
