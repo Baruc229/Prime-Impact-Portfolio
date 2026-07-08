@@ -440,6 +440,7 @@ let refreshInterval = null;
 let debounceTimer = null;
 let authToken = sessionStorage.getItem('pia_admin_token') || '';
 let editingPostId = null;
+let _editorToken = 0;
 let editingBadgeId = null;
 let editingAuthorId = null;
 let replyingCommentId = null;
@@ -469,10 +470,13 @@ async function fetchAPI(url, opts = {}) {
     };
     const res = await fetch(API_BASE + url, { ...opts, headers });
     if (res.status === 401) { logout(); return null; }
-    if (!res.ok) throw new Error(res.status);
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      return { _error: body.error || 'Erreur ' + res.status };
+    }
     if (opts.raw) return res;
     return await res.json();
-  } catch (e) { return null; }
+  } catch (e) { return { _error: 'Erreur réseau' }; }
 }
 
 const titles = {
@@ -701,6 +705,7 @@ async function loadBlogPosts() {
   if (blogFilter) url += '&status=' + blogFilter;
   if (blogSearchTerm) url += '&search=' + encodeURIComponent(blogSearchTerm);
   const data = await fetchAPI(url);
+  if (data?._error) { tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>' + esc(data._error) + '</p></td></tr>'; return; }
   if (!data || !data.posts) { tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><i class="fa-solid fa-inbox"></i><p>Aucun article</p></td></tr>'; return; }
   const [badges, authors] = await Promise.all([fetchAPI('/blog/badges'), fetchAPI('/blog/authors')]);
   if (data.posts.length === 0) { tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><i class="fa-solid fa-newspaper"></i><p>Aucun article trouvé</p></td></tr>'; return; }
@@ -746,17 +751,28 @@ function autoSlug() {
 function previewCover(e) {
   const file = e.target.files[0];
   if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(ev) {
-    coverImageUrl = ev.target.result;
+  const img = new Image();
+  img.onload = function() {
+    const canvas = document.createElement('canvas');
+    let w = img.width, h = img.height;
+    const maxDim = 1200;
+    if (w > maxDim || h > maxDim) {
+      if (w > h) { h = h * maxDim / w; w = maxDim; }
+      else { w = w * maxDim / h; h = maxDim; }
+    }
+    canvas.width = w; canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, w, h);
+    coverImageUrl = canvas.toDataURL('image/jpeg', 0.8);
     const wrap = document.getElementById('coverUpload');
     wrap.classList.add('has-image');
     wrap.innerHTML = '<img src="' + coverImageUrl + '" alt=""><input type="file" accept="image/*" onchange="previewCover(event)" style="display:none"><p style="font-size:11px;color:var(--text-muted);margin-top:4px">Cliquez pour changer</p>';
   };
-  reader.readAsDataURL(file);
+  img.src = URL.createObjectURL(file);
 }
 
 async function openPostEditor(slug) {
+  const token = ++_editorToken;
   editingPostId = slug || null;
   document.getElementById('postEditorTitle').textContent = slug ? 'Modifier l\'article' : 'Nouvel article';
   document.getElementById('peSaveBtn').textContent = slug ? 'Mettre à jour' : 'Enregistrer';
@@ -778,6 +794,7 @@ async function openPostEditor(slug) {
   }
 
   const [badges, authors] = await Promise.all([fetchAPI('/blog/badges'), fetchAPI('/blog/authors')]);
+  if (token !== _editorToken) return;
 
   const authorSelect = document.getElementById('peAuthor');
   authorSelect.innerHTML = '<option value="">Sélectionner un auteur</option>' + (authors || []).map(a => '<option value="' + a.id + '">' + esc(a.name) + '</option>').join('');
@@ -798,6 +815,7 @@ async function openPostEditor(slug) {
 
   if (slug) {
     const post = await fetchAPI('/blog/posts/' + slug);
+    if (token !== _editorToken) return;
     if (post) {
       document.getElementById('peTitle').value = post.title || '';
       document.getElementById('peSlug').value = post.slug || '';
@@ -822,6 +840,7 @@ async function openPostEditor(slug) {
     }
   }
 
+  if (token !== _editorToken) return;
   document.getElementById('postEditorModal').classList.add('open');
   setTimeout(() => {
     if (typeof tinymce !== 'undefined' && !tinyInitialized) {
@@ -870,12 +889,7 @@ async function savePost() {
   const method = editingPostId ? 'PUT' : 'POST';
   const url = editingPostId ? '/blog/posts/' + editingPostId : '/blog/posts';
   const result = await fetchAPI(url, { method, body: JSON.stringify(data) });
-  if (result) {
-    closePostEditor();
-    loadBlogPosts();
-  } else {
-    alert('Erreur lors de l\'enregistrement.');
-  }
+  if (result && !result._error) { closePostEditor(); loadBlogPosts(); } else { alert(result?._error || 'Erreur lors de l\'enregistrement.'); }
 }
 
 // ─── BLOG: Comments ───────────────────────────────────────────
@@ -902,6 +916,7 @@ async function loadComments() {
   const postSlug = document.getElementById('commentPostFilter').value;
   if (postSlug) url += '&post=' + postSlug;
   const data = await fetchAPI(url);
+  if (data?._error) { tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>' + esc(data._error) + '</p></td></tr>'; return; }
   if (!data || !data.comments) { tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><i class="fa-solid fa-inbox"></i><p>Aucun commentaire</p></td></tr>'; return; }
   const postsData = await fetchAPI('/blog/posts?limit=100');
   if (data.comments.length === 0) { tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><i class="fa-solid fa-comments"></i><p>Aucun commentaire trouvé</p></td></tr>'; return; }
@@ -954,6 +969,7 @@ async function sendReply() {
 async function loadBadges() {
   const tbody = document.getElementById('blogBadgesBody');
   const data = await fetchAPI('/blog/badges');
+  if (data?._error) { tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>' + esc(data._error) + '</p></td></tr>'; return; }
   if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><i class="fa-solid fa-tags"></i><p>Aucun badge. Créez-en un !</p></td></tr>'; return; }
   tbody.innerHTML = data.map(b => '<tr>' +
     '<td>' + esc(b.name) + '</td>' +
@@ -994,7 +1010,7 @@ async function saveBadge() {
   const method = editingBadgeId ? 'PUT' : 'POST';
   const url = editingBadgeId ? '/blog/badges/' + editingBadgeId : '/blog/badges';
   const result = await fetchAPI(url, { method, body: JSON.stringify(data) });
-  if (result) { closeBadgeEditor(); loadBadges(); } else { alert('Erreur lors de l\'enregistrement du badge.'); }
+  if (result && !result._error) { closeBadgeEditor(); loadBadges(); } else { alert(result?._error || 'Erreur lors de l\'enregistrement du badge.'); }
 }
 
 async function delBadge(id) {
@@ -1006,6 +1022,7 @@ async function delBadge(id) {
 async function loadAuthors() {
   const tbody = document.getElementById('blogAuthorsBody');
   const data = await fetchAPI('/blog/authors');
+  if (data?._error) { tbody.innerHTML = '<tr><td colspan="4" class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>' + esc(data._error) + '</p></td></tr>'; return; }
   if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="4" class="empty-state"><i class="fa-solid fa-users"></i><p>Aucun auteur. Ajoutez-en un !</p></td></tr>'; return; }
   tbody.innerHTML = data.map(a => '<tr>' +
     '<td>' + (a.avatar ? '<img src="' + a.avatar + '" class="avatar-preview" style="width:36px;height:36px">' : '<i class="fa-solid fa-user" style="font-size:20px;color:var(--text-muted)"></i>') + '</td>' +
@@ -1051,7 +1068,7 @@ async function saveAuthor() {
   const method = editingAuthorId ? 'PUT' : 'POST';
   const url = editingAuthorId ? '/blog/authors/' + editingAuthorId : '/blog/authors';
   const result = await fetchAPI(url, { method, body: JSON.stringify(data) });
-  if (result) { closeAuthorEditor(); loadAuthors(); } else { alert('Erreur lors de l\'enregistrement de l\'auteur.'); }
+  if (result && !result._error) { closeAuthorEditor(); loadAuthors(); } else { alert(result?._error || 'Erreur lors de l\'enregistrement de l\'auteur.'); }
 }
 
 async function delAuthor(id) {
@@ -1062,7 +1079,7 @@ async function delAuthor(id) {
 // ─── BLOG: Stats ──────────────────────────────────────────────
 async function loadBlogStats() {
   const stats = await fetchAPI('/blog/stats');
-  if (!stats) return;
+  if (!stats || stats._error) { document.getElementById('bsTotal').textContent = stats?._error || 'Erreur'; return; }
   document.getElementById('bsTotal').textContent = stats.totalPosts;
   document.getElementById('bsPublished').textContent = stats.publishedPosts;
   document.getElementById('bsDrafts').textContent = stats.draftPosts;
