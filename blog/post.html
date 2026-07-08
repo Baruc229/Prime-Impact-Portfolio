@@ -250,7 +250,7 @@ function readingTime(content) {
 }
 
 async function fetchAPI(url) {
-  try { const r = await fetch(url); if (!r.ok) return null; return await r.json(); } catch(e) { return null; }
+  try { const r = await fetch(url); if (!r.ok) { const body = await r.json().catch(()=>null); return { _error: body?.error || 'Erreur ' + r.status }; } return await r.json(); } catch(e) { return { _error: e.message }; }
 }
 
 function selectCommentType(btn) {
@@ -318,7 +318,7 @@ async function init() {
     fetchAPI('/api/blog/badges'),
     fetchAPI('/api/blog/authors')
   ]);
-  if (!postData) { document.getElementById('postContent').innerHTML = '<p style="text-align:center;padding:60px 0;color:var(--text-muted)">Article non trouvé.</p>'; return; }
+  if (!postData || postData._error) { document.getElementById('postContent').innerHTML = '<p style="text-align:center;padding:60px 0;color:var(--text-muted)">' + (postData?._error || 'Article non trouvé.') + '</p>'; document.getElementById('commentsSection').style.display = 'none'; return; }
 
   post = postData;
   badges = badgesData || [];
@@ -454,32 +454,37 @@ async function submitComment() {
   const email = document.getElementById('commentEmail').value.trim();
   const content = document.getElementById('commentContent').value.trim();
   if (!name || !content) return;
-  if (!post) return;
+  if (!post) { alert(lang === 'fr' ? 'Article non chargé.' : 'Post not loaded.'); return; }
 
   const btn = document.getElementById('submitCommentBtn');
   btn.disabled = true; btn.textContent = lang === 'fr' ? 'Envoi...' : 'Sending...';
 
-  const res = await fetch('/api/blog/comments', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      postSlug: post.slug,
-      type: commentType,
-      authorName: name,
-      authorEmail: email,
-      content: content,
-      rating: commentType === 'avis' ? currentRating : 0
-    })
-  });
+  try {
+    const res = await fetch('/api/blog/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        postSlug: post.slug,
+        type: commentType,
+        authorName: name,
+        authorEmail: email,
+        content: content,
+        rating: commentType === 'avis' ? currentRating : 0
+      })
+    });
+
+    if (res.ok) {
+      document.getElementById('commentForm').style.display = 'none';
+      document.getElementById('commentSuccess').style.display = 'block';
+    } else {
+      const body = await res.json().catch(()=>null);
+      alert(body?.error || (lang === 'fr' ? 'Erreur lors de l\'envoi.' : 'Error sending your message.'));
+    }
+  } catch(e) {
+    alert(lang === 'fr' ? 'Erreur réseau.' : 'Network error.');
+  }
 
   btn.disabled = false; btn.textContent = lang === 'fr' ? 'Envoyer' : 'Send';
-
-  if (res.ok) {
-    document.getElementById('commentForm').style.display = 'none';
-    document.getElementById('commentSuccess').style.display = 'block';
-  } else {
-    alert(lang === 'fr' ? 'Erreur lors de l\'envoi.' : 'Error sending your message.');
-  }
 }
 
 document.addEventListener('DOMContentLoaded', init);
