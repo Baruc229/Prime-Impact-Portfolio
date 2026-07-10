@@ -262,4 +262,17 @@ function buildFooter() {
   app.insertAdjacentHTML('afterbegin', buildHeader());
   // Insère le footer à la fin de #app
   app.insertAdjacentHTML('beforeend', buildFooter());
+
+  // ── Chat Widget: injecter CSS + JS ──
+  // CSS
+  const chatCSS = document.createElement('link');
+  chatCSS.rel = 'stylesheet';
+  chatCSS.href = '/chat-widget.css';
+  document.head.appendChild(chatCSS);
+
+  // JS
+  const chatJS = document.createElement('script');
+  chatJS.src = '/chat-widget.js';
+  chatJS.defer = true;
+  document.body.appendChild(chatJS);
 })();
