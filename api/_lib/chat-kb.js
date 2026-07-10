@@ -195,8 +195,9 @@ function generateResponse(text, lang) {
 
   // ── Demande d'humain ──
   R.human_request = isEn
-    ? 'Of course! I\'ll connect you with our team directly:'
-    : 'Bien sûr ! Je vous mets en contact avec notre équipe :';
+    ? 'No problem! You can reach our team directly via:'
+    : 'Pas de souci ! Vous pouvez joindre notre équipe directement via :\n\n'
+      + 'Un membre de l\'équipe vous répondra dans le chat sous 24h maximum. En attendant, n\'hésitez pas à nous écrire :';
 
   // ── Tarifs ──
   R.pricing = isEn
