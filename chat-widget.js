@@ -11,12 +11,64 @@
   const POLL_INTERVAL = 3000;
   const LANG = (document.documentElement.lang || 'fr').substring(0, 2);
 
+  const FAQ_ITEMS = LANG === 'en'
+    ? [
+        { icon: 'fa-solid fa-globe', text: 'What services do you offer?' },
+        { icon: 'fa-solid fa-tag', text: 'What are your prices?' },
+        { icon: 'fa-solid fa-gears', text: 'How does it work?' },
+        { icon: 'fa-solid fa-clock', text: 'How long does it take?' },
+        { icon: 'fa-solid fa-headset', text: 'Talk to a human' },
+      ]
+    : [
+        { icon: 'fa-solid fa-globe', text: 'Quels services proposez-vous ?' },
+        { icon: 'fa-solid fa-tag', text: 'Quels sont vos tarifs ?' },
+        { icon: 'fa-solid fa-gears', text: 'Comment ça marche ?' },
+        { icon: 'fa-solid fa-clock', text: 'Combien de temps ?' },
+        { icon: 'fa-solid fa-headset', text: 'Parler à un humain' },
+      ];
+
   // ─── State ───────────────────────────────────────────
   let sessionId = localStorage.getItem('pia_chat_session') || null;
   let isOpen = false;
   let pollTimer = null;
   let lastTimestamp = 0;
   let unreadCount = 0;
+
+  // ─── FAQ ─────────────────────────────────────────────
+  let faqShown = false;
+
+  function renderFAQ() {
+    if (faqShown) return;
+    faqShown = true;
+    const container = document.getElementById('pia-chat-messages');
+    const typing = document.getElementById('pia-chat-typing');
+
+    const wrap = document.createElement('div');
+    wrap.className = 'pia-chat-faq';
+    wrap.innerHTML = FAQ_ITEMS.map(item =>
+      `<button class="pia-chat-faq-btn" data-text="${escapeHtml(item.text)}">
+        <i class="${item.icon}"></i>
+        <span>${escapeHtml(item.text)}</span>
+      </button>`
+    ).join('');
+
+    container.insertBefore(wrap, typing);
+    container.scrollTop = container.scrollHeight;
+
+    wrap.querySelectorAll('.pia-chat-faq-btn').forEach(btn => {
+      btn.onclick = function () {
+        const text = this.dataset.text;
+        wrap.remove();
+        document.getElementById('pia-chat-input').value = text;
+        sendMessage();
+      };
+    });
+  }
+
+  function removeFAQ() {
+    const faq = document.querySelector('.pia-chat-faq');
+    if (faq) faq.remove();
+  }
 
   // ─── DOM ─────────────────────────────────────────────
   function createWidget() {
@@ -153,10 +205,15 @@
     if (!sessionId) return;
     const data = await apiCall('/messages?sessionId=' + sessionId, 'GET');
     if (data && data.messages) {
+      const count = data.messages.length;
       data.messages.forEach(msg => {
         addMessageToUI(msg);
         if (msg.timestamp > lastTimestamp) lastTimestamp = msg.timestamp;
       });
+      // Show FAQ if only welcome message exists (first visit)
+      if (count <= 1) {
+        setTimeout(renderFAQ, 500);
+      }
     }
   }
 
@@ -184,6 +241,7 @@
       timestamp: Date.now(),
     };
     addMessageToUI(tempMsg);
+    removeFAQ();
 
     // Show typing
     showTyping();
