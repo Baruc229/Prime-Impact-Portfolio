@@ -52,7 +52,8 @@ module.exports = async (req, res) => {
       // Générer la réponse IA si c'est un message visiteur
       let botMsg = null;
       if (sender === 'visitor' || !sender) {
-        const ai = generateResponse(text, lang || 'fr');
+        const history = await getMessages(sessionId);
+        const ai = await generateResponse(text, lang || 'fr', history);
         botMsg = await addMessage(sessionId, {
           sender: 'bot',
           senderName: 'PIA Bot',
