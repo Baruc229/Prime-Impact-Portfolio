@@ -162,6 +162,10 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
 .badge-tag.selected{outline:2px solid var(--accent);outline-offset:2px}
 .color-picker-wrap{display:flex;align-items:center;gap:8px}
 .color-picker-wrap input[type=color]{width:36px;height:36px;border:none;border-radius:var(--radius-sm);cursor:pointer;padding:0;background:none}
+.checkbox-label{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text-muted);cursor:pointer;line-height:1.4}
+.checkbox-label input[type=checkbox]{margin-top:2px;width:16px;height:16px;accent-color:var(--accent);cursor:pointer}
+.btn-ghost{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid var(--border-color);border-radius:var(--radius-sm);background:transparent;color:var(--text-muted);font-size:12px;cursor:pointer;transition:all .15s}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);background:rgba(59,130,246,.06)}
 .status-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600}
 .status-published{background:rgba(34,197,94,0.15);color:var(--green)}
 .status-draft{background:rgba(245,158,11,0.15);color:var(--orange)}
@@ -386,10 +390,12 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
     </div>
     <div class="form-row-2">
       <div class="form-group"><label>Statut</label><select id="peStatus"><option value="draft">Brouillon</option><option value="published">Publié</option></select></div>
-      <div class="form-group"><label>Fichier ressource (optionnel)</label><input type="text" id="peResource" placeholder="URL du fichier PDF, etc."></div>
+      <div class="form-group" id="peResourceGroup" style="display:none"><label>Fichier ressource</label><div class="image-upload-wrap" id="resourceUpload" onclick="document.getElementById('resourceInput').click()"><input type="file" id="resourceInput" onchange="previewResource(event)"><p><i class="fa-solid fa-file-arrow-up" style="font-size:24px;display:block;margin-bottom:4px;color:var(--accent)"></i>Uploader le fichier PDF</p></div><input type="hidden" id="peResource"></div>
     </div>
     <div class="form-group"><label>Extrait (résumé)</label><textarea id="peExcerpt" rows="2" placeholder="Court résumé pour la carte article"></textarea></div>
-    <div class="form-group"><label>Contenu</label><div class="editor-wrap"><textarea id="peContent"></textarea></div></div>
+    <div class="form-group"><label>Contenu</label><div class="editor-wrap"><textarea id="peContent"></textarea></div>
+      <button class="btn-ghost" onclick="insertCTA();return false" style="margin-top:8px"><i class="fa-solid fa-plus"></i> Insérer un CTA</button>
+    </div>
     <div class="form-row-2">
       <div class="form-group"><label>Meta title (SEO)</label><input type="text" id="peMetaTitle" placeholder="Titre SEO (optionnel)"></div>
       <div class="form-group"><label>Meta description (SEO)</label><input type="text" id="peMetaDesc" placeholder="Description SEO (optionnel)"></div>
@@ -406,6 +412,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
   <div class="modal"><div class="modal-header"><h2 id="badgeEditorTitle">Nouvelle catégorie</h2><button class="modal-close" onclick="closeBadgeEditor()"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body">
     <div class="form-group"><label>Nom</label><input type="text" id="beName" placeholder="Ex: Web, SEO, Design"></div>
     <div class="form-group"><label>Couleur</label><div class="color-picker-wrap"><input type="color" id="beColor" value="#1B3A6B"><span style="font-size:12px;color:var(--text-muted)">Choisissez la couleur d'arrière-plan</span></div></div>
+    <div class="form-group"><label class="checkbox-label"><input type="checkbox" id="beRessource"> Badge de type Ressource (téléchargement) — déclenche un CTA de téléchargement sur les articles</label></div>
     <div class="form-actions">
       <button class="btn-delete" onclick="closeBadgeEditor()">Annuler</button>
       <button class="btn-primary-solid" onclick="saveBadge()"><i class="fa-solid fa-floppy-disk"></i> Enregistrer</button>
@@ -436,6 +443,19 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
     <div class="form-actions">
       <button class="btn-delete" onclick="closeReply()">Annuler</button>
       <button class="btn-primary-solid" onclick="sendReply()"><i class="fa-solid fa-reply"></i> Envoyer la réponse</button>
+    </div>
+  </div></div>
+</div>
+
+<!-- Modal: CTA Insert -->
+<div class="modal-overlay" id="ctaModal">
+  <div class="modal"><div class="modal-header"><h2>Insérer un CTA</h2><button class="modal-close" onclick="closeCTA()"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body">
+    <div class="form-group"><label>Type de CTA</label><select id="ctaType"><option value="btn">Bouton simple</option><option value="block">Bloc encadré</option></select></div>
+    <div class="form-group"><label>Texte du bouton</label><input type="text" id="ctaText" placeholder="Ex: Découvrir nos services"></div>
+    <div class="form-group"><label>Lien (URL)</label><input type="text" id="ctaLink" placeholder="https://... ou /contact"></div>
+    <div class="form-actions">
+      <button class="btn-delete" onclick="closeCTA()">Annuler</button>
+      <button class="btn-primary-solid" onclick="confirmCTA()"><i class="fa-solid fa-plus"></i> Insérer</button>
     </div>
   </div></div>
 </div>
@@ -815,6 +835,60 @@ function previewAvatar(e) {
   img.src = URL.createObjectURL(file);
 }
 
+function updateResourceVisibility() {
+  const sel = document.querySelectorAll('#peBadges .badge-tag.selected');
+  const hasRessource = Array.from(sel).some(el => el.dataset.type === 'ressource');
+  document.getElementById('peResourceGroup').style.display = hasRessource ? 'block' : 'none';
+}
+
+function previewResource(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    document.getElementById('peResource').value = ev.target.result;
+    const wrap = document.getElementById('resourceUpload');
+    wrap.classList.add('has-image');
+    wrap.innerHTML = '<i class="fa-solid fa-file" style="font-size:28px;color:var(--accent)"></i><p style="font-size:12px;color:var(--text-muted)">' + esc(file.name) + '</p><input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip" onchange="previewResource(event)" style="display:none"><p style="font-size:11px;color:var(--text-muted);margin-top:4px;cursor:pointer">Cliquez pour changer</p>';
+  };
+  reader.readAsDataURL(file);
+}
+
+let ctaModalActive = false;
+
+function insertCTA() {
+  ctaModalActive = true;
+  document.getElementById('ctaType').value = 'btn';
+  document.getElementById('ctaText').value = '';
+  document.getElementById('ctaLink').value = '';
+  document.getElementById('ctaModal').classList.add('open');
+}
+
+function closeCTA() {
+  ctaModalActive = false;
+  document.getElementById('ctaModal').classList.remove('open');
+}
+
+function confirmCTA() {
+  const type = document.getElementById('ctaType').value;
+  const text = document.getElementById('ctaText').value.trim();
+  const link = document.getElementById('ctaLink').value.trim();
+  if (!text || !link) { alert('Veuillez remplir le texte et le lien.'); return; }
+  let html = '';
+  if (type === 'btn') {
+    html = '<p style="text-align:center;margin:28px 0"><a href="' + esc(link) + '" class="cta-button" style="display:inline-block;padding:14px 32px;background:#1B3A6B;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:16px">' + esc(text) + '</a></p>';
+  } else {
+    html = '<div style="background:#F7F7F7;border-left:4px solid #1B3A6B;padding:24px;border-radius:8px;margin:28px 0"><p style="margin:0 0 12px;font-size:15px;color:#333">' + esc(text) + '</p><a href="' + esc(link) + '" class="cta-button" style="display:inline-block;padding:12px 28px;background:#1B3A6B;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px">En savoir plus</a></div>';
+  }
+  if (typeof tinymce !== 'undefined' && tinymce.get('peContent')) {
+    tinymce.get('peContent').insertContent(html);
+  } else {
+    const ta = document.getElementById('peContent');
+    ta.value += html;
+  }
+  closeCTA();
+}
+
 async function openPostEditor(slug) {
   const token = ++_editorToken;
   editingPostId = slug || null;
@@ -852,9 +926,14 @@ async function openPostEditor(slug) {
     el.style.color = '#fff';
     el.textContent = b.name;
     el.dataset.id = b.id;
-    el.onclick = function() { this.classList.toggle('selected'); };
+    el.dataset.type = b.type || 'category';
+    el.onclick = function() {
+      this.classList.toggle('selected');
+      updateResourceVisibility();
+    };
     badgeContainer.appendChild(el);
   });
+  updateResourceVisibility();
 
   if (slug) {
     let post = await fetchAPI('/blog/posts?slug=' + slug);
@@ -887,6 +966,12 @@ async function openPostEditor(slug) {
         const el = badgeContainer.querySelector('[data-id="' + id + '"]');
         if (el) el.classList.add('selected');
       });
+      updateResourceVisibility();
+      if (post.resourceFile) {
+        const wrap = document.getElementById('resourceUpload');
+        wrap.classList.add('has-image');
+        wrap.innerHTML = '<i class="fa-solid fa-file" style="font-size:28px;color:var(--accent)"></i><p style="font-size:12px;color:var(--text-muted)">Fichier ressource</p><input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip" onchange="previewResource(event)" style="display:none"><p style="font-size:11px;color:var(--text-muted);margin-top:4px;cursor:pointer">Cliquez pour changer</p>';
+      }
     } else if (post && post._error) {
       const errMsg = typeof post._error === 'object' ? JSON.stringify(post._error) : post._error;
       console.error('[openPostEditor] Erreur chargement article:', post._error);
@@ -1026,7 +1111,7 @@ async function loadBadges() {
   if (data?._error) { tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>' + esc(data._error) + '</p></td></tr>'; return; }
   if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><i class="fa-solid fa-tags"></i><p>Aucun badge. Créez-en un !</p></td></tr>'; return; }
   tbody.innerHTML = data.map(b => '<tr>' +
-    '<td>' + esc(b.name) + '</td>' +
+    '<td>' + esc(b.name) + (b.type === 'ressource' ? ' <span class="badge-tag" style="background:var(--orange);color:#fff;padding:1px 8px;font-size:9px">Ressource</span>' : '') + '</td>' +
     '<td><span style="display:inline-block;width:20px;height:20px;border-radius:4px;background:' + b.color + ';vertical-align:middle"></span> <span style="font-size:12px;color:var(--text-muted)">' + b.color + '</span></td>' +
     '<td>' + (b.postCount || 0) + '</td>' +
     '<td><div class="quick-actions">' +
@@ -1040,6 +1125,7 @@ function openBadgeEditor(data) {
   document.getElementById('badgeEditorTitle').textContent = editingBadgeId ? 'Modifier la catégorie' : 'Nouvelle catégorie';
   document.getElementById('beName').value = data?.name || '';
   document.getElementById('beColor').value = data?.color || '#1B3A6B';
+  document.getElementById('beRessource').checked = data?.type === 'ressource';
   document.getElementById('badgeEditorModal').classList.add('open');
 }
 
@@ -1056,7 +1142,7 @@ async function saveBadge() {
   const data = {
     name: document.getElementById('beName').value.trim(),
     color: document.getElementById('beColor').value,
-    type: 'category'
+    type: document.getElementById('beRessource').checked ? 'ressource' : 'category'
   };
   if (!data.name) { alert('Veuillez saisir un nom pour le badge.'); return; }
   const method = editingBadgeId ? 'PUT' : 'POST';
