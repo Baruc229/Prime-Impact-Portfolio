@@ -169,7 +169,8 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
 .chat-msg-admin{display:flex;gap:8px;max-width:80%}
 .chat-msg-admin.bot,.chat-msg-admin.visitor{align-self:flex-start}
 .chat-msg-admin.admin{align-self:flex-end;flex-direction:row-reverse}
-.chat-msg-admin .msg-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px}
+.chat-msg-admin .msg-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px;overflow:hidden}
+.chat-msg-admin .msg-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .chat-msg-admin.bot .msg-avatar{background:var(--accent);color:#fff}
 .chat-msg-admin.admin .msg-avatar{background:var(--green);color:#fff}
 .chat-msg-admin.visitor .msg-avatar{background:#6b7280;color:#fff}
@@ -1434,7 +1435,7 @@ async function openChatSession(sessionId) {
 function addAdminMessage(msg) {
   const container = document.getElementById('chatMessagesAdmin');
   if (!container) return;
-  const avatar = msg.sender === 'bot' ? '🤖' : msg.sender === 'admin' ? '👤' : '🧑';
+  const avatar = msg.sender === 'bot' ? '<i class="fa-solid fa-robot"></i>' : msg.sender === 'admin' ? '<img src="/assets/SCHALLOM-pro..avif" alt="Schallom" onerror="this.outerHTML=\'<i class=\\\'fa-solid fa-headset\\\'></i>\'">' : '<i class="fa-solid fa-user"></i>';
   const div = document.createElement('div');
   div.className = 'chat-msg-admin ' + msg.sender;
   div.innerHTML =

@@ -121,7 +121,11 @@
     div.className = 'pia-chat-msg ' + msg.sender;
     div.dataset.id = msg.id;
 
-    const avatar = msg.sender === 'bot' ? '🤖' : msg.sender === 'admin' ? '👤' : '🧑';
+    const avatar = msg.sender === 'bot'
+      ? '<i class="fa-solid fa-robot"></i>'
+      : msg.sender === 'admin'
+        ? '<img src="/assets/SCHALLOM-pro..avif" alt="Schallom" onerror="this.outerHTML=\'<i class=\\\'fa-solid fa-headset\\\'></i>\'">'
+        : '<i class="fa-solid fa-user"></i>';
     div.innerHTML = `
       <div class="pia-chat-msg-avatar">${avatar}</div>
       <div>
