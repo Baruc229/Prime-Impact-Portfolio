@@ -4,7 +4,7 @@
    Fallback sur les réponses pré-écrites si l'API échoue
    ============================================================ */
 
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenAI } = require('@google/genai');
 
 const CONTACT = {
   whatsapp: 'https://wa.me/22993288212',
@@ -168,11 +168,7 @@ function initGemini() {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) return false;
   try {
-    genAI = new GoogleGenerativeAI(apiKey);
-    model = genAI.getGenerativeModel({
-      model: 'gemini-2.5-flash',
-      systemInstruction: SYSTEM_PROMPT,
-    });
+    genAI = new GoogleGenAI({ apiKey });
     return true;
   } catch (e) {
     console.error('[CHAT-KB] Gemini init error:', e.message);
@@ -182,22 +178,26 @@ function initGemini() {
 
 // ─── Gemini Response ────────────────────────────────────────
 async function askGemini(text, history, lang) {
-  if (!model) {
+  if (!genAI) {
     if (!initGemini()) return null;
   }
 
   try {
-    // Build conversation history for context
-    const chat = model.startChat({
-      history: (history || []).map(m => ({
-        role: m.sender === 'visitor' ? 'user' : 'model',
-        parts: [{ text: m.text }],
-      })).slice(-10), // Keep last 10 messages for context
-    });
+    const messages = (history || []).map(m => ({
+      role: m.sender === 'visitor' ? 'user' : 'model',
+      parts: [{ text: m.text }],
+    })).slice(-10);
 
-    const result = await chat.sendMessage(text);
-    const response = result.response;
-    return response.text();
+    messages.push({ role: 'user', parts: [{ text }] });
+
+    const result = await genAI.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: messages,
+      config: {
+        systemInstruction: SYSTEM_PROMPT,
+      },
+    });
+    return result.text;
   } catch (e) {
     console.error('[CHAT-KB] Gemini error:', e.message);
     return null;
