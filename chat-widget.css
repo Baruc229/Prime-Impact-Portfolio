@@ -292,7 +292,7 @@
   transition: border-color 0.2s;
   background: #f9fafb;
 }
-.pia-chat-input:focus { border-color: #2563EB; }
+.pia-chat-input:focus { border-color: rgba(0,0,0,0.15); }
 .pia-chat-input::placeholder { color: #9ca3af; }
 
 .pia-chat-send {
