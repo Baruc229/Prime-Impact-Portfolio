@@ -75,7 +75,7 @@
     // Bubble
     const bubble = document.createElement('button');
     bubble.id = 'pia-chat-bubble';
-    bubble.innerHTML = '<i class="fa-solid fa-comments chat-icon-open"></i><i class="fa-solid fa-xmark chat-icon-close"></i><span class="unread-badge" id="pia-chat-unread">0</span>';
+    bubble.innerHTML = '<i class="fa-solid fa-comments"></i><span class="unread-badge" id="pia-chat-unread">0</span>';
     bubble.setAttribute('aria-label', 'Ouvrir le chat');
     bubble.onclick = toggleChat;
 

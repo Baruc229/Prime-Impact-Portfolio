@@ -35,11 +35,7 @@
   transform: scale(1.08);
   box-shadow: 0 6px 32px rgba(37, 99, 235, 0.55);
 }
-#pia-chat-bubble .chat-icon-open { display: none; }
-#pia-chat-bubble .chat-icon-close { display: none; }
-#pia-chat-bubble.open .chat-icon-open { display: none; }
-#pia-chat-bubble.open .chat-icon-close { display: block; }
-#pia-chat-bubble:not(.open) .chat-icon-open { display: block; }
+#pia-chat-bubble i { display: block; }
 
 #pia-chat-bubble .unread-badge {
   position: absolute;
