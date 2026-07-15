@@ -249,10 +249,10 @@ async function generateResponse(text, lang, history) {
     return { text: geminiResponse, intent: 'ai', source: 'gemini' };
   }
 
-  // Fallback: return a simple message if Gemini fails
+  // Fallback: Gemini indisponible — message d'attente
   const fallback = lang === 'en'
-    ? 'I\'m having trouble connecting right now. You can reach our team directly:\n\n📱 WhatsApp: ' + CONTACT.whatsappNum + '\n📧 Email: ' + CONTACT.email
-    : 'J\'ai un petit souci de connexion pour le moment. Vous pouvez nous joindre directement :\n\n📱 WhatsApp : ' + CONTACT.whatsappNum + '\n📧 Email : ' + CONTACT.email;
+    ? 'Thanks for your question! A member of our team will respond to you shortly.\n\nIn the meantime, you can also reach us directly:\n📱 WhatsApp: ' + CONTACT.whatsappNum + '\n📧 Email: ' + CONTACT.email
+    : 'Merci pour votre question ! Un membre de notre équipe va vous répondre très rapidement.\n\nEn attendant, vous pouvez aussi nous joindre directement :\n📱 WhatsApp : ' + CONTACT.whatsappNum + '\n📧 Email : ' + CONTACT.email;
 
   return { text: fallback, intent: 'fallback', source: 'fallback' };
 }
