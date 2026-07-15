@@ -5,7 +5,7 @@
    ============================================================ */
 
 const { getSession, addMessage, getMessages } = require('../_lib/chat-db');
-const { generateResponse } = require('../_lib/chat-kb');
+const { generateResponse, getInitError } = require('../_lib/chat-kb');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -61,7 +61,7 @@ module.exports = async (req, res) => {
         });
       }
 
-      return res.json({ success: true, visitorMessage: visitorMsg, botMessage: botMsg });
+      return res.json({ success: true, visitorMessage: visitorMsg, botMessage: botMsg, _debug: { initError: getInitError(), source: ai.source } });
     } catch (e) {
       console.error('[CHAT] Send message error:', e);
       return res.status(500).json({ error: 'Erreur serveur' });

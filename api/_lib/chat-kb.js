@@ -162,18 +162,22 @@ const QUICK_RESPONSES = {
 
 // ─── Gemini Client ──────────────────────────────────────────
 let genAI = null;
+let initError = null;
 
 function initGemini() {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
+    initError = 'GEMINI_API_KEY not set';
     console.error('[CHAT-KB] GEMINI_API_KEY not set');
     return false;
   }
   try {
     genAI = new GoogleGenAI({ apiKey });
-    console.log('[CHAT-KB] Gemini initialized OK');
+    initError = null;
+    console.log('[CHAT-KB] Gemini initialized OK, key starts with:', apiKey.substring(0, 6));
     return true;
   } catch (e) {
+    initError = e.message;
     console.error('[CHAT-KB] Gemini init error:', e.message);
     return false;
   }
@@ -239,4 +243,4 @@ function getWelcomeMessage(lang) {
     : 'Bonjour ! Je suis l\'assistant virtuel de PIA. Je peux vous aider avec :\n\n• Nos services & tarifs\n• Questions sur le web & le digital\n• Notre méthode de travail\n\nPosez-moi simplement votre question !';
 }
 
-module.exports = { generateResponse, getWelcomeMessage, normalize };
+module.exports = { generateResponse, getWelcomeMessage, normalize, getInitError: () => initError };
