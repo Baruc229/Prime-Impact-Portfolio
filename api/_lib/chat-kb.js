@@ -204,9 +204,9 @@ async function askGemini(text, history, lang) {
         systemInstruction: SYSTEM_PROMPT,
       },
     });
-    const text = result.text;
-    console.log('[CHAT-KB] Gemini response OK, length:', text ? text.length : 0);
-    return text || null;
+    const responseText = result.text;
+    console.log('[CHAT-KB] Gemini response OK, length:', responseText ? responseText.length : 0);
+    return responseText || null;
   } catch (e) {
     console.error('[CHAT-KB] Gemini error:', e.message, e.status || '', e.code || '');
     return null;
