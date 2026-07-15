@@ -5,7 +5,6 @@
    ============================================================ */
 
 const { GoogleGenAI } = require('@google/genai');
-const { GoogleAuth } = require('google-auth-library');
 
 const CONTACT = {
   whatsapp: 'https://wa.me/22993288212',
@@ -163,27 +162,17 @@ const QUICK_RESPONSES = {
 
 // ─── Gemini Client ──────────────────────────────────────────
 let genAI = null;
-let model = null;
 
 function initGemini() {
-  // Try service account first, then API key
-  const saKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
   const apiKey = process.env.GEMINI_API_KEY;
-
-  try {
-    if (saKey) {
-      const serviceAccount = JSON.parse(saKey);
-      const auth = new GoogleAuth({
-        credentials: serviceAccount,
-        scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-      });
-      genAI = new GoogleGenAI({ auth });
-      return true;
-    } else if (apiKey) {
-      genAI = new GoogleGenAI({ apiKey });
-      return true;
-    }
+  if (!apiKey) {
+    console.error('[CHAT-KB] GEMINI_API_KEY not set');
     return false;
+  }
+  try {
+    genAI = new GoogleGenAI({ apiKey });
+    console.log('[CHAT-KB] Gemini initialized OK');
+    return true;
   } catch (e) {
     console.error('[CHAT-KB] Gemini init error:', e.message);
     return false;
