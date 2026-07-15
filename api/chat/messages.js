@@ -51,9 +51,11 @@ module.exports = async (req, res) => {
 
       // Générer la réponse IA si c'est un message visiteur
       let botMsg = null;
+      let aiSource = 'none';
       if (sender === 'visitor' || !sender) {
         const history = await getMessages(sessionId);
         const ai = await generateResponse(text, lang || 'fr', history);
+        aiSource = ai.source;
         botMsg = await addMessage(sessionId, {
           sender: 'bot',
           senderName: 'PIA Bot',
@@ -61,7 +63,7 @@ module.exports = async (req, res) => {
         });
       }
 
-      return res.json({ success: true, visitorMessage: visitorMsg, botMessage: botMsg, _debug: { initError: getInitError(), source: ai.source } });
+      return res.json({ success: true, visitorMessage: visitorMsg, botMessage: botMsg, _debug: { initError: getInitError(), source: aiSource } });
     } catch (e) {
       console.error('[CHAT] Send message error:', e);
       return res.status(500).json({ error: 'Erreur serveur' });
