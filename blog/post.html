@@ -8,6 +8,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Article — Prime Impact Agency</title>
 <meta name="description" content="">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Prime Impact Agency">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:image" content="">
+<meta property="og:url" content="">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900&display=swap">
@@ -135,6 +145,21 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
 .comment-success{display:none;text-align:center;padding:20px}
 .comment-success i{font-size:40px;color:#10b981;margin-bottom:8px}
 .comment-success p{font-size:14px;color:var(--text-muted)}
+.share-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.share-bar .share-label{font-size:12px;color:var(--text-muted);font-weight:500;margin-right:4px}
+.share-bar a,.share-bar button{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--border-color);background:var(--bg-main);color:var(--text-muted);font-size:15px;text-decoration:none;cursor:pointer;transition:all .2s}
+.share-bar a:hover,.share-bar button:hover{transform:translateY(-2px);box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+.share-bar .share-twitter:hover{color:#1da1f2;border-color:#1da1f2}
+.share-bar .share-facebook:hover{color:#1877f2;border-color:#1877f2}
+.share-bar .share-linkedin:hover{color:#0a66c2;border-color:#0a66c2}
+.share-bar .share-whatsapp:hover{color:#25d366;border-color:#25d366}
+.share-bar .share-copy{font-size:13px;width:auto;padding:0 14px;border-radius:20px;gap:6px}
+.share-bar .share-copy:hover{color:var(--accent-blue);border-color:var(--accent-blue)}
+.share-bar .share-copy.copied{color:#10b981;border-color:#10b981}
+@media(max-width:768px){
+  .share-bar{gap:6px}
+  .share-bar a,.share-bar button{width:34px;height:34px;font-size:14px}
+}
 @media(max-width:1023px){
   .post-layout{grid-template-columns:1fr}
   .post-sidebar{position:static;max-height:none;margin-bottom:24px;order:-1}
@@ -163,6 +188,14 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
   <span class="post-hero-badge" id="heroBadge" style="display:none"></span>
   <h1 id="postTitle"></h1>
   <div class="post-hero-meta" id="postMeta"></div>
+  <div class="share-bar" id="shareBar" style="display:none">
+    <span class="share-label">Partager</span>
+    <a class="share-twitter" id="shareTwitter" href="#" target="_blank" rel="noopener" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+    <a class="share-facebook" id="shareFacebook" href="#" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a class="share-linkedin" id="shareLinkedin" href="#" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a class="share-whatsapp" id="shareWhatsapp" href="#" target="_blank" rel="noopener" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <button class="share-copy" id="shareCopy" onclick="copyShareLink()" title="Copier le lien"><i class="fa-solid fa-link"></i> <span>Copier</span></button>
+  </div>
   <div class="resource-hero-cta" id="resourceCta" style="display:none"></div>
 </div>
 <div class="post-cover" id="postCover" style="display:none">
@@ -276,6 +309,15 @@ function toggleToc() {
   btn.classList.toggle('open');
 }
 
+function copyShareLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('shareCopy');
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent = lang === 'fr' ? 'Copié !' : 'Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); btn.querySelector('span').textContent = 'Copier'; }, 2000);
+  });
+}
+
 function buildToc() {
   const container = document.getElementById('postContent');
   const headings = container.querySelectorAll('h2, h3');
@@ -369,6 +411,25 @@ function renderPost() {
     metaHTML += '<span><i class="fa-regular fa-eye" style="margin-right:4px"></i>' + post.viewCount + '</span>';
   }
   meta.innerHTML = metaHTML;
+
+  const pageUrl = window.location.href;
+  const shareTitle = encodeURIComponent(post.title);
+  const shareUrl = encodeURIComponent(pageUrl);
+  const shareText = encodeURIComponent(post.title + ' — Prime Impact Agency');
+  document.getElementById('shareTwitter').href = 'https://twitter.com/intent/tweet?text=' + shareText + '&url=' + shareUrl;
+  document.getElementById('shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl;
+  document.getElementById('shareLinkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + shareUrl;
+  document.getElementById('shareWhatsapp').href = 'https://wa.me/?text=' + shareText + '%20' + shareUrl;
+  document.getElementById('shareBar').style.display = 'flex';
+
+  const ogImg = post.coverImage || window.location.origin + '/assets/pia-logo-dark-sm.png';
+  document.querySelector('meta[property="og:title"]').content = post.metaTitle || post.title;
+  document.querySelector('meta[property="og:description"]').content = post.metaDescription || post.excerpt || '';
+  document.querySelector('meta[property="og:image"]').content = ogImg;
+  document.querySelector('meta[property="og:url"]').content = pageUrl;
+  document.querySelector('meta[name="twitter:title"]').content = post.metaTitle || post.title;
+  document.querySelector('meta[name="twitter:description"]').content = post.metaDescription || post.excerpt || '';
+  document.querySelector('meta[name="twitter:image"]').content = ogImg;
 
   if (isResource && post.resourceFile) {
     const rc = document.getElementById('resourceCta');
