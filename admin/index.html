@@ -465,6 +465,9 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
 
     <!-- Blog: Newsletter -->
     <div class="view" id="view-blog-newsletter">
+      <div class="filters">
+        <button class="topbar-btn" onclick="exportNewsletterCSV()"><i class="fa-solid fa-file-csv"></i> Exporter CSV</button>
+      </div>
       <div class="table-wrap">
         <table><thead><tr><th>Email</th><th>Date d'inscription</th><th>Source</th></tr></thead><tbody id="blogNewsletterBody"><tr><td colspan="3" class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Chargement...</p></td></tr></tbody></table>
       </div>
@@ -569,7 +572,10 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
     <div class="form-group"><label>Rôle / Titre</label><input type="text" id="aeRole" placeholder="Ex: CEO, Designer, Développeur"></div>
     <div class="form-group"><label>Photo</label><div class="image-upload-wrap" id="avatarUpload" onclick="document.getElementById('avatarInput').click()"><input type="file" id="avatarInput" accept="image/*" onchange="previewAvatar(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:24px;display:block;margin-bottom:4px;color:var(--accent)"></i>Cliquez pour uploader une photo</p></div><input type="hidden" id="aeAvatar"></div>
     <div class="form-group"><label>Bio</label><textarea id="aeBio" rows="2" placeholder="Courte biographie"></textarea></div>
-    <div class="form-group"><label>LinkedIn (optionnel)</label><input type="text" id="aeLinkedin" placeholder="URL LinkedIn"></div>
+    <div class="form-row-2">
+      <div class="form-group"><label>LinkedIn (optionnel)</label><input type="text" id="aeLinkedin" placeholder="URL LinkedIn"></div>
+      <div class="form-group"><label>Twitter / X (optionnel)</label><input type="text" id="aeTwitter" placeholder="URL Twitter ou X"></div>
+    </div>
     <div class="form-actions">
       <button class="btn-delete" onclick="closeAuthorEditor()">Annuler</button>
       <button class="btn-primary-solid" onclick="saveAuthor()"><i class="fa-solid fa-floppy-disk"></i> Enregistrer</button>
@@ -1341,6 +1347,18 @@ async function loadNewsletters() {
   '</tr>').join('');
 }
 
+async function exportNewsletterCSV() {
+  const data = await fetchAPI('/blog/newsletters');
+  if (!data || data.length === 0) return;
+  const header = 'Email,Date,Source\n';
+  const rows = data.map(n => '"' + (n.email||'').replace(/"/g,'""') + '","' + (n.subscribedAt||'') + '","' + (n.source||'blog') + '"').join('\n');
+  const blob = new Blob([header + rows], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'newsletter-inscrits-' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click(); URL.revokeObjectURL(url);
+}
+
 function openAuthorEditor(data) {
   editingAuthorId = data?.id || null;
   document.getElementById('authorEditorTitle').textContent = editingAuthorId ? 'Modifier l\'auteur' : 'Nouvel auteur';
@@ -1349,6 +1367,7 @@ function openAuthorEditor(data) {
   document.getElementById('aeAvatar').value = data?.avatar || '';
   document.getElementById('aeBio').value = data?.bio || '';
   document.getElementById('aeLinkedin').value = data?.socialLinks?.linkedin || '';
+  document.getElementById('aeTwitter').value = data?.socialLinks?.twitter || '';
   const wrap = document.getElementById('avatarUpload');
   if (data?.avatar) {
     wrap.classList.add('has-image');
@@ -1372,7 +1391,7 @@ async function saveAuthor() {
     role: document.getElementById('aeRole').value.trim(),
     avatar: document.getElementById('aeAvatar').value.trim(),
     bio: document.getElementById('aeBio').value.trim(),
-    socialLinks: { linkedin: document.getElementById('aeLinkedin').value.trim() }
+    socialLinks: { linkedin: document.getElementById('aeLinkedin').value.trim(), twitter: document.getElementById('aeTwitter').value.trim() }
   };
   if (!data.name) { alert('Veuillez saisir un nom pour l\'auteur.'); return; }
   const method = editingAuthorId ? 'PUT' : 'POST';

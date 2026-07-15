@@ -1,5 +1,18 @@
 const { blogLoad, blogSave, validateSession } = require('../_lib/db');
 
+const rateLimitMap = new Map();
+function rateLimit(key, maxRequests, windowMs) {
+  const now = Date.now();
+  const entry = rateLimitMap.get(key);
+  if (!entry || now - entry.start > windowMs) {
+    rateLimitMap.set(key, { start: now, count: 1 });
+    return true;
+  }
+  entry.count++;
+  if (entry.count > maxRequests) return false;
+  return true;
+}
+
 function uuid() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
     const r = Math.random() * 16 | 0;
@@ -318,6 +331,8 @@ async function handler(req, res) {
           }
 
           if (req.method === 'POST') {
+            const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+            if (!rateLimit('comment:' + ip, 5, 60000)) return json(res, 429, { error: 'Trop de requêtes. Réessayez dans 1 minute.' });
             const data = await readBody(req);
             const now = new Date().toISOString();
             const comment = { id: uuid(), postSlug: data.postSlug || '', type: data.type || 'comment', authorName: data.authorName || '', authorEmail: data.authorEmail || '', content: data.content || '', rating: data.rating || 0, status: 'pending', adminReply: null, createdAt: now };
@@ -381,6 +396,8 @@ async function handler(req, res) {
           return json(res, 200, newsletters);
         }
         if (req.method === 'POST') {
+          const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+          if (!rateLimit('newsletter:' + ip, 3, 60000)) return json(res, 429, { error: 'Trop de requêtes. Réessayez dans 1 minute.' });
           const data = await readBody(req);
           if (!data.email || !data.email.includes('@')) return json(res, 400, { error: 'Email invalide' });
           const newsletters = await blogLoad('newsletters');
