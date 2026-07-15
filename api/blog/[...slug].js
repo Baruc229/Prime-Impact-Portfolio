@@ -85,6 +85,7 @@ async function handler(req, res) {
               const auth = req.headers['authorization'];
               const isAdmin = auth && (await validateSession(auth.replace('Bearer ', '')));
               if (!isAdmin && post.status !== 'published') return json(res, 404, { error: 'Not found' });
+              if (!isAdmin) { post.viewCount = (post.viewCount || 0) + 1; await blogSave('posts', posts); }
               return json(res, 200, post);
             }
             let filtered = [...posts];

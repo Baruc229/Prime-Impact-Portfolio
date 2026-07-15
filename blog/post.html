@@ -156,6 +156,33 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
 .share-bar .share-copy{font-size:13px;width:auto;padding:0 14px;border-radius:20px;gap:6px}
 .share-bar .share-copy:hover{color:var(--accent-blue);border-color:var(--accent-blue)}
 .share-bar .share-copy.copied{color:#10b981;border-color:#10b981}
+.sidebar-widget{background:var(--bg-main);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;margin-top:20px;box-shadow:var(--shadow-soft)}
+.sidebar-widget h3{font-size:14px;color:var(--accent-blue);margin-bottom:12px;font-weight:700}
+.sidebar-widget .popular-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border-color);cursor:pointer;transition:background .15s}
+.sidebar-widget .popular-item:last-child{border-bottom:none}
+.sidebar-widget .popular-item:hover{background:var(--bg-secondary);margin:0 -8px;padding:8px;border-radius:var(--radius-sm)}
+.sidebar-widget .popular-item .pop-num{font-size:18px;font-weight:800;color:var(--accent-gold);min-width:24px;line-height:1}
+.sidebar-widget .popular-item .pop-title{font-size:13px;font-weight:500;color:var(--text-main);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
+.sidebar-widget .popular-item .pop-views{font-size:11px;color:var(--text-muted);margin-top:2px}
+.sidebar-newsletter{background:#0D1B35!important;border-color:#0D1B35!important;text-align:center}
+.sidebar-newsletter h3{color:#fff!important}
+.sidebar-newsletter p{color:rgba(255,255,255,0.7);font-size:12px;margin-bottom:12px;line-height:1.5}
+.sidebar-newsletter .nl-form{display:flex;gap:6px}
+.sidebar-newsletter .nl-form input{flex:1;padding:8px 12px;border-radius:var(--radius-sm);border:none;background:rgba(255,255,255,0.1);color:#fff;font-size:12px;font-family:var(--font-main);outline:none;min-width:0}
+.sidebar-newsletter .nl-form input::placeholder{color:rgba(255,255,255,0.4)}
+.sidebar-newsletter .nl-form input:focus{background:rgba(255,255,255,0.18)}
+.sidebar-newsletter .nl-form button{padding:8px 14px;border-radius:var(--radius-sm);border:none;background:var(--accent-gold);color:#fff;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font-main);white-space:nowrap;flex-shrink:0}
+.sidebar-newsletter .nl-form button:hover{opacity:.85}
+.sidebar-newsletter .nl-msg{font-size:11px;margin-top:8px;min-height:0}
+.sidebar-newsletter .nl-msg.success{color:#4ade80}
+.sidebar-newsletter .nl-msg.error{color:#f87171}
+.reading-progress{position:fixed;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--accent-blue),var(--accent-gold));z-index:9999;transition:width .1s linear}
+.back-to-top{position:fixed;bottom:32px;right:32px;width:44px;height:44px;border-radius:50%;background:var(--accent-blue);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 16px rgba(27,58,107,0.3);opacity:0;transform:translateY(16px);transition:all .3s;z-index:9998;pointer-events:none}
+.back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.back-to-top:hover{background:var(--accent-gold);transform:translateY(-2px)}
+@media(max-width:480px){
+  .back-to-top{bottom:20px;right:20px;width:40px;height:40px;font-size:16px}
+}
 @media(max-width:768px){
   .share-bar{gap:6px}
   .share-bar a,.share-bar button{width:34px;height:34px;font-size:14px}
@@ -166,6 +193,7 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
   .toc-toggle{display:block}
   .toc{display:none}
   .toc.open{display:block}
+  .related-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
   .post-hero{padding-top:100px}
@@ -173,9 +201,24 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
   .comment-form .form-row{grid-template-columns:1fr}
   .post-author-card{flex-direction:column;text-align:center}
   .resource-hero-cta{flex-direction:column;text-align:center}
+  .share-bar{justify-content:center}
+}
+@media(max-width:480px){
+  .post-hero{padding:80px 16px 16px}
+  .post-hero h1{font-size:24px}
+  .post-hero-meta{font-size:12px;gap:8px}
+  .post-cover{padding:0 16px}
+  .post-layout{padding:0 16px}
+  .post-content{font-size:15px;line-height:1.7}
+  .post-content h2{font-size:22px;margin:36px 0 12px}
+  .post-content h3{font-size:18px;margin:28px 0 10px}
+  .share-bar a,.share-bar button{width:32px;height:32px;font-size:13px}
+  .sidebar-widget{padding:16px}
 }
 </style>
 </head><body>
+<div class="reading-progress" id="readingProgress"></div>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 <div id="app">
 <div class="post-hero" id="postHero">
   <div class="breadcrumb" id="breadcrumb">
@@ -189,12 +232,12 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
   <h1 id="postTitle"></h1>
   <div class="post-hero-meta" id="postMeta"></div>
   <div class="share-bar" id="shareBar" style="display:none">
-    <span class="share-label">Partager</span>
+    <span class="share-label" data-i18n="blog.post.share">Partager</span>
     <a class="share-twitter" id="shareTwitter" href="#" target="_blank" rel="noopener" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
     <a class="share-facebook" id="shareFacebook" href="#" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
     <a class="share-linkedin" id="shareLinkedin" href="#" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
     <a class="share-whatsapp" id="shareWhatsapp" href="#" target="_blank" rel="noopener" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-    <button class="share-copy" id="shareCopy" onclick="copyShareLink()" title="Copier le lien"><i class="fa-solid fa-link"></i> <span>Copier</span></button>
+    <button class="share-copy" id="shareCopy" onclick="copyShareLink()" title="Copier le lien"><i class="fa-solid fa-link"></i> <span data-i18n="blog.post.copy">Copier</span></button>
   </div>
   <div class="resource-hero-cta" id="resourceCta" style="display:none"></div>
 </div>
@@ -251,6 +294,19 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
       <h3 data-i18n="blog.post.toc">Sommaire</h3>
       <ul id="tocList"></ul>
     </nav>
+    <div class="sidebar-widget" id="popularWidget">
+      <h3 data-i18n="blog.sidebar.popular">Articles populaires</h3>
+      <div id="popularPosts"><p style="font-size:12px;color:var(--text-muted)" data-i18n="blog.sidebar.loading">Chargement...</p></div>
+    </div>
+    <div class="sidebar-widget sidebar-newsletter" id="nlWidget">
+      <h3 data-i18n="blog.sidebar.cta.title">Restez informé</h3>
+      <p data-i18n="blog.sidebar.cta.desc">Recevez nos derniers articles et conseils directement par email.</p>
+      <div class="nl-form">
+        <input type="email" id="nlEmail" placeholder="Votre email" data-i18n-ph="blog.sidebar.cta.placeholder">
+        <button onclick="subscribeNl()" data-i18n="blog.sidebar.cta.btn">S'abonner</button>
+      </div>
+      <div class="nl-msg" id="nlMsg"></div>
+    </div>
   </aside>
 </div>
 </div>
@@ -313,8 +369,10 @@ function copyShareLink() {
   navigator.clipboard.writeText(window.location.href).then(() => {
     const btn = document.getElementById('shareCopy');
     btn.classList.add('copied');
-    btn.querySelector('span').textContent = lang === 'fr' ? 'Copié !' : 'Copied!';
-    setTimeout(() => { btn.classList.remove('copied'); btn.querySelector('span').textContent = 'Copier'; }, 2000);
+    const span = btn.querySelector('span');
+    const orig = span.textContent;
+    span.textContent = lang === 'fr' ? 'Copié !' : 'Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); span.textContent = orig; }, 2000);
   });
 }
 
@@ -322,10 +380,11 @@ function buildToc() {
   const container = document.getElementById('postContent');
   const headings = container.querySelectorAll('h2, h3');
   const list = document.getElementById('tocList');
+  const tocNav = document.getElementById('toc');
+  const tocBtn = document.getElementById('tocToggle');
   list.innerHTML = '';
-  const sidebar = document.querySelector('.post-sidebar');
-  if (headings.length < 2) { sidebar.style.display = 'none'; return; }
-  sidebar.style.display = '';
+  if (headings.length < 2) { tocNav.style.display = 'none'; tocBtn.style.display = 'none'; return; }
+  tocNav.style.display = ''; tocBtn.style.display = '';
   headings.forEach((h, i) => {
     if (!h.id) h.id = 'heading-' + i;
     const tag = h.tagName.toLowerCase();
@@ -349,6 +408,34 @@ function buildToc() {
   });
 }
 
+async function loadPopularPosts() {
+  const container = document.getElementById('popularPosts');
+  const data = await fetchAPI('/api/blog/posts?limit=50');
+  if (!data || data._error) { container.innerHTML = '<p style="font-size:12px;color:var(--text-muted)">—</p>'; return; }
+  const published = data.filter(p => p.status === 'published' && p.slug !== currentSlug);
+  const top = published.sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0)).slice(0, 5);
+  if (top.length === 0) { container.innerHTML = '<p style="font-size:12px;color:var(--text-muted)">—</p>'; return; }
+  container.innerHTML = top.map((p, i) => {
+    return '<a class="popular-item" href="/blog/' + esc(p.slug) + '" style="text-decoration:none;color:inherit">' +
+      '<span class="pop-num">' + (i + 1) + '</span>' +
+      '<div><div class="pop-title">' + esc(p.title) + '</div>' +
+      (p.viewCount ? '<div class="pop-views"><i class="fa-regular fa-eye" style="margin-right:3px"></i>' + p.viewCount + '</div>' : '') +
+      '</div></a>';
+  }).join('');
+}
+
+async function subscribeNl() {
+  const email = document.getElementById('nlEmail').value.trim();
+  const msg = document.getElementById('nlMsg');
+  if (!email || !email.includes('@')) { msg.className = 'nl-msg error'; msg.textContent = lang === 'fr' ? 'Email invalide' : 'Invalid email'; return; }
+  try {
+    const res = await fetch('/api/blog/newsletters', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, source: 'blog-post' }) });
+    const data = await res.json();
+    if (data.success) { msg.className = 'nl-msg success'; msg.textContent = lang === 'fr' ? 'Merci ! Vous êtes inscrit(e).' : 'Thanks! You are subscribed.'; document.getElementById('nlEmail').value = ''; }
+    else { msg.className = 'nl-msg error'; msg.textContent = data.error || 'Erreur'; }
+  } catch(e) { msg.className = 'nl-msg error'; msg.textContent = lang === 'fr' ? 'Erreur réseau' : 'Network error'; }
+}
+
 async function init() {
   currentSlug = window.location.pathname.replace('/blog/', '').replace(/\/$/, '');
   if (!currentSlug) {
@@ -370,6 +457,7 @@ async function init() {
   renderPost();
   renderComments();
   renderRelated();
+  loadPopularPosts();
 }
 
 function renderPost() {
@@ -434,7 +522,7 @@ function renderPost() {
   if (isResource && post.resourceFile) {
     const rc = document.getElementById('resourceCta');
     rc.style.display = 'flex';
-    rc.innerHTML = '<i class="fa-solid fa-file-arrow-down"></i><div><h4>' + esc(post.title) + '</h4><p>' + (lang === 'fr' ? 'Téléchargez la ressource complète' : 'Download the full resource') + '</p></div><a class="btn" href="' + post.resourceFile + '" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> ' + (lang === 'fr' ? 'Télécharger' : 'Download') + '</a>';
+    rc.innerHTML = '<i class="fa-solid fa-file-arrow-down"></i><div><h4>' + esc(post.title) + '</h4><p data-i18n="blog.post.download-desc">' + (lang === 'fr' ? 'Téléchargez la ressource complète' : 'Download the full resource') + '</p></div><a class="btn" href="' + post.resourceFile + '" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> ' + (lang === 'fr' ? 'Télécharger' : 'Download') + '</a>';
   }
 
   if (post.coverImage) {
@@ -551,6 +639,16 @@ async function submitComment() {
 
   btn.disabled = false; btn.textContent = lang === 'fr' ? 'Envoyer' : 'Send';
 }
+
+window.addEventListener('scroll', () => {
+  const bar = document.getElementById('readingProgress');
+  const btn = document.getElementById('backToTop');
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  bar.style.width = Math.min(progress, 100) + '%';
+  btn.classList.toggle('visible', scrollTop > 400);
+}, { passive: true });
 
 document.addEventListener('DOMContentLoaded', init);
 </script>

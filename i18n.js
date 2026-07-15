@@ -75,6 +75,13 @@ const translations = {
   "blog.post.comments.submit": { "fr": "Envoyer", "en": "Send" },
   "blog.post.comments.moderation": { "fr": "Votre message apparaîtra après modération.", "en": "Your message will appear after moderation." },
   "blog.post.comments.success": { "fr": "Merci ! Votre message a été envoyé et sera visible après validation.", "en": "Thanks! Your message has been sent and will be visible after approval." },
+  "blog.post.share": { "fr": "Partager", "en": "Share" },
+  "blog.post.copy": { "fr": "Copier", "en": "Copy" },
+  "blog.post.copied": { "fr": "Copié !", "en": "Copied!" },
+  "blog.post.reply-badge": { "fr": "Réponse de l'équipe", "en": "Team response" },
+  "blog.post.download": { "fr": "Télécharger", "en": "Download" },
+  "blog.post.download-desc": { "fr": "Téléchargez la ressource complète", "en": "Download the full resource" },
+  "blog.post.reading": { "fr": "de lecture", "en": "read" },
 
   // --- Footer (Pied de page) ---
   "footer.desc": { 
