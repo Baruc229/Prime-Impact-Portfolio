@@ -138,12 +138,18 @@ const QUICK_REPLIES = {
   greeting: /^(bonjour|salut|hello|hey|coucou|bonsoir|bjr|slt|bonjour pia|salut pia|bonsoir pia)\s*[!.?]*$/,
   thanks: /^(merci|thanks|super|parfait|genial|ok|cool|excellent|merci beaucoup|ok merci|c bon|c'est bon|noted|compris|d'accord)\s*[!.?]*$/,
   help: /^(aide|help|menu|options|que sais tu|que peux tu|quoi d'autre|autre chose)\s*[!.?]*$/,
+  services: /(quel.*service|what.*service|que proposez|what.*offer|nos services|our services)/i,
+  pricing: /(tarif|prix|price|cost|combien|how much|cout|budget)/i,
+  process: /(comment.*marche|how.*work|processus|method|process|etape|step)/i,
+  timeline: /(temps|time|duree|duration|delai|deadline|combien de temps|how long|rapide|quick)/i,
+  human: /(humain|human|personne|someone|parler a|talk to|whatsapp|contact|email|appel|call)/i,
 };
 
 function detectQuickReply(text) {
   const n = normalize(text);
+  const raw = text.trim().toLowerCase();
   for (const [intent, regex] of Object.entries(QUICK_REPLIES)) {
-    if (regex.test(n)) return intent;
+    if (regex.test(n) || regex.test(raw)) return intent;
   }
   return null;
 }
@@ -158,6 +164,21 @@ const QUICK_RESPONSES = {
   help: (lang) => lang === 'en'
     ? 'Here\'s what I can help you with:\n\n• Our services (websites, funnels, SEO...)\n• Pricing & quotes\n• How we work\n• Web & digital questions\n• Contact information\n\nJust ask your question!'
     : 'Voici ce que je peux faire pour vous :\n\n• Nos services (sites web, tunnels, SEO...)\n• Nos tarifs & devis\n• Notre méthode de travail\n• Questions sur le web & le digital\n• Nos coordonnées\n\nPosez-moi simplement votre question !',
+  services: (lang) => lang === 'en'
+    ? 'We offer 5 main services:\n\n1. Website Creation (from 150,000 FCFA)\n2. Sales Funnels & Landing Pages (from 200,000 FCFA)\n3. SEO Optimization (from 100,000 FCFA/month)\n4. Website Redesign (from 120,000 FCFA)\n5. Support & Maintenance (from 30,000 FCFA/month)\n\nWhich service interests you?'
+    : 'Nous proposons 5 services principaux :\n\n1. Création de site web (à partir de 150 000 FCFA)\n2. Tunnels de vente & Landing Pages (à partir de 200 000 FCFA)\n3. Référencement SEO (à partir de 100 000 FCFA/mois)\n4. Refonte de site web (à partir de 120 000 FCFA)\n5. Suivi & Maintenance (à partir de 30 000 FCFA/mois)\n\nQuel service vous intéresse ?',
+  pricing: (lang) => lang === 'en'
+    ? 'Our pricing:\n\n• Website: from 150,000 FCFA\n• Sales Funnel: from 200,000 FCFA\n• SEO: from 100,000 FCFA/month\n• Redesign: from 120,000 FCFA\n• Landing Page: from 80,000 FCFA\n• Maintenance: from 30,000 FCFA/month\n\nA free quote is always included! Want one?'
+    : 'Nos tarifs :\n\n• Site web : à partir de 150 000 FCFA\n• Tunnel de vente : à partir de 200 000 FCFA\n• SEO : à partir de 100 000 FCFA/mois\n• Refonte : à partir de 120 000 FCFA\n• Landing page : à partir de 80 000 FCFA\n• Maintenance : à partir de 30 000 FCFA/mois\n\nUn devis gratuit est toujours inclus ! Vous en voulez un ?',
+  process: (lang) => lang === 'en'
+    ? 'Our process in 6 steps:\n\n1. Discovery Call — understand your needs\n2. Proposal & Quote — detailed and free\n3. Design — mockups for validation\n4. Development — building your solution\n5. Testing & Launch — everything works\n6. Support — after-launch assistance\n\nWant to start?'
+    : 'Notre processus en 6 étapes :\n\n1. Appel de découverte — comprendre vos besoins\n2. Proposition & devis — détaillé et gratuit\n3. Design — maquettes pour validation\n4. Développement — construction de la solution\n5. Tests & lancement — tout fonctionne\n6. Support — accompagnement après le lancement\n\nVous voulez commencer ?',
+  timeline: (lang) => lang === 'en'
+    ? 'Timeline depends on the project:\n\n• Simple website: 10-15 business days\n• Complex project: 3-6 weeks\n• Landing page: 5-7 business days\n• SEO: results visible in 3-6 months\n\nWhat project do you have in mind?'
+    : 'Les délais dépendent du projet :\n\n• Site simple : 10-15 jours ouvrés\n• Projet complexe : 3-6 semaines\n• Landing page : 5-7 jours ouvrés\n• SEO : résultats visibles en 3-6 mois\n\nQuel projet avez-vous en tête ?',
+  human: (lang) => lang === 'en'
+    ? 'No problem! You can reach our team:\n\n📱 WhatsApp: +229 93 28 82 12\n📧 Email: contact@primeimpactagency.com\n\nOur team responds within 24h. Want to leave your contact info here too?'
+    : 'Pas de problème ! Vous pouvez joindre l\'équipe :\n\n📱 WhatsApp : +229 93 28 82 12\n📧 Email : contact@primeimpactagency.com\n\nL\'équipe répond sous 24h. Vous voulez laisser vos coordonnées ici aussi ?',
 };
 
 // ─── Gemini Client ──────────────────────────────────────────
