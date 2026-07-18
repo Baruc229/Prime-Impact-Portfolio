@@ -125,25 +125,37 @@ Immobilier, e-commerce, coaching, santé, construction, restauration, conseil, O
 
 // ─── Salutations & réponses pré-écrites (0 coût API) ──────
 
-// ─── Claude Client (Anthropic API) ──────────────────────────
+// ─── Claude Client (Anthropic SDK) ──────────────────────────
+const Anthropic = require('@anthropic-ai/sdk');
+
+let anthropic = null;
 let initError = null;
 
-function getApiKey() {
-  const key = process.env.ANTHROPIC_API_KEY;
-  if (!key) {
+function initAnthropic() {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) {
     initError = 'ANTHROPIC_API_KEY not set';
     console.error('[CHAT-KB] ANTHROPIC_API_KEY not set');
-    return null;
+    return false;
   }
-  return key;
+  try {
+    anthropic = new Anthropic({ apiKey });
+    initError = null;
+    console.log('[CHAT-KB] Anthropic SDK initialized OK');
+    return true;
+  } catch (e) {
+    initError = e.message;
+    console.error('[CHAT-KB] Anthropic init error:', e.message);
+    return false;
+  }
 }
 
 // ─── Claude Response ────────────────────────────────────────
 async function askClaude(text, history, lang) {
-  const apiKey = getApiKey();
-  if (!apiKey) return null;
+  if (!anthropic) {
+    if (!initAnthropic()) return null;
+  }
 
-  // Build messages for Claude's API format
   const messages = (history || []).map(m => ({
     role: m.sender === 'visitor' ? 'user' : 'assistant',
     content: m.text,
@@ -152,33 +164,18 @@ async function askClaude(text, history, lang) {
   messages.push({ role: 'user', content: text });
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: 'claude-3-haiku-20240307',
-        max_tokens: 150,
-        system: SYSTEM_PROMPT,
-        messages,
-      }),
+    const result = await anthropic.messages.create({
+      model: 'claude-3-haiku-20240307',
+      max_tokens: 150,
+      system: SYSTEM_PROMPT,
+      messages,
     });
 
-    if (!res.ok) {
-      const errBody = await res.text();
-      console.error('[CHAT-KB] Claude API error:', res.status, errBody);
-      return null;
-    }
-
-    const data = await res.json();
-    const responseText = data.content?.[0]?.text || null;
+    const responseText = result.content?.[0]?.text || null;
     console.log('[CHAT-KB] Claude response OK, length:', responseText ? responseText.length : 0);
     return responseText;
   } catch (e) {
-    console.error('[CHAT-KB] Claude fetch error:', e.message);
+    console.error('[CHAT-KB] Claude error:', e.message, e.status || '', e.code || '');
     return null;
   }
 }
