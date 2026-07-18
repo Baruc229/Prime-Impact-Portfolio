@@ -1,10 +1,10 @@
 /* ============================================================
-   CHAT KNOWLEDGE BASE v3 — Gemini AI + Fallback PIA
-   Utilise Gemini pour répondre intelligemment
+   CHAT KNOWLEDGE BASE v4 — Claude AI (Anthropic) + Fallback PIA
+   Utilise Claude pour répondre intelligemment
    Fallback sur les réponses pré-écrites si l'API échoue
    ============================================================ */
 
-const { GoogleGenAI } = require('@google/genai');
+const { match } = require('./quick-replies');
 
 const CONTACT = {
   whatsapp: 'https://wa.me/22993288212',
@@ -123,133 +123,82 @@ Immobilier, e-commerce, coaching, santé, construction, restauration, conseil, O
 - N'utilise pas de markdown (pas de **, pas de #), écris en texte simple
 - Garde les réponses courtes (max 150 mots sauf si on demande des détails)`;
 
-// ─── Normalisation ──────────────────────────────────────────
-function normalize(text) {
-  return text
-    .toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^\w\s]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
+// ─── Salutations & réponses pré-écrites (0 coût API) ──────
 
-// ─── Salutations & remerciements (réponses rapides) ─────────
-const QUICK_REPLIES = {
-  greeting: /^(bonjour|salut|hello|hey|coucou|bonsoir|bjr|slt|bonjour pia|salut pia|bonsoir pia)\s*[!.?]*$/,
-  thanks: /^(merci|thanks|super|parfait|genial|ok|cool|excellent|merci beaucoup|ok merci|c bon|c'est bon|noted|compris|d'accord)\s*[!.?]*$/,
-  help: /^(aide|help|menu|options|que sais tu|que peux tu|quoi d'autre|autre chose)\s*[!.?]*$/,
-  services: /(quel.*service|what.*service|que proposez|what.*offer|nos services|our services)/i,
-  pricing: /(tarif|prix|price|cost|combien|how much|cout|budget)/i,
-  process: /(comment.*marche|how.*work|processus|method|process|etape|step)/i,
-  timeline: /(temps|time|duree|duration|delai|deadline|combien de temps|how long|rapide|quick)/i,
-  human: /(humain|human|personne|someone|parler a|talk to|whatsapp|contact|email|appel|call)/i,
-};
-
-function detectQuickReply(text) {
-  const n = normalize(text);
-  const raw = text.trim().toLowerCase();
-  for (const [intent, regex] of Object.entries(QUICK_REPLIES)) {
-    if (regex.test(n) || regex.test(raw)) return intent;
-  }
-  return null;
-}
-
-const QUICK_RESPONSES = {
-  greeting: (lang) => lang === 'en'
-    ? 'Hello! Welcome to Prime Impact Agency. I\'m here to help you with any questions about our services, pricing, or anything web & digital. What would you like to know?'
-    : 'Bonjour ! Bienvenue sur Prime Impact Agency. Je suis l\'assistant virtuel de PIA. Je peux répondre à toutes vos questions sur nos services, nos tarifs, ou tout ce qui concerne le web et le digital. Comment puis-je vous aider ?',
-  thanks: (lang) => lang === 'en'
-    ? 'You\'re welcome! Feel free to ask anything else.'
-    : 'Avec plaisir ! N\'hésitez pas si vous avez d\'autres questions.',
-  help: (lang) => lang === 'en'
-    ? 'Here\'s what I can help you with:\n\n• Our services (websites, funnels, SEO...)\n• Pricing & quotes\n• How we work\n• Web & digital questions\n• Contact information\n\nJust ask your question!'
-    : 'Voici ce que je peux faire pour vous :\n\n• Nos services (sites web, tunnels, SEO...)\n• Nos tarifs & devis\n• Notre méthode de travail\n• Questions sur le web & le digital\n• Nos coordonnées\n\nPosez-moi simplement votre question !',
-  services: (lang) => lang === 'en'
-    ? 'We offer 5 main services:\n\n1. Website Creation (from 150,000 FCFA)\n2. Sales Funnels & Landing Pages (from 200,000 FCFA)\n3. SEO Optimization (from 100,000 FCFA/month)\n4. Website Redesign (from 120,000 FCFA)\n5. Support & Maintenance (from 30,000 FCFA/month)\n\nWhich service interests you?'
-    : 'Nous proposons 5 services principaux :\n\n1. Création de site web (à partir de 150 000 FCFA)\n2. Tunnels de vente & Landing Pages (à partir de 200 000 FCFA)\n3. Référencement SEO (à partir de 100 000 FCFA/mois)\n4. Refonte de site web (à partir de 120 000 FCFA)\n5. Suivi & Maintenance (à partir de 30 000 FCFA/mois)\n\nQuel service vous intéresse ?',
-  pricing: (lang) => lang === 'en'
-    ? 'Our pricing:\n\n• Website: from 150,000 FCFA\n• Sales Funnel: from 200,000 FCFA\n• SEO: from 100,000 FCFA/month\n• Redesign: from 120,000 FCFA\n• Landing Page: from 80,000 FCFA\n• Maintenance: from 30,000 FCFA/month\n\nA free quote is always included! Want one?'
-    : 'Nos tarifs :\n\n• Site web : à partir de 150 000 FCFA\n• Tunnel de vente : à partir de 200 000 FCFA\n• SEO : à partir de 100 000 FCFA/mois\n• Refonte : à partir de 120 000 FCFA\n• Landing page : à partir de 80 000 FCFA\n• Maintenance : à partir de 30 000 FCFA/mois\n\nUn devis gratuit est toujours inclus ! Vous en voulez un ?',
-  process: (lang) => lang === 'en'
-    ? 'Our process in 6 steps:\n\n1. Discovery Call — understand your needs\n2. Proposal & Quote — detailed and free\n3. Design — mockups for validation\n4. Development — building your solution\n5. Testing & Launch — everything works\n6. Support — after-launch assistance\n\nWant to start?'
-    : 'Notre processus en 6 étapes :\n\n1. Appel de découverte — comprendre vos besoins\n2. Proposition & devis — détaillé et gratuit\n3. Design — maquettes pour validation\n4. Développement — construction de la solution\n5. Tests & lancement — tout fonctionne\n6. Support — accompagnement après le lancement\n\nVous voulez commencer ?',
-  timeline: (lang) => lang === 'en'
-    ? 'Timeline depends on the project:\n\n• Simple website: 10-15 business days\n• Complex project: 3-6 weeks\n• Landing page: 5-7 business days\n• SEO: results visible in 3-6 months\n\nWhat project do you have in mind?'
-    : 'Les délais dépendent du projet :\n\n• Site simple : 10-15 jours ouvrés\n• Projet complexe : 3-6 semaines\n• Landing page : 5-7 jours ouvrés\n• SEO : résultats visibles en 3-6 mois\n\nQuel projet avez-vous en tête ?',
-  human: (lang) => lang === 'en'
-    ? 'No problem! You can reach our team:\n\n📱 WhatsApp: +229 93 28 82 12\n📧 Email: contact@primeimpactagency.com\n\nOur team responds within 24h. Want to leave your contact info here too?'
-    : 'Pas de problème ! Vous pouvez joindre l\'équipe :\n\n📱 WhatsApp : +229 93 28 82 12\n📧 Email : contact@primeimpactagency.com\n\nL\'équipe répond sous 24h. Vous voulez laisser vos coordonnées ici aussi ?',
-};
-
-// ─── Gemini Client ──────────────────────────────────────────
-let genAI = null;
+// ─── Claude Client (Anthropic API) ──────────────────────────
 let initError = null;
 
-function initGemini() {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    initError = 'GEMINI_API_KEY not set';
-    console.error('[CHAT-KB] GEMINI_API_KEY not set');
-    return false;
+function getApiKey() {
+  const key = process.env.ANTHROPIC_API_KEY;
+  if (!key) {
+    initError = 'ANTHROPIC_API_KEY not set';
+    console.error('[CHAT-KB] ANTHROPIC_API_KEY not set');
+    return null;
   }
-  try {
-    genAI = new GoogleGenAI({ apiKey });
-    initError = null;
-    console.log('[CHAT-KB] Gemini initialized OK, key starts with:', apiKey.substring(0, 6));
-    return true;
-  } catch (e) {
-    initError = e.message;
-    console.error('[CHAT-KB] Gemini init error:', e.message);
-    return false;
-  }
+  return key;
 }
 
-// ─── Gemini Response ────────────────────────────────────────
-async function askGemini(text, history, lang) {
-  if (!genAI) {
-    if (!initGemini()) return null;
-  }
+// ─── Claude Response ────────────────────────────────────────
+async function askClaude(text, history, lang) {
+  const apiKey = getApiKey();
+  if (!apiKey) return null;
+
+  // Build messages for Claude's API format
+  const messages = (history || []).map(m => ({
+    role: m.sender === 'visitor' ? 'user' : 'assistant',
+    content: m.text,
+  })).slice(-10);
+
+  messages.push({ role: 'user', content: text });
 
   try {
-    const messages = (history || []).map(m => ({
-      role: m.sender === 'visitor' ? 'user' : 'model',
-      parts: [{ text: m.text }],
-    })).slice(-10);
-
-    messages.push({ role: 'user', parts: [{ text }] });
-
-    const result = await genAI.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: messages,
-      config: {
-        systemInstruction: SYSTEM_PROMPT,
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
       },
+      body: JSON.stringify({
+        model: 'claude-3-haiku-20240307',
+        max_tokens: 150,
+        system: SYSTEM_PROMPT,
+        messages,
+      }),
     });
-    const responseText = result.text;
-    console.log('[CHAT-KB] Gemini response OK, length:', responseText ? responseText.length : 0);
-    return responseText || null;
+
+    if (!res.ok) {
+      const errBody = await res.text();
+      console.error('[CHAT-KB] Claude API error:', res.status, errBody);
+      return null;
+    }
+
+    const data = await res.json();
+    const responseText = data.content?.[0]?.text || null;
+    console.log('[CHAT-KB] Claude response OK, length:', responseText ? responseText.length : 0);
+    return responseText;
   } catch (e) {
-    console.error('[CHAT-KB] Gemini error:', e.message, e.status || '', e.code || '');
+    console.error('[CHAT-KB] Claude fetch error:', e.message);
     return null;
   }
 }
 
 // ─── Main: Generate Response ────────────────────────────────
 async function generateResponse(text, lang, history) {
-  // Check for quick replies first (greeting, thanks, help)
-  const quickIntent = detectQuickReply(text);
-  if (quickIntent && QUICK_RESPONSES[quickIntent]) {
-    const responseText = QUICK_RESPONSES[quickIntent](lang);
-    return { text: responseText, intent: quickIntent, source: 'quick' };
+  // Check for quick replies first (gratuit, 0 appel API)
+  const rule = match(text);
+  if (rule) {
+    const responseText = rule.reply(lang);
+    return { text: responseText, intent: rule.intent, source: 'quick' };
   }
 
-  // Try Gemini AI
-  const geminiResponse = await askGemini(text, history, lang);
-  if (geminiResponse) {
-    return { text: geminiResponse, intent: 'ai', source: 'gemini' };
+  // Try Claude AI
+  const claudeResponse = await askClaude(text, history, lang);
+  if (claudeResponse) {
+    return { text: claudeResponse, intent: 'ai', source: 'claude' };
   }
 
-  // Fallback: Gemini indisponible — message d'attente
+  // Fallback: Claude indisponible — message d'attente
   const fallback = lang === 'en'
     ? 'Thanks for your question! A member of our team will respond to you shortly.\n\nIn the meantime, you can also reach us directly:\n📱 WhatsApp: ' + CONTACT.whatsappNum + '\n📧 Email: ' + CONTACT.email
     : 'Merci pour votre question ! Un membre de notre équipe va vous répondre très rapidement.\n\nEn attendant, vous pouvez aussi nous joindre directement :\n📱 WhatsApp : ' + CONTACT.whatsappNum + '\n📧 Email : ' + CONTACT.email;
