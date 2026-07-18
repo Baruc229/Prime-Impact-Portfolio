@@ -4,7 +4,7 @@
    Fallback sur les réponses pré-écrites si l'API échoue
    ============================================================ */
 
-const { match } = require('./quick-replies');
+const { match, normalize } = require('./quick-replies');
 
 const CONTACT = {
   whatsapp: 'https://wa.me/22993288212',
