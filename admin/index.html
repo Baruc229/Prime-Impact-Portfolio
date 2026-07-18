@@ -756,16 +756,24 @@ function debounceRefresh() { clearTimeout(debounceTimer); debounceTimer = setTim
 
 async function refresh() {
   if (!authToken) return;
-  if (!document.getElementById('view-dashboard').classList.contains('active')) return;
+  const view = document.querySelector('.view.active');
+  if (!view) return;
   const btn = document.getElementById('refreshBtn');
   btn.innerHTML = '<i class="fa-solid fa-rotate fa-spin"></i>';
-  const search = document.getElementById('searchInput').value.trim();
-  const [listData, stats] = await Promise.all([
-    fetchAPI('/submissions?page=' + currentPage + '&limit=50' + (currentFilter ? '&form_type=' + currentFilter : '')),
-    fetchAPI('/stats')
-  ]);
-  if (stats) updateStats(stats);
-  if (listData) { renderTable(listData.submissions, search); renderPagination(listData); }
+  const viewId = view.id;
+
+  if (viewId === 'view-dashboard') {
+    const search = document.getElementById('searchInput').value.trim();
+    const [listData, stats] = await Promise.all([
+      fetchAPI('/submissions?page=' + currentPage + '&limit=50' + (currentFilter ? '&form_type=' + currentFilter : '')),
+      fetchAPI('/stats')
+    ]);
+    if (stats) updateStats(stats);
+    if (listData) { renderTable(listData.submissions, search); renderPagination(listData); }
+  } else if (viewId === 'view-blog-newsletter') {
+    loadNewsletters();
+  }
+
   document.getElementById('lastRefresh').textContent = new Date().toLocaleTimeString('fr-FR');
   btn.innerHTML = '<i class="fa-solid fa-rotate"></i> Actualiser';
 }
