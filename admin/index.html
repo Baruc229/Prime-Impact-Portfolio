@@ -1,7 +1,8 @@
 <!DOCTYPE html><html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net https://cdn.tiny.cloud 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://cdn.tiny.cloud 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src 'self' data: blob:; connect-src 'self'; form-action 'self'; base-uri 'self';">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net https://cdn.tiny.cloud 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://cdn.tiny.cloud 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src 'self' data: blob:; connect-src 'self' http://localhost:* https:; form-action 'self'; base-uri 'self';">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PIA Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -626,6 +627,8 @@ let currentId = null;
 let currentFormat = 'csv';
 let refreshInterval = null;
 let debounceTimer = null;
+let blogDebounceTimer = null;
+let currentSort = 'desc';
 let authToken = sessionStorage.getItem('pia_admin_token') || '';
 let editingPostId = null;
 let _editorToken = 0;
@@ -700,6 +703,7 @@ const icons = {
 
 function switchView(name) {
   const viewId = name.startsWith('dashboard-') ? 'dashboard' : name;
+  if (name !== 'chat') stopChatPolling();
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-' + viewId).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -760,7 +764,8 @@ async function logout() {
   document.getElementById('app').style.display = 'none';
   document.getElementById('loginOverlay').style.display = 'flex';
   clearInterval(refreshInterval);
-  if (typeof tinymce !== 'undefined' && tinymce.get('peContent')) tinymce.get('peContent').remove();
+  stopChatPolling();
+  if (typeof tinymce !== 'undefined') tinymce.remove('#peContent');
 }
 
 document.getElementById('passwordInput').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
@@ -859,8 +864,6 @@ function sortByDate() {
   if (authToken) refresh();
 }
 
-let currentSort = 'desc';
-
 function setFilter(btn) {
   document.querySelectorAll('#view-dashboard .filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -940,8 +943,15 @@ async function sendEmail() {
   btn.disabled = false; btn.innerHTML = 'Envoyer <i class="fa-solid fa-paper-plane"></i>';
 }
 
-document.getElementById('detailModal').addEventListener('click', e => { if (e.target === document.getElementById('detailModal')) closeDetail(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', function(e) { if (e.target === this) { this.classList.remove('open'); } });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const open = document.querySelector('.modal-overlay.open');
+    if (open) open.classList.remove('open');
+  }
+});
 
 // ─── BLOG: Posts ──────────────────────────────────────────────
 let blogFilter = '';
@@ -957,8 +967,8 @@ function setBlogFilter(btn) {
 }
 
 function debounceBlogRefresh() {
-  clearTimeout(debounceTimer);
-  debounceTimer = setTimeout(() => { blogSearchTerm = document.getElementById('blogSearch').value.trim(); blogPage = 1; loadBlogPosts(); }, 300);
+  clearTimeout(blogDebounceTimer);
+  blogDebounceTimer = setTimeout(() => { blogSearchTerm = document.getElementById('blogSearch').value.trim(); blogPage = 1; loadBlogPosts(); }, 300);
 }
 
 async function loadBlogPosts() {
@@ -1543,7 +1553,9 @@ function renderChatSessions() {
 }
 
 function formatAdminTime(ts) {
+  if (!ts) return '—';
   const d = new Date(ts);
+  if (isNaN(d.getTime())) return '—';
   const now = new Date();
   const diff = now - d;
   if (diff < 60000) return 'À l\'instant';
@@ -1663,9 +1675,6 @@ if (authToken) {
   init();
 }
 
-document.querySelectorAll('.modal-overlay').forEach(m => {
-  m.addEventListener('click', function(e) { if (e.target === this) { this.classList.remove('open'); } });
-});
 </script>
 </body>
 </html>
