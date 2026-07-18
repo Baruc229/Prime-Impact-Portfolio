@@ -305,6 +305,7 @@ async function fetchAPI(url) {
 }
 
 async function init() {
+  console.log('[BLOG] init start');
   const [postsData, badgesData, authorsData] = await Promise.all([
     fetchAPI('/api/blog/posts?status=published&lang=' + currentLang + '&limit=200'),
     fetchAPI('/api/blog/badges'),
@@ -314,6 +315,7 @@ async function init() {
   badges = badgesData || [];
   authors = authorsData || [];
   filteredPosts = [...allPosts];
+  console.log('[BLOG] posts:', allPosts.length, 'badges:', badges.length);
 
   renderSidebarCategories();
   renderPosts();
@@ -503,6 +505,7 @@ async function toggleLike(el, slug) {
       body: JSON.stringify({ likesCount: current })
     });
   } catch(e) {}
+}
 
 async function renderPopular() {}
 
