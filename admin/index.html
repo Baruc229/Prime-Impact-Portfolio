@@ -333,6 +333,9 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
     <nav class="sidebar-nav">
       <div class="nav-label">Formulaires</div>
       <a class="nav-item active" data-view="dashboard" onclick="switchView('dashboard')"><i class="fa-solid fa-chart-simple"></i> <span>Dashboard</span></a>
+      <a class="nav-item" data-view="dashboard-contact" onclick="switchView('dashboard-contact')"><i class="fa-solid fa-message"></i> <span>Contact</span></a>
+      <a class="nav-item" data-view="dashboard-devis" onclick="switchView('dashboard-devis')"><i class="fa-solid fa-file-invoice"></i> <span>Devis</span></a>
+      <a class="nav-item" data-view="dashboard-order" onclick="switchView('dashboard-order')"><i class="fa-solid fa-cart-shopping"></i> <span>Commande</span></a>
       <a class="nav-item" data-view="export" onclick="switchView('export')"><i class="fa-solid fa-download"></i> <span>Export</span></a>
       <div class="nav-divider"></div>
       <div class="nav-label">Communication</div>
@@ -379,6 +382,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
         <button class="filter-btn" data-filter="devis" onclick="setFilter(this)">Devis</button>
         <button class="filter-btn" data-filter="order" onclick="setFilter(this)">Commande</button>
         <div class="search-wrap"><i class="fa-solid fa-search"></i><input class="search-input" id="searchInput" placeholder="Rechercher..." oninput="debounceRefresh()"></div>
+        <button class="btn-ghost" onclick="markAllRead()" title="Marquer tout comme lu"><i class="fa-solid fa-check-double"></i> Tout lu</button>
       </div>
       <div class="table-wrap">
         <table><thead><tr><th>Type</th><th>Nom</th><th>Email</th><th>Sujet / Service</th><th>Date</th><th>Source</th></tr></thead><tbody id="tableBody"><tr><td colspan="6" class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Chargement...</p></td></tr></tbody></table>
@@ -666,7 +670,8 @@ async function fetchAPI(url, opts = {}) {
 }
 
 const titles = {
-  dashboard: 'Dashboard', 'export': 'Export',
+  dashboard: 'Dashboard', 'dashboard-contact': 'Contact', 'dashboard-devis': 'Devis', 'dashboard-order': 'Commande',
+  'export': 'Export',
   'blog-posts': 'Articles', 'blog-comments': 'Commentaires & Avis',
   'blog-badges': 'Catégories & Badges', 'blog-authors': 'Auteurs',
   'blog-newsletter': 'Newsletter', 'blog-stats': 'Statistiques du blog',
@@ -680,7 +685,8 @@ function toggleSidebar() {
   overlay.classList.toggle('open');
 }
 const icons = {
-  dashboard: 'chart-simple', 'export': 'download',
+  dashboard: 'chart-simple', 'dashboard-contact': 'message', 'dashboard-devis': 'file-invoice', 'dashboard-order': 'cart-shopping',
+  'export': 'download',
   'blog-posts': 'newspaper', 'blog-comments': 'comments',
   'blog-badges': 'tags', 'blog-authors': 'users',
   'blog-newsletter': 'envelope', 'blog-stats': 'chart-bar',
@@ -688,8 +694,9 @@ const icons = {
 };
 
 function switchView(name) {
+  const viewId = name.startsWith('dashboard-') ? 'dashboard' : name;
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-' + name).classList.add('active');
+  document.getElementById('view-' + viewId).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   const nav = document.querySelector('.nav-item[data-view="' + name + '"]');
   if (nav) nav.classList.add('active');
@@ -697,6 +704,13 @@ function switchView(name) {
   if (window.innerWidth <= 768) {
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('sidebarOverlay').classList.remove('open');
+  }
+  if (name.startsWith('dashboard-')) {
+    const type = name.replace('dashboard-', '');
+    document.querySelectorAll('#view-dashboard .filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === type));
+    currentFilter = type;
+    currentPage = 1;
+    if (authToken) refresh();
   }
   if (name === 'export') refreshExportCounts();
   if (name === 'blog-posts') { loadBlogPosts(); }
@@ -772,6 +786,18 @@ async function refresh() {
     if (listData) { renderTable(listData.submissions, search); renderPagination(listData); }
   } else if (viewId === 'view-blog-newsletter') {
     loadNewsletters();
+  } else if (viewId === 'view-blog-posts') {
+    loadBlogPosts();
+  } else if (viewId === 'view-blog-comments') {
+    loadComments();
+  } else if (viewId === 'view-blog-badges') {
+    loadBadges();
+  } else if (viewId === 'view-blog-authors') {
+    loadAuthors();
+  } else if (viewId === 'view-blog-stats') {
+    loadBlogStats();
+  } else if (viewId === 'view-chat') {
+    loadChatSessions();
   }
 
   document.getElementById('lastRefresh').textContent = new Date().toLocaleTimeString('fr-FR');
@@ -806,6 +832,11 @@ function renderPagination(data) {
 }
 
 function goPage(page) { currentPage = page; if (authToken) refresh(); }
+
+async function markAllRead() {
+  const data = await fetchAPI('/submissions/read-all', { method: 'POST' });
+  if (data && !data._error && authToken) refresh();
+}
 
 function setFilter(btn) {
   document.querySelectorAll('#view-dashboard .filter-btn').forEach(b => b.classList.remove('active'));
