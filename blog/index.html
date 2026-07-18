@@ -24,66 +24,125 @@
 [data-theme="dark"]{--bg-main:#fff;--bg-secondary:#F7F7F7;--bg-tertiary:#e5e7eb;--text-main:#1c1c1e;--text-muted:#6B7280;--accent-blue:#1B3A6B;--accent-gold:#F5A623;--border-color:rgba(0,0,0,0.06);--shadow-soft:0 2px 12px rgba(0,0,0,0.04);--shadow-heavy:0 4px 24px rgba(27,58,107,0.1);--glass-bg:#fff;--glass-bg-solid:#fff;--bg-card-warm:#fff}
 body{font-family:var(--font-main)!important;background:var(--bg-main)!important;color:var(--text-main);opacity:1!important}
 h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
+
+/* ─── HERO ─────────────────────────────────── */
 .blog-header{padding:140px 0 50px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--bg-main)0%,rgba(27,58,107,0.02)100%)}
 .blog-header::before{content:'';position:absolute;top:-40%;right:-10%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(27,58,107,0.04)0%,transparent 70%);pointer-events:none}
 .blog-header .container{position:relative;z-index:1}
 .blog-header h1{font-size:clamp(34px,5vw,56px);color:var(--accent-blue);margin-bottom:8px}
 .blog-header p{color:var(--text-muted);font-size:16px;max-width:520px;margin:0 auto}
-.blog-tools{max-width:1200px;margin:0 auto 32px;padding:0 24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.blog-search{flex:1;min-width:200px;position:relative}
-.blog-search i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:14px;pointer-events:none}
-.blog-search input{width:100%;padding:12px 16px 12px 42px;border-radius:var(--radius-md);border:1px solid var(--border-color);background:var(--bg-main);color:var(--text-main);font-size:14px;font-family:var(--font-main);outline:none;transition:border-color .2s}
-.blog-search input:focus{border-color:var(--accent-blue)}
-.blog-search input::placeholder{color:var(--text-muted)}
-.badge-filters{display:flex;gap:8px;flex-wrap:wrap;overflow-x:auto;padding-bottom:4px}
-.badge-filter{padding:8px 18px;border-radius:var(--radius-sm);border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--accent-blue);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-main);transition:all .2s;white-space:nowrap}
-.badge-filter:hover{border-color:var(--accent-gold);color:var(--accent-gold)}
-.badge-filter.active{background:var(--accent-blue);color:#fff;border-color:var(--accent-blue)}
-.badge-filter.is-resource{position:relative}
-.badge-filter.is-resource::after{content:'\f019';font-family:'Font Awesome 6 Free';font-weight:900;font-size:10px;margin-left:6px;opacity:0;transition:opacity .2s}
-.badge-filter.is-resource:hover::after,.badge-filter.is-resource.active::after{opacity:1}
-.badge-filter.is-resource.active{background:rgba(27,58,107,0.08);color:var(--accent-blue);border-color:var(--accent-blue)}
-.badge-filter.is-resource.active::after{opacity:1}
-.blog-container{max-width:1200px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:1fr 320px;gap:40px}
+
+/* ─── NEWSLETTER BANDEAU PLEINE LARGEUR ──── */
+.newsletter-strip{background:#0D1B35;padding:40px 24px;margin-bottom:40px}
+.newsletter-strip .container{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.newsletter-strip .ns-left{flex:1}
+.newsletter-strip h2{font-size:22px;color:#fff;margin-bottom:6px;font-weight:700}
+.newsletter-strip p{color:rgba(255,255,255,0.65);font-size:14px;margin:0}
+.newsletter-strip .ns-form{display:flex;gap:8px;flex-shrink:0;min-width:360px}
+.newsletter-strip .ns-form input{flex:1;padding:12px 16px;border-radius:var(--radius-sm);border:none;background:rgba(255,255,255,0.1);color:#fff;font-size:14px;font-family:var(--font-main);outline:none;transition:background .2s;min-width:0}
+.newsletter-strip .ns-form input::placeholder{color:rgba(255,255,255,0.4)}
+.newsletter-strip .ns-form input:focus{background:rgba(255,255,255,0.18)}
+.newsletter-strip .ns-form button{padding:12px 24px;border-radius:var(--radius-sm);border:none;background:var(--accent-gold);color:#0D1B35;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-main);transition:opacity .2s;white-space:nowrap}
+.newsletter-strip .ns-form button:hover{opacity:.85}
+.newsletter-strip .ns-form button:disabled{opacity:.5;cursor:default}
+.newsletter-strip .ns-msg{font-size:13px;margin-top:8px}
+.newsletter-strip .ns-msg.success{color:#4ade80}
+.newsletter-strip .ns-msg.error{color:#f87171}
+
+/* ─── LAYOUT : SIDEBAR GAUCHE + CONTENU DROITE ─ */
+.blog-container{max-width:1200px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:280px 1fr;gap:40px}
+.blog-sidebar{display:flex;flex-direction:column;gap:20px}
+.sidebar-card{background:var(--bg-main);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;box-shadow:var(--shadow-soft)}
+.sidebar-card h3{font-size:14px;color:var(--text-main);margin-bottom:14px;font-weight:700;font-family:var(--font-heading)}
+
+/* search */
+.sidebar-search{position:relative}
+.sidebar-search i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:13px;pointer-events:none}
+.sidebar-search input{width:100%;padding:10px 12px 10px 36px;border-radius:var(--radius-sm);border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-main);font-size:13px;font-family:var(--font-main);outline:none;transition:border-color .2s}
+.sidebar-search input:focus{border-color:var(--accent-blue)}
+.sidebar-search input::placeholder{color:var(--text-muted)}
+
+/* toggle grid/list */
+.view-toggle{display:flex;gap:0;border:1px solid var(--border-color);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:14px}
+.view-toggle button{flex:1;padding:8px 0;border:none;background:transparent;color:var(--text-muted);font-size:13px;cursor:pointer;font-family:var(--font-main);transition:all .15s;display:flex;align-items:center;justify-content:center;gap:4px}
+.view-toggle button i{font-size:13px}
+.view-toggle button:hover{color:var(--accent-blue)}
+.view-toggle button.active{background:var(--accent-blue);color:#fff}
+
+/* categories */
+.category-list{display:flex;flex-direction:column;gap:2px}
+.category-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--radius-sm);cursor:pointer;transition:all .15s;border:none;background:transparent;width:100%;text-align:left;font-family:var(--font-main);font-size:13px;color:var(--text-muted)}
+.category-item:hover{background:var(--bg-secondary);color:var(--text-main)}
+.category-item.active{background:rgba(27,58,107,0.06);color:var(--accent-blue);font-weight:600}
+.category-item .cat-name{flex:1}
+.category-item .cat-count{font-size:11px;color:var(--text-muted);background:var(--bg-secondary);padding:1px 8px;border-radius:20px;flex-shrink:0}
+.category-item.active .cat-count{background:rgba(27,58,107,0.12);color:var(--accent-blue)}
+.category-item .cat-icon{width:6px;height:6px;border-radius:50%;flex-shrink:0;display:none}
+.category-item.active .cat-icon{display:block}
+.category-item.is-resource{position:relative}
+.category-item.is-resource .cat-name::after{content:'\f019';font-family:'Font Awesome 6 Free';font-weight:900;font-size:10px;margin-left:6px}
+.category-item.is-resource.active{background:rgba(245,166,35,0.08)}
+.category-item.is-resource.active .cat-count{background:rgba(245,166,35,0.15);color:var(--accent-gold)}
+
+/* ─── FEATURED ARTICLE ────────────────────── */
 .blog-main{min-width:0}
-.featured-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-color);background:var(--bg-main);box-shadow:var(--shadow-soft);margin-bottom:40px;transition:box-shadow .3s}
+.featured-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-color);background:var(--bg-main);box-shadow:var(--shadow-soft);margin-bottom:32px;transition:box-shadow .3s}
 .featured-card:hover{box-shadow:var(--shadow-heavy)}
 .featured-image{position:relative;aspect-ratio:16/10;overflow:hidden}
 .featured-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .featured-card:hover .featured-image img{transform:scale(1.03)}
 .featured-badges{position:absolute;top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap;z-index:2}
 .featured-badge{padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;color:#fff;pointer-events:none}
-.featured-badge.is-resource{background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,0.6);display:inline-flex;align-items:center;gap:4px}
+.featured-badge.is-resource{background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.6);display:inline-flex;align-items:center;gap:4px}
 .featured-badge.is-resource i{font-size:10px}
 .featured-content{padding:30px;display:flex;flex-direction:column;justify-content:center}
 .featured-content h2{font-size:24px;margin-bottom:10px;color:var(--text-main)}
 .featured-content h2 a{color:inherit;text-decoration:none}
 .featured-content h2 a:hover{color:var(--accent-blue)}
 .featured-content p{font-size:14px;line-height:1.6;color:var(--text-muted);margin-bottom:16px}
-.featured-meta{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--text-muted)}
+.featured-meta{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--text-muted);flex-wrap:wrap}
 .featured-meta img{width:28px;height:28px;border-radius:50%;object-fit:cover}
-.posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px}
+.featured-meta .sep{color:var(--border-color)}
+.featured-meta .meta-likes{display:flex;align-items:center;gap:4px;color:var(--text-muted);font-size:12px;cursor:pointer;transition:color .2s}
+.featured-meta .meta-likes:hover{color:var(--accent-blue)}
+.featured-meta .meta-likes.is-liked{color:var(--accent-blue);font-weight:600}
+.featured-meta .meta-likes.is-liked i{font-weight:900}
+
+/* ─── POSTS GRID / LIST ───────────────────── */
+.posts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:32px}
+.posts-grid.is-list{grid-template-columns:1fr}
 .post-card{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-color);background:var(--bg-main);box-shadow:var(--shadow-soft);transition:all .3s;cursor:pointer;display:flex;flex-direction:column}
 .post-card:hover{box-shadow:var(--shadow-heavy);transform:translateY(-3px)}
+.posts-grid.is-list .post-card{flex-direction:row}
 .post-card-image{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg-tertiary);flex-shrink:0}
 .post-card-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .post-card:hover .post-card-image img{transform:scale(1.05)}
+.posts-grid.is-list .post-card-image{width:280px;aspect-ratio:16/11;flex-shrink:0}
 .post-card-badges{position:absolute;top:10px;left:10px;display:flex;gap:4px;flex-wrap:wrap;z-index:2}
-.post-card-badge{padding:3px 12px;border-radius:20px;font-size:10px;font-weight:600;color:#fff;pointer-events:none;transition:opacity .2s}
-.post-card-badge.is-resource{background:rgba(255,255,255,0.15);backdrop-filter:blur(6px);border:1.5px solid rgba(255,255,255,0.6);display:inline-flex;align-items:center;gap:3px}
+.post-card-badge{padding:3px 12px;border-radius:20px;font-size:10px;font-weight:600;color:#fff;pointer-events:none}
+.post-card-badge.is-resource{background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.6);display:inline-flex;align-items:center;gap:3px}
 .post-card-badge.is-resource i{font-size:9px}
 .post-card-body{padding:18px;flex:1;display:flex;flex-direction:column}
+.posts-grid.is-list .post-card-body{padding:16px 20px}
 .post-card-body h3{font-size:16px;margin-bottom:8px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .post-card-body h3 a{color:var(--text-main);text-decoration:none}
 .post-card-body h3 a:hover{color:var(--accent-blue)}
-.post-card-body p{font-size:13px;color:var(--text-muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;flex:1}
+.post-card-body p{font-size:13px;color:var(--text-muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:10px;flex:1}
+.posts-grid.is-list .post-card-body p{-webkit-line-clamp:2}
 .post-card-read-more{font-size:12px;font-weight:600;color:var(--accent-blue);text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:gap .2s;margin-top:auto}
 .post-card-read-more i{font-size:10px;transition:transform .2s}
 .post-card:hover .post-card-read-more i{transform:translateX(3px)}
 .post-card-footer{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border-color);padding:12px 18px;flex-shrink:0;min-height:44px}
-.post-card-footer .footer-avatar{width:24px;height:24px;border-radius:50%;object-fit:cover;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.posts-grid.is-list .post-card-footer{padding:10px 18px}
+.post-card-footer .footer-avatar{width:24px;height:24px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .post-card-footer .footer-author{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.post-card-footer .card-footer-right{margin-left:auto;display:flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0}
+.post-card-footer .card-footer-right{margin-left:auto;display:flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0}
+.post-card-likes{display:flex;align-items:center;gap:3px;font-size:11px;color:var(--text-muted);cursor:pointer;transition:color .2s}
+.post-card-likes:hover{color:var(--accent-blue)}
+.post-card-likes.is-liked{color:var(--accent-blue);font-weight:600}
+.post-card-likes.is-liked i{font-weight:900}
+
+/* ─── PAGINATION ──────────────────────────── */
 .pagination{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:8px}
 .pagination button{padding:10px 18px;border-radius:var(--radius-sm);border:1px solid var(--border-color);background:var(--bg-main);color:var(--text-muted);font-size:14px;cursor:pointer;font-family:var(--font-main);transition:all .15s}
 .pagination button:hover{border-color:var(--accent-blue);color:var(--accent-blue)}
@@ -92,45 +151,22 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .pagination .page-prev-next{background:transparent;border-color:transparent;font-size:13px;color:var(--text-muted)}
 .pagination .page-prev-next:hover{color:var(--accent-blue)}
 
-.blog-sidebar{display:flex;flex-direction:column;gap:24px}
-.sidebar-card{background:var(--bg-main);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:24px;box-shadow:var(--shadow-soft)}
-.sidebar-card h3{font-size:16px;color:var(--accent-blue);margin-bottom:16px;font-weight:700}
-.popular-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-color);cursor:pointer}
-.popular-item:last-child{border-bottom:none}
-.popular-num{width:28px;height:28px;border-radius:50%;background:var(--bg-secondary);color:var(--accent-blue);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.popular-item h4{font-size:13px;font-weight:600;margin-bottom:2px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.popular-item h4 a{color:var(--text-main);text-decoration:none}
-.popular-item h4 a:hover{color:var(--accent-blue)}
-.popular-item span{font-size:11px;color:var(--text-muted)}
-.sidebar-cta{background:#0D1B35!important;border-color:#0D1B35!important;text-align:center}
-.sidebar-cta h3{color:#fff!important}
-.sidebar-cta p{color:rgba(255,255,255,0.7);font-size:13px;margin-bottom:18px;line-height:1.5}
-.sidebar-cta .newsletter-form{display:flex;gap:8px}
-.sidebar-cta .newsletter-form input{flex:1;padding:10px 14px;border-radius:var(--radius-sm);border:none;background:rgba(255,255,255,0.1);color:#fff;font-size:13px;font-family:var(--font-main);outline:none;transition:background .2s;min-width:0}
-.sidebar-cta .newsletter-form input::placeholder{color:rgba(255,255,255,0.4)}
-.sidebar-cta .newsletter-form input:focus{background:rgba(255,255,255,0.18)}
-.sidebar-cta .newsletter-form button{padding:10px 16px;border-radius:var(--radius-sm);border:none;background:var(--accent-gold);color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-main);transition:opacity .2s;white-space:nowrap;flex-shrink:0}
-.sidebar-cta .newsletter-form button:hover{opacity:.85}
-.sidebar-cta .newsletter-form button:disabled{opacity:.5;cursor:default}
-.sidebar-cta .newsletter-msg{font-size:12px;margin-top:10px;line-height:1.4;min-height:0;transition:all .2s}
-.sidebar-cta .newsletter-msg.success{color:#4ade80}
-.sidebar-cta .newsletter-msg.error{color:#f87171}
-.empty-blog{text-align:center;padding:80px 20px;color:var(--text-muted);grid-column:1/-1}
+/* ─── EMPTY ──────────────────────────────── */
+.empty-blog{text-align:center;padding:80px 20px;color:var(--text-muted)}
 .empty-blog i{font-size:48px;margin-bottom:12px;opacity:.4}
 .empty-blog h3{font-size:20px;color:var(--text-main);margin-bottom:6px}
 
-@media(max-width:1024px){
-  .blog-container{grid-template-columns:1fr;padding:0 20px 60px}
-  .blog-sidebar{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
-  .posts-grid{grid-template-columns:repeat(2,1fr);gap:20px}
-  .pagination button{padding:8px 14px;font-size:13px}
+/* ─── RESPONSIVE ──────────────────────────── */
+@media(max-width:1100px){
+  .blog-container{grid-template-columns:1fr}
+  .blog-sidebar{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .posts-grid{grid-template-columns:repeat(2,1fr)}
+  .newsletter-strip .container{flex-direction:column;text-align:center}
+  .newsletter-strip .ns-form{min-width:0;width:100%;max-width:440px}
 }
 @media(max-width:768px){
   .blog-header{padding:100px 0 30px}
   .blog-header h1{font-size:clamp(28px,8vw,34px)}
-  .blog-tools{padding:0 20px;flex-direction:column;gap:10px}
-  .badge-filters{flex-wrap:nowrap;overflow-x:auto;width:100%;-webkit-overflow-scrolling:touch;padding-bottom:4px}
-  .badge-filter{flex-shrink:0}
   .featured-card{grid-template-columns:1fr}
   .featured-image{aspect-ratio:16/9}
   .featured-content{padding:20px}
@@ -138,11 +174,17 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
   .post-card-body{padding:14px}
   .post-card-footer{padding:10px 14px;font-size:11px}
   .posts-grid{grid-template-columns:1fr;gap:16px}
-  .blog-sidebar{grid-template-columns:1fr;gap:20px}
+  .posts-grid.is-list .post-card{flex-direction:column}
+  .posts-grid.is-list .post-card-image{width:100%}
+  .blog-sidebar{grid-template-columns:1fr;gap:16px}
   .blog-container{padding:0 16px 40px}
   .pagination{gap:4px}
   .pagination button{padding:8px 12px;font-size:12px;min-width:36px}
   .pagination .page-prev-next{padding:8px 10px}
+  .newsletter-strip{padding:28px 16px}
+  .newsletter-strip h2{font-size:18px}
+  .newsletter-strip .ns-form{flex-direction:column;gap:6px}
+  .sidebar-card{padding:16px}
 }
 @media(max-width:480px){
   .blog-header{padding:90px 0 24px}
@@ -151,10 +193,6 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
   .featured-content{padding:16px}
   .featured-content h2{font-size:18px}
   .featured-content p{font-size:13px}
-  .sidebar-card{padding:18px}
-  .popular-item{padding:8px 0}
-  .sidebar-cta .newsletter-form{flex-direction:column;gap:6px}
-  .pagination button{padding:6px 10px;font-size:11px;min-width:32px}
 }
 </style>
 </head><body>
@@ -166,43 +204,64 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
   </div>
 </section>
 
-<div class="blog-tools">
-  <div class="blog-search">
-    <i class="fa-solid fa-search"></i>
-    <input type="text" id="searchInput" placeholder="Rechercher un article..." data-i18n="blog.archive.search" data-i18n-ph="blog.archive.search">
-  </div>
-  <div class="badge-filters" id="badgeFilters">
-    <button class="badge-filter active" data-badge="" onclick="filterBadge(this)"><span data-i18n="blog.archive.all">Tous</span></button>
+<!-- Article à la une -->
+<div class="blog-container" style="padding-bottom:0">
+  <div class="blog-sidebar" style="display:none"></div>
+  <div class="blog-main">
+    <div class="featured-card" id="featuredCard" style="display:none"></div>
   </div>
 </div>
 
+<!-- Bandeau newsletter pleine largeur -->
+<div class="newsletter-strip" id="newsletterStrip">
+  <div class="container">
+    <div class="ns-left">
+      <h2 data-i18n="blog.sidebar.cta.title">Restez informé</h2>
+      <p data-i18n="blog.sidebar.cta.desc">Recevez nos derniers articles et conseils directement par email.</p>
+    </div>
+    <div class="ns-form">
+      <input type="email" id="nsEmail" placeholder="Votre email" data-i18n-ph="blog.sidebar.cta.placeholder">
+      <button id="nsBtn" onclick="subscribeNewsletter()" data-i18n="blog.sidebar.cta.btn">S'abonner</button>
+    </div>
+    <div class="ns-msg" id="nsMsg"></div>
+  </div>
+</div>
+
+<!-- Sidebar gauche + Grille droite -->
 <div class="blog-container">
+  <aside class="blog-sidebar">
+    <div class="sidebar-card" id="srchCard">
+      <div class="sidebar-search">
+        <i class="fa-solid fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Rechercher..." data-i18n-ph="blog.archive.search">
+      </div>
+    </div>
+    <div class="sidebar-card" id="viewCard">
+      <h3 data-i18n="blog.archive.view">Affichage</h3>
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="grid" onclick="switchView('grid')"><i class="fa-solid fa-grid-2"></i> Grille</button>
+        <button data-view="list" onclick="switchView('list')"><i class="fa-solid fa-list"></i> Liste</button>
+      </div>
+    </div>
+    <div class="sidebar-card" id="catCard">
+      <h3 data-i18n="blog.archive.categories">Catégories</h3>
+      <div class="category-list" id="categoryList">
+        <button class="category-item active" data-badge="" onclick="filterBadge(this)">
+          <span class="cat-name" data-i18n="blog.archive.all">Tous</span>
+          <span class="cat-count" id="totalCount">0</span>
+        </button>
+      </div>
+    </div>
+  </aside>
   <div class="blog-main" id="blogMain">
     <div class="empty-blog" id="emptyState" style="display:none">
       <i class="fa-solid fa-newspaper"></i>
       <h3 data-i18n="blog.archive.empty">Aucun article trouvé</h3>
       <p data-i18n="blog.archive.empty.sub">Revenez bientôt ou explorez d'autres catégories.</p>
     </div>
-    <div class="featured-card" id="featuredCard" style="display:none"></div>
     <div class="posts-grid" id="postsGrid"></div>
     <div class="pagination" id="pagination"></div>
   </div>
-
-  <aside class="blog-sidebar">
-    <div class="sidebar-card" id="popularCard">
-      <h3 data-i18n="blog.sidebar.popular">Articles populaires</h3>
-      <div id="popularList"><p style="font-size:13px;color:var(--text-muted)" data-i18n="blog.sidebar.loading">Chargement...</p></div>
-    </div>
-    <div class="sidebar-card sidebar-cta" id="newsletterCard" style="display:none">
-      <h3 data-i18n="blog.sidebar.cta.title">Restez informé</h3>
-      <p data-i18n="blog.sidebar.cta.desc">Recevez nos derniers articles et conseils directement par email.</p>
-      <div class="newsletter-form">
-        <input type="email" id="newsletterEmail" placeholder="Votre email" data-i18n-ph="blog.sidebar.cta.placeholder">
-        <button id="newsletterBtn" onclick="subscribeNewsletter()" data-i18n="blog.sidebar.cta.btn">S'abonner</button>
-      </div>
-      <div class="newsletter-msg" id="newsletterMsg"></div>
-    </div>
-  </aside>
 </div>
 </div>
 
@@ -220,6 +279,7 @@ let badges = [];
 let authors = [];
 let filteredPosts = [];
 let pageSize = 9;
+let viewMode = 'grid';
 
 function esc(str) { if (str == null) return ''; const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
 
@@ -258,9 +318,9 @@ async function init() {
   authors = authorsData || [];
   filteredPosts = [...allPosts];
 
-  renderBadges();
+  renderSidebarCategories();
   renderPosts();
-  renderSidebar();
+  renderPopular();
 
   document.getElementById('searchInput').addEventListener('input', function() {
     currentSearch = this.value.toLowerCase();
@@ -269,25 +329,33 @@ async function init() {
   });
 }
 
-function renderBadges() {
-  const container = document.getElementById('badgeFilters');
+function renderSidebarCategories() {
+  const container = document.getElementById('categoryList');
+  const allCount = allPosts.length;
+  document.getElementById('totalCount').textContent = allCount;
+
   badges.forEach(b => {
     const btn = document.createElement('button');
-    btn.className = 'badge-filter';
+    btn.className = 'category-item' + (b.type === 'resource' ? ' is-resource' : '');
     btn.dataset.badge = b.id;
-    btn.textContent = b.name;
-    btn.style.setProperty('--badge-color', b.color);
+    btn.innerHTML = '<span class="cat-name">' + esc(b.name) + '</span><span class="cat-count">' + (b.postCount || 0) + '</span>';
     btn.onclick = function() { filterBadge(this); };
     container.appendChild(btn);
   });
 }
 
 function filterBadge(btn) {
-  document.querySelectorAll('.badge-filter').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.category-item').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   currentBadge = btn.dataset.badge;
   currentPage = 1;
   filterAndRender();
+}
+
+function switchView(mode) {
+  viewMode = mode;
+  document.querySelectorAll('#viewToggle button').forEach(b => b.classList.toggle('active', b.dataset.view === mode));
+  renderPosts();
 }
 
 function filterAndRender() {
@@ -309,27 +377,37 @@ function renderPosts() {
   const grid = document.getElementById('postsGrid');
   const featured = document.getElementById('featuredCard');
   const empty = document.getElementById('emptyState');
+  const sidebar = document.querySelector('.blog-sidebar');
+
+  grid.className = 'posts-grid' + (viewMode === 'list' ? ' is-list' : '');
 
   if (filteredPosts.length === 0) {
     featured.style.display = 'none';
+    sidebar.style.display = 'flex';
     grid.innerHTML = '';
     empty.style.display = 'block';
     renderPagination();
     return;
   }
   empty.style.display = 'none';
+  sidebar.style.display = 'flex';
 
   const totalPages = Math.ceil(filteredPosts.length / pageSize);
   if (currentPage > totalPages) currentPage = totalPages;
 
   let displayPosts;
-  if (currentPage === 1) {
+
+  if (currentPage === 1 && viewMode === 'grid') {
     const featuredPost = filteredPosts[0];
     const featuredBadges = (featuredPost.badgeIds || []).map(id => badges.find(b => b.id === id)).filter(Boolean);
     featured.style.display = 'grid';
     featured.innerHTML = `
       <a href="/blog/${featuredPost.slug}" class="featured-image">
-        <div class="featured-badges">${featuredBadges.map(b => '<span class="featured-badge" style="background:' + b.color + '">' + esc(b.name) + '</span>').join('')}</div>
+        <div class="featured-badges">${featuredBadges.map(b => {
+          const cls = b.type === 'resource' ? ' featured-badge is-resource' : ' featured-badge';
+          const icon = b.type === 'resource' ? ' <i class="fa-solid fa-download"></i>' : '';
+          return '<span class="' + cls.trim() + '" style="background:' + b.color + '">' + esc(b.name) + icon + '</span>';
+        }).join('')}</div>
         <img src="${featuredPost.coverImage || '../assets/pia-logo-dark-sm.png'}" alt="${esc(featuredPost.title)}" loading="lazy">
       </a>
       <div class="featured-content">
@@ -338,10 +416,14 @@ function renderPosts() {
         <div class="featured-meta">
           ${(() => { const a = authors.find(aa => aa.id === featuredPost.authorId); return a && a.avatar ? '<img src="' + a.avatar + '" alt="">' : ''; })()}
           <span>${authors.find(a => a.id === featuredPost.authorId)?.name || 'PIA'}</span>
-          <span>·</span>
+          <span class="sep">·</span>
           <span>${formatDate(featuredPost.publishedAt)}</span>
-          <span>·</span>
+          <span class="sep">·</span>
           <span>${readingTime(featuredPost.content)}</span>
+          <span class="sep">·</span>
+          <span class="meta-likes${featuredPost.isLiked ? ' is-liked' : ''}" onclick="toggleLike(this, '${featuredPost.slug}')">
+            <i class="${featuredPost.isLiked ? 'fa-solid' : 'fa-regular'} fa-heart"></i> ${featuredPost.likesCount || 0}
+          </span>
         </div>
       </div>
     `;
@@ -360,7 +442,11 @@ function renderPosts() {
     return '<div class="post-card" onclick="window.location.href=\'/blog/' + post.slug + '\'">' +
       '<div class="post-card-image">' +
         '<img src="' + (post.coverImage || '../assets/pia-logo-dark-sm.png') + '" alt="' + esc(post.title) + '" loading="lazy">' +
-        '<div class="post-card-badges">' + postBadges.map(b => '<span class="post-card-badge" style="background:' + b.color + '">' + esc(b.name) + '</span>').join('') + '</div>' +
+        '<div class="post-card-badges">' + postBadges.map(b => {
+          const cls = b.type === 'resource' ? 'is-resource' : '';
+          const icon = b.type === 'resource' ? ' <i class="fa-solid fa-download"></i>' : '';
+          return '<span class="post-card-badge' + (cls ? ' ' + cls : '') + '" style="background:' + b.color + '">' + esc(b.name) + icon + '</span>';
+        }).join('') + '</div>' +
       '</div>' +
       '<div class="post-card-body">' +
         '<h3><a href="/blog/' + post.slug + '">' + esc(post.title) + '</a></h3>' +
@@ -368,12 +454,12 @@ function renderPosts() {
         '<a href="/blog/' + post.slug + '" class="post-card-read-more">' + (lang === 'fr' ? 'Lire plus' : 'Read more') + ' <i class="fa-solid fa-arrow-right"></i></a>' +
       '</div>' +
       '<div class="post-card-footer">' +
-        '<span class="footer-avatar">' + (author && author.avatar ? '<img src="' + author.avatar + '" alt="" style="width:24px;height:24px;border-radius:50%;object-fit:cover">' : '') + '</span>' +
+        '<span class="footer-avatar">' + (author && author.avatar ? '<img src="' + author.avatar + '" alt="" style="width:24px;...">' : '') + '</span>' +
         '<span class="footer-author">' + (author?.name || 'PIA') + '</span>' +
         '<span class="card-footer-right">' +
-          '<span>' + readingTime(post.content) + '</span>' +
-          '<span style="opacity:.3">·</span>' +
-          '<span>' + formatDate(post.publishedAt) + '</span>' +
+          '<span class="post-card-likes' + (post.isLiked ? ' is-liked' : '') + '" onclick="event.stopPropagation();toggleLike(this,\'' + post.slug + '\')">' +
+            '<i class="' + (post.isLiked ? 'fa-solid' : 'fa-regular') + ' fa-heart"></i> ' + (post.likesCount || 0) +
+          '</span>' +
         '</span>' +
       '</div>' +
     '</div>';
@@ -400,35 +486,36 @@ function goPage(page) {
   if (page < 1 || page > Math.ceil(filteredPosts.length / pageSize)) return;
   currentPage = page;
   renderPosts();
-  window.scrollTo({ top: document.getElementById('blogMain').offsetTop - 100, behavior: 'smooth' });
+  window.scrollTo({ top: document.getElementById('blogMain').offsetTop - 120, behavior: 'smooth' });
 }
 
-async function renderSidebar() {
-  const topPosts = [...allPosts].sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0)).slice(0, 5);
-  const list = document.getElementById('popularList');
-  if (topPosts.length === 0) {
-    list.innerHTML = '<p style="font-size:13px;color:var(--text-muted)">' + (lang === 'fr' ? 'Aucun article pour le moment.' : 'No articles yet.') + '</p>';
-    return;
-  }
-  list.innerHTML = topPosts.map((p, i) =>
-    '<div class="popular-item" onclick="window.location.href=\'/blog/' + p.slug + '\'">' +
-      '<div class="popular-num">' + (i + 1) + '</div>' +
-      '<div>' +
-        '<h4><a href="/blog/' + p.slug + '">' + esc(p.title) + '</a></h4>' +
-        '<span>' + formatDate(p.publishedAt) + '</span>' +
-      '</div>' +
-    '</div>'
-  ).join('');
-  document.getElementById('newsletterCard').style.display = 'block';
-}
+async function toggleLike(el, slug) {
+  const numEl = el.querySelector('.like-num') || el;
+  let current = parseInt(numEl.dataset.likes || el.dataset.likes || (numEl.textContent.trim().match(/\d+/)?.[0]) || 0);
+  const liked = el.classList.toggle('is-liked');
+  const i = el.querySelector('i');
+  i.className = liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+  current = liked ? current + 1 : Math.max(0, current - 1);
+  el.dataset.likes = current;
+  const match = numEl.textContent.trim().match(/\d+/);
+  numEl.textContent = numEl.textContent.replace(/\d+/, current);
+  try {
+    await fetch('/api/blog/posts?slug=' + slug, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ likesCount: current })
+    });
+  } catch(e) {}
+
+async function renderPopular() {}
 
 async function subscribeNewsletter() {
-  const input = document.getElementById('newsletterEmail');
-  const btn = document.getElementById('newsletterBtn');
-  const msg = document.getElementById('newsletterMsg');
+  const input = document.getElementById('nsEmail');
+  const btn = document.getElementById('nsBtn');
+  const msg = document.getElementById('nsMsg');
   const email = input.value.trim();
   if (!email || !email.includes('@')) {
-    msg.className = 'newsletter-msg error';
+    msg.className = 'ns-msg error';
     msg.textContent = lang === 'fr' ? 'Email invalide.' : 'Invalid email.';
     return;
   }
@@ -439,19 +526,19 @@ async function subscribeNewsletter() {
     const res = await fetch('/api/blog/newsletters', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, source: 'blog' })
+      body: JSON.stringify({ email, source: 'blog-archive' })
     });
     const data = await res.json();
     if (res.ok) {
-      msg.className = 'newsletter-msg success';
+      msg.className = 'ns-msg success';
       msg.textContent = lang === 'fr' ? 'Merci ! Vous êtes inscrit.' : 'Thanks! You are subscribed.';
       input.value = '';
     } else {
-      msg.className = 'newsletter-msg error';
-      msg.textContent = data?.error || (lang === 'fr' ? 'Erreur lors de l\'inscription.' : 'Subscription error.');
+      msg.className = 'ns-msg error';
+      msg.textContent = data?.error || (lang === 'fr' ? 'Erreur.' : 'Error.');
     }
   } catch(e) {
-    msg.className = 'newsletter-msg error';
+    msg.className = 'ns-msg error';
     msg.textContent = lang === 'fr' ? 'Erreur réseau.' : 'Network error.';
   }
   btn.disabled = false;

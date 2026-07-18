@@ -56,6 +56,8 @@ const translations = {
   "blog.archive.empty": { "fr": "Aucun article trouvé", "en": "No articles found" },
   "blog.archive.empty.sub": { "fr": "Revenez bientôt ou explorez d'autres catégories.", "en": "Come back soon or explore other categories." },
   "blog.archive.loadmore": { "fr": "Charger plus d'articles", "en": "Load more articles" },
+  "blog.archive.view": { "fr": "Affichage", "en": "Display" },
+  "blog.archive.categories": { "fr": "Catégories", "en": "Categories" },
   "blog.sidebar.popular": { "fr": "Articles populaires", "en": "Popular articles" },
   "blog.sidebar.loading": { "fr": "Chargement...", "en": "Loading..." },
   "blog.sidebar.cta.title": { "fr": "Restez informé", "en": "Stay informed" },
