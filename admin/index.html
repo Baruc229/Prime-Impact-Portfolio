@@ -701,11 +701,13 @@ const icons = {
   'chat': 'comments'
 };
 
-function switchView(name) {
+async function switchView(name) {
   const viewId = name.startsWith('dashboard-') ? 'dashboard' : name;
   if (name !== 'chat') stopChatPolling();
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-' + viewId).classList.add('active');
+  const viewEl = document.getElementById('view-' + viewId);
+  if (!viewEl) return;
+  viewEl.classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   const nav = document.querySelector('.nav-item[data-view="' + name + '"]');
   if (nav) nav.classList.add('active');
@@ -714,22 +716,35 @@ function switchView(name) {
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('sidebarOverlay').classList.remove('open');
   }
-  if (name.startsWith('dashboard-')) {
-    const type = name.replace('dashboard-', '');
-    document.querySelectorAll('#view-dashboard .filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === type));
-    currentFilter = type;
-    currentPage = 1;
-    if (authToken) refresh();
+  try {
+    if (name.startsWith('dashboard-')) {
+      const type = name.replace('dashboard-', '');
+      document.querySelectorAll('#view-dashboard .filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === type));
+      currentFilter = type;
+      currentPage = 1;
+      if (authToken) await refresh();
+    } else if (name === 'dashboard') {
+      if (authToken) await refresh();
+    } else if (name === 'export') {
+      await refreshExportCounts();
+    } else if (name === 'blog-posts') {
+      await loadBlogPosts();
+    } else if (name === 'blog-comments') {
+      await loadPostsForFilter(); await loadComments();
+    } else if (name === 'blog-badges') {
+      await loadBadges();
+    } else if (name === 'blog-authors') {
+      await loadAuthors();
+    } else if (name === 'blog-newsletter') {
+      await loadNewsletters();
+    } else if (name === 'blog-stats') {
+      await loadBlogStats();
+    } else if (name === 'chat') {
+      await loadChatSessions();
+    }
+  } catch (e) {
+    console.error('[switchView] Error:', e);
   }
-  if (name === 'export') refreshExportCounts();
-  if (name === 'blog-posts') { loadBlogPosts(); }
-  if (name === 'blog-comments') { loadPostsForFilter(); loadComments(); }
-  if (name === 'blog-badges') loadBadges();
-  if (name === 'blog-authors') loadAuthors();
-  if (name === 'blog-newsletter') loadNewsletters();
-  if (name === 'blog-stats') loadBlogStats();
-  if (name === 'dashboard') { if (authToken) refresh(); }
-  if (name === 'chat') { loadChatSessions(); }
 }
 
 async function login() {
@@ -772,8 +787,12 @@ document.getElementById('passwordInput').addEventListener('keydown', e => { if (
 
 async function init() {
   if (!authToken) return;
-  await refresh();
-  refreshInterval = setInterval(refresh, 10000);
+  try {
+    await refresh();
+    refreshInterval = setInterval(refresh, 10000);
+  } catch (e) {
+    console.error('[init] Error:', e);
+  }
 }
 
 function debounceRefresh() { clearTimeout(debounceTimer); debounceTimer = setTimeout(refresh, 300); }
@@ -784,39 +803,45 @@ async function refresh() {
   if (!view) return;
   const btn = document.getElementById('refreshBtn');
   btn.innerHTML = '<i class="fa-solid fa-rotate fa-spin"></i>';
+  btn.disabled = true;
   const viewId = view.id;
 
-  if (viewId === 'view-dashboard') {
-    const search = document.getElementById('searchInput').value.trim();
-    currentSort = document.getElementById('sortOrder').value;
-    const [listData, stats] = await Promise.all([
-      fetchAPI('/submissions?page=' + currentPage + '&limit=50' + (currentFilter ? '&form_type=' + currentFilter : '')),
-      fetchAPI('/stats')
-    ]);
-    if (stats) updateStats(stats);
-    if (listData) {
-      if (currentSort === 'asc') listData.submissions.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
-      else listData.submissions.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-      renderTable(listData.submissions, search); renderPagination(listData);
+  try {
+    if (viewId === 'view-dashboard') {
+      const search = document.getElementById('searchInput').value.trim();
+      currentSort = document.getElementById('sortOrder').value;
+      const [listData, stats] = await Promise.all([
+        fetchAPI('/submissions?page=' + currentPage + '&limit=50' + (currentFilter ? '&form_type=' + currentFilter : '')),
+        fetchAPI('/stats')
+      ]);
+      if (stats) updateStats(stats);
+      if (listData) {
+        if (currentSort === 'asc') listData.submissions.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+        else listData.submissions.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        renderTable(listData.submissions, search); renderPagination(listData);
+      }
+    } else if (viewId === 'view-blog-newsletter') {
+      await loadNewsletters();
+    } else if (viewId === 'view-blog-posts') {
+      await loadBlogPosts();
+    } else if (viewId === 'view-blog-comments') {
+      await loadComments();
+    } else if (viewId === 'view-blog-badges') {
+      await loadBadges();
+    } else if (viewId === 'view-blog-authors') {
+      await loadAuthors();
+    } else if (viewId === 'view-blog-stats') {
+      await loadBlogStats();
+    } else if (viewId === 'view-chat') {
+      await loadChatSessions();
     }
-  } else if (viewId === 'view-blog-newsletter') {
-    loadNewsletters();
-  } else if (viewId === 'view-blog-posts') {
-    loadBlogPosts();
-  } else if (viewId === 'view-blog-comments') {
-    loadComments();
-  } else if (viewId === 'view-blog-badges') {
-    loadBadges();
-  } else if (viewId === 'view-blog-authors') {
-    loadAuthors();
-  } else if (viewId === 'view-blog-stats') {
-    loadBlogStats();
-  } else if (viewId === 'view-chat') {
-    loadChatSessions();
+  } catch (e) {
+    console.error('[refresh] Error:', e);
   }
 
   document.getElementById('lastRefresh').textContent = new Date().toLocaleTimeString('fr-FR');
   btn.innerHTML = '<i class="fa-solid fa-rotate"></i> Actualiser';
+  btn.disabled = false;
 }
 
 function updateStats(stats) {
