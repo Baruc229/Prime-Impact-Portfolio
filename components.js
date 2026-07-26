@@ -18,69 +18,15 @@ function buildHeader() {
     { href: '/',        label: 'Accueil', i18n: 'nav.home' },
     { href: '/realisations', label: 'Réalisations', i18n: 'nav.portfolio' },
     { href: '/blog',          label: 'Blog', i18n: 'nav.blog' },
-    { href: '/a-propos',     label: 'À propos', i18n: 'nav.about' },
-    { href: '/contact',      label: 'Contact', i18n: 'nav.contact' },
   ];
-  
-  const servicePages = [
-    { href: '/creation-site',      label: 'Création de site web',      i18n: 'nav.services.1' },
-    { href: '/tunnels-vente',       label: 'Tunnels de vente',          i18n: 'nav.services.2' },
-    { href: '/referencement-seo',    label: 'Référencement SEO',         i18n: 'nav.services.4' },
-    { href: '/refonte-site',         label: 'Refonte de site web',       i18n: 'nav.services.6' },
-    { href: '/suivi-accompagnement', label: 'Suivi & Accompagnement',    i18n: 'nav.services.7' },
-  ];
-
-  const isServicePage = servicePages.some(s => s.href === currentPage);
-  const isActiveService = isServicePage || currentPage === '/services';
-
-  // Items du méga menu
-  const megaItemsHTML = servicePages.map(s =>
-    `<a href="${s.href}" class="mega-link${s.href === currentPage ? ' active' : ''}">
-      <span class="mega-link-title" data-i18n="${s.i18n}">${s.label}</span>
-    </a>`
-  ).join('');
 
   // Lien standard helper
   const isActiveLink = l => l.href === currentPage || (l.href === '/blog' && currentPage.startsWith('/blog/'));
   const linkHTML = l => `<a href="${l.href}" class="${isActiveLink(l) ? 'active' : ''}" data-i18n="${l.i18n}">${l.label}</a>`;
 
-  const serviceTrigger = `<span class="nav-mega-trigger${isActiveService ? ' active' : ''}" data-i18n="nav.services">Services <i class="fa-solid fa-caret-down"></i></span>`;
+  const desktopLinks = links.map(l => linkHTML(l)).join('');
 
-  const megaDropdown = `<div class="mega-menu">
-            <div class="mega-menu-inner">
-              <div class="mega-menu-header">
-                <span class="mega-menu-title" data-i18n="nav.services.all">Tous nos services</span>
-              </div>
-              <div class="mega-menu-grid">
-                ${megaItemsHTML}
-              </div>
-            </div>
-          </div>`;
-
-  // Desktop : services inline après Accueil
-  const desktopLinks = links.map((l, i) => {
-    if (i === 0) {
-      return `${linkHTML(l)}
-        <div class="nav-item-has-mega">
-          ${serviceTrigger}
-          ${megaDropdown}
-        </div>`;
-    }
-    return linkHTML(l);
-  }).join('');
-
-  const mobileServiceHTML = servicePages.map(s =>
-    `<a href="${s.href}" class="${s.href === currentPage ? 'active' : ''}" data-i18n="${s.i18n}">${s.label}</a>`
-  ).join('');
-
-  // Mobile : services en liens directs après Accueil
-  const mobileLinks = links.map((l, i) => {
-    if (i === 0) {
-      return `${linkHTML(l)}
-        ${mobileServiceHTML}`;
-    }
-    return linkHTML(l);
-  }).join('');
+  const mobileLinks = links.map(l => linkHTML(l)).join('');
 
   return `
   <div class="noise-overlay"></div>
@@ -262,17 +208,4 @@ function buildFooter() {
   app.insertAdjacentHTML('afterbegin', buildHeader());
   // Insère le footer à la fin de #app
   app.insertAdjacentHTML('beforeend', buildFooter());
-
-  // ── Chat Widget: injecter CSS + JS ──
-  // CSS
-  const chatCSS = document.createElement('link');
-  chatCSS.rel = 'stylesheet';
-  chatCSS.href = '/chat-widget.css';
-  document.head.appendChild(chatCSS);
-
-  // JS
-  const chatJS = document.createElement('script');
-  chatJS.src = '/chat-widget.js';
-  chatJS.defer = true;
-  document.body.appendChild(chatJS);
 })();

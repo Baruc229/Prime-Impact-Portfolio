@@ -1080,8 +1080,8 @@ img {
 
 .nav-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: clamp(24px, 3vw, 40px);
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 4vw;
@@ -1252,6 +1252,7 @@ img {
   display: flex;
   align-items: center;
   gap: 20px;
+  margin-left: auto;
 }
 
 .lang-btn, .lang-menu {
