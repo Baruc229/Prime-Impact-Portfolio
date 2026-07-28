@@ -98,7 +98,7 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
 .post-author-card .social-links{display:flex;gap:8px;margin-top:6px}
 .post-author-card .social-links a{color:var(--text-muted);font-size:16px;text-decoration:none}
 .post-author-card .social-links a:hover{color:var(--accent-blue)}
-.related-posts{margin:0 auto 40px;padding:0}
+.related-posts{max-width:1200px;margin:0 auto 60px;padding:0 24px}
 .related-posts h2{font-size:24px;margin-bottom:24px;color:var(--accent-blue)}
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .related-card{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-color);background:var(--bg-main);box-shadow:var(--shadow-soft);cursor:pointer;transition:all .3s}
@@ -209,6 +209,11 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
   .post-content{font-size:16px;line-height:1.75}
   .post-content h2{font-size:24px;margin:40px 0 14px}
   .related-grid{grid-template-columns:1fr}
+  .related-card{display:flex;align-items:center;gap:16px;padding:0}
+  .related-card-image{width:100px;min-width:100px;aspect-ratio:1;border-radius:var(--radius-sm)}
+  .related-card-body{padding:0;flex:1}
+  .related-card-body h3{font-size:14px;-webkit-line-clamp:1}
+  .related-card-body p{display:none}
   .comment-form .form-row{grid-template-columns:1fr}
   .post-author-card{flex-direction:column;text-align:center}
   .resource-hero-cta{flex-direction:column;text-align:center}
@@ -225,6 +230,7 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
   .post-content h3{font-size:18px;margin:28px 0 10px}
   .share-bar a,.share-bar button{width:32px;height:32px;font-size:13px}
   .sidebar-widget{padding:16px}
+  .related-posts{padding:0 16px}
 }
 </style>
 </head><body>
@@ -259,10 +265,6 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
   <div class="post-main">
     <div class="post-content" id="postContent"></div>
     <div class="post-author-card" id="authorCard" style="display:none"></div>
-    <div class="related-posts" id="relatedSection" style="display:none">
-      <h2 data-i18n="blog.post.related">Articles similaires</h2>
-      <div class="related-grid" id="relatedGrid"></div>
-    </div>
   </div>
   <aside class="post-sidebar">
     <button class="toc-toggle" id="tocToggle" onclick="toggleToc()"><i class="fa-solid fa-chevron-down"></i> <span data-i18n="blog.post.toc">Sommaire</span></button>
@@ -325,6 +327,10 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
     </div>
     <div class="comments-list" id="commentsList"></div>
   </div>
+</div>
+<div class="related-posts" id="relatedSection" style="display:none">
+  <h2 data-i18n="blog.post.related">Articles similaires</h2>
+  <div class="related-grid" id="relatedGrid"></div>
 </div>
 
 <script src="../i18n.js"></script>
