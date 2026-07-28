@@ -126,6 +126,16 @@ function buildFooter() {
           </div>
         </div>
         <div class="footer-col">
+          <h4 class="footer-title" data-i18n="footer.services">Services</h4>
+          <ul class="footer-links">
+            <li><a href="/creation-site" data-i18n="footer.services.1">Création de site web</a></li>
+            <li><a href="/tunnels-vente" data-i18n="footer.services.2">Tunnels de vente</a></li>
+            <li><a href="/referencement-seo" data-i18n="footer.services.4">Référencement SEO</a></li>
+            <li><a href="/refonte-site" data-i18n="footer.services.6">Refonte de site web</a></li>
+            <li><a href="/suivi-accompagnement" data-i18n="footer.services.7">Suivi & Accompagnement</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
           <h4 class="footer-title" data-i18n="footer.agency">Agence</h4>
           <ul class="footer-links">
             <li><a href="/a-propos" data-i18n="nav.about">À propos</a></li>
