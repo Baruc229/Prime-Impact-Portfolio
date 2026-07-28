@@ -196,13 +196,18 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
 }
 @media(max-width:1023px){
   .post-layout{grid-template-columns:1fr}
-  .post-sidebar{position:static;margin-bottom:24px;order:-1}
+  .post-sidebar{position:static;margin-top:32px}
   .toc-toggle{display:none!important}
   .toc{display:block}
   .related-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
-  .post-hero{padding-top:100px}
+  .post-hero{padding:100px 20px 16px}
+  .post-hero h1{font-size:26px}
+  .post-cover{padding:0 20px}
+  .post-layout{padding:0 20px}
+  .post-content{font-size:16px;line-height:1.75}
+  .post-content h2{font-size:24px;margin:40px 0 14px}
   .related-grid{grid-template-columns:1fr}
   .comment-form .form-row{grid-template-columns:1fr}
   .post-author-card{flex-direction:column;text-align:center}
