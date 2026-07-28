@@ -21,7 +21,7 @@
 <style>
 :root{--font-main:'Inter',sans-serif;--font-heading:'Roboto Condensed',sans-serif}
 [data-theme="light"]{--bg-main:#fff;--bg-secondary:#F7F7F7;--bg-tertiary:#e5e7eb;--text-main:#1c1c1e;--text-muted:#6B7280;--accent-blue:#1B3A6B;--accent-gold:#F5A623;--border-color:rgba(0,0,0,0.06);--shadow-soft:0 2px 12px rgba(0,0,0,0.04);--shadow-heavy:0 4px 24px rgba(27,58,107,0.1);--radius-sm:8px;--radius-md:16px;--glass-bg:#fff;--glass-bg-solid:#fff;--bg-card-warm:#fff}
-[data-theme="dark"]{--bg-main:#fff;--bg-secondary:#F7F7F7;--bg-tertiary:#e5e7eb;--text-main:#1c1c1e;--text-muted:#6B7280;--accent-blue:#1B3A6B;--accent-gold:#F5A623;--border-color:rgba(0,0,0,0.06);--shadow-soft:0 2px 12px rgba(0,0,0,0.04);--shadow-heavy:0 4px 24px rgba(27,58,107,0.1);--glass-bg:#fff;--glass-bg-solid:#fff;--bg-card-warm:#fff}
+[data-theme="dark"]{--bg-main:#0D1B35;--bg-secondary:#111f3a;--bg-tertiary:#1a2d50;--text-main:#e2e8f0;--text-muted:#94a3b8;--accent-blue:#60a5fa;--accent-gold:#F5A623;--border-color:rgba(255,255,255,0.08);--shadow-soft:0 2px 12px rgba(0,0,0,0.2);--shadow-heavy:0 4px 24px rgba(0,0,0,0.35);--glass-bg:rgba(13,27,53,0.9);--glass-bg-solid:#0D1B35;--bg-card-warm:#111f3a}
 body{font-family:var(--font-main)!important;background:var(--bg-main)!important;color:var(--text-main);opacity:1!important}
 h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 
@@ -42,7 +42,7 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .newsletter-strip .ns-form input{flex:1;padding:14px 18px;border-radius:var(--radius-sm);border:none;background:rgba(255,255,255,0.1);color:#fff;font-size:14px;font-family:var(--font-main);outline:none;transition:background .2s;min-width:0}
 .newsletter-strip .ns-form input::placeholder{color:rgba(255,255,255,0.4)}
 .newsletter-strip .ns-form input:focus{background:rgba(255,255,255,0.18)}
-.newsletter-strip .ns-form button{padding:14px 28px;border-radius:var(--radius-sm);border:none;background:var(--accent-gold);color:#0D1B35;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-main);transition:opacity .2s;white-space:nowrap}
+.newsletter-strip .ns-form button{padding:14px 28px;border-radius:var(--radius-sm);border:none;background:var(--accent-gold);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-main);transition:opacity .2s;white-space:nowrap}
 .newsletter-strip .ns-form button:hover{opacity:.85}
 .newsletter-strip .ns-form button:disabled{opacity:.5;cursor:default}
 .newsletter-strip .ns-right{display:flex;flex-direction:column;gap:8px}
@@ -55,6 +55,8 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .blog-sidebar{display:flex;flex-direction:column;gap:20px}
 .sidebar-card{background:var(--bg-main);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;box-shadow:var(--shadow-soft)}
 .sidebar-card h3{font-size:14px;color:var(--text-main);margin-bottom:14px;font-weight:700;font-family:var(--font-heading)}
+.sidebar-card .accordion-toggle{display:none}
+.sidebar-card .sidebar-card-inner{display:contents}
 
 /* search */
 .sidebar-search{position:relative}
@@ -110,15 +112,16 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .featured-meta .meta-likes.is-liked i{font-weight:900}
 
 /* ─── POSTS GRID / LIST ───────────────────── */
-.posts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:32px}
+.posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:32px}
 .posts-grid.is-list{grid-template-columns:1fr}
 .post-card{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-color);background:var(--bg-main);box-shadow:var(--shadow-soft);transition:all .3s;cursor:pointer;display:flex;flex-direction:column}
 .post-card:hover{box-shadow:var(--shadow-heavy);transform:translateY(-3px)}
-.posts-grid.is-list .post-card{flex-direction:row}
+.posts-grid.is-list .post-card{flex-direction:row;align-items:stretch}
+.posts-grid.is-list .post-card:hover{transform:translateY(-2px)}
 .post-card-image{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg-tertiary);flex-shrink:0}
 .post-card-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .post-card:hover .post-card-image img{transform:scale(1.05)}
-.posts-grid.is-list .post-card-image{width:280px;aspect-ratio:16/11;flex-shrink:0}
+.posts-grid.is-list .post-card-image{width:280px;min-height:180px;aspect-ratio:auto;flex-shrink:0}
 .post-card-badges{position:absolute;top:10px;left:10px;display:flex;gap:4px;flex-wrap:wrap;z-index:2}
 .post-card-badge{padding:3px 12px;border-radius:20px;font-size:10px;font-weight:600;color:#fff;pointer-events:none}
 .post-card-badge.is-resource{background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.6);display:inline-flex;align-items:center;gap:3px}
@@ -171,16 +174,28 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 @media(max-width:768px){
   .blog-header{padding:100px 0 30px}
   .blog-header h1{font-size:clamp(28px,8vw,34px)}
+  .blog-container{grid-template-columns:1fr}
+  .blog-sidebar{order:-1;display:flex;flex-direction:column;gap:8px}
+  .blog-sidebar .sidebar-card{padding:0;overflow:hidden;transition:padding .25s}
+  .blog-sidebar .sidebar-card.collapsed{padding:14px 20px}
+  .blog-sidebar .sidebar-card.collapsed>*:not(.accordion-toggle){display:none}
+  #viewCard{display:none!important}
+  .blog-sidebar .sidebar-card .accordion-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;cursor:pointer;background:none;border:none;padding:14px 20px;font-family:var(--font-main);font-size:14px;font-weight:600;color:var(--text-main)}
+  .blog-sidebar .sidebar-card .accordion-toggle i{font-size:12px;transition:transform .25s;color:var(--text-muted)}
+  .blog-sidebar .sidebar-card.collapsed .accordion-toggle i{transform:rotate(-90deg)}
+  .blog-sidebar .sidebar-card:not(.collapsed) .accordion-toggle{display:none}
+  .blog-sidebar .sidebar-card:not(.collapsed){padding:14px 20px}
+  .blog-sidebar .sidebar-card:not(.collapsed) .sidebar-card-inner{padding-top:8px}
+  .view-toggle{display:none!important}
   .featured-card{grid-template-columns:1fr}
   .featured-image{aspect-ratio:16/9}
   .featured-content{padding:20px}
   .featured-content h2{font-size:20px}
   .post-card-body{padding:14px}
   .post-card-footer{padding:10px 14px;font-size:11px}
-  .posts-grid{grid-template-columns:1fr;gap:16px}
+  .posts-grid{grid-template-columns:repeat(2,1fr);gap:16px}
   .posts-grid.is-list .post-card{flex-direction:column}
   .posts-grid.is-list .post-card-image{width:100%}
-  .blog-sidebar{grid-template-columns:1fr;gap:16px}
   .blog-container{padding:0 16px 40px}
   .pagination{gap:4px}
   .pagination button{padding:8px 12px;font-size:12px;min-width:36px}
@@ -192,6 +207,13 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
   .newsletter-strip .ns-form{width:100%}
   .newsletter-strip .ns-right{align-items:center}
 }
+@media(max-width:600px){
+  .posts-grid{grid-template-columns:1fr;gap:16px}
+  .posts-grid.is-list .post-card{flex-direction:column}
+  .posts-grid.is-list .post-card-image{width:100%}
+  .blog-sidebar{grid-template-columns:1fr}
+  .blog-container{padding:0 12px 32px}
+}
 @media(max-width:480px){
   .blog-header{padding:90px 0 24px}
   .blog-header h1{font-size:26px}
@@ -199,6 +221,19 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
   .featured-content{padding:16px}
   .featured-content h2{font-size:18px}
   .featured-content p{font-size:13px}
+}
+
+/* ─── STICKY NEWSLETTER CTA (MOBILE) ─────── */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--accent-blue);padding:12px 16px;box-shadow:0 -4px 20px rgba(0,0,0,0.2);transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.sticky-cta.visible{transform:translateY(0)}
+.sticky-cta .cta-inner{display:flex;align-items:center;gap:10px;max-width:600px;margin:0 auto}
+.sticky-cta .cta-text{flex:1;color:#fff;font-size:13px;font-weight:600;line-height:1.3}
+.sticky-cta .cta-btn{flex-shrink:0;padding:10px 20px;border-radius:var(--radius-sm);border:none;background:var(--accent-gold);color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-main);text-decoration:none;white-space:nowrap}
+.sticky-cta .cta-close{position:absolute;top:6px;right:10px;background:none;border:none;color:rgba(255,255,255,0.6);font-size:16px;cursor:pointer;padding:4px}
+@media(max-width:768px){
+  .sticky-cta{display:block}
+  body{padding-bottom:0}
+  body.cta-shown{padding-bottom:60px}
 }
 </style>
 </head><body>
@@ -236,10 +271,13 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 <!-- Sidebar gauche + Grille droite -->
 <div class="blog-container">
   <aside class="blog-sidebar">
-    <div class="sidebar-card" id="srchCard">
-      <div class="sidebar-search">
-        <i class="fa-solid fa-search"></i>
-        <input type="text" id="searchInput" placeholder="Rechercher..." data-i18n-ph="blog.archive.search">
+    <div class="sidebar-card collapsed" id="srchCard">
+      <button class="accordion-toggle" onclick="toggleAccordion(this)"><i class="fa-solid fa-magnifying-glass"></i> Recherche <i class="fa-solid fa-chevron-down"></i></button>
+      <div class="sidebar-card-inner">
+        <div class="sidebar-search">
+          <i class="fa-solid fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Rechercher..." data-i18n-ph="blog.archive.search">
+        </div>
       </div>
     </div>
     <div class="sidebar-card" id="viewCard">
@@ -249,13 +287,16 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
         <button data-view="list" onclick="switchView('list')"><i class="fa-solid fa-list"></i> Liste</button>
       </div>
     </div>
-    <div class="sidebar-card" id="catCard">
-      <h3 data-i18n="blog.archive.categories">Catégories</h3>
-      <div class="category-list" id="categoryList">
-        <button class="category-item active" data-badge="" onclick="filterBadge(this)">
-          <span class="cat-name" data-i18n="blog.archive.all">Tous</span>
-          <span class="cat-count" id="totalCount">0</span>
-        </button>
+    <div class="sidebar-card collapsed" id="catCard">
+      <button class="accordion-toggle" onclick="toggleAccordion(this)"><i class="fa-solid fa-tag"></i> Catégories <i class="fa-solid fa-chevron-down"></i></button>
+      <div class="sidebar-card-inner">
+        <h3 data-i18n="blog.archive.categories">Catégories</h3>
+        <div class="category-list" id="categoryList">
+          <button class="category-item active" data-badge="" onclick="filterBadge(this)">
+            <span class="cat-name" data-i18n="blog.archive.all">Tous</span>
+            <span class="cat-count" id="totalCount">0</span>
+          </button>
+        </div>
       </div>
     </div>
   </aside>
@@ -269,6 +310,15 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
     <div class="pagination" id="pagination"></div>
   </div>
 </div>
+</div>
+
+<!-- Sticky CTA Newsletter (mobile) -->
+<div class="sticky-cta" id="stickyCta">
+  <button class="cta-close" onclick="closeStickyCta()"><i class="fa-solid fa-xmark"></i></button>
+  <div class="cta-inner">
+    <span class="cta-text" data-i18n="blog.sidebar.cta.title">Restez informé</span>
+    <a href="#newsletterStrip" class="cta-btn" onclick="closeStickyCta()" data-i18n="blog.sidebar.cta.btn">S'abonner</a>
+  </div>
 </div>
 
 <script src="../i18n.js"></script>
@@ -343,10 +393,11 @@ function renderSidebarCategories() {
   document.getElementById('totalCount').textContent = allCount;
 
   badges.forEach(b => {
+    const count = allPosts.filter(p => p.badgeIds && p.badgeIds.includes(b.id)).length;
     const btn = document.createElement('button');
     btn.className = 'category-item' + (b.type === 'resource' ? ' is-resource' : '');
     btn.dataset.badge = b.id;
-    btn.innerHTML = '<span class="cat-name">' + esc(b.name) + '</span><span class="cat-count">' + (b.postCount || 0) + '</span>';
+    btn.innerHTML = '<span class="cat-name">' + esc(b.name) + '</span><span class="cat-count">' + count + '</span>';
     btn.onclick = function() { filterBadge(this); };
     container.appendChild(btn);
   });
@@ -358,6 +409,10 @@ function filterBadge(btn) {
   currentBadge = btn.dataset.badge;
   currentPage = 1;
   filterAndRender();
+  if (window.innerWidth <= 768) {
+    closeStickyCta();
+    setTimeout(scrollToResults, 100);
+  }
 }
 
 function switchView(mode) {
@@ -518,6 +573,33 @@ async function toggleLike(el, slug) {
 }
 
 async function renderPopular() {}
+
+function toggleAccordion(btn) {
+  const card = btn.closest('.sidebar-card');
+  card.classList.toggle('collapsed');
+}
+
+function scrollToResults() {
+  const grid = document.getElementById('postsGrid');
+  if (grid && grid.children.length > 0) {
+    const y = grid.getBoundingClientRect().top + window.pageYOffset - 140;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+}
+
+let stickyDismissed = false;
+function closeStickyCta() {
+  stickyDismissed = true;
+  document.getElementById('stickyCta').classList.remove('visible');
+  document.body.classList.remove('cta-shown');
+}
+function handleStickyCta() {
+  if (stickyDismissed || window.innerWidth > 768) return;
+  const scrolled = window.scrollY > 600;
+  document.getElementById('stickyCta').classList.toggle('visible', scrolled);
+  document.body.classList.toggle('cta-shown', scrolled);
+}
+window.addEventListener('scroll', handleStickyCta, { passive: true });
 
 async function subscribeNewsletter() {
   const input = document.getElementById('nsEmail');
