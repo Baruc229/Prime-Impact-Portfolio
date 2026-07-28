@@ -56,7 +56,6 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .sidebar-card{background:var(--bg-main);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;box-shadow:var(--shadow-soft)}
 .sidebar-card h3{font-size:14px;color:var(--text-main);margin-bottom:14px;font-weight:700;font-family:var(--font-heading)}
 .sidebar-card .accordion-toggle{display:none}
-.sidebar-card .sidebar-card-inner{display:contents}
 
 /* search */
 .sidebar-search{position:relative}
@@ -175,18 +174,8 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
   .blog-header{padding:100px 0 30px}
   .blog-header h1{font-size:clamp(28px,8vw,34px)}
   .blog-container{grid-template-columns:1fr}
-  .blog-sidebar{order:-1;display:flex;flex-direction:column;gap:8px}
-  .blog-sidebar .sidebar-card{padding:0;overflow:hidden;transition:padding .25s}
-  .blog-sidebar .sidebar-card.collapsed{padding:14px 20px}
-  .blog-sidebar .sidebar-card.collapsed>*:not(.accordion-toggle){display:none}
+  .blog-sidebar{order:-1;display:flex;flex-direction:column;gap:12px}
   #viewCard{display:none!important}
-  .blog-sidebar .sidebar-card .accordion-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;cursor:pointer;background:none;border:none;padding:14px 20px;font-family:var(--font-main);font-size:14px;font-weight:600;color:var(--text-main)}
-  .blog-sidebar .sidebar-card .accordion-toggle i{font-size:12px;transition:transform .25s;color:var(--text-muted)}
-  .blog-sidebar .sidebar-card.collapsed .accordion-toggle i{transform:rotate(-90deg)}
-  .blog-sidebar .sidebar-card:not(.collapsed) .accordion-toggle{display:none}
-  .blog-sidebar .sidebar-card:not(.collapsed){padding:14px 20px}
-  .blog-sidebar .sidebar-card:not(.collapsed) .sidebar-card-inner{padding-top:8px}
-  .view-toggle{display:none!important}
   .featured-card{grid-template-columns:1fr}
   .featured-image{aspect-ratio:16/9}
   .featured-content{padding:20px}
@@ -271,13 +260,10 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 <!-- Sidebar gauche + Grille droite -->
 <div class="blog-container">
   <aside class="blog-sidebar">
-    <div class="sidebar-card collapsed" id="srchCard">
-      <button class="accordion-toggle" onclick="toggleAccordion(this)"><i class="fa-solid fa-magnifying-glass"></i> Recherche <i class="fa-solid fa-chevron-down"></i></button>
-      <div class="sidebar-card-inner">
-        <div class="sidebar-search">
-          <i class="fa-solid fa-search"></i>
-          <input type="text" id="searchInput" placeholder="Rechercher..." data-i18n-ph="blog.archive.search">
-        </div>
+    <div class="sidebar-card" id="srchCard">
+      <div class="sidebar-search">
+        <i class="fa-solid fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Rechercher..." data-i18n-ph="blog.archive.search">
       </div>
     </div>
     <div class="sidebar-card" id="viewCard">
@@ -287,16 +273,13 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
         <button data-view="list" onclick="switchView('list')"><i class="fa-solid fa-list"></i> Liste</button>
       </div>
     </div>
-    <div class="sidebar-card collapsed" id="catCard">
-      <button class="accordion-toggle" onclick="toggleAccordion(this)"><i class="fa-solid fa-tag"></i> Catégories <i class="fa-solid fa-chevron-down"></i></button>
-      <div class="sidebar-card-inner">
-        <h3 data-i18n="blog.archive.categories">Catégories</h3>
-        <div class="category-list" id="categoryList">
-          <button class="category-item active" data-badge="" onclick="filterBadge(this)">
-            <span class="cat-name" data-i18n="blog.archive.all">Tous</span>
-            <span class="cat-count" id="totalCount">0</span>
-          </button>
-        </div>
+    <div class="sidebar-card" id="catCard">
+      <h3 data-i18n="blog.archive.categories">Catégories</h3>
+      <div class="category-list" id="categoryList">
+        <button class="category-item active" data-badge="" onclick="filterBadge(this)">
+          <span class="cat-name" data-i18n="blog.archive.all">Tous</span>
+          <span class="cat-count" id="totalCount">0</span>
+        </button>
       </div>
     </div>
   </aside>
@@ -573,11 +556,6 @@ async function toggleLike(el, slug) {
 }
 
 async function renderPopular() {}
-
-function toggleAccordion(btn) {
-  const card = btn.closest('.sidebar-card');
-  card.classList.toggle('collapsed');
-}
 
 function scrollToResults() {
   const grid = document.getElementById('postsGrid');
