@@ -31,10 +31,10 @@
 <style>
 :root{--font-main:'Inter',sans-serif;--font-heading:'Roboto Condensed',sans-serif}
 [data-theme="light"]{--bg-main:#fff;--bg-secondary:#F7F7F7;--bg-tertiary:#e5e7eb;--text-main:#1c1c1e;--text-muted:#6B7280;--accent-blue:#1B3A6B;--accent-gold:#F5A623;--border-color:rgba(0,0,0,0.06);--shadow-soft:0 2px 12px rgba(0,0,0,0.04);--shadow-heavy:0 4px 24px rgba(27,58,107,0.1);--radius-sm:8px;--radius-md:16px;--glass-bg:#fff;--glass-bg-solid:#fff;--bg-card-warm:#fff}
-[data-theme="dark"]{--bg-main:#fff;--bg-secondary:#F7F7F7;--bg-tertiary:#e5e7eb;--text-main:#1c1c1e;--text-muted:#6B7280;--accent-blue:#1B3A6B;--accent-gold:#F5A623;--border-color:rgba(0,0,0,0.06);--shadow-soft:0 2px 12px rgba(0,0,0,0.04);--shadow-heavy:0 4px 24px rgba(27,58,107,0.1);--glass-bg:#fff;--glass-bg-solid:#fff;--bg-card-warm:#fff}
+[data-theme="dark"]{--bg-main:#0D1B35;--bg-secondary:#111f3a;--bg-tertiary:#1a2d50;--text-main:#e2e8f0;--text-muted:#94a3b8;--accent-blue:#60a5fa;--accent-gold:#F5A623;--border-color:rgba(255,255,255,0.08);--shadow-soft:0 2px 12px rgba(0,0,0,0.2);--shadow-heavy:0 4px 24px rgba(0,0,0,0.35);--glass-bg:rgba(13,27,53,0.9);--glass-bg-solid:#0D1B35;--bg-card-warm:#111f3a}
 body{font-family:var(--font-main)!important;background:var(--bg-main)!important;color:var(--text-main);opacity:1!important}
 h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;color:var(--accent-blue)}
-.post-hero{max-width:800px;margin:0 auto;padding:140px 24px 20px}
+.post-hero{max-width:1200px;margin:0 auto;padding:140px 24px 20px}
 .breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:16px}
 .breadcrumb a{color:var(--text-muted);text-decoration:none}
 .breadcrumb a:hover{color:var(--accent-blue)}
@@ -46,7 +46,7 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
 .post-hero-meta .author-wrap img{width:32px;height:32px;border-radius:50%;object-fit:cover}
 .post-hero-meta .author-wrap .author-role{display:block;font-size:11px;color:var(--text-muted);opacity:.65;margin-top:-1px}
 .post-hero-meta .sep{color:var(--border-color)}
-.post-cover{max-width:900px;margin:0 auto 40px;padding:0 24px}
+.post-cover{max-width:1200px;margin:0 auto 40px;padding:0 24px}
 .post-cover img{width:100%;border-radius:var(--radius-md);box-shadow:var(--shadow-soft);display:block}
 .post-layout{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 280px;gap:48px;position:relative}
 .post-main{min-width:0}
@@ -158,12 +158,19 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
 .share-bar .share-copy.copied{color:#10b981;border-color:#10b981}
 .sidebar-widget{background:var(--bg-main);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;margin-top:20px;box-shadow:var(--shadow-soft)}
 .sidebar-widget h3{font-size:14px;color:var(--accent-blue);margin-bottom:12px;font-weight:700}
-.sidebar-widget .popular-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border-color);cursor:pointer;transition:background .15s}
-.sidebar-widget .popular-item:last-child{border-bottom:none}
-.sidebar-widget .popular-item:hover{background:var(--bg-secondary);margin:0 -8px;padding:8px;border-radius:var(--radius-sm)}
-.sidebar-widget .popular-item .pop-num{font-size:18px;font-weight:800;color:var(--accent-gold);min-width:24px;line-height:1}
-.sidebar-widget .popular-item .pop-title{font-size:13px;font-weight:500;color:var(--text-main);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
-.sidebar-widget .popular-item .pop-views{font-size:11px;color:var(--text-muted);margin-top:2px}
+.sidebar-search-card{background:var(--bg-main);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:16px;box-shadow:var(--shadow-soft)}
+.sidebar-search-card .sidebar-search{position:relative}
+.sidebar-search-card .sidebar-search i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:13px;pointer-events:none}
+.sidebar-search-card .sidebar-search input{width:100%;padding:10px 12px 10px 36px;border-radius:var(--radius-sm);border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-main);font-size:13px;font-family:var(--font-main);outline:none;transition:border-color .2s}
+.sidebar-search-card .sidebar-search input:focus{border-color:var(--accent-blue)}
+.sidebar-search-card .sidebar-search input::placeholder{color:var(--text-muted)}
+.sidebar-categories-card{background:var(--bg-main);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:16px;box-shadow:var(--shadow-soft)}
+.sidebar-categories-card h3{font-size:14px;color:var(--accent-blue);margin-bottom:10px;font-weight:700}
+.sidebar-categories-card .category-list{display:flex;flex-direction:column;gap:2px}
+.sidebar-categories-card .cat-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--radius-sm);cursor:pointer;transition:all .15s;border:none;background:transparent;width:100%;text-align:left;font-family:var(--font-main);font-size:13px;color:var(--text-muted);text-decoration:none}
+.sidebar-categories-card .cat-item:hover{background:var(--bg-secondary);color:var(--text-main)}
+.sidebar-categories-card .cat-item .cat-name{flex:1}
+.sidebar-categories-card .cat-item .cat-count{font-size:11px;color:var(--text-muted);background:var(--bg-secondary);padding:1px 8px;border-radius:20px;flex-shrink:0}
 .sidebar-newsletter{background:#0D1B35!important;border-color:#0D1B35!important;text-align:center}
 .sidebar-newsletter h3{color:#fff!important}
 .sidebar-newsletter p{color:rgba(255,255,255,0.7);font-size:12px;margin-bottom:12px;line-height:1.5}
@@ -294,9 +301,15 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
       <h3 data-i18n="blog.post.toc">Sommaire</h3>
       <ul id="tocList"></ul>
     </nav>
-    <div class="sidebar-widget" id="popularWidget">
-      <h3 data-i18n="blog.sidebar.popular">Articles populaires</h3>
-      <div id="popularPosts"><p style="font-size:12px;color:var(--text-muted)" data-i18n="blog.sidebar.loading">Chargement...</p></div>
+    <div class="sidebar-search-card">
+      <div class="sidebar-search">
+        <i class="fa-solid fa-search"></i>
+        <input type="text" id="sidebarSearchInput" placeholder="Rechercher..." data-i18n-ph="blog.archive.search">
+      </div>
+    </div>
+    <div class="sidebar-categories-card">
+      <h3 data-i18n="blog.archive.categories">Catégories</h3>
+      <div class="category-list" id="sidebarCategories"></div>
     </div>
     <div class="sidebar-widget sidebar-newsletter" id="nlWidget">
       <h3 data-i18n="blog.sidebar.cta.title">Restez informé</h3>
@@ -408,21 +421,33 @@ function buildToc() {
   });
 }
 
-async function loadPopularPosts() {
-  const container = document.getElementById('popularPosts');
-  const data = await fetchAPI('/api/blog/posts?limit=50');
-  if (!data || data._error) { container.innerHTML = '<p style="font-size:12px;color:var(--text-muted)">—</p>'; return; }
-  const published = data.filter(p => p.status === 'published' && p.slug !== currentSlug);
-  const top = published.sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0)).slice(0, 5);
-  if (top.length === 0) { container.innerHTML = '<p style="font-size:12px;color:var(--text-muted)">—</p>'; return; }
-  container.innerHTML = top.map((p, i) => {
-    return '<a class="popular-item" href="/blog/' + esc(p.slug) + '" style="text-decoration:none;color:inherit">' +
-      '<span class="pop-num">' + (i + 1) + '</span>' +
-      '<div><div class="pop-title">' + esc(p.title) + '</div>' +
-      (p.viewCount ? '<div class="pop-views"><i class="fa-regular fa-eye" style="margin-right:3px"></i>' + p.viewCount + '</div>' : '') +
-      '</div></a>';
-  }).join('');
+function loadSidebarCategories() {
+  const container = document.getElementById('sidebarCategories');
+  if (!badges.length) return;
+  const catCounts = {};
+  badges.forEach(b => { catCounts[b.id] = 0; });
+  const allPostsData = fetchAPI('/api/blog/posts?status=published&lang=' + (post.lang || 'fr') + '&limit=200');
+  allPostsData.then(data => {
+    const posts = data?.posts || [];
+    posts.forEach(p => {
+      (p.badgeIds || []).forEach(id => {
+        if (catCounts[id] !== undefined) catCounts[id]++;
+      });
+    });
+    container.innerHTML = badges.map(b =>
+      '<a href="/blog?badge=' + b.id + '" class="cat-item">' +
+        '<span class="cat-name">' + esc(b.name) + '</span>' +
+        '<span class="cat-count">' + (catCounts[b.id] || 0) + '</span>' +
+      '</a>'
+    ).join('');
+  });
 }
+
+document.getElementById('sidebarSearchInput').addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  if (!q) { window.location.href = '/blog'; return; }
+  window.location.href = '/blog?search=' + encodeURIComponent(q);
+});
 
 async function subscribeNl() {
   const email = document.getElementById('nlEmail').value.trim();
@@ -457,7 +482,7 @@ async function init() {
   renderPost();
   renderComments();
   renderRelated();
-  loadPopularPosts();
+  loadSidebarCategories();
 }
 
 function renderPost() {
