@@ -40,8 +40,10 @@ p,li,blockquote,.hero-desc,.step-desc,.testimonial-text,.faq-question{font-style
 .noise-overlay{display:none!important}
 
 /* ── NAVBAR ── */
-.navbar{background:#fff!important}
-.navbar.scrolled{background:#fff!important;box-shadow:0 2px 16px rgba(0,0,0,0.06)!important}
+.navbar{background:rgba(255,255,255,0.8)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;border-bottom:1px solid transparent!important}
+.navbar.scrolled{background:rgba(255,255,255,0.98)!important;box-shadow:0 2px 24px rgba(0,0,0,0.06)!important;border-bottom-color:var(--border-color)!important}
+[data-theme="dark"] .navbar{background:rgba(13,27,53,0.8)!important}
+[data-theme="dark"] .navbar.scrolled{background:rgba(13,27,53,0.98)!important}
 .nav-links a,.nav-mega-trigger{font-family:var(--font-main)!important}
 .nav-links a:hover,.nav-mega-trigger:hover{color:var(--accent-blue)!important}
 
@@ -62,6 +64,18 @@ p,li,blockquote,.hero-desc,.step-desc,.testimonial-text,.faq-question{font-style
 .btn-secondary{border-color:var(--accent-gold)!important;color:var(--accent-gold)!important;background:transparent!important}
 .btn-secondary:hover{background:var(--accent-gold)!important;color:#fff!important}
 .btn-whatsapp{border-color:var(--accent-gold)!important}
+
+/* ── BTN LG ── */
+.btn-lg {
+  padding: 18px 36px !important;
+  font-size: 16px !important;
+}
+@media (max-width: 768px) {
+  .btn-lg {
+    padding: 14px 24px !important;
+    font-size: 14px !important;
+  }
+}
 
 /* ── SECTION TITLES ── */
 .section-title{text-transform:none!important;font-size:clamp(24px,3.2vw,32px);color:var(--accent-blue);margin-bottom:8px}
@@ -161,6 +175,200 @@ blockquote{font-style:normal!important}
   .post-card * { opacity: 1 !important; animation: none !important; }
   .hero-showcase .showcase-slide { transition: none !important; }
   html { scroll-behavior: auto; }
+}
+
+/* ── NAVBAR SCROLL SHADOW TRANSITION ── */
+.navbar {
+  transition: background 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.4s cubic-bezier(.16,1,.3,1), border-color 0.4s ease !important;
+}
+
+/* ── HAMBURGER TO X ANIMATION ── */
+.nav-burger span {
+  transition: transform 0.35s cubic-bezier(.16,1,.3,1), opacity 0.2s ease, width 0.35s cubic-bezier(.16,1,.3,1) !important;
+  transform-origin: center !important;
+}
+.nav-burger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg) !important;
+}
+.nav-burger.open span:nth-child(2) {
+  opacity: 0 !important;
+  transform: scaleX(0) !important;
+}
+.nav-burger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg) !important;
+}
+.nav-burger.open {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* ── CARD MICRO-ANIMATIONS ── */
+.feature-card,
+.methode-card,
+.service-mini-card,
+.project-card,
+.resultat-card,
+.testimonial-card,
+.team-card,
+.team-card-premium,
+.service-full-card,
+.contact-box {
+  transition: transform 0.5s cubic-bezier(.16,1,.3,1), box-shadow 0.5s cubic-bezier(.16,1,.3,1) !important;
+}
+.feature-card:hover,
+.methode-card:hover,
+.service-mini-card:hover,
+.project-card:hover,
+.resultat-card:hover,
+.testimonial-card:hover,
+.team-card:hover,
+.team-card-premium:hover,
+.service-full-card:hover,
+.contact-box:hover {
+  transform: translateY(-6px) !important;
+}
+
+/* ── BUTTON MICRO-ANIMATIONS ── */
+.btn {
+  transition: background 0.35s cubic-bezier(.16,1,.3,1),
+              color 0.35s cubic-bezier(.16,1,.3,1),
+              border-color 0.35s cubic-bezier(.16,1,.3,1),
+              box-shadow 0.35s cubic-bezier(.16,1,.3,1),
+              transform 0.3s cubic-bezier(.16,1,.3,1) !important;
+}
+.btn:hover {
+  transform: translateY(-2px) !important;
+}
+.btn:active {
+  transform: translateY(0) !important;
+}
+
+/* ── NAV LINK HOVER LINE ── */
+.nav-links a {
+  position: relative !important;
+}
+.nav-links a::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -4px !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 2px !important;
+  background: var(--accent-blue) !important;
+  transition: width 0.35s cubic-bezier(.16,1,.3,1) !important;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100% !important;
+}
+
+/* ── MEGA MENU MICRO-ANIMATIONS ── */
+.mega-link {
+  border-radius: 6px !important;
+}
+
+/* ── SHOWCASE IMAGE HOVER ── */
+.showcase-img {
+  transition: box-shadow 0.5s cubic-bezier(.16,1,.3,1) !important;
+}
+.showcase-img:hover {
+  box-shadow: 0 20px 60px rgba(27,58,107,0.15) !important;
+}
+
+/* ── SERVICE MINI CARD ── */
+.service-mini-card::after {
+  transition: all 0.4s cubic-bezier(.16,1,.3,1) !important;
+}
+
+/* ── CLAMP TYPOGRAPHY REFINEMENTS ── */
+.hero-line-sm {
+  font-size: clamp(28px, 4.5vw, 52px) !important;
+}
+.hero-rotator-wrapper {
+  font-size: clamp(28px, 4.5vw, 52px) !important;
+}
+.section-title {
+  font-size: clamp(24px, 3.2vw, 36px) !important;
+}
+.page-hero-title {
+  font-size: clamp(28px, 3.5vw, 44px) !important;
+}
+
+/* ── PREMIUM SERVICE MINI CARDS ── */
+.service-mini-card {
+  border-radius: var(--radius-md) !important;
+}
+
+/* ── RESULTAT CARDS ── */
+.resultat-card {
+  border-radius: var(--radius-md) !important;
+}
+
+/* ── PROJECT CARDS ── */
+.project-card {
+  border-radius: var(--radius-md) !important;
+}
+
+/* ── REALISATIONS FILTER BUTTONS ── */
+.filter-btn {
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  padding: 8px 20px !important;
+}
+
+/* ── PAGE HERO BADGE ── */
+.page-hero-badge {
+  background: #EEF3FF !important;
+  border-radius: 0 !important;
+  padding: 5px 14px !important;
+  font-size: 12px !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* ── SHOWCASE ITEMS ── */
+.showcase-item {
+  gap: 48px !important;
+}
+.showcase-content .showcase-title {
+  font-family: var(--font-heading) !important;
+}
+.showcase-metrics .metric .val {
+  font-family: var(--font-heading) !important;
+}
+
+/* ── FAQ ── */
+.faq-icon {
+  transition: transform 0.35s cubic-bezier(.16,1,.3,1) !important;
+}
+
+/* ── TOOLS MARQUEE SPEED ── */
+.tools-marquee-track {
+  animation-duration: 25s !important;
+}
+
+/* ── FOOTER SOCIAL ICONS ── */
+.social-links a {
+  transition: transform 0.3s cubic-bezier(.16,1,.3,1), color 0.3s ease !important;
+}
+.social-links a:hover {
+  transform: translateY(-3px) !important;
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+  transition: opacity 0.35s ease, visibility 0.35s ease !important;
+}
+
+/* ── MOBILE 375px REFINEMENTS ── */
+@media (max-width: 375px) {
+  .hero-line-sm { font-size: clamp(18px, 5.5vw, 24px) !important; }
+  .hero-rotator-wrapper { font-size: clamp(18px, 5.5vw, 24px) !important; }
+  .hero-actions { grid-template-columns: 1fr !important; max-width: 100% !important; }
+  .hero-actions .btn { font-size: 12px !important; }
+  .container { padding: 0 16px !important; }
+  .section-title { font-size: clamp(20px, 6vw, 26px) !important; }
+  .page-hero-title { font-size: clamp(22px, 6vw, 28px) !important; }
+  .showcase-item, .showcase-item.reverse { gap: 20px !important; }
 }
 
 /* ── RESPONSIVE ── */
