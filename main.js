@@ -349,12 +349,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ── SKILLS ANIMATION ── */
+  /* ── SKILLS ANIMATION — animated bars + counter ── */
   const skillBars = document.querySelectorAll('.skill-bar-fill');
   if (skillBars.length) {
-    skillBars.forEach(el => {
-      el.style.width = el.dataset.width;
-    });
+    if ('IntersectionObserver' in window) {
+      const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const bars = entry.target.querySelectorAll('.skill-bar-fill');
+            bars.forEach(bar => animateSkillBar(bar));
+            skillObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      const skillsSection = document.getElementById('competences');
+      if (skillsSection) skillObserver.observe(skillsSection);
+    } else {
+      skillBars.forEach(bar => animateSkillBar(bar));
+    }
+  }
+
+  function animateSkillBar(bar) {
+    const target = parseFloat(bar.dataset.width) || 0;
+    const duration = 1200;
+    const start = performance.now();
+    const parent = bar.closest('.skill-item');
+    const percentEl = parent ? parent.querySelector('.skill-percent') : null;
+
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = eased * target;
+
+      bar.style.width = current + '%';
+      if (percentEl) percentEl.textContent = Math.round(current) + '%';
+
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   }
 
   /* ── DEVIS MULTI-STEP (devis.html) ── */

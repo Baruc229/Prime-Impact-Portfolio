@@ -960,9 +960,8 @@ img {
 
 .skill-bar-wrapper {
   width: 100%;
-  height: 8px;
-  background: var(--border-color);
-  border-radius: 100px;
+  height: 10px;
+  background: var(--bg-tertiary);
   overflow: hidden;
   position: relative;
 }
@@ -970,9 +969,7 @@ img {
 .skill-bar-fill {
   height: 100%;
   background: var(--accent-blue);
-  border-radius: 100px;
-  width: 0; /* Will be set via JS */
-  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 0;
 }
 
 @media (max-width: 992px) {
