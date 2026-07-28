@@ -263,41 +263,6 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
       <h2 data-i18n="blog.post.related">Articles similaires</h2>
       <div class="related-grid" id="relatedGrid"></div>
     </div>
-    <div class="post-comments" id="commentsSection">
-      <h2 data-i18n="blog.post.comments.title">Avis & Questions</h2>
-      <div class="comments-count" id="commentsCount"></div>
-      <div class="comment-form" id="commentForm">
-        <h3 data-i18n="blog.post.comments.leave">Laisser un avis ou poser une question</h3>
-        <div class="form-type-select">
-          <button class="active" data-type="comment" onclick="selectCommentType(this)"><i class="fa-solid fa-question"></i> <span data-i18n="blog.post.comments.question">Question</span></button>
-          <button data-type="avis" onclick="selectCommentType(this)"><i class="fa-solid fa-star"></i> <span data-i18n="blog.post.comments.review">Avis</span></button>
-        </div>
-        <div class="rating-group" id="ratingGroup">
-          <label style="font-size:13px;color:var(--text-muted);display:block;margin-bottom:4px"><span data-i18n="blog.post.comments.rating">Votre note</span></label>
-          <div class="rating-select" id="ratingSelect">
-            <i class="fa-regular fa-star" data-star="1" onclick="setRating(1)"></i>
-            <i class="fa-regular fa-star" data-star="2" onclick="setRating(2)"></i>
-            <i class="fa-regular fa-star" data-star="3" onclick="setRating(3)"></i>
-            <i class="fa-regular fa-star" data-star="4" onclick="setRating(4)"></i>
-            <i class="fa-regular fa-star" data-star="5" onclick="setRating(5)"></i>
-          </div>
-        </div>
-        <div class="form-row">
-          <input type="text" id="commentName" placeholder="Votre nom" data-i18n="blog.post.comments.name">
-          <input type="email" id="commentEmail" placeholder="Votre email (non publié)" data-i18n="blog.post.comments.email">
-        </div>
-        <textarea id="commentContent" rows="3" placeholder="Écrivez votre message..." data-i18n="blog.post.comments.message"></textarea>
-        <div style="margin-top:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-          <button class="btn" onclick="submitComment()" id="submitCommentBtn" data-i18n="blog.post.comments.submit">Envoyer</button>
-          <span style="font-size:12px;color:var(--text-muted)" data-i18n="blog.post.comments.moderation">Votre message apparaîtra après modération.</span>
-        </div>
-      </div>
-      <div class="comment-success" id="commentSuccess">
-        <i class="fa-solid fa-circle-check"></i>
-        <p data-i18n="blog.post.comments.success">Merci ! Votre message a été envoyé et sera visible après validation.</p>
-      </div>
-      <div class="comments-list" id="commentsList"></div>
-    </div>
   </div>
   <aside class="post-sidebar">
     <button class="toc-toggle" id="tocToggle" onclick="toggleToc()"><i class="fa-solid fa-chevron-down"></i> <span data-i18n="blog.post.toc">Sommaire</span></button>
@@ -325,7 +290,41 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
       <div class="nl-msg" id="nlMsg"></div>
     </div>
   </aside>
-</div>
+  <div class="post-comments" id="commentsSection">
+    <h2 data-i18n="blog.post.comments.title">Avis & Questions</h2>
+    <div class="comments-count" id="commentsCount"></div>
+    <div class="comment-form" id="commentForm">
+      <h3 data-i18n="blog.post.comments.leave">Laisser un avis ou poser une question</h3>
+      <div class="form-type-select">
+        <button class="active" data-type="comment" onclick="selectCommentType(this)"><i class="fa-solid fa-question"></i> <span data-i18n="blog.post.comments.question">Question</span></button>
+        <button data-type="avis" onclick="selectCommentType(this)"><i class="fa-solid fa-star"></i> <span data-i18n="blog.post.comments.review">Avis</span></button>
+      </div>
+      <div class="rating-group" id="ratingGroup">
+        <label style="font-size:13px;color:var(--text-muted);display:block;margin-bottom:4px"><span data-i18n="blog.post.comments.rating">Votre note</span></label>
+        <div class="rating-select" id="ratingSelect">
+          <i class="fa-regular fa-star" data-star="1" onclick="setRating(1)"></i>
+          <i class="fa-regular fa-star" data-star="2" onclick="setRating(2)"></i>
+          <i class="fa-regular fa-star" data-star="3" onclick="setRating(3)"></i>
+          <i class="fa-regular fa-star" data-star="4" onclick="setRating(4)"></i>
+          <i class="fa-regular fa-star" data-star="5" onclick="setRating(5)"></i>
+        </div>
+      </div>
+      <div class="form-row">
+        <input type="text" id="commentName" placeholder="Votre nom" data-i18n="blog.post.comments.name">
+        <input type="email" id="commentEmail" placeholder="Votre email (non publié)" data-i18n="blog.post.comments.email">
+      </div>
+      <textarea id="commentContent" rows="3" placeholder="Écrivez votre message..." data-i18n="blog.post.comments.message"></textarea>
+      <div style="margin-top:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <button class="btn" onclick="submitComment()" id="submitCommentBtn" data-i18n="blog.post.comments.submit">Envoyer</button>
+        <span style="font-size:12px;color:var(--text-muted)" data-i18n="blog.post.comments.moderation">Votre message apparaîtra après modération.</span>
+      </div>
+    </div>
+    <div class="comment-success" id="commentSuccess">
+      <i class="fa-solid fa-circle-check"></i>
+      <p data-i18n="blog.post.comments.success">Merci ! Votre message a été envoyé et sera visible après validation.</p>
+    </div>
+    <div class="comments-list" id="commentsList"></div>
+  </div>
 </div>
 
 <script src="../i18n.js"></script>
