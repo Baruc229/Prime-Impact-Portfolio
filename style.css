@@ -239,7 +239,7 @@ img {
   position: relative;
   overflow: hidden;
   background: var(--bg-main);
-  padding: 100px 0 60px;
+  padding: 150px 0 60px;
 }
 
 .hero-layout {
@@ -624,7 +624,7 @@ img {
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 110px 0 45px;
+    padding: 120px 0 45px;
     min-height: auto;
   }
   .hero-layout {
@@ -1078,21 +1078,23 @@ img {
 .nav-container {
   display: flex;
   align-items: center;
-  gap: clamp(24px, 3vw, 40px);
+  gap: clamp(32px, 4vw, 60px);
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 4vw;
+  padding: 0 5vw;
 }
 
 .nav-logo {
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 90px;
+  flex-shrink: 0;
 }
 
 .nav-logo img {
-  height: 70px;
+  height: 90px;
   width: auto;
+  display: block;
 }
 
 .logo-dark { display: none !important; }
@@ -1101,7 +1103,7 @@ img {
 
 .nav-links {
   display: flex;
-  gap: clamp(24px, 3vw, 40px);
+  gap: clamp(28px, 3.5vw, 48px);
 }
 
 .nav-links a {
@@ -1248,7 +1250,7 @@ img {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 28px;
   margin-left: auto;
 }
 
@@ -2190,7 +2192,7 @@ img {
 }
 
 .nav-logo img {
-  height: 70px;
+  height: 90px;
   width: auto;
 }
 
@@ -2307,7 +2309,7 @@ img {
   }
 
   .nav-mobile-header .nav-logo img {
-    height: 54px;
+    height: 80px;
   }
 
   /* Close button (X) */
@@ -4873,9 +4875,9 @@ textarea.form-control {
 }
 
 /* --- LANG SWITCHER --- */
-.lang-switcher { display: flex; align-items: center; gap: 10px; background: var(--glass-bg); padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); }
-.lang-switcher span { color: var(--border-color); }
-.lang-switcher button { background: none; border: none; font-size: 16px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 4px; transition: color 0.3s ease; }
+.lang-switcher { display: flex; align-items: center; gap: 4px; background: var(--glass-bg); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+.lang-switcher span { color: var(--border-color); font-size: 12px; }
+.lang-switcher button { background: none; border: none; font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 2px 6px; transition: color 0.3s ease; line-height: 1; }
 .lang-switcher button:hover { color: var(--text-color); }
 .lang-switcher button.active { color: var(--accent-blue); }
 
@@ -4883,7 +4885,7 @@ textarea.form-control {
 
 
 section[id] {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 120px;
 }
 
 

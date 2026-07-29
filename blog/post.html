@@ -51,11 +51,11 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
 .post-cover img{width:100%;border-radius:var(--radius-md);box-shadow:var(--shadow-soft);display:block}
 .post-layout{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 280px;gap:48px;position:relative;animation:postFadeIn .5s ease-out .3s both}
 .post-main{min-width:0}
-.post-content{font-size:clamp(15px,1.05vw,17px);line-height:1.8;color:var(--text-main);max-width:70ch}
-.post-content h2{font-size:clamp(22px,2.5vw,28px);margin:48px 0 16px;color:var(--accent-blue);scroll-margin-top:80px}
-.post-content h3{font-size:clamp(18px,1.8vw,22px);margin:36px 0 12px;color:var(--accent-blue);scroll-margin-top:80px}
-.post-content p{margin-bottom:20px}
-.post-content img{max-width:100%;border-radius:var(--radius-sm);margin:24px 0;display:block}
+.post-content{font-size:clamp(15px,1.05vw,17px);line-height:1.8;color:var(--text-main);max-width:720px}
+.post-content h2{font-size:clamp(22px,2.5vw,28px);margin:48px 0 16px;color:var(--accent-blue);scroll-margin-top:120px}
+.post-content h3{font-size:clamp(18px,1.8vw,22px);margin:36px 0 12px;color:var(--accent-blue);scroll-margin-top:120px}
+.post-content p{margin-bottom:20px;max-width:70ch}
+.post-content img{max-width:100%;border-radius:var(--radius-sm);margin:32px 0;display:block}
 .post-content figcaption{text-align:center;font-size:13px;font-style:italic;color:var(--text-muted);margin-top:-16px;margin-bottom:24px}
 .post-content blockquote{border-left:4px solid var(--accent-gold);margin:24px 0;padding:16px 20px;background:var(--bg-secondary);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-style:normal;color:var(--text-main)}
 .post-content blockquote p{margin-bottom:0}
@@ -115,7 +115,7 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;
 .related-card-body h3 a{color:var(--text-main);text-decoration:none}
 .related-card-body h3 a:hover{color:var(--accent-blue)}
 .related-card-body .related-meta{font-size:11px;color:var(--text-muted);margin-top:auto}
-.post-comments{margin:0 auto 60px;padding:0}
+.post-comments{grid-column:1 / -1;max-width:760px;margin:0 auto 60px;padding:0}
 .post-comments h2{font-size:24px;margin-bottom:8px;color:var(--accent-blue)}
 .post-comments .comments-count{font-size:14px;color:var(--text-muted);margin-bottom:24px}
 .comment-form{background:var(--bg-secondary);border-radius:var(--radius-md);padding:24px;border:1px solid var(--border-color);margin-bottom:32px}
