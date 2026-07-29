@@ -10,40 +10,45 @@
 <meta name="description" content="Actualités, conseils et stratégies webmarketing par Prime Impact Agency.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900&family=Inter:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://unpkg.com/@phosphor-icons/web"></script>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600;700&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css?v=13">
 <link rel="stylesheet" href="../style-v2.css?v=3">
 <style>
+/* ═══════════════════════════════════════════════════
+   BLOG ARCHIVE — Prime Impact Agency
+   Design System: Bleu #1B3A6B, Or #F5A623
+   ═══════════════════════════════════════════════════ */
 :root{--font-main:'Inter',sans-serif;--font-heading:'Roboto Condensed',sans-serif}
 [data-theme="light"]{--bg-main:#fff;--bg-secondary:#F7F7F7;--bg-tertiary:#e5e7eb;--text-main:#1c1c1e;--text-muted:#6B7280;--accent-blue:#1B3A6B;--accent-gold:#F5A623;--border-color:rgba(0,0,0,0.06);--shadow-soft:0 2px 12px rgba(0,0,0,0.04);--shadow-heavy:0 4px 24px rgba(27,58,107,0.1);--radius-sm:8px;--radius-md:16px;--glass-bg:#fff;--glass-bg-solid:#fff;--bg-card-warm:#fff}
 [data-theme="dark"]{--bg-main:#0D1B35;--bg-secondary:#111f3a;--bg-tertiary:#1a2d50;--text-main:#e2e8f0;--text-muted:#94a3b8;--accent-blue:#60a5fa;--accent-gold:#F5A623;--border-color:rgba(255,255,255,0.08);--shadow-soft:0 2px 12px rgba(0,0,0,0.2);--shadow-heavy:0 4px 24px rgba(0,0,0,0.35);--glass-bg:rgba(13,27,53,0.9);--glass-bg-solid:#0D1B35;--bg-card-warm:#111f3a}
-html{scroll-padding-top:100px;overflow-x:visible!important}
+html{scroll-padding-top:100px;overflow-x:visible!important;scroll-behavior:smooth}
 body{font-family:var(--font-main)!important;background:var(--bg-main)!important;color:var(--text-main);opacity:1!important;overflow-x:visible!important}
-h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
+h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important;line-height:1.2}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+.overflow-wrap{overflow-wrap:break-word;word-wrap:break-word;hyphens:auto}
 
 /* ─── HERO ─────────────────────────────────── */
 .blog-header{padding:140px 0 50px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--bg-main)0%,rgba(27,58,107,0.02)100%)}
 .blog-header::before{content:'';position:absolute;top:-40%;right:-10%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(27,58,107,0.04)0%,transparent 70%);pointer-events:none}
-.blog-header .container{position:relative;z-index:1}
-.blog-header h1{font-size:clamp(34px,5vw,56px);color:var(--accent-blue);margin-bottom:8px}
-.blog-header p{color:var(--text-muted);font-size:16px;max-width:520px;margin:0 auto}
+.blog-header .container{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px}
+.blog-header h1{font-size:clamp(34px,5vw,56px);color:var(--accent-blue);margin-bottom:8px;letter-spacing:-0.5px}
+.blog-header p{color:var(--text-muted);font-size:16px;max-width:520px;margin:0 auto;overflow-wrap:break-word}
 
 /* ─── NEWSLETTER BANDEAU PLEINE LARGEUR ──── */
 .newsletter-strip{background:#0D1B35;padding:40px 24px;margin-bottom:40px}
 .newsletter-strip .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
 .newsletter-strip .ns-badge{display:inline-block;background:rgba(245,166,35,0.15);color:var(--accent-gold);font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px}
-.newsletter-strip h2{font-size:24px;color:#fff;margin-bottom:6px;font-weight:700}
+.newsletter-strip h2{font-size:24px;color:#fff;margin-bottom:6px;font-weight:700;font-family:var(--font-heading)}
 .newsletter-strip p{color:rgba(255,255,255,0.65);font-size:14px;margin:0;max-width:400px;overflow-wrap:break-word}
 .newsletter-strip .ns-form{display:flex;gap:8px}
 .newsletter-strip .ns-form input{flex:1;padding:14px 18px;border-radius:var(--radius-sm);border:none;background:rgba(255,255,255,0.1);color:#fff;font-size:14px;font-family:var(--font-main);outline:none;transition:background .2s;min-width:0}
 .newsletter-strip .ns-form input::placeholder{color:rgba(255,255,255,0.4)}
 .newsletter-strip .ns-form input:focus{background:rgba(255,255,255,0.18)}
-.newsletter-strip .ns-form button{padding:14px 28px;border-radius:var(--radius-sm);border:none;background:var(--accent-gold);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-main);transition:background .25s ease-out,transform .2s ease-out;white-space:nowrap;flex-shrink:0}
+.newsletter-strip .ns-form button{padding:14px 28px;border-radius:var(--radius-sm);border:none;background:var(--accent-gold);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-main);transition:background .25s ease-out,transform .2s ease-out;flex-shrink:0}
 .newsletter-strip .ns-form button:hover{background:#d48e0f;transform:translateY(-1px)}
 .newsletter-strip .ns-form button:active{transform:translateY(0)}
 .newsletter-strip .ns-form button:disabled{opacity:.5;cursor:default}
@@ -57,8 +62,7 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .blog-container{max-width:1200px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:280px 1fr;gap:40px}
 .blog-sidebar{display:flex;flex-direction:column;gap:20px}
 .sidebar-card{background:var(--bg-main);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;box-shadow:var(--shadow-soft)}
-.sidebar-card h3{font-size:14px;color:var(--text-main);margin-bottom:14px;font-weight:700;font-family:var(--font-heading)}
-.sidebar-card .accordion-toggle{display:none}
+.sidebar-card h3{font-size:14px;color:var(--text-main);margin-bottom:14px;font-weight:700;font-family:var(--font-heading);text-transform:uppercase;letter-spacing:0.3px}
 
 /* search */
 .sidebar-search{position:relative}
@@ -79,12 +83,11 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .category-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--radius-sm);cursor:pointer;transition:all .2s ease-out;border:none;background:transparent;width:100%;text-align:left;font-family:var(--font-main);font-size:13px;color:var(--text-muted)}
 .category-item:hover{background:var(--bg-secondary);color:var(--text-main)}
 .category-item.active{background:rgba(27,58,107,0.06);color:var(--accent-blue);font-weight:600}
-.category-item .cat-name{flex:1}
+.category-item .cat-name{flex:1;overflow-wrap:break-word}
 .category-item .cat-count{font-size:11px;color:var(--text-muted);background:var(--bg-secondary);padding:1px 8px;border-radius:20px;flex-shrink:0}
 .category-item.active .cat-count{background:rgba(27,58,107,0.12);color:var(--accent-blue)}
 .category-item .cat-icon{width:6px;height:6px;border-radius:50%;flex-shrink:0;display:none}
 .category-item.active .cat-icon{display:block}
-.category-item.is-resource{position:relative}
 .category-item.is-resource .cat-name::after{content:'\f019';font-family:'Font Awesome 6 Free';font-weight:900;font-size:10px;margin-left:6px}
 .category-item.is-resource.active{background:rgba(245,166,35,0.08)}
 .category-item.is-resource.active .cat-count{background:rgba(245,166,35,0.15);color:var(--accent-gold)}
@@ -101,10 +104,10 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .featured-badge.is-resource{background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.6);display:inline-flex;align-items:center;gap:4px}
 .featured-badge.is-resource i{font-size:10px}
 .featured-content{padding:30px;display:flex;flex-direction:column;justify-content:center}
-.featured-content h2{font-size:24px;margin-bottom:10px;color:var(--text-main)}
+.featured-content h2{font-size:24px;margin-bottom:10px;color:var(--text-main);overflow-wrap:break-word}
 .featured-content h2 a{color:inherit;text-decoration:none}
 .featured-content h2 a:hover{color:var(--accent-blue)}
-.featured-content p{font-size:clamp(14px,1.1vw,16px);line-height:1.7;color:var(--text-muted);margin-bottom:16px;max-width:65ch}
+.featured-content p{font-size:clamp(14px,1.1vw,16px);line-height:1.7;color:var(--text-muted);margin-bottom:16px;max-width:65ch;overflow-wrap:break-word}
 .featured-meta{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--text-muted);flex-wrap:wrap}
 .featured-meta img{width:28px;height:28px;border-radius:50%;object-fit:cover}
 .featured-meta .sep{color:var(--border-color)}
@@ -117,7 +120,7 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 @keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:32px}
 .posts-grid.is-list{grid-template-columns:1fr}
-.post-card{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-color);background:var(--bg-main);box-shadow:var(--shadow-soft);transition:all .3s ease-out;cursor:pointer;display:flex;flex-direction:column;animation:cardIn .45s ease-out both}
+.post-card{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-color);background:var(--bg-main);box-shadow:var(--shadow-soft);transition:all .3s ease-out;cursor:pointer;display:flex;flex-direction:column;animation:cardIn .45s ease-out both;will-change:transform}
 .post-card:nth-child(1){animation-delay:.03s}
 .post-card:nth-child(2){animation-delay:.06s}
 .post-card:nth-child(3){animation-delay:.09s}
@@ -127,6 +130,9 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .post-card:nth-child(7){animation-delay:.21s}
 .post-card:nth-child(8){animation-delay:.24s}
 .post-card:nth-child(9){animation-delay:.27s}
+.post-card:nth-child(10){animation-delay:.30s}
+.post-card:nth-child(11){animation-delay:.33s}
+.post-card:nth-child(12){animation-delay:.36s}
 .post-card:hover{box-shadow:var(--shadow-heavy);transform:translateY(-3px)}
 .posts-grid.is-list .post-card{flex-direction:row;align-items:stretch}
 .posts-grid.is-list .post-card:hover{transform:translateY(-2px)}
@@ -138,23 +144,23 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 .post-card-badge{padding:3px 12px;border-radius:20px;font-size:10px;font-weight:600;color:#fff;pointer-events:none}
 .post-card-badge.is-resource{background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.6);display:inline-flex;align-items:center;gap:3px}
 .post-card-badge.is-resource i{font-size:9px}
-.post-card-body{padding:18px;flex:1;display:flex;flex-direction:column}
+.post-card-body{padding:18px;flex:1;display:flex;flex-direction:column;min-width:0}
 .posts-grid.is-list .post-card-body{padding:16px 20px}
 .post-card-body h3{font-size:clamp(15px,1.3vw,17px);margin-bottom:8px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .post-card-body h3 a{color:var(--text-main);text-decoration:none}
 .post-card-body h3 a:hover{color:var(--accent-blue)}
-.post-card-body p{font-size:clamp(13px,1vw,14px);color:var(--text-muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:10px;flex:1;max-width:65ch}
+.post-card-body p{font-size:clamp(13px,1vw,14px);color:var(--text-muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:10px;flex:1;max-width:65ch;overflow-wrap:break-word}
 .posts-grid.is-list .post-card-body p{-webkit-line-clamp:2}
 .post-card-read-more{font-size:13px;font-weight:600;color:var(--accent-blue);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap .25s ease-out,color .25s;margin-top:auto}
 .post-card-read-more i{font-size:11px;transition:transform .25s ease-out}
 .post-card:hover .post-card-read-more{color:#15305a;gap:8px}
 .post-card:hover .post-card-read-more i{transform:translateX(4px)}
-.post-card-footer{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border-color);padding:12px 18px;flex-shrink:0;min-height:44px}
+.post-card-footer{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border-color);padding:12px 18px;flex-shrink:0;min-height:44px;min-width:0}
 .posts-grid.is-list .post-card-footer{padding:10px 18px}
 .post-card-footer .footer-avatar{width:24px;height:24px;flex-shrink:0}
 .post-card-footer .footer-avatar img{width:24px;height:24px;border-radius:50%;object-fit:cover}
-.post-card-footer .footer-author{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.post-card-footer .card-footer-right{margin-left:auto;display:flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0}
+.post-card-footer .footer-author{overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0}
+.post-card-footer .card-footer-right{margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0}
 .post-card-likes{display:flex;align-items:center;gap:3px;font-size:11px;color:var(--text-muted);cursor:pointer;transition:color .2s}
 .post-card-likes:hover{color:var(--accent-blue)}
 .post-card-likes.is-liked{color:var(--accent-blue);font-weight:600}
@@ -162,23 +168,24 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 
 /* ─── PAGINATION ──────────────────────────── */
 .pagination{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:8px}
-.pagination button{padding:10px 18px;border-radius:var(--radius-sm);border:1px solid var(--border-color);background:var(--bg-main);color:var(--text-muted);font-size:14px;cursor:pointer;font-family:var(--font-main);transition:all .2s ease-out}
+.pagination button{padding:10px 18px;border-radius:var(--radius-sm);border:1px solid var(--border-color);background:var(--bg-main);color:var(--text-muted);font-size:14px;cursor:pointer;font-family:var(--font-main);transition:all .2s ease-out;min-width:40px;text-align:center}
 .pagination button:hover{border-color:var(--accent-blue);color:var(--accent-blue);background:rgba(27,58,107,0.03)}
 .pagination button.active{background:var(--accent-blue);color:#fff;border-color:var(--accent-blue)}
 .pagination button:disabled{opacity:.3;cursor:default}
-.pagination .page-prev-next{background:transparent;border-color:transparent;font-size:13px;color:var(--text-muted)}
+.pagination .page-prev-next{background:transparent;border-color:transparent;font-size:13px;color:var(--text-muted);min-width:auto;padding:10px 12px}
 .pagination .page-prev-next:hover{color:var(--accent-blue)}
 
 /* ─── EMPTY ──────────────────────────────── */
 .empty-blog{text-align:center;padding:80px 20px;color:var(--text-muted)}
 .empty-blog i{font-size:48px;margin-bottom:12px;opacity:.4}
-.empty-blog h3{font-size:20px;color:var(--text-main);margin-bottom:6px}
+.empty-blog h3{font-size:20px;color:var(--text-main);margin-bottom:6px;font-family:var(--font-heading)}
+.empty-blog p{overflow-wrap:break-word}
 
 /* ─── RESPONSIVE ──────────────────────────── */
 @media(max-width:1100px){
   .blog-container{grid-template-columns:1fr}
   .blog-sidebar{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .posts-grid{grid-template-columns:repeat(2,1fr)}
+  .posts-grid{grid-template-columns:repeat(2,1fr);gap:20px}
   .newsletter-strip .container{grid-template-columns:1fr;text-align:center}
   .newsletter-strip p{max-width:none}
   .newsletter-strip .ns-form{width:100%;max-width:440px}
@@ -187,29 +194,30 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
 @media(max-width:768px){
   .blog-header{padding:100px 0 30px}
   .blog-header h1{font-size:clamp(28px,8vw,34px)}
-  .blog-container{grid-template-columns:1fr}
-  .blog-sidebar{order:-1;display:flex;flex-direction:column;gap:12px}
+  .blog-container{grid-template-columns:1fr;padding:0 16px 40px}
+  .blog-sidebar{display:flex;flex-direction:column;gap:12px}
   #viewCard{display:none!important}
   .featured-card{grid-template-columns:1fr}
   .featured-image{aspect-ratio:16/9}
   .featured-content{padding:20px}
   .featured-content h2{font-size:20px}
+  .featured-content p{font-size:14px}
   .post-card-body{padding:14px}
   .post-card-footer{padding:10px 14px;font-size:11px}
   .posts-grid.is-list .post-card-footer{padding:10px 14px}
   .posts-grid{grid-template-columns:repeat(2,1fr);gap:16px}
   .posts-grid.is-list .post-card{flex-direction:column}
   .posts-grid.is-list .post-card-image{width:100%}
-  .blog-container{padding:0 16px 40px}
   .pagination{gap:4px}
   .pagination button{padding:8px 12px;font-size:12px;min-width:36px}
   .pagination .page-prev-next{padding:8px 10px}
-  .newsletter-strip{padding:28px 16px}
+  .newsletter-strip{padding:28px 16px;margin-bottom:24px}
   .newsletter-strip h2{font-size:18px}
   .newsletter-strip .container{grid-template-columns:1fr;text-align:center;gap:20px}
   .newsletter-strip p{max-width:none}
   .newsletter-strip .ns-form{width:100%}
   .newsletter-strip .ns-right{align-items:center}
+  .blog-featured-wrapper{padding:0 16px}
 }
 @media(max-width:600px){
   .posts-grid{grid-template-columns:1fr;gap:16px}
@@ -233,11 +241,11 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
   .post-card,.featured-card{animation:none;opacity:1}
   html{scroll-behavior:auto}
 }
-
-
 </style>
 </head><body>
 <div id="app">
+<!-- header injecté par components.js -->
+
 <section class="blog-header">
   <div class="container">
     <h1 data-i18n="blog.archive.title">Blog</h1>
@@ -304,32 +312,35 @@ h1,h2,h3,h4{font-family:var(--font-heading)!important;font-weight:800!important}
     <div class="pagination" id="pagination"></div>
   </div>
 </div>
+
+<!-- footer injecté par components.js -->
 </div>
-
-
 
 <script src="../i18n.js"></script>
 <script src="../components.js"></script>
 <script src="../main.js"></script>
 <script>
-const lang = localStorage.getItem('site_lang') || 'fr';
-let currentPage = 1;
-let currentBadge = '';
-let currentSearch = '';
-let currentLang = lang;
-let allPosts = [];
-let badges = [];
-let authors = [];
-let filteredPosts = [];
-let pageSize = 9;
-let viewMode = 'grid';
+/* ═══════════════════════════════════════════════════
+   BLOG ARCHIVE JS — Prime Impact Agency
+   ═══════════════════════════════════════════════════ */
+(function(){
+var lang = localStorage.getItem('site_lang') || 'fr';
+var currentPage = 1;
+var currentBadge = '';
+var currentSearch = '';
+var allPosts = [];
+var badges = [];
+var authors = [];
+var filteredPosts = [];
+var pageSize = 9;
+var viewMode = 'grid';
 
-function esc(str) { if (str == null) return ''; const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+function esc(str) { if (str == null) return ''; var d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
 
 function formatDate(d) {
   if (!d) return '';
   try {
-    const date = new Date(d.endsWith('Z') ? d : d + 'Z');
+    var date = new Date(d.endsWith('Z') ? d : d + 'Z');
     if (isNaN(date.getTime())) return '';
     return date.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
   } catch(e) { return ''; }
@@ -337,35 +348,31 @@ function formatDate(d) {
 
 function readingTime(content) {
   if (!content) return '1 min';
-  const words = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
-  const min = Math.max(1, Math.ceil(words / 200));
+  var words = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+  var min = Math.max(1, Math.ceil(words / 200));
   return min + ' min ' + (lang === 'fr' ? 'de lecture' : 'read');
 }
 
 async function fetchAPI(url) {
   try {
-    const res = await fetch(url);
+    var res = await fetch(url);
     if (!res.ok) return null;
     return await res.json();
   } catch(e) { return null; }
 }
 
 async function init() {
-  console.log('[BLOG] init start');
-  const [postsData, badgesData, authorsData] = await Promise.all([
-    fetchAPI('/api/blog/posts?status=published&lang=' + currentLang + '&limit=200'),
-    fetchAPI('/api/blog/badges'),
-    fetchAPI('/api/blog/authors')
-  ]);
+  var postsData = await fetchAPI('/api/blog/posts?status=published&lang=' + lang + '&limit=200');
+  var badgesData = await fetchAPI('/api/blog/badges');
+  var authorsData = await fetchAPI('/api/blog/authors');
   allPosts = postsData?.posts || [];
   badges = badgesData || [];
   authors = authorsData || [];
-  filteredPosts = [...allPosts];
-  console.log('[BLOG] posts:', allPosts.length, 'badges:', badges.length);
+  filteredPosts = allPosts.slice();
 
   renderSidebarCategories();
   renderPosts();
-  renderPopular();
+  renderPagination();
 
   document.getElementById('searchInput').addEventListener('input', function() {
     currentSearch = this.value.toLowerCase();
@@ -375,13 +382,12 @@ async function init() {
 }
 
 function renderSidebarCategories() {
-  const container = document.getElementById('categoryList');
-  const allCount = allPosts.length;
-  document.getElementById('totalCount').textContent = allCount;
+  var container = document.getElementById('categoryList');
+  document.getElementById('totalCount').textContent = allPosts.length;
 
-  badges.forEach(b => {
-    const count = allPosts.filter(p => p.badgeIds && p.badgeIds.includes(b.id)).length;
-    const btn = document.createElement('button');
+  badges.forEach(function(b) {
+    var count = allPosts.filter(function(p) { return p.badgeIds && p.badgeIds.indexOf(b.id) !== -1; }).length;
+    var btn = document.createElement('button');
     btn.className = 'category-item' + (b.type === 'resource' ? ' is-resource' : '');
     btn.dataset.badge = b.id;
     btn.innerHTML = '<span class="cat-name">' + esc(b.name) + '</span><span class="cat-count">' + count + '</span>';
@@ -391,7 +397,7 @@ function renderSidebarCategories() {
 }
 
 function filterBadge(btn) {
-  document.querySelectorAll('.category-item').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.category-item').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
   currentBadge = btn.dataset.badge;
   currentPage = 1;
@@ -403,104 +409,103 @@ function filterBadge(btn) {
 
 function switchView(mode) {
   viewMode = mode;
-  document.querySelectorAll('#viewToggle button').forEach(b => b.classList.toggle('active', b.dataset.view === mode));
+  document.querySelectorAll('#viewToggle button').forEach(function(b) { b.classList.toggle('active', b.dataset.view === mode); });
   renderPosts();
 }
 
 function filterAndRender() {
-  let posts = [...allPosts];
-  if (currentBadge) posts = posts.filter(p => p.badgeIds && p.badgeIds.includes(currentBadge));
+  var posts = allPosts.slice();
+  if (currentBadge) posts = posts.filter(function(p) { return p.badgeIds && p.badgeIds.indexOf(currentBadge) !== -1; });
   if (currentSearch) {
-    const q = currentSearch;
-    posts = posts.filter(p =>
-      (p.title || '').toLowerCase().includes(q) ||
-      (p.excerpt || '').toLowerCase().includes(q)
-    );
+    var q = currentSearch;
+    posts = posts.filter(function(p) {
+      return (p.title || '').toLowerCase().indexOf(q) !== -1 ||
+             (p.excerpt || '').toLowerCase().indexOf(q) !== -1;
+    });
   }
   filteredPosts = posts;
   renderPosts();
-  renderPagination();
 }
 
 function renderPosts() {
-  const grid = document.getElementById('postsGrid');
-  const featured = document.getElementById('featuredCard');
-  const empty = document.getElementById('emptyState');
-  const sidebar = document.querySelector('.blog-sidebar');
+  var grid = document.getElementById('postsGrid');
+  var featured = document.getElementById('featuredCard');
+  var empty = document.getElementById('emptyState');
+  var sidebar = document.querySelector('.blog-sidebar');
 
   grid.className = 'posts-grid' + (viewMode === 'list' ? ' is-list' : '');
 
   if (filteredPosts.length === 0) {
     featured.style.display = 'none';
-    sidebar.style.display = 'flex';
+    if (sidebar) sidebar.style.display = 'flex';
     grid.innerHTML = '';
     empty.style.display = 'block';
     renderPagination();
     return;
   }
   empty.style.display = 'none';
-  sidebar.style.display = 'flex';
+  if (sidebar) sidebar.style.display = 'flex';
 
-  const totalPages = Math.ceil(filteredPosts.length / pageSize);
+  var totalPages = Math.ceil(filteredPosts.length / pageSize);
   if (currentPage > totalPages) currentPage = totalPages;
 
-  let displayPosts;
+  var displayPosts;
 
   if (currentPage === 1 && viewMode === 'grid') {
-    const featuredPost = filteredPosts[0];
-    const featuredBadges = (featuredPost.badgeIds || []).map(id => badges.find(b => b.id === id)).filter(Boolean);
+    var featuredPost = filteredPosts[0];
+    var featuredBadges = (featuredPost.badgeIds || []).map(function(id) { return badges.find(function(b) { return b.id === id; }); }).filter(Boolean);
     featured.style.display = 'grid';
-    featured.innerHTML = `
-      <a href="/blog/${featuredPost.slug}" class="featured-image">
-        <div class="featured-badges">${featuredBadges.map(b => {
-          const cls = b.type === 'resource' ? ' featured-badge is-resource' : ' featured-badge';
-          const icon = b.type === 'resource' ? ' <i class="fa-solid fa-download"></i>' : '';
+    featured.innerHTML =
+      '<a href="/blog/' + featuredPost.slug + '" class="featured-image">' +
+        '<div class="featured-badges">' + featuredBadges.map(function(b) {
+          var cls = b.type === 'resource' ? ' featured-badge is-resource' : ' featured-badge';
+          var icon = b.type === 'resource' ? ' <i class="fa-solid fa-download"></i>' : '';
           return '<span class="' + cls.trim() + '" style="background:' + b.color + '">' + esc(b.name) + icon + '</span>';
-        }).join('')}</div>
-        <img src="${featuredPost.coverImage || '../assets/pia-logo-dark-sm.png'}" alt="${esc(featuredPost.title)}" loading="lazy">
-      </a>
-      <div class="featured-content">
-        <h2><a href="/blog/${featuredPost.slug}">${esc(featuredPost.title)}</a></h2>
-        <p>${esc(featuredPost.excerpt)}</p>
-        <div class="featured-meta">
-          ${(() => { const a = authors.find(aa => aa.id === featuredPost.authorId); return a && a.avatar ? '<img src="' + a.avatar + '" alt="">' : ''; })()}
-          <span>${authors.find(a => a.id === featuredPost.authorId)?.name || 'PIA'}</span>
-          <span class="sep">·</span>
-          <span>${formatDate(featuredPost.publishedAt)}</span>
-          <span class="sep">·</span>
-          <span>${readingTime(featuredPost.content)}</span>
-          <span class="sep">·</span>
-          <span class="meta-likes${featuredPost.isLiked ? ' is-liked' : ''}" onclick="toggleLike(this, '${featuredPost.slug}')">
-            <i class="${featuredPost.isLiked ? 'fa-solid' : 'fa-regular'} fa-heart"></i> ${featuredPost.likesCount || 0}
-          </span>
-        </div>
-      </div>
-    `;
+        }).join('') + '</div>' +
+        '<img src="' + (featuredPost.coverImage || '../assets/pia-logo-dark-sm.png') + '" alt="' + esc(featuredPost.title) + '" loading="lazy">' +
+      '</a>' +
+      '<div class="featured-content">' +
+        '<h2><a href="/blog/' + featuredPost.slug + '">' + esc(featuredPost.title) + '</a></h2>' +
+        '<p>' + esc(featuredPost.excerpt) + '</p>' +
+        '<div class="featured-meta">' +
+          (function(){ var a = authors.find(function(aa) { return aa.id === featuredPost.authorId; }); return a && a.avatar ? '<img src="' + a.avatar + '" alt="">' : ''; })() +
+          '<span>' + (authors.find(function(a) { return a.id === featuredPost.authorId; })?.name || 'PIA') + '</span>' +
+          '<span class="sep">·</span>' +
+          '<span>' + formatDate(featuredPost.publishedAt) + '</span>' +
+          '<span class="sep">·</span>' +
+          '<span>' + readingTime(featuredPost.content) + '</span>' +
+          '<span class="sep">·</span>' +
+          '<span class="meta-likes' + (featuredPost.isLiked ? ' is-liked' : '') + '" onclick="toggleLike(this, \'' + featuredPost.slug + '\')">' +
+            '<i class="' + (featuredPost.isLiked ? 'fa-solid' : 'fa-regular') + ' fa-heart"></i> ' + (featuredPost.likesCount || 0) +
+          '</span>' +
+        '</div>' +
+      '</div>';
     displayPosts = filteredPosts.slice(1, pageSize);
   } else {
     featured.style.display = 'none';
-    const start = (currentPage - 1) * pageSize;
+    var start = (currentPage - 1) * pageSize;
     displayPosts = filteredPosts.slice(start, start + pageSize);
   }
 
-  if (displayPosts.length === 0) { grid.innerHTML = ''; renderPagination(); return; }
+  if (!displayPosts.length) { grid.innerHTML = ''; renderPagination(); return; }
 
-  grid.innerHTML = displayPosts.map(post => {
-    const postBadges = (post.badgeIds || []).map(id => badges.find(b => b.id === id)).filter(Boolean);
-    const author = authors.find(a => a.id === post.authorId);
+  grid.innerHTML = displayPosts.map(function(post) {
+    var postBadges = (post.badgeIds || []).map(function(id) { return badges.find(function(b) { return b.id === id; }); }).filter(Boolean);
+    var author = authors.find(function(a) { return a.id === post.authorId; });
+    var readMoreText = lang === 'fr' ? 'Lire plus' : 'Read more';
     return '<div class="post-card" onclick="window.location.href=\'/blog/' + post.slug + '\'">' +
       '<div class="post-card-image">' +
         '<img src="' + (post.coverImage || '../assets/pia-logo-dark-sm.png') + '" alt="' + esc(post.title) + '" loading="lazy">' +
-        '<div class="post-card-badges">' + postBadges.map(b => {
-          const cls = b.type === 'resource' ? 'is-resource' : '';
-          const icon = b.type === 'resource' ? ' <i class="fa-solid fa-download"></i>' : '';
+        '<div class="post-card-badges">' + postBadges.map(function(b) {
+          var cls = b.type === 'resource' ? 'is-resource' : '';
+          var icon = b.type === 'resource' ? ' <i class="fa-solid fa-download"></i>' : '';
           return '<span class="post-card-badge' + (cls ? ' ' + cls : '') + '" style="background:' + b.color + '">' + esc(b.name) + icon + '</span>';
         }).join('') + '</div>' +
       '</div>' +
       '<div class="post-card-body">' +
         '<h3><a href="/blog/' + post.slug + '">' + esc(post.title) + '</a></h3>' +
         '<p>' + esc(post.excerpt) + '</p>' +
-        '<a href="/blog/' + post.slug + '" class="post-card-read-more">' + (lang === 'fr' ? 'Lire plus' : 'Read more') + ' <i class="fa-solid fa-arrow-right"></i></a>' +
+        '<a href="/blog/' + post.slug + '" class="post-card-read-more">' + readMoreText + ' <i class="fa-solid fa-arrow-right"></i></a>' +
       '</div>' +
       '<div class="post-card-footer">' +
         '<span class="footer-avatar">' + (author && author.avatar ? '<img src="' + author.avatar + '" alt="">' : '') + '</span>' +
@@ -519,13 +524,13 @@ function renderPosts() {
 }
 
 function renderPagination() {
-  const pag = document.getElementById('pagination');
-  const totalPages = Math.ceil(filteredPosts.length / pageSize);
+  var pag = document.getElementById('pagination');
+  var totalPages = Math.ceil(filteredPosts.length / pageSize);
   if (totalPages <= 1) { pag.innerHTML = ''; return; }
 
-  let html = '';
+  var html = '';
   html += '<button class="page-prev-next" onclick="goPage(' + (currentPage - 1) + ')"' + (currentPage <= 1 ? ' disabled' : '') + '><i class="fa-solid fa-chevron-left"></i></button>';
-  for (let i = 1; i <= totalPages; i++) {
+  for (var i = 1; i <= totalPages; i++) {
     html += '<button class="' + (i === currentPage ? 'active' : '') + '" onclick="goPage(' + i + ')">' + i + '</button>';
   }
   html += '<button class="page-prev-next" onclick="goPage(' + (currentPage + 1) + ')"' + (currentPage >= totalPages ? ' disabled' : '') + '><i class="fa-solid fa-chevron-right"></i></button>';
@@ -539,16 +544,18 @@ function goPage(page) {
   window.scrollTo({ top: document.getElementById('blogMain').offsetTop - 120, behavior: 'smooth' });
 }
 
-async function toggleLike(el, slug) {
-  const numEl = el.querySelector('.like-num') || el;
-  let current = parseInt(numEl.dataset.likes || el.dataset.likes || (numEl.textContent.trim().match(/\d+/)?.[0]) || 0);
-  const liked = el.classList.toggle('is-liked');
-  const i = el.querySelector('i');
+window.toggleLike = async function(el, slug) {
+  var numEl = el.querySelector('.like-num') || el;
+  var current = parseInt(numEl.dataset.likes || el.dataset.likes || (numEl.textContent.trim().match(/\d+/)?.[0]) || 0);
+  var liked = el.classList.toggle('is-liked');
+  var i = el.querySelector('i');
   i.className = liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
   current = liked ? current + 1 : Math.max(0, current - 1);
   el.dataset.likes = current;
-  const match = numEl.textContent.trim().match(/\d+/);
-  numEl.textContent = numEl.textContent.replace(/\d+/, current);
+  var match = numEl.textContent.trim().match(/\d+/);
+  if (match) {
+    numEl.textContent = numEl.textContent.replace(/\d+/, current);
+  }
   try {
     await fetch('/api/blog/posts?slug=' + slug, {
       method: 'PUT',
@@ -556,24 +563,14 @@ async function toggleLike(el, slug) {
       body: JSON.stringify({ likesCount: current })
     });
   } catch(e) {}
-}
+};
 
-async function renderPopular() {}
-
-function scrollToResults() {
-  const grid = document.getElementById('postsGrid');
-  if (grid && grid.children.length > 0) {
-    const y = grid.getBoundingClientRect().top + window.pageYOffset - 140;
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  }
-}
-
-async function subscribeNewsletter() {
-  const input = document.getElementById('nsEmail');
-  const btn = document.getElementById('nsBtn');
-  const msg = document.getElementById('nsMsg');
-  const email = input.value.trim();
-  if (!email || !email.includes('@')) {
+window.subscribeNewsletter = async function() {
+  var input = document.getElementById('nsEmail');
+  var btn = document.getElementById('nsBtn');
+  var msg = document.getElementById('nsMsg');
+  var email = input.value.trim();
+  if (!email || email.indexOf('@') === -1) {
     msg.className = 'ns-msg error';
     msg.textContent = lang === 'fr' ? 'Email invalide.' : 'Invalid email.';
     return;
@@ -582,12 +579,12 @@ async function subscribeNewsletter() {
   btn.textContent = lang === 'fr' ? 'Envoi...' : 'Sending...';
   msg.textContent = '';
   try {
-    const res = await fetch('/api/blog/newsletters', {
+    var res = await fetch('/api/blog/newsletters', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, source: 'blog-archive' })
+      body: JSON.stringify({ email: email, source: 'blog-archive' })
     });
-    const data = await res.json();
+    var data = await res.json();
     if (res.ok) {
       msg.className = 'ns-msg success';
       msg.textContent = lang === 'fr' ? 'Merci ! Vous êtes inscrit.' : 'Thanks! You are subscribed.';
@@ -601,10 +598,23 @@ async function subscribeNewsletter() {
     msg.textContent = lang === 'fr' ? 'Erreur réseau.' : 'Network error.';
   }
   btn.disabled = false;
-  btn.textContent = lang === 'fr' ? 'S\'abonner' : 'Subscribe';
+  btn.textContent = lang === 'fr' ? "S'abonner" : 'Subscribe';
+};
+
+function scrollToResults() {
+  var grid = document.getElementById('postsGrid');
+  if (grid && grid.children.length > 0) {
+    var y = grid.getBoundingClientRect().top + window.pageYOffset - 140;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
 }
 
+window.filterBadge = filterBadge;
+window.switchView = switchView;
+window.goPage = goPage;
+
 document.addEventListener('DOMContentLoaded', init);
+})();
 </script>
 <script src="../config.js"></script>
 <script src="../tracker.js"></script>
