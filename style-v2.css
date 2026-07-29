@@ -42,14 +42,14 @@ p,li,blockquote,.hero-desc,.step-desc,.testimonial-text,.faq-question{font-style
 /* ── NAVBAR ── */
 .navbar{background:rgba(255,255,255,0.8)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;border-bottom:1px solid transparent!important}
 .navbar.scrolled{background:rgba(255,255,255,0.98)!important;box-shadow:0 2px 24px rgba(0,0,0,0.06)!important;border-bottom-color:var(--border-color)!important}
-.navbar .nav-logo img{height:90px!important}
+.navbar .nav-logo img{height:60px!important}
 [data-theme="dark"] .navbar{background:rgba(13,27,53,0.8)!important}
 [data-theme="dark"] .navbar.scrolled{background:rgba(13,27,53,0.98)!important}
 .nav-links a,.nav-mega-trigger{font-family:var(--font-main)!important}
 .nav-links a:hover,.nav-mega-trigger:hover{color:var(--accent-blue)!important}
 
 /* ── HERO ── */
-.hero-section{background:#fff!important;padding:160px 0 80px}
+.hero-section{background:#fff!important;padding:140px 0 80px}
 .hero-badge{background:#EEF3FF!important;color:var(--accent-blue)!important;border-radius:0!important;padding:5px 14px;font-size:12px;letter-spacing:0.5px}
 .hero-line-sm{color:var(--accent-blue)!important;letter-spacing:-0.5px}
 .hero-rotator-wrapper{color:var(--accent-gold)!important;letter-spacing:-0.5px}
