@@ -73,12 +73,12 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 
 /* ── PROBLEM CARDS (négatif) ── */
 .problem-grid{display:grid;grid-template-columns:1fr;gap:20px}
-.problem-card{background:#fff;border-radius:8px;padding:28px;border-top:4px solid #ef4444;box-shadow:0 1px 2px rgba(0,0,0,0.04),0 4px 16px rgba(0,0,0,0.04);transition:transform 0.3s ease,box-shadow 0.3s ease}
+.problem-card{background:#fff;border-radius:8px;padding:28px;border-top:4px solid #B45309;box-shadow:0 1px 2px rgba(0,0,0,0.04),0 4px 16px rgba(0,0,0,0.04);transition:transform 0.3s ease,box-shadow 0.3s ease}
 .problem-card:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.08)}
 .problem-card .icon{font-size:28px;margin-bottom:12px}
-.problem-card .icon i{font-size:28px;color:#ef4444;transition:color 0.3s ease}
-.problem-card:hover .icon i{color:#b91c1c}
-.problem-card h3{font-size:20px;font-weight:800;color:#dc2626;margin-bottom:6px;font-style:normal}
+.problem-card .icon i{font-size:28px;color:#B45309;transition:color 0.3s ease}
+.problem-card:hover .icon i{color:#92400e}
+.problem-card h3{font-size:20px;font-weight:800;color:#B45309;margin-bottom:6px;font-style:normal}
 .problem-card p{font-size:16px;color:#6B7280;line-height:1.6}
 
 /* ── SOLUTION GRID ── */
@@ -269,12 +269,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 }
 
 /* ── TESTIMONIALS CAROUSEL ── */
-.testimonials-section{background:#fff;padding:64px 0;overflow:hidden}
+.testimonials-section{background:#fff;padding:64px 0}
 .testimonials-section .section-title{text-align:center}
-.testi-carousel{position:relative;max-width:720px;margin:32px auto 0;min-height:200px}
-.testi-slide{position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateX(40px);transition:opacity 0.6s ease,transform 0.6s ease;pointer-events:none}
-.testi-slide.active{position:relative;opacity:1;transform:translateX(0);pointer-events:auto}
-.testi-card{padding:24px 28px;display:flex;flex-direction:column;gap:12px;font-family:'Outfit',sans-serif;border-left:3px solid #FFB432;background:#fcf9f3}
 .testi-header{display:flex;justify-content:space-between;align-items:flex-start}
 .testi-avatar-group{display:flex;align-items:center;gap:10px}
 .testi-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;flex-shrink:0;line-height:1}
@@ -302,9 +298,18 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .testi-quote::after{content:'"';font-size:26px;color:#FFB432;font-style:normal;position:absolute;right:-2px;bottom:-8px;line-height:1}
 .testi-tag{display:inline-flex;align-items:center;gap:4px;background:#f4f4f6;border-radius:6px;padding:3px 8px;font-family:'Outfit',sans-serif;font-size:13px;color:#6b7280;width:fit-content;line-height:1.3}
 .testi-tag svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;flex-shrink:0}
-.testi-nav{display:flex;justify-content:center;gap:10px;margin-top:24px}
-.testi-nav .t-dot{width:10px;height:10px;border-radius:50%;background:#d1d5db;transition:background 0.3s,transform 0.3s;cursor:pointer}
-.testi-nav .t-dot.active{background:#FFB432;transform:scale(1.3)}
+.testi-card{padding:24px 28px;display:flex;flex-direction:column;gap:12px;font-family:'Outfit',sans-serif;border-left:3px solid #FFB432;background:#fcf9f3}
+.testi-grid{display:grid;gap:24px;margin:32px auto 0}
+.testi-cell{position:relative;min-height:200px}
+.testi-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.7s ease;pointer-events:none;z-index:1}
+.testi-slide.active{opacity:1;pointer-events:auto;z-index:2}
+@media(min-width:768px){
+  .testi-grid{grid-template-columns:repeat(3,1fr);max-width:960px}
+}
+@media(max-width:767px){
+  .testi-grid{grid-template-columns:1fr;max-width:600px}
+  .testi-cell{min-height:280px}
+}
 
 /* ── FAQ ── */
 .faq-section{background:#EEF3FF;padding:64px 0}
@@ -443,7 +448,7 @@ section[id]{scroll-margin-top:90px}
   .pricing-card.pricing-wide{padding:24px 20px}
   .contact-wrapper{padding:0}
   .contact-left,.contact-form-wrap{padding:28px 20px}
-  .testi-carousel{margin:24px auto 0;min-height:180px}
+  .testi-cell{min-height:180px}
   .faq-wrapper{padding:24px 16px}
   .faq-card-btn{font-size:15px;padding:14px 16px}
   .faq-card-answer p{font-size:14px}
@@ -496,12 +501,12 @@ section[id]{scroll-margin-top:90px}
 <section class="section section-light" id="probleme">
   <div class="container">
     <div class="section-title">
-      <div class="section-badge" style="background:#fef2f2;color:#dc2626">Le problème</div>
+      <div class="section-badge" style="background:#fef3c7;color:#B45309">Le problème</div>
       <h2>Vous perdez des clients — sans le savoir</h2>
       <p>SeLoger, Leboncoin, PAP… vous payez chaque mois sans construire votre marque. Pas de trafic direct, pas de valeur patrimoniale. Vous travaillez pour eux, pas pour vous.</p>
     </div>
     <div style="text-align:center;margin-bottom:20px">
-      <span style="display:inline-block;font-size:14px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:0.5px;border-bottom:2px solid #ef4444;padding-bottom:4px">Les conséquences concrètes</span>
+      <span style="display:inline-block;font-size:14px;font-weight:700;color:#B45309;text-transform:uppercase;letter-spacing:0.5px;border-bottom:2px solid #B45309;padding-bottom:4px">Les conséquences concrètes</span>
     </div>
     <div class="problem-grid">
       <div class="problem-card">
@@ -718,169 +723,25 @@ section[id]{scroll-margin-top:90px}
       <div class="section-badge">Témoignages</div>
       <h2>Ils nous font confiance</h2>
     </div>
-    <div class="testi-carousel" id="testiCarousel">
-      <div class="testi-slide active">
-        <div class="testi-card">
-          <div class="testi-header">
-            <div class="testi-avatar-group">
-              <div class="testi-avatar c1">MD</div>
-              <div>
-                <div class="testi-name">Marc D.</div>
-                <div class="testi-role">Agent immobilier indépendant, Lyon</div>
-              </div>
-            </div>
-            <div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div>
-          </div>
-          <div class="testi-meta">
-            <div class="testi-stars google">★★★★★</div>
-            <div class="testi-date">Il y a 2 mois</div>
-          </div>
-          <div class="testi-quote">Mon site a été livré en 12 jours. Dès le premier mois, 4 demandes de visite directement depuis le formulaire. Je ne pensais pas que ça marcherait aussi vite.</div>
-          <div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Site vitrine</div>
-        </div>
+    <div class="testi-grid" id="testiGrid">
+      <!-- Cell 1 -->
+      <div class="testi-cell">
+        <div class="testi-slide active"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c1">MD</div><div><div class="testi-name">Marc D.</div><div class="testi-role">Agent immobilier, Lyon</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 2 mois</div></div><div class="testi-quote">Mon site a été livré en 12 jours. Dès le premier mois, 4 demandes de visite directement depuis le formulaire.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Site vitrine</div></div></div>
+        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c4">CL</div><div><div class="testi-name">Cédric L.</div><div class="testi-role">Agent commercial, Marseille</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 2 semaines</div></div><div class="testi-quote">Au début j'étais sceptique sur le prix. Mais le résultat est propre, le site est rapide, et le suivi a été nickel. Bon boulot.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Site vitrine</div></div></div>
+        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c8">TM</div><div><div class="testi-name">Thomas M.</div><div class="testi-role">Agent multi-mandats, Montpellier</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="src-text trustpilot">Trustpilot</span></div></div><div class="testi-meta"><div class="testi-stars trustpilot">★★★★★</div><div class="testi-date">Il y a 4 jours</div></div><div class="testi-quote">Ce qui m'a convaincu c'est le rapport qualité/prix ET l'absence d'abonnement. Mes collègues paient des centaines d'euros par mois.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 11l2 2l4-4"/></svg>Multi-agents</div></div></div>
       </div>
-      <div class="testi-slide">
-        <div class="testi-card">
-          <div class="testi-header">
-            <div class="testi-avatar-group">
-              <div class="testi-avatar c2">SM</div>
-              <div>
-                <div class="testi-name">Sophie M.</div>
-                <div class="testi-role">Propriétaire location saisonnière, Bordeaux</div>
-              </div>
-            </div>
-            <div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="src-text trustpilot">Trustpilot</span></div>
-          </div>
-          <div class="testi-meta">
-            <div class="testi-stars trustpilot">★★★★★</div>
-            <div class="testi-date">Il y a 1 mois</div>
-          </div>
-          <div class="testi-quote">J'avais un devis à 2 200 € d'une agence locale. PIA m'a fait mon site pour 250 €. Le résultat est identique, et j'ai économisé 1 700 €. Franchement, je recommande.</div>
-          <div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14M9 7v2M12 7v2M15 7v2M9 13h6v8H9z"/></svg>Location saisonnière</div>
-        </div>
+      <!-- Cell 2 -->
+      <div class="testi-cell">
+        <div class="testi-slide active"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c2">SM</div><div><div class="testi-name">Sophie M.</div><div class="testi-role">Location saisonnière, Bordeaux</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="src-text trustpilot">Trustpilot</span></div></div><div class="testi-meta"><div class="testi-stars trustpilot">★★★★★</div><div class="testi-date">Il y a 1 mois</div></div><div class="testi-quote">J'avais un devis à 2 200 € d'une agence locale. PIA m'a fait mon site pour 250 €. Le résultat est identique, j'ai économisé 1 700 €.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14M9 7v2M12 7v2M15 7v2M9 13h6v8H9z"/></svg>Location saisonnière</div></div></div>
+        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c5">NV</div><div><div class="testi-name">Nathalie V.</div><div class="testi-role">Gestionnaire de biens, Nantes</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 5 jours</div></div><div class="testi-quote">Je reçois des demandes de location directement via mon site. Avant je payais Leboncoin à chaque annonce. Maintenant c'est gratuit.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14M9 7v2M12 7v2M15 7v2M9 13h6v8H9z"/></svg>Location saisonnière</div></div></div>
+        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c7">AL</div><div><div class="testi-name">Aurélie L.</div><div class="testi-role">Agent commercial, Lille</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 3 jours</div></div><div class="testi-quote">J'ai comparé pas mal de prestataires. Pour le prix c'est très propre. J'apprécie de pouvoir modifier le site moi-même sans payer à chaque fois.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Site vitrine</div></div></div>
       </div>
-      <div class="testi-slide">
-        <div class="testi-card">
-          <div class="testi-header">
-            <div class="testi-avatar-group">
-              <div class="testi-avatar c3">KA</div>
-              <div>
-                <div class="testi-name">Karim A.</div>
-                <div class="testi-role">Agence immobilière, Paris</div>
-              </div>
-            </div>
-            <div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div>
-          </div>
-          <div class="testi-meta">
-            <div class="testi-stars google">★★★★★</div>
-            <div class="testi-date">Il y a 3 semaines</div>
-          </div>
-          <div class="testi-quote">Site rapide, bien référencé et surtout je le gère tout seul. Le rapport qualité-prix est imbattable. Ça m'a déjà amené 3 clients en un mois.</div>
-          <div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 11l2 2l4-4"/></svg>Agence immobilière</div>
-        </div>
-      </div>
-      <div class="testi-slide">
-        <div class="testi-card">
-          <div class="testi-header">
-            <div class="testi-avatar-group">
-              <div class="testi-avatar c4">CL</div>
-              <div>
-                <div class="testi-name">Cédric L.</div>
-                <div class="testi-role">Agent commercial, Marseille</div>
-              </div>
-            </div>
-            <div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div>
-          </div>
-          <div class="testi-meta">
-            <div class="testi-stars google">★★★★★</div>
-            <div class="testi-date">Il y a 2 semaines</div>
-          </div>
-          <div class="testi-quote">Au début j'étais sceptique sur le prix. Je me suis dit « à 250 € ça doit être du vite fait ». Mais le résultat est propre, le site est rapide, et le suivi a été nickel. Bon boulot.</div>
-          <div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Site vitrine</div>
-        </div>
-      </div>
-      <div class="testi-slide">
-        <div class="testi-card">
-          <div class="testi-header">
-            <div class="testi-avatar-group">
-              <div class="testi-avatar c5">NV</div>
-              <div>
-                <div class="testi-name">Nathalie V.</div>
-                <div class="testi-role">Gestionnaire de biens, Nantes</div>
-              </div>
-            </div>
-            <div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div>
-          </div>
-          <div class="testi-meta">
-            <div class="testi-stars google">★★★★★</div>
-            <div class="testi-date">Il y a 5 jours</div>
-          </div>
-          <div class="testi-quote">Je reçois des demandes de location directement via mon site maintenant. Avant je passais par Leboncoin et je payais à chaque annonce. Là c'est gratuit et en plus le site est beau.</div>
-          <div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14M9 7v2M12 7v2M15 7v2M9 13h6v8H9z"/></svg>Location saisonnière</div>
-        </div>
-      </div>
-      <div class="testi-slide">
-        <div class="testi-card">
-          <div class="testi-header">
-            <div class="testi-avatar-group">
-              <div class="testi-avatar c6">PB</div>
-              <div>
-                <div class="testi-name">Pierre B.</div>
-                <div class="testi-role">Agent immobilier, Toulouse</div>
-              </div>
-            </div>
-            <div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="src-text trustpilot">Trustpilot</span></div>
-          </div>
-          <div class="testi-meta">
-            <div class="testi-stars trustpilot">★★★★★</div>
-            <div class="testi-date">Il y a 1 semaine</div>
-          </div>
-          <div class="testi-quote">J'ai fait refaire mon site par PIA. L'ancien datait de 2015, il était lent et moche. Là c'est jour et nuit. Et j'ai tout de suite vu la différence sur Google.</div>
-          <div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 11l2 2l4-4"/></svg>Refonte</div>
-        </div>
-      </div>
-      <div class="testi-slide">
-        <div class="testi-card">
-          <div class="testi-header">
-            <div class="testi-avatar-group">
-              <div class="testi-avatar c7">AL</div>
-              <div>
-                <div class="testi-name">Aurélie L.</div>
-                <div class="testi-role">Agent commercial, Lille</div>
-              </div>
-            </div>
-            <div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div>
-          </div>
-          <div class="testi-meta">
-            <div class="testi-stars google">★★★★★</div>
-            <div class="testi-date">Il y a 3 jours</div>
-          </div>
-          <div class="testi-quote">J'ai comparé pas mal de prestataires avant de choisir PIA. Franchement pour le prix c'est très propre. Et j'apprécie de pouvoir modifier le site moi-même sans payer à chaque fois.</div>
-          <div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Site vitrine</div>
-        </div>
-      </div>
-      <div class="testi-slide">
-        <div class="testi-card">
-          <div class="testi-header">
-            <div class="testi-avatar-group">
-              <div class="testi-avatar c8">TM</div>
-              <div>
-                <div class="testi-name">Thomas M.</div>
-                <div class="testi-role">Agent multi-mandats, Montpellier</div>
-              </div>
-            </div>
-            <div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="src-text trustpilot">Trustpilot</span></div>
-          </div>
-          <div class="testi-meta">
-            <div class="testi-stars trustpilot">★★★★★</div>
-            <div class="testi-date">Il y a 4 jours</div>
-          </div>
-          <div class="testi-quote">Ce qui m'a convaincu c'est le rapport qualité / prix ET l'absence d'abonnement. Mes collègues paient des centaines d'euros par mois pour des sites SeLoger. Moi j'ai mon site à moi.</div>
-          <div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 11l2 2l4-4"/></svg>Multi-agents</div>
-        </div>
+      <!-- Cell 3 -->
+      <div class="testi-cell">
+        <div class="testi-slide active"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c3">KA</div><div><div class="testi-name">Karim A.</div><div class="testi-role">Agence immobilière, Paris</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 3 semaines</div></div><div class="testi-quote">Site rapide, bien référencé et je le gère seul. Le rapport qualité-prix est imbattable. Ça m'a déjà amené 3 clients en un mois.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 11l2 2l4-4"/></svg>Agence immobilière</div></div></div>
+        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c6">PB</div><div><div class="testi-name">Pierre B.</div><div class="testi-role">Agent immobilier, Toulouse</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="src-text trustpilot">Trustpilot</span></div></div><div class="testi-meta"><div class="testi-stars trustpilot">★★★★★</div><div class="testi-date">Il y a 1 semaine</div></div><div class="testi-quote">J'ai fait refaire mon site. L'ancien datait de 2015, il était lent et moche. Là c'est jour et nuit. Différence immédiate sur Google.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 11l2 2l4-4"/></svg>Refonte</div></div></div>
       </div>
     </div>
-    <div class="testi-nav" id="testiNav"></div>
   </div>
 </section>
 
@@ -1264,51 +1125,23 @@ section[id]{scroll-margin-top:90px}
     });
   })();
 
-  // Testimonials — Auto-rotating carousel
+  // Testimonials — Per-cell rotation (cross-fade in-place)
   (function(){
-    var carousel = document.getElementById('testiCarousel');
-    var nav = document.getElementById('testiNav');
-    if(!carousel || !nav) return;
-
-    var slides = carousel.children;
-    if(!slides.length) return;
-
-    var current = 0;
-    var interval;
-
-    slides[0].classList.add('active');
-
-    for(var i = 0; i < slides.length; i++){
-      var dot = document.createElement('span');
-      dot.className = 't-dot' + (i === 0 ? ' active' : '');
-      dot.dataset.index = i;
-      dot.addEventListener('click', function(){
-        goTo(parseInt(this.dataset.index));
-      });
-      nav.appendChild(dot);
+    var cells = document.querySelectorAll('.testi-cell');
+    if(!cells.length) return;
+    for(var ci = 0; ci < cells.length; ci++){
+      (function(cell){
+        var slides = cell.querySelectorAll('.testi-slide');
+        if(slides.length < 2) return;
+        var idx = 0;
+        slides[0].classList.add('active');
+        setInterval(function(){
+          slides[idx].classList.remove('active');
+          idx = (idx + 1) % slides.length;
+          slides[idx].classList.add('active');
+        }, 5000);
+      })(cells[ci]);
     }
-
-    function goTo(idx){
-      slides[current].classList.remove('active');
-      current = idx;
-      slides[current].classList.add('active');
-      var dots = nav.children;
-      for(var i = 0; i < dots.length; i++){
-        dots[i].classList.toggle('active', i === current);
-      }
-      resetTimer();
-    }
-
-    function next(){
-      goTo((current + 1) % slides.length);
-    }
-
-    function resetTimer(){
-      clearInterval(interval);
-      interval = setInterval(next, 5000);
-    }
-
-    interval = setInterval(next, 5000);
   })();
 
   // Tech marquee — défilement continu sans fin
