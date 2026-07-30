@@ -29,7 +29,7 @@ h2{font-size:clamp(28px,3.5vw,38px);margin-bottom:8px}
 p{color:#6B7280;font-size:17px;line-height:1.7}
 
 /* ── HERO ── */
-.hero{display:flex;align-items:center;padding:184px 0 80px;background:#fff;position:relative;overflow:hidden}
+.hero{display:flex;align-items:center;padding:192px 0 80px;background:#fff;position:relative;overflow:hidden}
 .hero .container{display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
 .hero-left{text-align:center}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;background:#EEF3FF;color:#1B3A6B;font-size:13px;font-weight:600;padding:6px 16px;border-radius:0;margin-bottom:16px;letter-spacing:0.5px;text-transform:uppercase}
@@ -56,9 +56,9 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 /* ── HEADER ── */
 .header{position:fixed;top:0;left:0;width:100%;z-index:999;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.05);transition:box-shadow 0.3s}
 .header.scrolled{box-shadow:0 1px 8px rgba(0,0,0,0.06)}
-.header-inner{display:flex;align-items:center;height:64px;max-width:1140px;margin:0 auto;padding:0 20px}
+.header-inner{display:flex;align-items:center;height:72px;max-width:1140px;margin:0 auto;padding:0 20px}
 .header-logo{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:40px;flex-shrink:0}
-.header-logo img{height:32px;width:auto}
+.header-logo img{height:38px;width:auto}
 .header-nav{display:flex;align-items:center;gap:4px}
 .header-nav-item{position:relative;font-family:'Outfit',sans-serif;font-size:15px;font-weight:500;color:#1B3A6B;padding:8px 16px;border-radius:6px;cursor:pointer;transition:background 0.2s,color 0.2s;text-decoration:none;white-space:nowrap}
 .header-nav-item:hover{background:#EEF3FF;color:#1B3A6B}
@@ -80,8 +80,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .header-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;margin-left:12px;border:none;background:none}
 .header-burger span{width:22px;height:2px;background:#1B3A6B;border-radius:2px;transition:transform 0.3s,opacity 0.3s}
 @media(max-width:767px){
-  .header-inner{height:56px}
-  .header-nav{position:fixed;top:56px;left:0;width:100%;background:#fff;flex-direction:column;padding:16px 20px 24px;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,0.08);opacity:0;visibility:hidden;transition:opacity 0.3s,visibility 0.3s;border-bottom:1px solid rgba(0,0,0,0.04)}
+  .header-inner{height:64px}
+  .header-nav{position:fixed;top:64px;left:0;width:100%;background:#fff;flex-direction:column;padding:16px 20px 24px;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,0.08);opacity:0;visibility:hidden;transition:opacity 0.3s,visibility 0.3s;border-bottom:1px solid rgba(0,0,0,0.04)}
   .header-nav.open{opacity:1;visibility:visible}
   .header-nav-item{width:100%;padding:12px 16px}
   .header-nav-item.has-mega::after{right:16px}
@@ -255,8 +255,8 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   .realisations{padding:48px 0 0}
   .realisations .section-title{padding:0 0 24px}
   .realisations-sticky{position:relative;height:auto;overflow:visible;display:block}
-  .realisations-track{display:flex;flex-direction:column;transform:none!important;will-change:auto;gap:0;padding-bottom:20vh}
-  .realisations-panel{width:100%;flex-shrink:0;padding:24px;display:block;background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.04),0 8px 32px rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.04);position:sticky;top:80px;z-index:1;margin-bottom:-40px}
+  .realisations-track{display:flex;flex-direction:column;transform:none!important;will-change:auto;gap:0;padding-bottom:40vh}
+  .realisations-panel{width:100%;flex-shrink:0;padding:24px;display:block;background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.04),0 8px 32px rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.04);position:sticky;top:88px;z-index:1;margin-bottom:-12px}
   .realisations-panel:last-child{margin-bottom:0}
   .realisations-panel-inner,.realisations-panel-inner.reversed{flex-direction:column;gap:16px}
   .realisations-panel-visual{flex:none;width:100%}
@@ -483,7 +483,7 @@ section[id]{scroll-margin-top:90px}
   .hero h1{font-size:clamp(18px,6.5vw,24px)}
   .hero-badge{font-size:10px!important;padding:3px 10px!important}
   .hero-cta{width:100%;justify-content:center;font-size:15px;padding:16px 24px}
-  .hero{padding:136px 0 56px}
+  .hero{padding:144px 0 56px}
   .hero-stats{flex-direction:column;gap:6px;font-size:13px}
   .section{padding:48px 0}
   .section-hero{padding:80px 0 56px}
