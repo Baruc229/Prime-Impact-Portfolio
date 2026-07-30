@@ -538,7 +538,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
       <div class="form-group"><label>Slug</label><input type="text" id="peSlug" placeholder="mon-article"></div>
       <div class="form-group"><label>Langue</label><select id="peLang"><option value="fr">Français</option><option value="en">English</option></select></div>
     </div>
-    <div class="form-group"><label>Image de couverture</label><div class="image-upload-wrap" id="coverUpload" onclick="this.querySelector('input[type=file]').click()"><input type="file" accept="image/*" onchange="previewCover(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:28px;display:block;margin-bottom:6px;color:var(--accent)"></i>Cliquez pour uploader une image</p></div></div>
+    <div class="form-group"><label>Image de couverture</label><div class="image-upload-wrap" id="coverUpload" onclick="document.getElementById('coverInput').click()"><input type="file" id="coverInput" accept="image/*" onchange="previewCover(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:28px;display:block;margin-bottom:6px;color:var(--accent)"></i>Cliquez pour uploader une image</p></div></div>
     <div class="form-row-2">
       <div class="form-group"><label>Auteur</label><select id="peAuthor"></select></div>
       <div class="form-group"><label>Badges</label><div id="peBadges" class="badge-list"></div></div>
@@ -580,7 +580,7 @@ tr.unread td:first-child{border-left:3px solid var(--accent)}
   <div class="modal"><div class="modal-header"><h2 id="authorEditorTitle">Nouvel auteur</h2><button class="modal-close" onclick="closeAuthorEditor()"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body">
     <div class="form-group"><label>Nom</label><input type="text" id="aeName" placeholder="Nom de l'auteur"></div>
     <div class="form-group"><label>Rôle / Titre</label><input type="text" id="aeRole" placeholder="Ex: CEO, Designer, Développeur"></div>
-    <div class="form-group"><label>Photo</label><div class="image-upload-wrap" id="avatarUpload" onclick="this.querySelector('input[type=file]').click()"><input type="file" accept="image/*" onchange="previewAvatar(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:24px;display:block;margin-bottom:4px;color:var(--accent)"></i>Cliquez pour uploader une photo</p></div><input type="hidden" id="aeAvatar"></div>
+    <div class="form-group"><label>Photo</label><div class="image-upload-wrap" id="avatarUpload" onclick="document.getElementById('avatarInput').click()"><input type="file" id="avatarInput" accept="image/*" onchange="previewAvatar(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:24px;display:block;margin-bottom:4px;color:var(--accent)"></i>Cliquez pour uploader une photo</p></div><input type="hidden" id="aeAvatar"></div>
     <div class="form-group"><label>Bio</label><textarea id="aeBio" rows="2" placeholder="Courte biographie"></textarea></div>
     <div class="form-row-2">
       <div class="form-group"><label>LinkedIn (optionnel)</label><input type="text" id="aeLinkedin" placeholder="URL LinkedIn"></div>
@@ -1166,7 +1166,7 @@ async function openPostEditor(slug) {
   coverImageUrl = '';
   selectedBadges = [];
   document.getElementById('coverUpload').classList.remove('has-image');
-  document.getElementById('coverUpload').innerHTML = '<input type="file" accept="image/*" onchange="previewCover(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:28px;display:block;margin-bottom:6px;color:var(--accent)"></i>Cliquez pour uploader une image</p>';
+  document.getElementById('coverUpload').innerHTML = '<input type="file" id="coverInput" accept="image/*" onchange="previewCover(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:28px;display:block;margin-bottom:6px;color:var(--accent)"></i>Cliquez pour uploader une image</p>';
   if (typeof tinymce !== 'undefined' && tinymce.get('peContent')) tinymce.get('peContent').setContent('');
 
   const [badges, authors] = await Promise.all([fetchAPI('/blog/badges'), fetchAPI('/blog/authors')]);
@@ -1422,7 +1422,7 @@ async function loadAuthors() {
   if (data?._error) { tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>' + esc(data._error) + '</p></td></tr>'; return; }
   if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><i class="fa-solid fa-users"></i><p>Aucun auteur. Ajoutez-en un !</p></td></tr>'; return; }
   tbody.innerHTML = data.map(a => '<tr>' +
-    '<td>' + (a.avatar ? '<img src="' + a.avatar + '" alt="" class="avatar-preview" style="width:36px;height:36px">' : '<i class="fa-solid fa-user" style="font-size:20px;color:var(--text-muted)"></i>') + '</td>' +
+    '<td>' + (a.avatar ? '<img src="' + a.avatar + '" class="avatar-preview" style="width:36px;height:36px">' : '<i class="fa-solid fa-user" style="font-size:20px;color:var(--text-muted)"></i>') + '</td>' +
     '<td>' + esc(a.name) + '</td>' +
     '<td style="font-size:12px;color:var(--text-muted)">' + esc(a.role || '—') + '</td>' +
     '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;font-size:12px;color:var(--text-muted)">' + esc(a.bio || '—') + '</td>' +
@@ -1471,7 +1471,7 @@ function openAuthorEditor(data) {
     wrap.innerHTML = '<img src="' + data.avatar + '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm)"><input type="file" accept="image/*" onchange="previewAvatar(event)" style="display:none"><p style="font-size:11px;color:var(--text-muted);margin-top:4px">Cliquez pour changer</p>';
   } else {
     wrap.classList.remove('has-image');
-    wrap.innerHTML = '<input type="file" accept="image/*" onchange="previewAvatar(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:24px;display:block;margin-bottom:4px;color:var(--accent)"></i>Cliquez pour uploader une photo</p>';
+    wrap.innerHTML = '<input type="file" id="avatarInput" accept="image/*" onchange="previewAvatar(event)"><p><i class="fa-solid fa-cloud-arrow-up" style="font-size:24px;display:block;margin-bottom:4px;color:var(--accent)"></i>Cliquez pour uploader une photo</p>';
   }
   document.getElementById('authorEditorModal').classList.add('open');
 }
