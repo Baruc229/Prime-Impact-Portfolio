@@ -298,7 +298,10 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .testi-quote::after{content:'"';font-size:26px;color:#FFB432;font-style:normal;position:absolute;right:-2px;bottom:-8px;line-height:1}
 .testi-tag{display:inline-flex;align-items:center;gap:4px;background:#f4f4f6;border-radius:6px;padding:3px 8px;font-family:'Outfit',sans-serif;font-size:13px;color:#6b7280;width:fit-content;line-height:1.3}
 .testi-tag svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;flex-shrink:0}
-.testi-card{padding:24px 28px;display:flex;flex-direction:column;gap:12px;font-family:'Outfit',sans-serif;border-left:3px solid #FFB432;background:#fcf9f3}
+.testi-card{padding:24px 28px;display:flex;flex-direction:column;gap:12px;font-family:'Outfit',sans-serif;border-left:3px solid #FFB432;background:#fcf9f3;animation:testiFloat 4s ease-in-out infinite}
+.testi-cell:nth-child(2) .testi-card{animation-delay:-1.3s}
+.testi-cell:nth-child(3) .testi-card{animation-delay:-2.6s}
+@keyframes testiFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .testi-grid{display:grid;gap:32px;margin:40px auto 0}
 .testi-cell{display:grid}
 .testi-slide{grid-area:1/1;opacity:0;transition:opacity 0.7s ease;pointer-events:none;z-index:1}
@@ -1124,27 +1127,28 @@ section[id]{scroll-margin-top:90px}
     });
   })();
 
-  // Testimonials — Simultaneous per-cell rotation
+  // Testimonials — Independent random-interval rotation
   (function(){
     var cells = document.querySelectorAll('.testi-cell');
     if(!cells.length) return;
-    var slidesArrays = [];
-    var indices = [];
-    for(var i = 0; i < cells.length; i++){
-      var s = cells[i].querySelectorAll('.testi-slide');
-      slidesArrays.push(s);
-      indices.push(0);
-      if(s.length) s[0].classList.add('active');
+    for(var ci = 0; ci < cells.length; ci++){
+      (function(cell){
+        var slides = cell.querySelectorAll('.testi-slide');
+        if(slides.length < 2) return;
+        var idx = 0;
+        slides[0].classList.add('active');
+        function rotate(){
+          slides[idx].classList.remove('active');
+          idx = (idx + 1) % slides.length;
+          slides[idx].classList.add('active');
+          schedule();
+        }
+        function schedule(){
+          setTimeout(rotate, 3000 + Math.random() * 4000);
+        }
+        schedule();
+      })(cells[ci]);
     }
-    setInterval(function(){
-      for(var i = 0; i < slidesArrays.length; i++){
-        var s = slidesArrays[i];
-        if(s.length < 2) continue;
-        s[indices[i]].classList.remove('active');
-        indices[i] = (indices[i] + 1) % s.length;
-        s[indices[i]].classList.add('active');
-      }
-    }, 5000);
   })();
 
   // Tech marquee — défilement continu sans fin
