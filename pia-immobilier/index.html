@@ -438,14 +438,11 @@ section[id]{scroll-margin-top:90px}
   .hero .container{padding:0 12px}
 }
 @media(min-width:900px){
-  .hero .container{grid-template-columns:1fr 1fr;gap:64px}
-  .hero-left{padding-right:0}
-  .hero-visual{display:flex;align-items:center;justify-content:center;position:relative}
-  .hero-visual::before{content:'';width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#EEF3FF,#d6e0f5);opacity:0.6}
-  .hero-left{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left}
-  .hero-sub{margin:0 0 28px}
+  .hero .container{grid-template-columns:1fr;gap:0}
+.hero-left{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .hero-sub{margin:0 auto 28px}
   .hero h1{font-size:clamp(36px,4vw,48px)}
-  .hero-stats{justify-content:flex-start}
+  .hero-stats{justify-content:center}
   .problem-grid{grid-template-columns:repeat(3,1fr)}
   .solution-grid{grid-template-columns:repeat(2,1fr)}
   .portfolio-grid{grid-template-columns:repeat(3,1fr)}
@@ -480,7 +477,6 @@ section[id]{scroll-margin-top:90px}
   .faq-card-btn{font-size:15px;padding:14px 16px}
   .faq-card-answer p{font-size:14px}
   .footer{padding:40px 0 24px}
-  .hero-visual{display:none}
 }
 .footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1.1fr;gap:32px;text-align:left}
 @media(max-width:767px){.footer-grid{grid-template-columns:1fr!important;text-align:left!important}footer{padding-left:0!important;padding-right:0!important}}
@@ -501,22 +497,6 @@ section[id]{scroll-margin-top:90px}
         <span>Livraison rapide (7 à 30 jours)</span>
         <span>30 jours d'assistance incluse</span>
         <span>1 an d'hébergement offert</span>
-      </div>
-      <div class="hero-visual">
-        <svg width="320" height="320" viewBox="0 0 320 320" fill="none" style="max-width:100%;height:auto;position:relative;z-index:1">
-          <rect x="40" y="60" width="240" height="200" rx="12" fill="#fff" stroke="#e2e4ea" stroke-width="0.5"/>
-          <rect x="60" y="80" width="60" height="45" rx="4" fill="#EEF3FF"/>
-          <rect x="130" y="80" width="60" height="45" rx="4" fill="#EEF3FF"/>
-          <rect x="200" y="80" width="60" height="45" rx="4" fill="#EEF3FF"/>
-          <rect x="60" y="135" width="200" height="8" rx="4" fill="#f0f0f0"/>
-          <rect x="60" y="153" width="160" height="8" rx="4" fill="#f0f0f0"/>
-          <rect x="60" y="175" width="120" height="6" rx="3" fill="#FFB432" opacity="0.5"/>
-          <rect x="60" y="195" width="200" height="8" rx="4" fill="#f0f0f0"/>
-          <rect x="60" y="213" width="140" height="8" rx="4" fill="#f0f0f0"/>
-          <rect x="60" y="235" width="90" height="10" rx="5" fill="#1B3A6B"/>
-          <circle cx="270" cy="285" r="20" fill="#EEF3FF" opacity="0.8"/>
-          <circle cx="40" cy="280" r="12" fill="#FFB432" opacity="0.12"/>
-        </svg>
       </div>
     </div>
   </div>
