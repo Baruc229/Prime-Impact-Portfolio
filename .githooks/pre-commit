@@ -1,0 +1,22 @@
+#!/bin/sh
+# Hook pré-commit : vérifie le code avant chaque commit
+# Exécute run-checks.ps1 via PowerShell
+
+echo ""
+echo "════════════════════════════════════════════════"
+echo "  🔍 PRE-COMMIT CHECKS"
+echo "════════════════════════════════════════════════"
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".githooks/run-checks.ps1"
+EXITCODE=$?
+
+if [ $EXITCODE -ne 0 ]; then
+  echo ""
+  echo "  ❌ Commit refusé — corrige les erreurs ci-dessus"
+  echo ""
+  exit 1
+fi
+
+echo "  ✅ Commit autorisé"
+echo ""
+exit 0

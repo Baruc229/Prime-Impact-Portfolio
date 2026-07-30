@@ -1,0 +1,20 @@
+#!/bin/sh
+# Hook pré-push : vérification exhaustive avant push
+echo ""
+echo "════════════════════════════════════════════════"
+echo "  🔍 PRE-PUSH CHECKS (mode complet)"
+echo "════════════════════════════════════════════════"
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".githooks/run-checks.ps1" -Push
+EXITCODE=$?
+
+if [ $EXITCODE -ne 0 ]; then
+  echo ""
+  echo "  ❌ Push refusé — corrige les erreurs ci-dessus"
+  echo ""
+  exit 1
+fi
+
+echo "  ✅ Push autorisé"
+echo ""
+exit 0
