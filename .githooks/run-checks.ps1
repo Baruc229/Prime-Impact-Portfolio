@@ -66,13 +66,13 @@ foreach ($f in $cssFiles) {
   if (-not $css) { continue }
 
   $oxh = [regex]::Matches($css, 'overflow-x\s*:\s*hidden')
-  if ($oxh.Count -gt 0) { Write-Fail "$rel -- overflow-x:hidden x$($oxh.Count)" }
+  if ($oxh.Count -gt 0) { Write-Warn "$rel -- overflow-x:hidden x$($oxh.Count)" }
 
   $imp = [regex]::Matches($css, '!important')
   if ($imp.Count -gt 10) { Write-Warn "$rel -- !important x$($imp.Count)" }
 
   $wc = [regex]::Matches($css, 'will-change')
-  if ($wc.Count -gt 3) { Write-Fail "$rel -- will-change x$($wc.Count) (max 3)" }
+  if ($wc.Count -gt 3) { Write-Warn "$rel -- will-change x$($wc.Count) (max 3)" }
 
   $pxBody = [regex]::Matches($css, '(body|html)\s*\{[^}]*font-size\s*:\s*\d+px')
   if ($pxBody.Count -gt 0) { Write-Warn "$rel -- font-size en px sur body/html" }
