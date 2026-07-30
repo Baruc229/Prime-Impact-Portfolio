@@ -60,7 +60,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .header-logo{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:40px;flex-shrink:0}
 .header-logo img{height:32px;width:auto}
 .header-nav{display:flex;align-items:center;gap:4px}
-.header-nav-item{position:relative;font-family:'Outfit',sans-serif;font-size:14px;font-weight:500;color:#1B3A6B;padding:8px 16px;border-radius:6px;cursor:pointer;transition:background 0.2s,color 0.2s;text-decoration:none;white-space:nowrap}
+.header-nav-item{position:relative;font-family:'Outfit',sans-serif;font-size:15px;font-weight:500;color:#1B3A6B;padding:8px 16px;border-radius:6px;cursor:pointer;transition:background 0.2s,color 0.2s;text-decoration:none;white-space:nowrap}
 .header-nav-item:hover{background:#EEF3FF;color:#1B3A6B}
 .header-nav-item.has-mega{padding-right:28px}
 .header-nav-item.has-mega::after{content:'';position:absolute;right:12px;top:50%;margin-top:-2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid currentColor;transition:transform 0.2s}
@@ -255,8 +255,9 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
   .realisations{padding:48px 0 0}
   .realisations .section-title{padding:0 0 24px}
   .realisations-sticky{position:relative;height:auto;overflow:visible;display:block}
-  .realisations-track{display:flex;flex-direction:column;transform:none!important;will-change:auto;gap:24px}
-  .realisations-panel{width:100%;flex-shrink:0;padding:24px;display:block;background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.04),0 8px 32px rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.04)}
+  .realisations-track{display:flex;flex-direction:column;transform:none!important;will-change:auto;gap:0;padding-bottom:20vh}
+  .realisations-panel{width:100%;flex-shrink:0;padding:24px;display:block;background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.04),0 8px 32px rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.04);position:sticky;top:80px;z-index:1;margin-bottom:-40px}
+  .realisations-panel:last-child{margin-bottom:0}
   .realisations-panel-inner,.realisations-panel-inner.reversed{flex-direction:column;gap:16px}
   .realisations-panel-visual{flex:none;width:100%}
   .realisations-panel-visual .vis-mockup{border-radius:10px}
@@ -488,7 +489,7 @@ section[id]{scroll-margin-top:90px}
   .section-hero{padding:80px 0 56px}
   .section-title h2,.about-wrap h2,.process-section h2,.faq-left h2,.contact-left h2{font-size:clamp(20px,7vw,28px)}
   .problem-card,.solution-card{padding:20px 16px}
-  .testi-card{padding:20px 16px}
+  .testi-card{padding:20px 16px;border-left:none}
   .pricing-card{padding:24px 18px}
   .pricing-card.pricing-wide{padding:24px 20px}
   .contact-wrapper{padding:0}
@@ -514,7 +515,13 @@ section[id]{scroll-margin-top:90px}
       <div class="header-nav-item has-mega">
         Problème
         <div class="header-mega">
-          <div class="mega-title">Découvrez comment PIA vous aide</div>
+          <a href="#probleme" class="mega-link">
+            <span class="mega-link-icon"><i class="fa-solid fa-circle-exclamation"></i></span>
+            <span class="mega-link-text">
+              <span class="mega-link-label">Problème</span>
+              <span class="mega-link-desc">Les difficultés que vous rencontrez</span>
+            </span>
+          </a>
           <a href="#offres" class="mega-link">
             <span class="mega-link-icon"><i class="fa-solid fa-lightbulb"></i></span>
             <span class="mega-link-text">
@@ -1195,7 +1202,12 @@ section[id]{scroll-margin-top:90px}
 
     var titleEl = section.querySelector('.section-title');
     var titleH = titleEl ? titleEl.offsetHeight / window.innerHeight * 100 : 15;
-    section.style.minHeight = (numPanels * 100 + titleH) + 'vh';
+
+    function setMinHeight(){
+      if(isMobile()){ section.style.minHeight = ''; return; }
+      section.style.minHeight = (numPanels * 100 + titleH) + 'vh';
+    }
+    setMinHeight();
 
     function isMobile(){ return window.innerWidth < 900; }
 
@@ -1228,7 +1240,7 @@ section[id]{scroll-margin-top:90px}
     }
 
     window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
+    window.addEventListener('resize', function(){ setMinHeight(); update(); });
     update();
 
     dots.forEach(function(dot, i){
@@ -1236,6 +1248,27 @@ section[id]{scroll-margin-top:90px}
         var target = section.offsetTop + i * (section.offsetHeight / numPanels);
         window.scrollTo({ top: target, behavior: 'smooth' });
       });
+    });
+  })();
+
+  // Mobile réalisations — reveal animation on scroll
+  (function(){
+    if(window.innerWidth >= 900) return;
+    var panels = document.querySelectorAll('.realisations-panel');
+    if(!panels.length) return;
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.15 });
+    panels.forEach(function(p){
+      p.style.opacity = '0';
+      p.style.transform = 'translateY(30px)';
+      p.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(p);
     });
   })();
 
