@@ -80,7 +80,7 @@ p{color:#6B7280;font-size:17px;line-height:1.7}
 .header-burger span{width:22px;height:2px;background:#1B3A6B;border-radius:2px;transition:transform 0.3s,opacity 0.3s}
 @media(max-width:767px){
   .header-inner{height:64px}
-  .header-logo img{height:38px}
+  .header-logo img{height:80px}
   .header-nav{position:fixed;top:64px;left:0;width:100%;background:#fff;flex-direction:column;padding:16px 20px 24px;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,0.08);opacity:0;visibility:hidden;transition:opacity 0.3s,visibility 0.3s;border-bottom:1px solid rgba(0,0,0,0.04)}
   .header-nav.open{opacity:1;visibility:visible}
   .header-nav-item{width:100%;padding:12px 16px}
@@ -522,14 +522,14 @@ section[id]{scroll-margin-top:90px}
               <span class="mega-link-desc">Les difficultés que vous rencontrez</span>
             </span>
           </a>
-          <a href="#offres" class="mega-link">
+          <a href="#solution" class="mega-link">
             <span class="mega-link-icon"><i class="fa-solid fa-lightbulb"></i></span>
             <span class="mega-link-text">
               <span class="mega-link-label">Solutions</span>
-              <span class="mega-link-desc">Nos offres adaptées à votre besoin</span>
+              <span class="mega-link-desc">Notre alternative transparente</span>
             </span>
           </a>
-          <a href="#portfolio" class="mega-link">
+          <a href="#resultats" class="mega-link">
             <span class="mega-link-icon"><i class="fa-solid fa-chart-line"></i></span>
             <span class="mega-link-text">
               <span class="mega-link-label">Résultats</span>
@@ -619,7 +619,7 @@ section[id]{scroll-margin-top:90px}
 </section>
 
 <!-- ══ TRANSITION ══ -->
-<section style="background:#fff;padding:24px 0;text-align:center">
+<section style="background:#fff;padding:24px 0;text-align:center" id="solution">
   <div class="container">
     <p style="font-size:clamp(18px,2.5vw,22px);font-weight:700;color:#1B3A6B;margin-bottom:6px">C'est pourquoi nous avons créé une alternative transparente et accessible.</p>
     <p style="font-size:16px;color:#6B7280;max-width:560px;margin:0 auto">Des sites immobiliers sur-mesure qui génèrent des leads, sans abonnement, à prix juste.</p>
@@ -627,7 +627,7 @@ section[id]{scroll-margin-top:90px}
 </section>
 
 <!-- ══ CE QUE VOTRE SITE INCLUT ══ -->
-<section class="section section-light">
+<section class="section section-light" id="resultats">
   <div class="container">
     <div class="section-title">
       <div class="section-badge">Résultats</div>
@@ -1131,13 +1131,20 @@ section[id]{scroll-margin-top:90px}
   (function(){
     var burger = document.getElementById('headerBurger');
     var nav = document.getElementById('headerNav');
+    var header = document.getElementById('header');
     if(!burger || !nav) return;
-    burger.addEventListener('click', function(){
+    burger.addEventListener('click', function(e){
+      e.stopPropagation();
       nav.classList.toggle('open');
     });
     // Close nav on link click
     nav.querySelectorAll('a').forEach(function(a){
       a.addEventListener('click', function(){nav.classList.remove('open');});
+    });
+    // Close nav on click outside
+    document.addEventListener('click', function(e){
+      if(!nav.classList.contains('open')) return;
+      if(!header.contains(e.target)) nav.classList.remove('open');
     });
   })();
 
