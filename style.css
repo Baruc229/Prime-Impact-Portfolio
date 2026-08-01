@@ -3902,6 +3902,22 @@ textarea.form-control {
   }
 }
 
+@media (max-width: 480px) {
+  .lang-switcher {
+    gap: 3px;
+    padding: 2px 6px;
+  }
+
+  .lang-switcher button {
+    font-size: 12px;
+    padding: 1px 4px;
+  }
+
+  .lang-switcher span {
+    font-size: 11px;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-title-centered {
     font-size: max(36px, 10vw);
