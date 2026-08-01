@@ -423,17 +423,33 @@ function readingTime(content){
 }
 
 async function fetchAPI(url){
+  var cacheKey='blog:'+url;
+  var ttl=120000;
+  try{
+    var raw=sessionStorage.getItem(cacheKey);
+    if(raw){
+      var obj=JSON.parse(raw);
+      if(Date.now()-obj.t<ttl)return obj.v;
+    }
+  }catch(e){}
   try{
     var res=await fetch(url);
     if(!res.ok)return null;
-    return await res.json();
+    var data=await res.json();
+    try{sessionStorage.setItem(cacheKey,JSON.stringify({t:Date.now(),v:data}));}catch(e){}
+    return data;
   }catch(e){return null;}
 }
 
 async function init(){
-  var postsData=await fetchAPI('/api/blog/posts?status=published&lang='+lang+'&limit=200');
-  var badgesData=await fetchAPI('/api/blog/badges');
-  var authorsData=await fetchAPI('/api/blog/authors');
+  var data=await Promise.all([
+    fetchAPI('/api/blog/posts?status=published&lang='+lang+'&limit=200'),
+    fetchAPI('/api/blog/badges'),
+    fetchAPI('/api/blog/authors')
+  ]);
+  var postsData=data[0];
+  var badgesData=data[1];
+  var authorsData=data[2];
   allPosts=postsData?.posts||[];
   badges=badgesData||[];
   authors=authorsData||[];

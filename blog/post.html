@@ -379,7 +379,28 @@ function readingTime(content) {
 }
 
 async function fetchAPI(url) {
-  try { const r = await fetch(url); if (!r.ok) { const body = await r.json().catch(()=>null); const rawErr = body?.error; let errMsg; if (typeof rawErr === 'object' && rawErr !== null) { errMsg = rawErr.message || rawErr.code || JSON.stringify(rawErr); } else { errMsg = rawErr || 'Erreur ' + r.status; } return { _error: errMsg }; } return await r.json(); } catch(e) { return { _error: e.message }; }
+  const cacheKey = 'blog:' + url;
+  const ttl = 120000;
+  try {
+    const raw = sessionStorage.getItem(cacheKey);
+    if (raw) {
+      const obj = JSON.parse(raw);
+      if (Date.now() - obj.t < ttl) return obj.v;
+    }
+  } catch(e) {}
+  try {
+    const r = await fetch(url);
+    if (!r.ok) {
+      const body = await r.json().catch(()=>null);
+      const rawErr = body?.error;
+      let errMsg;
+      if (typeof rawErr === 'object' && rawErr !== null) { errMsg = rawErr.message || rawErr.code || JSON.stringify(rawErr); } else { errMsg = rawErr || 'Erreur ' + r.status; }
+      return { _error: errMsg };
+    }
+    const data = await r.json();
+    try { sessionStorage.setItem(cacheKey, JSON.stringify({ t: Date.now(), v: data })); } catch(e) {}
+    return data;
+  } catch(e) { return { _error: e.message }; }
 }
 
 function selectCommentType(btn) {
@@ -449,23 +470,12 @@ function buildToc() {
 function loadSidebarCategories() {
   const container = document.getElementById('sidebarCategories');
   if (!badges.length) return;
-  const catCounts = {};
-  badges.forEach(b => { catCounts[b.id] = 0; });
-  const allPostsData = fetchAPI('/api/blog/posts?status=published&lang=' + (post.lang || 'fr') + '&limit=200');
-  allPostsData.then(data => {
-    const posts = data?.posts || [];
-    posts.forEach(p => {
-      (p.badgeIds || []).forEach(id => {
-        if (catCounts[id] !== undefined) catCounts[id]++;
-      });
-    });
-    container.innerHTML = badges.map(b =>
-      '<a href="/blog?badge=' + b.id + '" class="cat-item">' +
-        '<span class="cat-name">' + esc(b.name) + '</span>' +
-        '<span class="cat-count">' + (catCounts[b.id] || 0) + '</span>' +
-      '</a>'
-    ).join('');
-  });
+  container.innerHTML = badges.map(b =>
+    '<a href="/blog?badge=' + b.id + '" class="cat-item">' +
+      '<span class="cat-name">' + esc(b.name) + '</span>' +
+      '<span class="cat-count">' + (b.postCount || 0) + '</span>' +
+    '</a>'
+  ).join('');
 }
 
 document.getElementById('sidebarSearchInput').addEventListener('input', function() {
