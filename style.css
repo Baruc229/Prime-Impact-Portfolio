@@ -4893,6 +4893,8 @@ textarea.form-control {
   .lang-switcher button {
     font-size: 12px;
     padding: 1px 4px;
+    min-height: 0;
+    min-width: 0;
   }
 
   .lang-switcher span {
