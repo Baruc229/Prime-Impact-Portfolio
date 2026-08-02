@@ -3889,16 +3889,16 @@ textarea.form-control {
   
   .lang-switcher {
     gap: 4px;
-    padding: 4px 8px;
+    padding: 4px 9px;
   }
   
   .lang-switcher button {
-    font-size: 13px;
-    padding: 2px 4px;
+    font-size: 14px;
+    padding: 2px 5px;
   }
   
   .lang-switcher span {
-    font-size: 12px;
+    font-size: 13px;
   }
 }
 
@@ -4878,27 +4878,27 @@ textarea.form-control {
 }
 
 /* --- LANG SWITCHER --- */
-.lang-switcher { display: flex; align-items: center; gap: 4px; background: var(--glass-bg); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
-.lang-switcher span { color: var(--border-color); font-size: 12px; }
-.lang-switcher button { background: none; border: none; font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 2px 6px; transition: color 0.3s ease; line-height: 1; }
+.lang-switcher { display: flex; align-items: center; gap: 5px; background: var(--glass-bg); padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
+.lang-switcher span { color: var(--border-color); font-size: 13px; }
+.lang-switcher button { background: none; border: none; font-size: 14px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 2px 7px; transition: color 0.3s ease; line-height: 1; }
 .lang-switcher button:hover { color: var(--text-color); }
 .lang-switcher button.active { color: var(--accent-blue); }
 
 @media (max-width: 480px) {
   .lang-switcher {
     gap: 3px;
-    padding: 2px 6px;
+    padding: 3px 7px;
   }
 
   .lang-switcher button {
-    font-size: 12px;
+    font-size: 13px;
     padding: 1px 4px;
     min-height: 0;
     min-width: 0;
   }
 
   .lang-switcher span {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
