@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── MENU LATÉRAL MOBILE (Side Menu) ── 
      Gère l'ouverture/fermeture du menu latéral sur mobile uniquement.
-     Le menu glisse du côté gauche avec un overlay semi-transparent.
+     Le menu glisse depuis la droite avec un overlay semi-transparent.
   */
   const burger = document.getElementById('navBurger');
   const mobileMenu = document.getElementById('navMobile');
@@ -96,6 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileOverlay.classList.add('open');
       burger.classList.add('open');
       document.body.classList.add('menu-open');
+      document.documentElement.classList.add('menu-open');
+      if (burger) burger.setAttribute('aria-expanded', 'true');
+      if (closeBtn) closeBtn.focus();
     }
   }
 
@@ -105,6 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileOverlay.classList.remove('open');
       burger.classList.remove('open');
       document.body.classList.remove('menu-open');
+      document.documentElement.classList.remove('menu-open');
+      if (burger) burger.setAttribute('aria-expanded', 'false');
+      if (closeBtn && mobileMenu.contains(document.activeElement)) {
+        burger.focus();
+      }
     }
   }
 
@@ -150,30 +158,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ── LANGUAGE TOGGLE (Mobile - Direct toggle) ── */
-  const langToggle = document.getElementById('langToggle');
-  if (langToggle) {
-    langToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const currentLang = localStorage.getItem('site_lang') || 'fr';
-      const newLang = currentLang === 'fr' ? 'en' : 'fr';
-      if (window.i18n) {
-        window.i18n.setLang(newLang);
-      }
-    });
-  }
+  // Fermer le menu avec la touche Échap
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) {
+      closeMenu();
+    }
+  });
 
-  /* ── LANGUAGE MENU (Desktop - keep dropdown) ── */
-  const langMenu = document.getElementById('langMenu');
-  if (langMenu) {
-    langMenu.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const lang = e.target.dataset.lang;
-        if (window.i18n) {
-          window.i18n.setLang(lang);
-        }
-        langMenu.classList.remove('show');
-      });
+  // Piège le focus à l'intérieur du menu quand il est ouvert
+  if (mobileMenu) {
+    mobileMenu.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const focusables = mobileMenu.querySelectorAll('a[href], button:not([disabled])');
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     });
   }
 
@@ -316,17 +322,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     rotatorTimer = setTimeout(rotateWord, 3500);
     
-    document.querySelectorAll('.lang-menu button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const lang = btn.dataset.lang;
-        window.rotatorWords = lang === 'en' ? wordsEN : wordsFR;
-        window.rotatorIdx = 0;
-        rotator.textContent = window.rotatorWords[0];
-        rotator.style.animation = 'none';
-        clearTimeout(rotatorTimer);
-        rotatorTimer = setTimeout(rotateWord, 3500);
-      });
-    });
   }
 
   /* ── COMPTEURS ANIMÉS (Section Résultats) ── */

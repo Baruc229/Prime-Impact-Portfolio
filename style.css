@@ -77,6 +77,7 @@ body {
   overflow-x: hidden;
   max-width: 100%;
   width: 100%;
+  scrollbar-gutter: stable;
   opacity: 0;
   transition: background-color var(--transition-speed), color var(--transition-speed), opacity 0.45s ease;
 }
@@ -1258,10 +1259,6 @@ img {
   margin-left: auto;
 }
 
-.lang-btn, .lang-menu {
-  display: none !important;
-}
-
 /* BUTTONS */
 .btn {
   display: inline-flex;
@@ -2341,7 +2338,7 @@ img {
     flex-direction: column;
     gap: 16px;
     padding: 16px 24px 30px;
-    flex: 0 0 auto;
+    flex: 1 0 auto;
   }
 
   /* Navigation links */
@@ -2436,10 +2433,9 @@ img {
   }
 
   /* Blocage du scroll quand le menu est ouvert */
+  html.menu-open,
   body.menu-open {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
+    overflow: hidden !important;
   }
 }
 

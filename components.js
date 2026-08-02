@@ -46,18 +46,11 @@ function buildHeader() {
           <span>|</span>
           <button data-lang="en">EN</button>
         </div>
-        <button class="lang-btn" id="langToggle" data-i18n-aria="nav.aria.lang" aria-label="Changer la langue">
-          <i class="fa-solid fa-globe"></i>
-        </button>
-        <div class="lang-menu" id="langMenu">
-          <button data-lang="fr" class="active">FR</button>
-          <button data-lang="en">EN</button>
-        </div>
         <a href="${WA_LINK}" class="btn-whatsapp-nav" target="_blank" rel="noopener" data-i18n-aria="nav.aria.whatsapp" aria-label="WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
         </a>
         <a href="/devis" class="btn btn-primary nav-cta" data-i18n="nav.quote">Devis gratuit</a>
-        <button class="nav-burger" id="navBurger" data-i18n-aria="nav.aria.menu" aria-label="Menu">
+        <button class="nav-burger" id="navBurger" data-i18n-aria="nav.aria.menu" aria-label="Menu" aria-expanded="false" aria-controls="navMobile">
           <span></span><span></span><span></span>
         </button>
       </div>
