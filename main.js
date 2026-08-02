@@ -324,56 +324,84 @@ document.addEventListener('DOMContentLoaded', () => {
     
   }
 
-  /* ── COMPTEURS ANIMÉS (Section Résultats) ── */
+  /* ── COMPTEURS ANIMÉS (Section Résultats) ──
+     Chaque .counter-val démarre à l'apparition dans le viewport, avec un
+     léger décalage (stagger) entre les chiffres d'une même grille. */
   const counters = document.querySelectorAll('.counter-val');
   if (counters.length) {
-    counters.forEach(el => {
+    function runCounter(el, delay) {
       const target = parseFloat(el.dataset.target);
       const prefix = el.dataset.prefix || '';
       const suffix = el.dataset.suffix || '';
       const duration = 1800;
-      const start = performance.now();
+      const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) {
+        el.textContent = prefix + (target < 10 ? target.toFixed(1) : Math.round(target)) + suffix;
+        return;
+      }
+      const start = performance.now() + (delay || 0);
       function tick(now) {
-        const p = Math.min((now - start) / duration, 1);
+        const p = Math.min(Math.max((now - start) / duration, 0), 1);
         const ease = 1 - Math.pow(1 - p, 3);
         const val = target < 10 ? (target * ease).toFixed(1) : Math.round(target * ease);
         el.textContent = prefix + val + suffix;
         if (p < 1) requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
-    });
+    }
+    if ('IntersectionObserver' in window) {
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const idx = Array.prototype.indexOf.call(counters, entry.target);
+            runCounter(entry.target, idx * 180);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      counters.forEach(el => counterObserver.observe(el));
+    } else {
+      counters.forEach(el => runCounter(el, 0));
+    }
   }
 
-  /* ── SKILLS ANIMATION — animated bars + counter ── */
+  /* ── SKILLS ANIMATION — bars animées une par une ──
+     Chaque .skill-bar-fill démarre quand SON skill-item entre dans le
+     viewport (plus de déclenchement groupé à l'entrée de la section). */
   const skillBars = document.querySelectorAll('.skill-bar-fill');
   if (skillBars.length) {
     if ('IntersectionObserver' in window) {
       const skillObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            const bars = entry.target.querySelectorAll('.skill-bar-fill');
-            bars.forEach(bar => animateSkillBar(bar));
+            const idx = Array.prototype.indexOf.call(skillBars, entry.target);
+            animateSkillBar(entry.target, idx * 120);
             skillObserver.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.2 });
-      const skillsSection = document.getElementById('competences');
-      if (skillsSection) skillObserver.observe(skillsSection);
+      }, { threshold: 0.3, rootMargin: '0px 0px -10% 0px' });
+      skillBars.forEach(bar => skillObserver.observe(bar));
     } else {
-      skillBars.forEach(bar => animateSkillBar(bar));
+      skillBars.forEach(bar => animateSkillBar(bar, 0));
     }
   }
 
-  function animateSkillBar(bar) {
+  function animateSkillBar(bar, delay) {
     const target = parseFloat(bar.dataset.width) || 0;
     const duration = 1200;
-    const start = performance.now();
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const parent = bar.closest('.skill-item');
     const percentEl = parent ? parent.querySelector('.skill-percent') : null;
+    if (reduced) {
+      bar.style.width = target + '%';
+      if (percentEl) percentEl.textContent = Math.round(target) + '%';
+      return;
+    }
+    const start = performance.now() + (delay || 0);
 
     function tick(now) {
       const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
+      const progress = Math.min(Math.max(elapsed, 0) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = eased * target;
 
