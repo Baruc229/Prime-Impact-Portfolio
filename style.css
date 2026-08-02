@@ -604,10 +604,10 @@ img {
   }
   .hero-line-sm {
     text-align: center;
-    font-size: clamp(34px, 8.5vw, 60px);
+    font-size: clamp(30px, 7vw, 48px);
   }
   .hero-rotator-wrapper {
-    font-size: clamp(34px, 8.5vw, 60px);
+    font-size: clamp(30px, 7vw, 48px);
   }
   .hero-actions {
     justify-content: center;
@@ -634,10 +634,10 @@ img {
     gap: 18px;
   }
   .hero-line-sm {
-    font-size: clamp(30px, 7.5vw, 46px);
+    font-size: clamp(32px, 8vw, 48px);
   }
   .hero-rotator-wrapper {
-    font-size: clamp(30px, 7.5vw, 46px);
+    font-size: clamp(32px, 8vw, 48px);
   }
   .services-slider-track {
     flex-wrap: wrap;
