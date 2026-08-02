@@ -48,6 +48,11 @@ a{color:inherit;text-decoration:none}
 .blog-hero-search input{width:100%;padding:16px 20px 16px 50px;border-radius:var(--blog-radius);border:1px solid var(--border-color);background:var(--bg-main);color:var(--text-main);font-size:15px;font-family:var(--font-main);outline:none;transition:all .3s ease;box-shadow:var(--shadow-soft)}
 .blog-hero-search input:focus{border-color:var(--accent-blue);box-shadow:0 0 0 4px rgba(27,58,107,0.08)}
 
+/* catégories mobiles — affichées sous la recherche (≤900px uniquement) */
+.mobile-cats{display:none}
+.mobile-cats-scroll{scrollbar-width:none}
+.mobile-cats-scroll::-webkit-scrollbar{display:none}
+
 /* ─── NEWSLETTER STRIP PREMIUM ──────────────────── */
 .newsletter-strip{position:relative;background:var(--ns-bg);padding:56px 4vw;margin-bottom:48px;overflow:hidden}
 .newsletter-strip::before{content:'';position:absolute;top:0;right:0;width:40%;height:100%;background:radial-gradient(ellipse at center,rgba(245,166,35,0.06)0%,transparent 70%);pointer-events:none}
@@ -242,8 +247,13 @@ a{color:inherit;text-decoration:none}
   .featured-content{padding:28px}
   .featured-content h2{font-size:22px}
   .posts-grid{grid-template-columns:repeat(2,1fr);gap:20px}
-  .blog-sidebar{display:flex;flex-direction:column;gap:16px;order:-1}
-  #srchCard{display:none!important}
+  .blog-sidebar{display:none!important}
+  .mobile-cats{display:flex;flex-direction:column;gap:10px;max-width:480px;margin:26px auto 0}
+  .mobile-cats-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.9px;color:var(--text-muted)}
+  .mobile-cats-scroll{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px}
+  .mobile-cat-pill{flex-shrink:0;padding:9px 18px;border-radius:100px;border:1px solid var(--border-color);background:var(--card-bg);color:var(--text-muted);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-main);white-space:nowrap;transition:all .2s}
+  .mobile-cat-pill.active{background:var(--badge-bg);color:var(--accent-blue);border-color:transparent;font-weight:700}
+  .mobile-cats-scroll:empty{display:none}
 }
 @media(max-width:768px){
   .blog-hero{padding:150px 0 48px}
@@ -315,6 +325,10 @@ a{color:inherit;text-decoration:none}
       <i class="fa-solid fa-search"></i>
       <input type="text" id="searchInputHero" placeholder="Rechercher un article..." data-i18n-ph="blog.archive.search">
     </div>
+    <div class="mobile-cats" id="mobileCats">
+      <span class="mobile-cats-label" data-i18n="blog.archive.categories">Catégories</span>
+      <div class="mobile-cats-scroll" id="mobileCatList"></div>
+    </div>
   </div>
 </section>
 
@@ -331,7 +345,6 @@ a{color:inherit;text-decoration:none}
       <h2 data-i18n="blog.sidebar.cta.title">Restez informé</h2>
       <p data-i18n="blog.sidebar.cta.desc">Recevez nos derniers articles et conseils directement par email.</p>
       <div class="ns-perks">
-        <span class="ns-perk"><i class="fa-solid fa-bolt"></i> <span data-i18n="blog.newsletter.perk1">1 email par semaine max</span></span>
         <span class="ns-perk"><i class="fa-solid fa-shield-halved"></i> <span data-i18n="blog.newsletter.perk2">Zéro spam</span></span>
         <span class="ns-perk"><i class="fa-solid fa-unlock"></i> <span data-i18n="blog.newsletter.perk3">Désinscription en 1 clic</span></span>
       </div>
@@ -504,6 +517,24 @@ function renderSidebarCategories(){
     btn.onclick=function(){filterBadge(this);};
     container.appendChild(btn);
   });
+
+  var mContainer=document.getElementById('mobileCatList');
+  if(mContainer){
+    var all=document.createElement('button');
+    all.className='mobile-cat-pill active';
+    all.dataset.badge='';
+    all.textContent=lang==='fr'?'Tous':'All';
+    all.onclick=function(){filterBadge(this);};
+    mContainer.appendChild(all);
+    badges.forEach(function(b){
+      var p=document.createElement('button');
+      p.className='mobile-cat-pill';
+      p.dataset.badge=b.id;
+      p.textContent=b.name;
+      p.onclick=function(){filterBadge(this);};
+      mContainer.appendChild(p);
+    });
+  }
 }
 
 function filterBadge(btn){

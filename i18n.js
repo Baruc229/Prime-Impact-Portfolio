@@ -65,7 +65,6 @@ const translations = {
   "blog.sidebar.cta.placeholder": { "fr": "Votre email", "en": "Your email" },
   "blog.sidebar.cta.btn": { "fr": "S'abonner", "en": "Subscribe" },
   "blog.newsletter.badge": { "fr": "Newsletter", "en": "Newsletter" },
-  "blog.newsletter.perk1": { "fr": "1 email par semaine max", "en": "Max 1 email per week" },
   "blog.newsletter.perk2": { "fr": "Zéro spam", "en": "Zero spam" },
   "blog.newsletter.perk3": { "fr": "Désinscription en 1 clic", "en": "One-click unsubscribe" },
   "blog.post.toc": { "fr": "Sommaire", "en": "Table of contents" },
