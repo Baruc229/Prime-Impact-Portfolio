@@ -484,6 +484,7 @@ img {
 .services-slider-track {
   display: flex;
   gap: 8px;
+  justify-content: space-between;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
