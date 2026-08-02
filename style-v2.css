@@ -55,9 +55,9 @@ p,li,blockquote,.hero-desc,.step-desc,.testimonial-text,.faq-question{font-style
 .hero-rotator-wrapper{color:var(--accent-gold)!important;letter-spacing:-0.5px}
 .hero-actions .btn{padding:14px 28px;font-size:15px}
 .hero-google-badge{border-radius:0!important}
-.services-slide{border-radius:0!important;font-family:var(--font-main)!important;border:1.5px solid var(--border-color)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,0.5)!important}
-.services-slide:hover{border-color:rgba(37,99,235,0.5)!important}
-.services-slide.active{background:var(--accent-blue)!important;color:#fff!important;border-color:var(--accent-blue)!important;box-shadow:0 0 0 2px rgba(37,99,235,0.18)!important}
+.services-slide{border-radius:0!important;font-family:var(--font-main)!important;border:2px solid rgba(37,99,235,0.35)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,0.5)!important}
+.services-slide:hover{border-color:rgba(37,99,235,0.7)!important}
+.services-slide.active{background:var(--accent-blue)!important;color:#fff!important;border-color:var(--accent-blue)!important;box-shadow:0 0 0 3px rgba(37,99,235,0.25)!important}
 
 /* ── BUTTONS ── */
 .btn{font-family:var(--font-main)!important;text-transform:none!important;letter-spacing:0!important;border-radius:8px!important}
