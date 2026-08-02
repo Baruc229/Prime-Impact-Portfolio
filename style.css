@@ -604,10 +604,10 @@ img {
   }
   .hero-line-sm {
     text-align: center;
-    font-size: clamp(32px, 8vw, 52px);
+    font-size: clamp(34px, 8.5vw, 60px);
   }
   .hero-rotator-wrapper {
-    font-size: clamp(32px, 8vw, 52px);
+    font-size: clamp(34px, 8.5vw, 60px);
   }
   .hero-actions {
     justify-content: center;
@@ -634,10 +634,10 @@ img {
     gap: 18px;
   }
   .hero-line-sm {
-    font-size: clamp(28px, 7vw, 42px);
+    font-size: clamp(30px, 7.5vw, 46px);
   }
   .hero-rotator-wrapper {
-    font-size: clamp(28px, 7vw, 42px);
+    font-size: clamp(30px, 7.5vw, 46px);
   }
   .services-slider-track {
     flex-wrap: wrap;
@@ -3889,12 +3889,12 @@ textarea.form-control {
   
   .lang-switcher {
     gap: 4px;
-    padding: 4px 9px;
+    padding: 8px 10px;
   }
   
   .lang-switcher button {
     font-size: 14px;
-    padding: 2px 5px;
+    padding: 3px 5px;
   }
   
   .lang-switcher span {
@@ -4878,21 +4878,21 @@ textarea.form-control {
 }
 
 /* --- LANG SWITCHER --- */
-.lang-switcher { display: flex; align-items: center; gap: 5px; background: var(--glass-bg); padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
+.lang-switcher { display: flex; align-items: center; gap: 5px; background: var(--glass-bg); padding: 9px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
 .lang-switcher span { color: var(--border-color); font-size: 13px; }
-.lang-switcher button { background: none; border: none; font-size: 14px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 2px 7px; transition: color 0.3s ease; line-height: 1; }
+.lang-switcher button { background: none; border: none; font-size: 14px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 4px 7px; transition: color 0.3s ease; line-height: 1; }
 .lang-switcher button:hover { color: var(--text-color); }
 .lang-switcher button.active { color: var(--accent-blue); }
 
 @media (max-width: 480px) {
   .lang-switcher {
     gap: 3px;
-    padding: 3px 7px;
+    padding: 7px 8px;
   }
 
   .lang-switcher button {
     font-size: 13px;
-    padding: 1px 4px;
+    padding: 3px 4px;
     min-height: 0;
     min-width: 0;
   }
