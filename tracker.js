@@ -251,7 +251,7 @@ function getThemeColors() {
           color: ${colors.text};
           font-weight: 500;
         }
-        .pia-cookie-category.analytics .icon { color: #3b82f6; }
+        .pia-cookie-category.analytics .icon { color: var(--accent-blue); }
         .pia-cookie-category.marketing .icon { color: #f59e0b; }
         .pia-cookie-buttons {
           display: flex;

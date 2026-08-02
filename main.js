@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const phoneNumber = '22993288212';
       const message = lang === 'en'
         ? (getTranslation('index.hero.whatsapp.message.en') || 'I need your services for my business')
-        : (getTranslation('index.hero.whatsapp.message.fr') || 'salut pia, j\'ai besoin de vos services de developpement web');
+        : (getTranslation('index.hero.whatsapp.message.fr') || 'Bonjour PIA, je souhaiterais échanger avec vous sur un projet web.');
       const encodedMessage = encodeURIComponent(message);
       whatsappButtons.forEach(btn => {
         btn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -201,8 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
     whatsappButtons.forEach(btn => {
       const phoneNumber = '22993288212';
       const message = lang === 'en' 
-        ? 'I need your services for my business' 
-        : 'salut pia, j\'ai besoin de vos services de developpement web';
+        ? 'Hello PIA, I would like to discuss a web project with you.'
+        : 'Bonjour PIA, je souhaiterais échanger avec vous sur un projet web.';
       const encodedMessage = encodeURIComponent(message);
       btn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     });
@@ -232,16 +232,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── FAQ ACCORDION ── */
   document.querySelectorAll('.faq-question').forEach(q => {
-    q.addEventListener('click', () => {
+    q.setAttribute('role', 'button');
+    q.setAttribute('tabindex', '0');
+    q.setAttribute('aria-expanded', 'false');
+    const toggleFaq = () => {
       const answer = q.nextElementSibling;
       const icon = q.querySelector('.faq-icon');
       const isOpen = !!answer.style.maxHeight;
       // Fermer tous
       document.querySelectorAll('.faq-answer').forEach(a => a.style.maxHeight = null);
+      document.querySelectorAll('.faq-question').forEach(fq => fq.setAttribute('aria-expanded', 'false'));
       document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = '');
       if (!isOpen) {
         answer.style.maxHeight = answer.scrollHeight + 'px';
+        q.setAttribute('aria-expanded', 'true');
         if (icon) icon.style.transform = 'rotate(180deg)';
+      }
+    };
+    q.addEventListener('click', toggleFaq);
+    q.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleFaq();
       }
     });
   });

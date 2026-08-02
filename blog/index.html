@@ -10,18 +10,18 @@
 <meta name="description" content="Actualités, conseils et stratégies webmarketing par Prime Impact Agency.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900&family=Inter:wght@400;500;600;700&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,700;0,800&family=Inter:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,700;0,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<script src="https://unpkg.com/@phosphor-icons/web"></script>
-<link rel="stylesheet" href="../style.css?v=14">
-<link rel="stylesheet" href="../style-v2.css?v=4">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.7"></script>
+<link rel="stylesheet" href="../style.css?v=15">
+<link rel="stylesheet" href="../style-v2.css?v=5">
 <style>
 /* ═══════════════════════════════════════════════════════════
    BLOG ARCHIVE — Prime Impact Agency  (REFONTE PREMIUM)
    Design System: Bleu #1B3A6B, Or #F5A623
    ═══════════════════════════════════════════════════════════ */
-:root{--font-main:'Inter',sans-serif;--font-heading:'Roboto Condensed',sans-serif;--blog-radius:20px;--blog-radius-sm:12px}
+:root{--font-main:'Inter',sans-serif;--font-heading:'Roboto Condensed',sans-serif;--blog-radius:16px;--blog-radius-sm:8px}
 
 [data-theme="light"]{--bg-main:#fff;--bg-secondary:#F7F7F7;--bg-tertiary:#e5e7eb;--text-main:#1c1c1e;--text-muted:#6B7280;--accent-blue:#1B3A6B;--accent-gold:#F5A623;--border-color:rgba(0,0,0,0.06);--shadow-soft:0 2px 12px rgba(0,0,0,0.04);--shadow-heavy:0 4px 24px rgba(27,58,107,0.1);--radius-sm:8px;--radius-md:16px;--glass-bg:#fff;--glass-bg-solid:#fff;--bg-card-warm:#fff;--bg-hero:#F8F9FC;--card-bg:#fff;--badge-bg:#EEF3FF;--ns-bg:#0D1B35;--ns-text:rgba(255,255,255,0.65)}
 [data-theme="dark"]{--bg-main:#0D1B35;--bg-secondary:#111f3a;--bg-tertiary:#1a2d50;--text-main:#e2e8f0;--text-muted:#94a3b8;--accent-blue:#60a5fa;--accent-gold:#F5A623;--border-color:rgba(255,255,255,0.08);--shadow-soft:0 2px 12px rgba(0,0,0,0.2);--shadow-heavy:0 4px 24px rgba(0,0,0,0.35);--glass-bg:rgba(13,27,53,0.9);--glass-bg-solid:#0D1B35;--bg-card-warm:#111f3a;--bg-hero:#0a1528;--card-bg:#111f3a;--badge-bg:rgba(96,165,250,0.12);--ns-bg:#0a1325;--ns-text:rgba(255,255,255,0.6)}
@@ -323,7 +323,7 @@ a{color:inherit;text-decoration:none}
     <p data-i18n="blog.archive.sub">Actualités, conseils et stratégies pour votre croissance digitale.</p>
     <div class="blog-hero-search">
       <i class="fa-solid fa-search"></i>
-      <input type="text" id="searchInputHero" placeholder="Rechercher un article..." data-i18n-ph="blog.archive.search">
+      <input type="text" id="searchInputHero" placeholder="Rechercher un article..." data-i18n="blog.archive.search">
     </div>
     <div class="mobile-cats" id="mobileCats">
       <span class="mobile-cats-label" data-i18n="blog.archive.categories">Catégories</span>
@@ -351,7 +351,7 @@ a{color:inherit;text-decoration:none}
     </div>
     <div class="ns-right">
       <div class="ns-form">
-        <input type="email" id="nsEmail" placeholder="Votre email" data-i18n-ph="blog.sidebar.cta.placeholder">
+        <input type="email" id="nsEmail" placeholder="Votre email" data-i18n="blog.sidebar.cta.placeholder">
         <button id="nsBtn" onclick="subscribeNewsletter()" data-i18n="blog.sidebar.cta.btn">S'abonner</button>
       </div>
       <div class="ns-msg" id="nsMsg"></div>
@@ -382,7 +382,7 @@ a{color:inherit;text-decoration:none}
       <h3><i class="fa-solid fa-search"></i> <span data-i18n="blog.archive.search">Rechercher</span></h3>
       <div class="sidebar-search">
         <i class="fa-solid fa-search"></i>
-        <input type="text" id="searchInput" placeholder="Rechercher..." data-i18n-ph="blog.archive.search">
+        <input type="text" id="searchInput" placeholder="Rechercher..." data-i18n="blog.archive.search">
       </div>
     </div>
     <div class="sidebar-card" id="catCard">
@@ -399,7 +399,7 @@ a{color:inherit;text-decoration:none}
       <h3><i class="fa-regular fa-envelope"></i> <span data-i18n="blog.sidebar.cta.title">Newsletter</span></h3>
       <p data-i18n="blog.sidebar.cta.desc">Recevez nos derniers articles directement par email.</p>
       <div class="sc-form">
-        <input type="email" id="scEmail" placeholder="Votre email" data-i18n-ph="blog.sidebar.cta.placeholder">
+        <input type="email" id="scEmail" placeholder="Votre email" data-i18n="blog.sidebar.cta.placeholder">
         <button id="scBtn" onclick="subscribeSidebar()" data-i18n="blog.sidebar.cta.btn">S'abonner</button>
       </div>
       <div class="sc-msg" id="scMsg"></div>
