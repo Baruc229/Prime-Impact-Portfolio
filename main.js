@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function animateSkillBar(bar, delay) {
     const target = parseFloat(bar.dataset.width) || 0;
-    const duration = 1200;
+    const duration = 800;
     const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const parent = bar.closest('.skill-item');
     const percentEl = parent ? parent.querySelector('.skill-percent') : null;
