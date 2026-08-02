@@ -293,7 +293,7 @@ img {
 }
 
 .hero-line-sm {
-  font-size: clamp(32px, 4vw, 56px);
+  font-size: clamp(26px, 3.9vw, 39px);
   font-weight: 900;
   letter-spacing: -1px;
   line-height: 1.05;
@@ -302,7 +302,7 @@ img {
 
 .hero-rotator-wrapper {
   display: inline;
-  font-size: clamp(32px, 4vw, 56px);
+  font-size: clamp(26px, 3.9vw, 39px);
   font-weight: 900;
   letter-spacing: -1px;
   line-height: 1.05;
