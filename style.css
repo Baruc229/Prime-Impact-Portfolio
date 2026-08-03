@@ -262,7 +262,8 @@ img {
 }
 
 .hero-rotator-wrapper {
-  display: inline;
+  display: block;
+  min-height: 2.1em;
   font-size: clamp(26px, 3.9vw, 39px);
   font-weight: 900;
   letter-spacing: -1px;
@@ -271,9 +272,9 @@ img {
 }
 
 .text-rotator {
-  display: inline;
+  display: inline-block;
   opacity: 1;
-  will-change: opacity, transform;
+  will-change: transform, opacity;
 }
 
 @keyframes rotator-out {
