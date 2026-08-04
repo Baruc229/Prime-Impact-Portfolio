@@ -1487,13 +1487,34 @@ section[id]{scroll-margin-top:90px}
     input.addEventListener('input',validatePhoneField);
   })();
 </script>
-<footer style="background:#0E1E3A;color:rgba(255,255,255,0.6);padding:40px 20px;font-size:14px;line-height:1.7;text-align:center">
-  <div class="container">
-    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:16px">
-      <a href="https://prime-impact.vercel.app/mentions-legales" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:14px">Mentions l&eacute;gales</a>
-      <a href="https://prime-impact.vercel.app/politique-confidentialite" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:14px">Politique de confidentialit&eacute;</a>
+<style>
+  .pia-marquee{overflow:hidden;white-space:nowrap;text-align:left;pointer-events:none;user-select:none;padding-bottom:8px;width:100vw;margin-left:calc(50% - 50vw)}
+  .pia-marquee__track{display:inline-flex;align-items:center;will-change:transform;animation:pia-marquee 25s linear infinite}
+  .pia-marquee__text{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(3rem,10vw,7rem);line-height:1.1;color:rgba(255,255,255,0.08);letter-spacing:0.02em}
+  @keyframes pia-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.pia-marquee__track{animation:none}}
+  .pia-footer-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 24px}
+  .pia-footer-copy{color:rgba(255,255,255,0.25);font-size:13px;margin:0}
+  .pia-footer-legal{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .pia-footer-legal a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:14px;transition:color 0.2s}
+  .pia-footer-legal a:hover{color:#FFB432}
+  @media(max-width:480px){.pia-footer-bar{justify-content:center;text-align:center}.pia-footer-legal{gap:16px;justify-content:center}}
+</style>
+<footer style="background:#0E1E3A;color:rgba(255,255,255,0.6);padding:40px 20px 32px;font-size:14px;line-height:1.7;text-align:center;overflow:hidden">
+  <div class="pia-marquee" role="presentation" aria-hidden="true">
+    <div class="pia-marquee__track">
+      <span class="pia-marquee__text">PRIME IMPACT AGENCY&nbsp;&nbsp;</span>
+      <span class="pia-marquee__text">PRIME IMPACT AGENCY&nbsp;&nbsp;</span>
+      <span class="pia-marquee__text">PRIME IMPACT AGENCY&nbsp;&nbsp;</span>
+      <span class="pia-marquee__text">PRIME IMPACT AGENCY&nbsp;&nbsp;</span>
     </div>
-    <p style="color:rgba(255,255,255,0.25);font-size:13px;margin:0">&copy; 2025 Prime Impact Agency &middot; Tous droits r&eacute;serv&eacute;s</p>
+  </div>
+  <div class="pia-footer-bar">
+    <p class="pia-footer-copy">&copy; 2026 Prime Impact Agency &middot; Tous droits r&eacute;serv&eacute;s</p>
+    <nav class="pia-footer-legal" aria-label="Liens légaux">
+      <a href="https://prime-impact.vercel.app/mentions-legales">Mentions l&eacute;gales</a>
+      <a href="https://prime-impact.vercel.app/politique-confidentialite">Politique de confidentialit&eacute;</a>
+    </nav>
   </div>
 </footer>
 </body>
