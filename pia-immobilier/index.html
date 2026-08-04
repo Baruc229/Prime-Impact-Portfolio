@@ -290,10 +290,10 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .realisations-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center}
 .realisations-track{display:flex;will-change:transform}
 .realisations-panel{width:100vw;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:0 5vw}
-.realisations-panel-inner{display:flex;align-items:center;gap:5vw;max-width:1200px;width:100%}
+.realisations-panel-inner{display:flex;align-items:center;gap:5vw;max-width:1200px;width:100%;will-change:transform,opacity}
 .realisations-panel-inner.reversed{flex-direction:row-reverse}
 .realisations-panel-visual{flex:0 0 55%;position:relative}
-.realisations-panel-visual .vis-mockup{background:linear-gradient(135deg,#EEF3FF,#d6e0f5);border-radius:12px;overflow:hidden;aspect-ratio:16/11;display:flex;align-items:center;justify-content:center;position:relative;border:1px solid rgba(0,0,0,0.04);box-shadow:0 4px 24px rgba(0,0,0,0.06)}
+.realisations-panel-visual .vis-mockup{background:linear-gradient(135deg,#EEF3FF,#d6e0f5);border-radius:12px;overflow:hidden;aspect-ratio:16/11;display:flex;align-items:center;justify-content:center;position:relative;border:1px solid rgba(0,0,0,0.04);box-shadow:0 2px 4px rgba(27,58,107,0.06),0 14px 40px rgba(27,58,107,0.16),0 30px 70px rgba(27,58,107,0.10)}
 .realisations-panel-visual .vis-mockup img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .realisations-panel-content{flex:0 0 40%}
 .realisations-panel-content .p-index{font-size:13px;font-weight:700;color:#FFB432;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
@@ -1298,9 +1298,30 @@ section[id]{scroll-margin-top:90px}
       dots.forEach(function(d, i){
         d.classList.toggle('active', i === activeIdx);
       });
+
+      for(var i = 0; i < numPanels; i++){
+        var inner = panels[i].querySelector('.realisations-panel-inner');
+        if(!inner) continue;
+        var center = progress * (numPanels - 1) - i;
+        var dist = Math.abs(center);
+        var scale = Math.max(0.95, 1 - 0.045 * dist);
+        var op = Math.max(0.4, 1 - 0.12 * dist);
+        inner.style.transform = 'scale(' + scale.toFixed(3) + ')';
+        inner.style.opacity = op.toFixed(2);
+      }
     }
 
-    window.addEventListener('scroll', update, { passive: true });
+    var ticking = false;
+    function onScroll(){
+      if(ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){
+        update();
+        ticking = false;
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function(){ setMinHeight(); update(); });
     update();
 
