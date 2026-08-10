@@ -408,7 +408,7 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .testi-quote::after{content:'"';font-size:26px;color:#FFB432;font-style:normal;position:absolute;right:-2px;bottom:-8px;line-height:1}
 .testi-tag{display:inline-flex;align-items:center;gap:4px;background:#f4f4f6;border-radius:6px;padding:3px 8px;font-family:'Outfit',sans-serif;font-size:13px;color:#6b7280;width:fit-content;line-height:1.3}
 .testi-tag svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;flex-shrink:0}
-.testi-card{padding:24px 28px;display:flex;flex-direction:column;gap:12px;font-family:'Outfit',sans-serif;animation:testiFloat 4s ease-in-out infinite}
+.testi-card{padding:24px 28px;display:flex;flex-direction:column;gap:12px;font-family:'Outfit',sans-serif;animation:testiFloat 4s ease-in-out infinite;background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 4px 20px rgba(27,58,107,0.06)}
 .testi-cell:nth-child(2) .testi-card{animation-delay:-1.3s}
 .testi-cell:nth-child(3) .testi-card{animation-delay:-2.6s}
 @keyframes testiFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -842,35 +842,6 @@ section[id]{scroll-margin-top:90px}
   </div>
 </section>
 
-<!-- ══ TÉMOIGNAGES ══ -->
-<section class="testimonials-section">
-  <div class="container">
-    <div class="section-title">
-      <div class="section-badge">Témoignages</div>
-      <h2>Ils nous font confiance</h2>
-    </div>
-    <div class="testi-grid" id="testiGrid">
-      <!-- Cell 1 -->
-      <div class="testi-cell">
-        <div class="testi-slide active"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c1">MD</div><div><div class="testi-name">Marc D.</div><div class="testi-role">Agent immobilier, Lyon</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 2 mois</div></div><div class="testi-quote">Mon site a été livré en 12 jours. Dès le premier mois, 4 demandes de visite directement depuis le formulaire.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Site vitrine</div></div></div>
-        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c4">CL</div><div><div class="testi-name">Cédric L.</div><div class="testi-role">Agent commercial, Marseille</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 2 semaines</div></div><div class="testi-quote">Au début j'étais sceptique sur le prix. Mais le résultat est propre, le site est rapide, et le suivi a été nickel. Bon boulot.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Site vitrine</div></div></div>
-        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c8">TM</div><div><div class="testi-name">Thomas M.</div><div class="testi-role">Agent multi-mandats, Montpellier</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="src-text trustpilot">Trustpilot</span></div></div><div class="testi-meta"><div class="testi-stars trustpilot">★★★★★</div><div class="testi-date">Il y a 4 jours</div></div><div class="testi-quote">Ce qui m'a convaincu c'est le rapport qualité/prix ET l'absence d'abonnement. Mes collègues paient des centaines d'euros par mois.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 11l2 2l4-4"/></svg>Multi-agents</div></div></div>
-      </div>
-      <!-- Cell 2 -->
-      <div class="testi-cell">
-        <div class="testi-slide active"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c2">SM</div><div><div class="testi-name">Sophie M.</div><div class="testi-role">Location saisonnière, Bordeaux</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="src-text trustpilot">Trustpilot</span></div></div><div class="testi-meta"><div class="testi-stars trustpilot">★★★★★</div><div class="testi-date">Il y a 1 mois</div></div><div class="testi-quote">J'avais un devis à 2 200 € d'une agence locale. PIA m'a fait mon site pour 250 €. Le résultat est identique, j'ai économisé 1 700 €.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14M9 7v2M12 7v2M15 7v2M9 13h6v8H9z"/></svg>Location saisonnière</div></div></div>
-        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c5">NV</div><div><div class="testi-name">Nathalie V.</div><div class="testi-role">Gestionnaire de biens, Nantes</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 5 jours</div></div><div class="testi-quote">Je reçois des demandes de location directement via mon site. Avant je payais Leboncoin à chaque annonce. Maintenant c'est gratuit.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14M9 7v2M12 7v2M15 7v2M9 13h6v8H9z"/></svg>Location saisonnière</div></div></div>
-        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c7">AL</div><div><div class="testi-name">Aurélie L.</div><div class="testi-role">Agent commercial, Lille</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 3 jours</div></div><div class="testi-quote">J'ai comparé pas mal de prestataires. Pour le prix c'est très propre. J'apprécie de pouvoir modifier le site moi-même sans payer à chaque fois.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Site vitrine</div></div></div>
-      </div>
-      <!-- Cell 3 -->
-      <div class="testi-cell">
-        <div class="testi-slide active"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c3">KA</div><div><div class="testi-name">Karim A.</div><div class="testi-role">Agence immobilière, Paris</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 3 semaines</div></div><div class="testi-quote">Site rapide, bien référencé et je le gère seul. Le rapport qualité-prix est imbattable. Ça m'a déjà amené 3 clients en un mois.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 11l2 2l4-4"/></svg>Agence immobilière</div></div></div>
-        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c6">PB</div><div><div class="testi-name">Pierre B.</div><div class="testi-role">Agent immobilier, Toulouse</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="src-text trustpilot">Trustpilot</span></div></div><div class="testi-meta"><div class="testi-stars trustpilot">★★★★★</div><div class="testi-date">Il y a 1 semaine</div></div><div class="testi-quote">J'ai fait refaire mon site. L'ancien datait de 2015, il était lent et moche. Là c'est jour et nuit. Différence immédiate sur Google.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 11l2 2l4-4"/></svg>Refonte</div></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ══ OFFRES ══ -->
 <section class="section section-light" id="offres">
   <div class="container">
@@ -1000,69 +971,6 @@ section[id]{scroll-margin-top:90px}
   </div>
 </section>
 
-<!-- ══ FAQ ══ -->
-<!-- ══ FAQ ══ -->
-<section class="faq-section" id="faq">
-  <div class="container">
-    <div class="faq-wrapper">
-      <div class="faq-left">
-        <h2>Questions fréquentes</h2>
-        <p>Vous avez des questions ? Nous avons les réponses.</p>
-      </div>
-      <div class="faq-right">
-        <div class="faq-card">
-          <button type="button" class="faq-card-btn">
-            <span>Je n'ai pas de nom de domaine ni d'hébergement, c'est un problème ?</span>
-            <span class="faq-chevron">›</span>
-          </button>
-          <div class="faq-card-answer">
-            <p>Aucun problème. Je vous guide pour choisir l'hébergeur adapté à votre budget et m'occupe de toute l'installation technique.</p>
-          </div>
-        </div>
-        <div class="faq-card">
-          <button type="button" class="faq-card-btn">
-            <span>Comment se passe le paiement depuis la France ?</span>
-            <span class="faq-chevron">›</span>
-          </button>
-          <div class="faq-card-answer">
-            <p>Via PayPal ou Wise. 50 % au démarrage, 50 % à la livraison. Aucun frais caché.</p>
-          </div>
-        </div>
-        <div class="faq-card">
-          <button type="button" class="faq-card-btn">
-            <span>Que se passe-t-il après les 30 jours d'assistance ?</span>
-            <span class="faq-chevron">›</span>
-          </button>
-          <div class="faq-card-answer">
-            <p>Votre site vous appartient entièrement. Je vous forme pour le gérer seul. Un accompagnement mensuel est disponible si besoin.</p>
-          </div>
-        </div>
-        <div class="faq-card">
-          <button type="button" class="faq-card-btn">
-            <span>J'ai déjà un site mais il est vieux. Vous faites la refonte ?</span>
-            <span class="faq-chevron">›</span>
-          </button>
-          <div class="faq-card-answer">
-            <p>Oui. Refonte complète avec ou sans SEO selon vos besoins. On en discute lors du premier échange gratuit.</p>
-          </div>
-        </div>
-        <div class="faq-card">
-          <button type="button" class="faq-card-btn">
-            <span>Combien d'annonces puis-je publier ?</span>
-            <span class="faq-chevron">›</span>
-          </button>
-          <div class="faq-card-answer">
-            <p>Le pack Agent Indépendant intègre 10 annonces au démarrage. Après livraison, vous pouvez en ajouter vous-même sans limite. Le pack Vitrine est une page de présentation sans module d'annonces — idéal pour débuter avant d'évoluer.</p>
-          </div>
-        </div>
-        <div class="faq-footer">
-          <p>Vous avez d'autres questions ? <a href="mailto:contact@prime-impact.agency">contact@prime-impact.agency</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ══ FORMULAIRE ══ -->
 <section class="contact-section" id="contact">
   <div class="container">
@@ -1146,6 +1054,97 @@ section[id]{scroll-margin-top:90px}
           <div class="check-big">✓</div>
           <h3 id="success-title">Merci !</h3>
           <p id="success-text">Je vous contacte dans les 24h.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TÉMOIGNAGES ══ -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-title">
+      <div class="section-badge">Témoignages</div>
+      <h2>Ils nous font confiance</h2>
+    </div>
+    <div class="testi-grid" id="testiGrid">
+      <!-- Cell 1 -->
+      <div class="testi-cell">
+        <div class="testi-slide active"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c1">MD</div><div><div class="testi-name">Marc D.</div><div class="testi-role">Agent immobilier, Lyon</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 2 mois</div></div><div class="testi-quote">Mon site a été livré en 12 jours. Dès le premier mois, 4 demandes de visite directement depuis le formulaire.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Site vitrine</div></div></div>
+        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c4">CL</div><div><div class="testi-name">Cédric L.</div><div class="testi-role">Agent commercial, Marseille</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 2 semaines</div></div><div class="testi-quote">Au début j'étais sceptique sur le prix. Mais le résultat est propre, le site est rapide, et le suivi a été nickel. Bon boulot.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Site vitrine</div></div></div>
+        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c8">TM</div><div><div class="testi-name">Thomas M.</div><div class="testi-role">Agent multi-mandats, Montpellier</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="src-text trustpilot">Trustpilot</span></div></div><div class="testi-meta"><div class="testi-stars trustpilot">★★★★★</div><div class="testi-date">Il y a 4 jours</div></div><div class="testi-quote">Ce qui m'a convaincu c'est le rapport qualité/prix ET l'absence d'abonnement. Mes collègues paient des centaines d'euros par mois.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 11l2 2l4-4"/></svg>Multi-agents</div></div></div>
+      </div>
+      <!-- Cell 2 -->
+      <div class="testi-cell">
+        <div class="testi-slide active"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c2">SM</div><div><div class="testi-name">Sophie M.</div><div class="testi-role">Location saisonnière, Bordeaux</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="src-text trustpilot">Trustpilot</span></div></div><div class="testi-meta"><div class="testi-stars trustpilot">★★★★★</div><div class="testi-date">Il y a 1 mois</div></div><div class="testi-quote">J'avais un devis à 2 200 € d'une agence locale. PIA m'a fait mon site pour 250 €. Le résultat est identique, j'ai économisé 1 700 €.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14M9 7v2M12 7v2M15 7v2M9 13h6v8H9z"/></svg>Location saisonnière</div></div></div>
+        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c5">NV</div><div><div class="testi-name">Nathalie V.</div><div class="testi-role">Gestionnaire de biens, Nantes</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 5 jours</div></div><div class="testi-quote">Je reçois des demandes de location directement via mon site. Avant je payais Leboncoin à chaque annonce. Maintenant c'est gratuit.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14M9 7v2M12 7v2M15 7v2M9 13h6v8H9z"/></svg>Location saisonnière</div></div></div>
+        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c7">AL</div><div><div class="testi-name">Aurélie L.</div><div class="testi-role">Agent commercial, Lille</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 3 jours</div></div><div class="testi-quote">J'ai comparé pas mal de prestataires. Pour le prix c'est très propre. J'apprécie de pouvoir modifier le site moi-même sans payer à chaque fois.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Site vitrine</div></div></div>
+      </div>
+      <!-- Cell 3 -->
+      <div class="testi-cell">
+        <div class="testi-slide active"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c3">KA</div><div><div class="testi-name">Karim A.</div><div class="testi-role">Agence immobilière, Paris</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="src-text google">Google</span></div></div><div class="testi-meta"><div class="testi-stars google">★★★★★</div><div class="testi-date">Il y a 3 semaines</div></div><div class="testi-quote">Site rapide, bien référencé et je le gère seul. Le rapport qualité-prix est imbattable. Ça m'a déjà amené 3 clients en un mois.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 11l2 2l4-4"/></svg>Agence immobilière</div></div></div>
+        <div class="testi-slide"><div class="testi-card"><div class="testi-header"><div class="testi-avatar-group"><div class="testi-avatar c6">PB</div><div><div class="testi-name">Pierre B.</div><div class="testi-role">Agent immobilier, Toulouse</div></div></div><div class="testi-source"><svg viewBox="0 0 24 24" width="16" height="16" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="src-text trustpilot">Trustpilot</span></div></div><div class="testi-meta"><div class="testi-stars trustpilot">★★★★★</div><div class="testi-date">Il y a 1 semaine</div></div><div class="testi-quote">J'ai fait refaire mon site. L'ancien datait de 2015, il était lent et moche. Là c'est jour et nuit. Différence immédiate sur Google.</div><div class="testi-tag"><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 11l2 2l4-4"/></svg>Refonte</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="faq-wrapper">
+      <div class="faq-left">
+        <h2>Questions fréquentes</h2>
+        <p>Vous avez des questions ? Nous avons les réponses.</p>
+      </div>
+      <div class="faq-right">
+        <div class="faq-card">
+          <button type="button" class="faq-card-btn">
+            <span>Je n'ai pas de nom de domaine ni d'hébergement, c'est un problème ?</span>
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-card-answer">
+            <p>Aucun problème. Je vous guide pour choisir l'hébergeur adapté à votre budget et m'occupe de toute l'installation technique.</p>
+          </div>
+        </div>
+        <div class="faq-card">
+          <button type="button" class="faq-card-btn">
+            <span>Comment se passe le paiement depuis la France ?</span>
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-card-answer">
+            <p>Via PayPal ou Wise. 50 % au démarrage, 50 % à la livraison. Aucun frais caché.</p>
+          </div>
+        </div>
+        <div class="faq-card">
+          <button type="button" class="faq-card-btn">
+            <span>Que se passe-t-il après les 30 jours d'assistance ?</span>
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-card-answer">
+            <p>Votre site vous appartient entièrement. Je vous forme pour le gérer seul. Un accompagnement mensuel est disponible si besoin.</p>
+          </div>
+        </div>
+        <div class="faq-card">
+          <button type="button" class="faq-card-btn">
+            <span>J'ai déjà un site mais il est vieux. Vous faites la refonte ?</span>
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-card-answer">
+            <p>Oui. Refonte complète avec ou sans SEO selon vos besoins. On en discute lors du premier échange gratuit.</p>
+          </div>
+        </div>
+        <div class="faq-card">
+          <button type="button" class="faq-card-btn">
+            <span>Combien d'annonces puis-je publier ?</span>
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-card-answer">
+            <p>Le pack Agent Indépendant intègre 10 annonces au démarrage. Après livraison, vous pouvez en ajouter vous-même sans limite. Le pack Vitrine est une page de présentation sans module d'annonces — idéal pour débuter avant d'évoluer.</p>
+          </div>
+        </div>
+        <div class="faq-footer">
+          <p>Vous avez d'autres questions ? <a href="mailto:contact@prime-impact.agency">contact@prime-impact.agency</a></p>
         </div>
       </div>
     </div>
