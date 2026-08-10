@@ -343,47 +343,74 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 }
 
 
-/* ── GUARANTEE STRIP ── */
 /* ── PROCESS TIMELINE ── */
-.process-section{background:#0E1E3A;padding:56px 32px}
-.process-badge{display:inline-flex;align-items:center;background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.1);border-radius:100px;padding:5px 14px;font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:rgba(255,255,255,0.4);margin-bottom:12px}
-.process-section h2{color:#fff;margin-bottom:0}
-.process-section .section-header{text-align:center;margin-bottom:0}
-.process-guarantee{display:flex;align-items:flex-start;gap:14px;background:rgba(255,180,50,0.07);border:0.5px solid rgba(255,180,50,0.2);border-radius:12px;padding:16px 20px;max-width:580px;margin:20px auto 36px}
-.process-guarantee{display:flex;align-items:flex-start;gap:14px;background:rgba(255,180,50,0.07);border:0.5px solid rgba(255,180,50,0.2);border-radius:12px;padding:16px 20px;max-width:580px;margin-top:20px;margin-bottom:36px}
-.process-guarantee .g-icon{font-size:20px;flex-shrink:0;line-height:1;margin-top:1px}
-.process-guarantee .g-body{display:flex;flex-direction:column;gap:4px}
-.process-guarantee .g-title{font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;color:#FFB432;line-height:1.3}
-.process-guarantee .g-desc{font-family:'Outfit',sans-serif;font-size:15px;color:rgba(255,255,255,0.45);line-height:1.5}
-.process-guarantee .g-desc strong{color:rgba(255,255,255,0.7);font-weight:500}
+.process-section{background:#0E1E3A;padding:56px 0}
 
+/* En-tête asymétrique : titre à gauche, garantie à droite */
+.process-head{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:44px}
+.process-section .section-header{text-align:left;margin-bottom:0}
+.process-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:6px 16px 6px 14px;font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.1px;color:rgba(255,255,255,0.75);margin-bottom:16px}
+.process-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:#FFB432;box-shadow:0 0 0 3px rgba(255,180,50,0.18)}
+.process-section h2{color:#fff;margin-bottom:0;font-size:clamp(26px,3.2vw,40px);line-height:1.12;letter-spacing:-0.02em}
+.process-intro{font-family:'Outfit',sans-serif;font-weight:300;font-size:16px;line-height:1.65;color:rgba(255,255,255,0.45);max-width:46ch;margin:14px 0 0}
+
+/* Carte garantie */
+.process-guarantee{position:relative;display:flex;align-items:flex-start;gap:16px;background:rgba(255,180,50,0.06);border:1px solid rgba(255,180,50,0.22);border-radius:16px;padding:24px 22px 20px;box-shadow:0 2px 8px rgba(0,0,0,0.12),0 12px 32px rgba(0,0,0,0.16)}
+.process-guarantee::before{content:"";position:absolute;top:0;left:22px;width:42px;height:2px;background:#FFB432;border-radius:0 0 2px 2px}
+.process-guarantee .g-icon{display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;flex-shrink:0;background:rgba(255,180,50,0.1);border:1px solid rgba(255,180,50,0.28);color:#FFB432;font-size:20px;line-height:1}
+.process-guarantee .g-body{display:flex;flex-direction:column;gap:6px}
+.process-guarantee .g-kicker{font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.4px;color:rgba(255,180,50,0.85)}
+.process-guarantee .g-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:600;color:#FFB432;line-height:1.35}
+.process-guarantee .g-desc{font-family:'Outfit',sans-serif;font-weight:300;font-size:14.5px;color:rgba(255,255,255,0.5);line-height:1.65}
+.process-guarantee .g-desc strong{color:#fff;font-weight:500}
+
+/* Timeline : verticale (mobile) */
 .process-timeline{display:flex;flex-direction:column;gap:0}
-
-.timeline-step{display:grid;grid-template-columns:48px 1fr;gap:0 20px;position:relative;padding-bottom:36px}
+.timeline-step{position:relative;display:block;padding-bottom:40px}
 .timeline-step:last-child{padding-bottom:0}
-.tl-left{display:flex;flex-direction:column;align-items:center}
-.tl-circle{width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.12);background:#0E1E3A;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.35);flex-shrink:0;line-height:1}
-.tl-line{width:1px;flex:1;min-height:24px;background:rgba(255,255,255,0.08);margin-top:4px}
-.timeline-step:last-child .tl-line{display:none}
-.tl-right{padding-top:8px}
-.tl-eyebrow{font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:#FFB432;margin-bottom:2px;line-height:1.3}
-.tl-right h4{font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:4px;font-style:normal;line-height:1.3}
+.timeline-step::before{content:"";position:absolute;left:21.5px;top:54px;bottom:0;width:0;border-left:1px dashed rgba(255,255,255,0.14)}
+.timeline-step:last-child::before{display:none}
+.tl-card{position:relative;display:grid;grid-template-columns:44px 1fr;gap:0 20px}
+.tl-head{display:flex;flex-direction:column;align-items:center}
+.tl-chip{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.4px;color:#FFB432;background:#0E1E3A;border:1.5px solid rgba(255,180,50,0.5);box-shadow:0 0 0 5px rgba(255,180,50,0.08);flex-shrink:0;line-height:1}
+.tl-ghost{display:none}
+.tl-connector{display:none}
+.tl-right{position:relative;z-index:1}
+.tl-eyebrow{font-family:'Outfit',sans-serif;font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#FFB432;margin-bottom:7px;line-height:1.3}
+.tl-right h4{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:6px;font-style:normal;line-height:1.3}
 .tl-right p{font-family:'Outfit',sans-serif;font-weight:300;font-size:15px;color:rgba(255,255,255,0.45);line-height:1.7;max-width:480px}
-.tl-note{font-family:'Outfit',sans-serif;font-size:15px;font-style:italic;color:rgba(255,255,255,0.3);margin-top:4px;line-height:1.4}
-.tl-note .tl-arrow{color:rgba(255,255,255,0.2);margin-right:2px}
+.tl-note{display:inline-flex;align-items:flex-start;gap:8px;margin-top:12px;padding:6px 12px;border-radius:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;font-style:normal;color:rgba(255,255,255,0.55);line-height:1.45}
+.tl-note .tl-arrow{color:#FFB432;font-size:12px;line-height:1.5}
 
 @media(min-width:768px){
-  .process-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-  .timeline-step{grid-template-columns:1fr;padding-bottom:0;text-align:center}
-  .tl-left{flex-direction:row;justify-content:center;margin-bottom:12px}
-  .tl-line{display:none}
-  .tl-right{padding-top:0}
+  .process-head{grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:start;margin-bottom:52px}
+  .process-guarantee{margin-top:10px}
+  .process-timeline{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .timeline-step{padding-bottom:0}
+  .tl-card{display:block;height:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:26px 24px 24px;overflow:hidden;transition:transform 0.35s cubic-bezier(0.22,1,0.36,1),border-color 0.3s ease,box-shadow 0.3s ease,background 0.3s ease}
+  .tl-card:hover{transform:translateY(-4px);border-color:rgba(255,180,50,0.32);background:rgba(255,180,50,0.05);box-shadow:0 2px 8px rgba(0,0,0,0.1),0 16px 40px rgba(0,0,0,0.24)}
+  .tl-head{display:block;margin-bottom:18px}
+  .timeline-step::before{display:none}
+  .tl-chip{width:38px;height:38px;font-size:12.5px;background:rgba(255,180,50,0.07);border-color:rgba(255,180,50,0.35);box-shadow:none}
+  .tl-ghost{display:block;position:absolute;top:14px;right:12px;font-family:'Outfit',sans-serif;font-size:clamp(54px,5vw,70px);font-weight:800;line-height:1;letter-spacing:-0.04em;color:rgba(255,180,50,0.08);-webkit-text-stroke:1px rgba(255,180,50,0.22);pointer-events:none;transition:color 0.3s ease}
+  .tl-card:hover .tl-ghost{color:rgba(255,180,50,0.16)}
   .tl-right p{max-width:none}
 }
 
+@media(min-width:1024px){
+  .process-timeline{grid-template-columns:repeat(4,1fr);gap:24px}
+  .tl-connector{display:block;position:absolute;top:45px;left:43px;right:-67px;height:0;border-top:1px dashed rgba(255,255,255,0.18)}
+  .tl-connector::after{content:"";position:absolute;top:-3.5px;right:-3px;width:7px;height:7px;border-radius:50%;background:#FFB432}
+  .timeline-step:last-child .tl-connector{display:none}
+}
+
 @media(max-width:768px){
-  .process-section{padding:48px 20px}
-  .process-guarantee{margin-bottom:28px}
+  .process-section{padding:48px 0}
+  .process-head{margin-bottom:36px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .tl-card,.tl-card:hover{transform:none;transition:none}
 }
 
 /* ── TESTIMONIALS CAROUSEL ── */
@@ -733,67 +760,83 @@ section[id]{scroll-margin-top:90px}
 <!-- ══ PROCESSUS ══ -->
 <section class="process-section" id="process">
   <div class="container">
-    <div class="section-header">
-      <div class="process-badge">Étape par étape</div>
-      <h2>Comment ça se passe</h2>
-    </div>
+    <div class="process-head">
+      <div class="section-header">
+        <div class="process-badge">Étape par étape</div>
+        <h2>Comment ça se passe</h2>
+        <p class="process-intro">Un cadre clair et sans surprise : vous validez chaque étape, je m'occupe du reste.</p>
+      </div>
 
-    <div class="process-guarantee">
-      <div class="g-icon">🛡</div>
-      <div class="g-body">
-        <div class="g-title">Garantie "Validé étape par étape"</div>
-        <div class="g-desc">Vous approuvez chaque étape avant la suivante. <strong>3 séries de retouches incluses</strong>. Si des ajustements supplémentaires sont nécessaires au-delà, on en discute ensemble — sans mauvaise surprise.</div>
+      <div class="process-guarantee">
+        <div class="g-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="g-body">
+          <div class="g-kicker">Notre engagement</div>
+          <div class="g-title">Garantie "Validé étape par étape"</div>
+          <div class="g-desc">Vous approuvez chaque étape avant la suivante. <strong>3 séries de retouches incluses</strong>. Si des ajustements supplémentaires sont nécessaires au-delà, on en discute ensemble — sans mauvaise surprise.</div>
+        </div>
       </div>
     </div>
 
     <div class="process-timeline">
       <div class="timeline-step">
-        <div class="tl-left">
-          <div class="tl-circle">01</div>
-          <div class="tl-line"></div>
-        </div>
-        <div class="tl-right">
-          <div class="tl-eyebrow">Découverte</div>
-          <h4>Échange gratuit</h4>
-          <p>On discute de votre projet, sans engagement. Vous me dites tout.</p>
-          <div class="tl-note"><span class="tl-arrow">→</span> Aucun engagement</div>
-        </div>
-      </div>
-
-      <div class="timeline-step">
-        <div class="tl-left">
-          <div class="tl-circle">02</div>
-          <div class="tl-line"></div>
-        </div>
-        <div class="tl-right">
-          <div class="tl-eyebrow">Création</div>
-          <h4>Conception sur-mesure</h4>
-          <p>Design, textes et fonctionnalités pensés pour votre activité.</p>
+        <span class="tl-connector" aria-hidden="true"></span>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div class="tl-chip" aria-hidden="true">01</div>
+            <div class="tl-ghost" aria-hidden="true">01</div>
+          </div>
+          <div class="tl-right">
+            <div class="tl-eyebrow">Découverte</div>
+            <h4>Échange gratuit</h4>
+            <p>On discute de votre projet, sans engagement. Vous me dites tout.</p>
+            <div class="tl-note"><span class="tl-arrow" aria-hidden="true">→</span> Aucun engagement</div>
+          </div>
         </div>
       </div>
 
       <div class="timeline-step">
-        <div class="tl-left">
-          <div class="tl-circle">03</div>
-          <div class="tl-line"></div>
-        </div>
-        <div class="tl-right">
-          <div class="tl-eyebrow">Révision</div>
-          <h4>Validation &amp; retouches</h4>
-          <p>3 séries de retouches incluses. Vous validez chaque étape.</p>
-          <div class="tl-note"><span class="tl-arrow">→</span> 3 séries incluses, sans mauvaise surprise</div>
+        <span class="tl-connector" aria-hidden="true"></span>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div class="tl-chip" aria-hidden="true">02</div>
+            <div class="tl-ghost" aria-hidden="true">02</div>
+          </div>
+          <div class="tl-right">
+            <div class="tl-eyebrow">Création</div>
+            <h4>Conception sur-mesure</h4>
+            <p>Design, textes et fonctionnalités pensés pour votre activité.</p>
+          </div>
         </div>
       </div>
 
       <div class="timeline-step">
-        <div class="tl-left">
-          <div class="tl-circle">04</div>
-          <div class="tl-line"></div>
+        <span class="tl-connector" aria-hidden="true"></span>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div class="tl-chip" aria-hidden="true">03</div>
+            <div class="tl-ghost" aria-hidden="true">03</div>
+          </div>
+          <div class="tl-right">
+            <div class="tl-eyebrow">Révision</div>
+            <h4>Validation &amp; retouches</h4>
+            <p>3 séries de retouches incluses. Vous validez chaque étape.</p>
+            <div class="tl-note"><span class="tl-arrow" aria-hidden="true">→</span> 3 séries incluses, sans mauvaise surprise</div>
+          </div>
         </div>
-        <div class="tl-right">
-          <div class="tl-eyebrow">Lancement</div>
-          <h4>Mise en ligne &amp; formation</h4>
-          <p>Site livré + accès pour modifier vos contenus en autonomie.</p>
+      </div>
+
+      <div class="timeline-step">
+        <span class="tl-connector" aria-hidden="true"></span>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div class="tl-chip" aria-hidden="true">04</div>
+            <div class="tl-ghost" aria-hidden="true">04</div>
+          </div>
+          <div class="tl-right">
+            <div class="tl-eyebrow">Lancement</div>
+            <h4>Mise en ligne &amp; formation</h4>
+            <p>Site livré + accès pour modifier vos contenus en autonomie.</p>
+          </div>
         </div>
       </div>
     </div>
