@@ -46,9 +46,10 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .hero h1 .h-brush{position:absolute;left:-5%;bottom:-0.12em;width:110%;height:0;z-index:-1;pointer-events:none;opacity:0;animation:hBrush 2.6s ease-in-out both}
 .hero h1 .h-brush svg{position:absolute;inset:0;width:100%;height:100%}
 .hero h1 .h-brush svg path{fill:#FFB432;fill-opacity:0.85}
-.hero h1 .h-word--p .h-brush svg path,.hero h1 .h-word--f .h-brush svg path{fill:#B45309}
+.hero h1 .h-word--p .h-brush svg path{fill:#B45309}
+.hero h1 .h-word--f .h-brush svg path{fill:#FFB432}
 .hero h1 .h-word--p .h-brush{animation-delay:0.7s}
-.hero h1 .h-word--f .h-brush{animation-delay:3.4s}
+.hero h1 .h-word--f .h-brush{animation-delay:3.4s;animation-name:hBrushStay}
 .hero h1 .h-word--l .h-brush{animation-delay:6.2s;animation-name:hBrushStay}
 .hero h1 .h-word--l .h-brush--2{animation-delay:6.5s;bottom:-0.2em;animation-name:hBrushStay}
 @keyframes hBrush{0%{height:0;opacity:0}12%{opacity:1;height:0.5em}60%{opacity:1;height:0.5em}80%{opacity:0;height:0.5em}100%{height:0.5em;opacity:0}}
