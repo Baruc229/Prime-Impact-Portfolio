@@ -36,16 +36,20 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .hero{display:flex;align-items:center;padding:128px 0 80px;background:#fff;position:relative;overflow:hidden}
 .hero::before{content:none}
 .hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
-.hero-left{text-align:center}
+.hero-left{text-align:left}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:#EEF3FF;color:#1B3A6B;font-size:12.5px;font-weight:700;padding:5px 14px 5px 5px;border-radius:100px;margin-bottom:18px;letter-spacing:0.4px;text-transform:uppercase;border:1px solid rgba(27,58,107,0.08);box-shadow:0 1px 2px rgba(0,0,0,0.04)}
 .hero-badge .hero-badge-ico{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#1B3A6B;color:#FFB432;font-size:11px;flex-shrink:0}
-.hero h1{font-size:clamp(1.1rem,1.6vw,1.5rem);color:#1B3A6B;margin:0 auto 16px;font-weight:800;max-width:1140px;letter-spacing:-0.02em;text-align:center}
-.hero-title-structure .small{font-size:clamp(0.8rem,2.2vw,1.75rem);font-weight:400;vertical-align:middle}
-.hero-title-structure .big{font-size:clamp(2.3rem,6.5vw,5rem);font-weight:800;line-height:1}
+.hero h1{font-size:clamp(1.1rem,1.6vw,1.5rem);color:#1B3A6B;margin:0 0 16px;font-weight:800;max-width:1140px;letter-spacing:-0.02em;text-align:left}
+.hero-title-structure .small{font-size:1.2rem;font-weight:400;vertical-align:middle}
+.hero-title-structure .big{font-size:5rem;font-weight:800;line-height:1}
 .hero-title-structure .underline{text-decoration:none;border-bottom:3px solid #A8E063;padding-bottom:4px}
+@media(max-width:899px){
+  .hero-title-structure .big{font-size:clamp(2.3rem,7.5vw,4rem)}
+  .hero-title-structure .small{font-size:clamp(0.55rem,1.8vw,0.95rem)}
+}
 @media(max-width:480px){
   .hero-title-structure .big{font-size:clamp(1.7rem,8.5vw,2.8rem)}
-  .hero-title-structure .small{font-size:clamp(0.6rem,2.9vw,0.95rem)}
+  .hero-title-structure .small{font-size:clamp(0.4rem,2vw,0.66rem)}
   .hero-title-structure .underline{padding-bottom:3px;border-bottom-width:2px}
 }
 @keyframes heroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
@@ -58,21 +62,21 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .hero-left>*:nth-child(6){animation-delay:0.7s}
 .hero-left>*:nth-child(7){animation-delay:0.82s}
 .hero-left>*:nth-child(8){animation-delay:0.94s}
-.hero-sub{font-size:18px;color:#4B5563;max-width:640px;margin:0 auto 28px;line-height:1.6}
+.hero-sub{font-size:18px;color:#4B5563;max-width:640px;margin:0 0 28px;line-height:1.6}
 .hero-cta{display:inline-flex;align-items:center;gap:8px;background:#1B3A6B;color:#fff;font-family:'Outfit',sans-serif;font-weight:600;font-size:17px;padding:18px 36px;border-radius:6px;border:none;cursor:pointer;transition:background 0.2s,box-shadow 0.2s;text-decoration:none;box-shadow:0 2px 4px rgba(27,58,107,0.15),0 6px 20px rgba(27,58,107,0.1)}
 .hero-cta:hover{background:#15305a}
-.hero-stats{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;margin-top:20px;justify-content:center}
+.hero-stats{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;margin-top:20px;justify-content:flex-start}
 .hero-stats span{font-size:15px;color:#4B5563;display:flex;align-items:center;gap:8px}
 .hero-stats span::before{content:"";width:6px;height:6px;border-radius:50%;background:#22C55E;flex-shrink:0}
-.hero-price{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.hero-price{display:flex;align-items:center;justify-content:flex-start;gap:10px;margin-top:18px;flex-wrap:wrap}
 .hero-price .hp-pill{display:inline-flex;align-items:center;gap:6px;background:#FEF6E7;border:1px solid rgba(255,180,50,0.45);color:#B45309;font-weight:700;font-size:15px;padding:7px 16px;border-radius:999px;box-shadow:0 1px 2px rgba(180,83,9,0.12)}
 .hero-price .hp-pill strong{color:#B45309}
 .hero-price .hp-note{font-size:14px;color:#4B5563}
 .hero-price .hp-note a{color:#1B3A6B;font-weight:600;border-bottom:1px solid #FFB432}
 
 /* ── HERO REVIEWS ── */
-.hero-trust-label{display:block;text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#6b7280;margin-top:28px;margin-bottom:12px}
-.hero-reviews{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:0}
+.hero-trust-label{display:block;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#6b7280;margin-top:28px;margin-bottom:12px}
+.hero-reviews{display:flex;align-items:center;justify-content:flex-start;gap:14px;margin-top:0}
 .hero-avatars{display:flex}
 .hero-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;border:2px solid #fff;margin-left:-10px;box-shadow:0 2px 6px rgba(0,0,0,0.08);animation:heroFloat 3.5s ease-in-out infinite}
 .hero-avatar:first-child{margin-left:0}
@@ -581,10 +585,10 @@ section[id]{scroll-margin-top:90px}
   .hero .container{padding:0 16px}
 }
 @media(min-width:900px){
-  .hero-left{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .hero-left{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left}
   .hero h1{font-size:1rem}
-  .hero-sub{margin:0 auto 28px}
-  .hero-stats{justify-content:center}
+  .hero-sub{margin:0 0 28px}
+  .hero-stats{justify-content:flex-start}
   .problem-grid{grid-template-columns:repeat(3,1fr)}
   .solution-grid{grid-template-columns:repeat(2,1fr)}
   .portfolio-grid{grid-template-columns:repeat(3,1fr)}
@@ -604,7 +608,7 @@ section[id]{scroll-margin-top:90px}
   .hero-badge{font-size:11px;padding:4px 12px 4px 4px}
   .hero-badge .hero-badge-ico{width:20px;height:20px;font-size:10px}
   .hero-cta{width:100%;justify-content:center;font-size:15px;padding:16px 24px}
-  .hero-stats{flex-direction:column;align-items:center;gap:6px;font-size:13px}
+  .hero-stats{flex-direction:column;align-items:flex-start;gap:6px;font-size:13px}
   .section{padding:48px 0}
   .section-hero{padding:80px 0 56px}
   .section-title h2,.about-wrap h2,.process-section h2,.faq-left h2,.contact-left h2{font-size:clamp(20px,7vw,28px)}
