@@ -36,16 +36,15 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .hero{display:flex;align-items:center;padding:128px 0 80px;background:#fff;position:relative;overflow:hidden}
 .hero::before{content:none}
 .hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
-.hero-left{text-align:left}
+.hero-left{text-align:center}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:#EEF3FF;color:#1B3A6B;font-size:12.5px;font-weight:700;padding:5px 14px 5px 5px;border-radius:100px;margin-bottom:18px;letter-spacing:0.4px;text-transform:uppercase;border:1px solid rgba(27,58,107,0.08);box-shadow:0 1px 2px rgba(0,0,0,0.04)}
 .hero-badge .hero-badge-ico{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#1B3A6B;color:#FFB432;font-size:11px;flex-shrink:0}
-.hero h1{font-size:clamp(44px,6vw,74px);margin:0 0 16px;max-width:1140px}
-.hero-title-composite{--t-color:#1B3A6B;--t-sub:#6B7280;--t-accent:#7CB518;display:block;color:var(--t-color);font-weight:800;letter-spacing:-0.02em;line-height:1.1;text-align:left}
-.hero-title-composite .ht-lead{display:block;font-size:clamp(12px,1.1vw,16px);font-weight:600;line-height:1.2;letter-spacing:0.4em;text-transform:uppercase;color:var(--t-sub);margin-bottom:clamp(16px,2.4vw,28px)}
-.hero-title-composite .ht-big{display:block;font-weight:800;letter-spacing:-0.02em;line-height:1.1}
-.hero-title-composite .ht-key{position:relative;display:inline-block;padding-bottom:0.18em}
-.hero-title-composite .ht-key::after{content:"";position:absolute;left:0;right:0;bottom:0;height:0.05em;border-radius:999px;background:var(--t-accent)}
-.hero-title-composite .ht-support{display:block;font-size:clamp(15px,1.5vw,20px);font-weight:500;letter-spacing:0;line-height:1.5;color:var(--t-sub);margin-top:0.32em}
+.hero h1{--t-color:#1B3A6B;--t-sub:rgba(27,58,107,0.55);--t-accent:#7CB518;font-size:clamp(44px,6vw,74px);color:var(--t-color);margin:0 auto 16px;font-weight:800;max-width:1140px;letter-spacing:-0.02em;text-align:left}
+.hero-title-composite .t-line{display:block;line-height:1.16}
+.hero-title-composite .t-big{font-weight:800;letter-spacing:-0.02em}
+.hero-title-composite .t-sup{display:inline-block;font-size:0.26em;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:var(--t-sub);line-height:1;margin-right:3.2em;vertical-align:baseline;transform:translateY(-0.7em)}
+.hero-title-composite .t-key{position:relative;display:inline-block;font-size:0.26em;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:var(--t-sub);line-height:1;margin-right:3.2em;transform:translateY(-0.7em)}
+.hero-title-composite .t-key::after{content:"";position:absolute;left:2%;right:2%;bottom:-0.8em;height:0.13em;border-radius:999px;background:var(--t-accent)}
 @keyframes heroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .hero-left>*{opacity:0;animation:heroIn 0.7s cubic-bezier(0.22,1,0.36,1) forwards}
 .hero-left>*:nth-child(1){animation-delay:0.1s}
@@ -56,21 +55,21 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .hero-left>*:nth-child(6){animation-delay:0.7s}
 .hero-left>*:nth-child(7){animation-delay:0.82s}
 .hero-left>*:nth-child(8){animation-delay:0.94s}
-.hero-sub{font-size:18px;color:#4B5563;max-width:640px;margin:0 0 28px;line-height:1.6}
+.hero-sub{font-size:18px;color:#4B5563;max-width:640px;margin:0 auto 28px;line-height:1.6}
 .hero-cta{display:inline-flex;align-items:center;gap:8px;background:#1B3A6B;color:#fff;font-family:'Outfit',sans-serif;font-weight:600;font-size:17px;padding:18px 36px;border-radius:6px;border:none;cursor:pointer;transition:background 0.2s,box-shadow 0.2s;text-decoration:none;box-shadow:0 2px 4px rgba(27,58,107,0.15),0 6px 20px rgba(27,58,107,0.1)}
 .hero-cta:hover{background:#15305a}
-.hero-stats{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;margin-top:20px;justify-content:flex-start}
+.hero-stats{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;margin-top:20px;justify-content:center}
 .hero-stats span{font-size:15px;color:#4B5563;display:flex;align-items:center;gap:8px}
 .hero-stats span::before{content:"";width:6px;height:6px;border-radius:50%;background:#22C55E;flex-shrink:0}
-.hero-price{display:flex;align-items:center;justify-content:flex-start;gap:10px;margin-top:18px;flex-wrap:wrap}
+.hero-price{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
 .hero-price .hp-pill{display:inline-flex;align-items:center;gap:6px;background:#FEF6E7;border:1px solid rgba(255,180,50,0.45);color:#B45309;font-weight:700;font-size:15px;padding:7px 16px;border-radius:999px;box-shadow:0 1px 2px rgba(180,83,9,0.12)}
 .hero-price .hp-pill strong{color:#B45309}
 .hero-price .hp-note{font-size:14px;color:#4B5563}
 .hero-price .hp-note a{color:#1B3A6B;font-weight:600;border-bottom:1px solid #FFB432}
 
 /* ── HERO REVIEWS ── */
-.hero-trust-label{display:block;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#6b7280;margin-top:28px;margin-bottom:12px}
-.hero-reviews{display:flex;align-items:center;justify-content:flex-start;gap:14px;margin-top:0}
+.hero-trust-label{display:block;text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#6b7280;margin-top:28px;margin-bottom:12px}
+.hero-reviews{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:0}
 .hero-avatars{display:flex}
 .hero-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;border:2px solid #fff;margin-left:-10px;box-shadow:0 2px 6px rgba(0,0,0,0.08);animation:heroFloat 3.5s ease-in-out infinite}
 .hero-avatar:first-child{margin-left:0}
@@ -579,10 +578,10 @@ section[id]{scroll-margin-top:90px}
   .hero .container{padding:0 16px}
 }
 @media(min-width:900px){
-  .hero-left{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left}
+  .hero-left{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
   .hero h1{font-size:clamp(42px,5vw,52px)}
-  .hero-sub{margin:0 0 28px}
-  .hero-stats{justify-content:flex-start}
+  .hero-sub{margin:0 auto 28px}
+  .hero-stats{justify-content:center}
   .problem-grid{grid-template-columns:repeat(3,1fr)}
   .solution-grid{grid-template-columns:repeat(2,1fr)}
   .portfolio-grid{grid-template-columns:repeat(3,1fr)}
@@ -599,10 +598,11 @@ section[id]{scroll-margin-top:90px}
 @media(max-width:480px){
   .hero{padding:112px 0 56px}
   .hero h1{font-size:clamp(30px,8.5vw,38px)}
+  .hero-title-composite .t-sup,.hero-title-composite .t-key{margin-right:2em;letter-spacing:0.2em;transform:translateY(-0.5em)}
   .hero-badge{font-size:11px;padding:4px 12px 4px 4px}
   .hero-badge .hero-badge-ico{width:20px;height:20px;font-size:10px}
   .hero-cta{width:100%;justify-content:center;font-size:15px;padding:16px 24px}
-  .hero-stats{flex-direction:column;align-items:flex-start;gap:6px;font-size:13px}
+  .hero-stats{flex-direction:column;align-items:center;gap:6px;font-size:13px}
   .section{padding:48px 0}
   .section-hero{padding:80px 0 56px}
   .section-title h2,.about-wrap h2,.process-section h2,.faq-left h2,.contact-left h2{font-size:clamp(20px,7vw,28px)}
@@ -652,7 +652,7 @@ section[id]{scroll-margin-top:90px}
   <div class="container">
     <div class="hero-left">
       <div class="hero-badge"><span class="hero-badge-ico"><i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i></span> Agence web immobilière</div>
-      <h1 class="hero-title-composite"><span class="ht-lead">Nous</span><span class="ht-big">créons votre site</span><span class="ht-big ht-key">immobilier</span><span class="ht-support">sur-mesure, livré en 7 à 30 jours.</span></h1>
+      <h1 class="hero-title-composite"><span class="t-line"><span class="t-sup">Nous</span><span class="t-big">créons votre site</span></span><span class="t-line"><span class="t-key">immobilier</span><span class="t-big">sur-mesure,</span></span><span class="t-line"><span class="t-sup">livré en</span><span class="t-big">7 à 30 jours.</span></span></h1>
 
       <p class="hero-sub">Un site immobilier à votre nom, optimisé pour transformer vos visiteurs en clients — en plus de la visibilité de vos portails. Pas d'abonnement, pas de dépendance.</p>
       <a href="#offres" class="hero-cta">Obtenez votre devis gratuit →</a>
