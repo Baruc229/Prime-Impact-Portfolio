@@ -39,12 +39,20 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .hero-left{text-align:center}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:#EEF3FF;color:#1B3A6B;font-size:12.5px;font-weight:700;padding:5px 14px 5px 5px;border-radius:100px;margin-bottom:18px;letter-spacing:0.4px;text-transform:uppercase;border:1px solid rgba(27,58,107,0.08);box-shadow:0 1px 2px rgba(0,0,0,0.04)}
 .hero-badge .hero-badge-ico{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#1B3A6B;color:#FFB432;font-size:11px;flex-shrink:0}
-.hero h1{--t-color:#1B3A6B;--t-sub:rgba(27,58,107,0.55);--t-accent:#7CB518;font-size:clamp(44px,6vw,74px);color:var(--t-color);margin:0 auto 16px;font-weight:800;max-width:1140px;letter-spacing:-0.02em;text-align:left}
-.hero-title-composite .t-line{display:block;line-height:1.16}
-.hero-title-composite .t-big{font-weight:800;letter-spacing:-0.02em}
-.hero-title-composite .t-sup{display:inline-block;font-size:0.26em;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:var(--t-sub);line-height:1;margin-right:3.2em;vertical-align:baseline;transform:translateY(-0.7em)}
-.hero-title-composite .t-key{position:relative;display:inline-block;font-size:0.26em;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:var(--t-sub);line-height:1;margin-right:3.2em;transform:translateY(-0.7em)}
-.hero-title-composite .t-key::after{content:"";position:absolute;left:2%;right:2%;bottom:-0.8em;height:0.13em;border-radius:999px;background:var(--t-accent)}
+.hero h1{font-size:clamp(44px,6vw,74px);color:#1B3A6B;margin:0 auto 16px;font-weight:800;max-width:1140px;letter-spacing:-0.02em}
+.hero h1 .h-word{color:#1B3A6B;position:relative;white-space:nowrap;display:inline-block;z-index:0}
+.hero h1 .h-word--p,.hero h1 .h-word--f{color:#FFB432}
+.hero h1 .h-word--l{font-size:0.6em;font-weight:700;color:#4B5563;letter-spacing:0.02em;vertical-align:baseline}
+.hero h1 .h-brush{position:absolute;left:-5%;bottom:-0.12em;width:110%;height:0;z-index:-1;pointer-events:none;opacity:0;animation:hBrush 2.6s ease-in-out both}
+.hero h1 .h-brush svg{position:absolute;inset:0;width:100%;height:100%}
+.hero h1 .h-brush svg path{fill:#FFB432;fill-opacity:0.85}
+.hero h1 .h-word--p .h-brush svg path,.hero h1 .h-word--f .h-brush svg path{fill:#B45309}
+.hero h1 .h-word--p .h-brush{animation-delay:0.7s}
+.hero h1 .h-word--f .h-brush{animation-delay:3.4s}
+.hero h1 .h-word--l .h-brush{animation-delay:6.2s;animation-name:hBrushStay}
+.hero h1 .h-word--l .h-brush--2{animation-delay:6.5s;bottom:-0.2em;animation-name:hBrushStay}
+@keyframes hBrush{0%{height:0;opacity:0}12%{opacity:1;height:0.5em}60%{opacity:1;height:0.5em}80%{opacity:0;height:0.5em}100%{height:0.5em;opacity:0}}
+@keyframes hBrushStay{0%{height:0;opacity:0}12%{opacity:1;height:0.5em}100%{height:0.5em;opacity:1}}
 @keyframes heroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .hero-left>*{opacity:0;animation:heroIn 0.7s cubic-bezier(0.22,1,0.36,1) forwards}
 .hero-left>*:nth-child(1){animation-delay:0.1s}
@@ -576,6 +584,7 @@ section[id]{scroll-margin-top:90px}
 @media(max-width:899px){
   .hero h1{font-size:clamp(32px,7vw,44px)}
   .hero .container{padding:0 16px}
+  .hero h1 .h-word{white-space:normal}
 }
 @media(min-width:900px){
   .hero-left{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
@@ -598,7 +607,6 @@ section[id]{scroll-margin-top:90px}
 @media(max-width:480px){
   .hero{padding:112px 0 56px}
   .hero h1{font-size:clamp(30px,8.5vw,38px)}
-  .hero-title-composite .t-sup,.hero-title-composite .t-key{margin-right:2em;letter-spacing:0.2em;transform:translateY(-0.5em)}
   .hero-badge{font-size:11px;padding:4px 12px 4px 4px}
   .hero-badge .hero-badge-ico{width:20px;height:20px;font-size:10px}
   .hero-cta{width:100%;justify-content:center;font-size:15px;padding:16px 24px}
@@ -652,7 +660,7 @@ section[id]{scroll-margin-top:90px}
   <div class="container">
     <div class="hero-left">
       <div class="hero-badge"><span class="hero-badge-ico"><i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i></span> Agence web immobilière</div>
-      <h1 class="hero-title-composite"><span class="t-line"><span class="t-sup">Nous</span><span class="t-big">créons votre site</span></span><span class="t-line"><span class="t-key">immobilier</span><span class="t-big">sur-mesure,</span></span><span class="t-line"><span class="t-sup">livré en</span><span class="t-big">7 à 30 jours.</span></span></h1>
+      <h1>Nous <span class="h-word h-word--p">créons<span class="h-brush"><svg viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M30,60 C70,38 120,44 165,36 C210,28 250,38 295,30 C340,22 390,36 435,28 C480,20 525,30 575,16 L590,14 C582,34 582,54 590,72 L575,70 C540,82 500,76 465,84 C430,92 385,82 350,90 C315,98 270,88 235,96 C200,104 155,94 120,102 C85,110 45,100 30,60 Z"/></svg></span></span> votre site immobilier sur-mesure, performant et <span class="h-word h-word--f">sans abonnement<span class="h-brush"><svg viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M30,60 C70,38 120,44 165,36 C210,28 250,38 295,30 C340,22 390,36 435,28 C480,20 525,30 575,16 L590,14 C582,34 582,54 590,72 L575,70 C540,82 500,76 465,84 C430,92 385,82 350,90 C315,98 270,88 235,96 C200,104 155,94 120,102 C85,110 45,100 30,60 Z"/></svg></span></span>, <span class="h-word h-word--l">livré en<span class="h-brush"><svg viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M30,60 C70,38 120,44 165,36 C210,28 250,38 295,30 C340,22 390,36 435,28 C480,20 525,30 575,16 L590,14 C582,34 582,54 590,72 L575,70 C540,82 500,76 465,84 C430,92 385,82 350,90 C315,98 270,88 235,96 C200,104 155,94 120,102 C85,110 45,100 30,60 Z"/></svg></span><span class="h-brush h-brush--2"><svg viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M30,60 C70,38 120,44 165,36 C210,28 250,38 295,30 C340,22 390,36 435,28 C480,20 525,30 575,16 L590,14 C582,34 582,54 590,72 L575,70 C540,82 500,76 465,84 C430,92 385,82 350,90 C315,98 270,88 235,96 C200,104 155,94 120,102 C85,110 45,100 30,60 Z"/></svg></span> 7 à 30 jours</span>.</h1>
 
       <p class="hero-sub">Un site immobilier à votre nom, optimisé pour transformer vos visiteurs en clients — en plus de la visibilité de vos portails. Pas d'abonnement, pas de dépendance.</p>
       <a href="#offres" class="hero-cta">Obtenez votre devis gratuit →</a>
