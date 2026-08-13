@@ -113,8 +113,11 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .header-nav-item.has-mega{padding-right:28px}
 .header-nav-item.has-mega::after{content:'';position:absolute;right:12px;top:50%;margin-top:-2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid currentColor;transition:transform 0.2s}
 .header-nav-item.has-mega:hover::after{transform:rotate(180deg)}
-.header-mega{position:absolute;top:100%;left:0;min-width:200px;background:#fff;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.08),0 10px 32px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.05);padding:8px;opacity:0;visibility:hidden;transition:opacity 0.2s ease,visibility 0.2s,transform 0.2s ease;transform:translateY(8px);z-index:100}
-.header-nav-item:hover .header-mega{opacity:1;visibility:visible;transform:translateY(0)}
+.header-mega{position:absolute;top:100%;left:0;min-width:200px;background:#fff;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.08),0 10px 32px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.05);padding:8px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.2s ease,visibility 0.2s,transform 0.2s ease;transform:translateY(8px);z-index:100}
+@media(hover:hover) and (pointer:fine){
+  .header-nav-item:hover .header-mega{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+}
+.header-nav-item.mega-open .header-mega{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
 .mega-link{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-radius:6px;text-decoration:none;color:#1B3A6B;font-size:14px;font-weight:500;position:relative;transition:color 0.2s,background 0.2s}
 .mega-link i{font-size:11px;color:#B45309;opacity:0;transform:translateX(-4px);transition:opacity 0.2s,transform 0.2s}
 .mega-link::after{content:'';position:absolute;left:14px;right:14px;bottom:5px;height:1.5px;background:#FFB432;transform:scaleX(0);transform-origin:left;transition:transform 0.25s ease}
@@ -129,8 +132,8 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 @media(max-width:767px){
   .header-inner{height:64px}
   .header-logo img{height:60px}
-  .header-nav{position:fixed;top:64px;left:0;width:100%;background:#fff;flex-direction:column;padding:16px 20px 24px;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,0.08);opacity:0;visibility:hidden;transition:opacity 0.3s ease,visibility 0.3s,transform 0.3s ease;border-bottom:1px solid rgba(0,0,0,0.04);transform:translateY(-10px)}
-  .header-nav.open{opacity:1;visibility:visible;transform:translateY(0)}
+.header-nav{position:fixed;top:64px;left:0;width:100%;background:#fff;flex-direction:column;padding:16px 20px 24px;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,0.08);opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.3s ease,visibility 0.3s,transform 0.3s ease;border-bottom:1px solid rgba(0,0,0,0.04);transform:translateY(-10px)}
+.header-nav.open{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
   .header-nav-item{width:100%;padding:12px 16px;opacity:0;transform:translateY(-6px);transition:opacity 0.3s ease,transform 0.3s ease,background 0.2s,color 0.2s}
   .header-nav.open .header-nav-item{opacity:1;transform:translateY(0)}
   .header-nav.open .header-nav-item:nth-child(1){transition-delay:0.05s}
@@ -1329,9 +1332,11 @@ section[id]{scroll-margin-top:90px}
       nav.classList.toggle('open');
       burger.classList.toggle('active');
     });
+    var megaItem = document.querySelector('.header-nav-item.has-mega');
     function closeNav(){
       nav.classList.remove('open');
       burger.classList.remove('active');
+      if(megaItem) megaItem.classList.remove('mega-open');
     }
     // Close nav on link click
     nav.querySelectorAll('a').forEach(function(a){
@@ -1342,6 +1347,18 @@ section[id]{scroll-margin-top:90px}
       if(!nav.classList.contains('open')) return;
       if(!header.contains(e.target)) closeNav();
     });
+    // Close nav on scroll
+    window.addEventListener('scroll', closeNav, {passive:true});
+    // Mega menu on touch: toggle on tap, close on outside tap
+    if(megaItem && !window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+      megaItem.addEventListener('click', function(e){
+        e.stopPropagation();
+        megaItem.classList.toggle('mega-open');
+      });
+      document.addEventListener('click', function(e){
+        if(!megaItem.contains(e.target)) megaItem.classList.remove('mega-open');
+      });
+    }
   })();
 
   // FAQ Accordéon
