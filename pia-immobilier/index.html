@@ -34,7 +34,8 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 
 /* ── HERO ── */
 .hero{display:flex;align-items:center;padding:128px 0 80px;background:#fff;position:relative;overflow:hidden}
-.hero::before{content:none}
+.hero::before{content:"";position:absolute;top:-40px;right:-40px;width:560px;height:560px;background-image:linear-gradient(to right,rgba(27,58,107,0.07) 1px,transparent 1px),linear-gradient(to bottom,rgba(27,58,107,0.07) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;-webkit-mask-image:radial-gradient(circle at 70% 30%,rgba(0,0,0,0.85),rgba(0,0,0,0) 72%);mask-image:radial-gradient(circle at 70% 30%,rgba(0,0,0,0.85),rgba(0,0,0,0) 72%)}
+.hero::after{content:"";position:absolute;left:6%;bottom:12%;width:16px;height:16px;background:#FF6B00;pointer-events:none;z-index:0;box-shadow:40px -50px 0 2px rgba(27,58,107,0.14),100px -118px 0 -1px #FF6B00}
 .hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
 .hero-left{text-align:center}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:#EEF3FF;color:#1B3A6B;font-size:12.5px;font-weight:700;padding:5px 14px 5px 5px;border-radius:100px;margin-bottom:18px;letter-spacing:0.4px;text-transform:uppercase;border:1px solid rgba(27,58,107,0.08);box-shadow:0 1px 2px rgba(0,0,0,0.04)}
@@ -125,8 +126,10 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .mega-link:hover i{opacity:1;transform:translateX(0)}
 .mega-link:hover::after{transform:scaleX(1)}
 .header-right{display:flex;align-items:center;gap:12px;margin-left:auto}
-.header-cta{display:inline-flex;align-items:center;gap:6px;background:#FF6B00;color:#0E1E3A;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;padding:10px 22px;border-radius:8px;text-decoration:none;transition:background 0.2s,transform 0.2s;white-space:nowrap}
-.header-cta:hover{background:#e85d00;transform:translateY(-1px)}
+.header-cta{display:inline-flex;align-items:center;gap:8px;background:#F7F5F0;color:#0E1E3A;border:1.5px solid #FF6B00;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;padding:8px 10px 8px 18px;border-radius:8px;text-decoration:none;transition:background 0.25s,color 0.25s,border-color 0.25s,transform 0.2s;white-space:nowrap}
+.header-cta .cta-icon{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;background:#FF6B00;color:#fff;font-size:12px;flex-shrink:0;transition:background 0.25s,color 0.25s,transform 0.25s}
+.header-cta:hover{background:#FF6B00;color:#0E1E3A;border-color:#FF6B00;transform:translateY(-1px)}
+.header-cta:hover .cta-icon{background:#F7F5F0;color:#FF6B00;transform:translate(2px,-2px)}
 .header-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;margin-left:12px;border:none;background:none}
 .header-burger span{width:22px;height:2px;background:#1B3A6B;border-radius:2px;transition:transform 0.3s,opacity 0.3s}
 @media(max-width:767px){
@@ -148,7 +151,8 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
   .header-nav-item.has-mega:hover{background:transparent}
   .header-mega{position:static;box-shadow:none;border:none;padding:6px 0 0;opacity:1;visibility:visible;transform:none;display:block;min-width:auto}
   .header-right{gap:8px}
-  .header-cta{padding:8px 16px;font-size:13px}
+  .header-cta{padding:7px 8px 7px 14px;font-size:13px;border-radius:7px}
+  .header-cta .cta-icon{width:24px;height:24px;font-size:11px}
   .header-burger{display:flex}
 }
 
@@ -650,7 +654,7 @@ section[id]{scroll-margin-top:90px}
       <a href="#portfolio" class="header-nav-item">Projets</a>
     </nav>
     <div class="header-right">
-      <a href="#contact" class="header-cta">Prendre contact</a>
+      <a href="#contact" class="header-cta">Prendre contact <span class="cta-icon"><i class="fa-solid fa-arrow-up-right" aria-hidden="true"></i></span></a>
       <button type="button" class="header-burger" id="headerBurger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
