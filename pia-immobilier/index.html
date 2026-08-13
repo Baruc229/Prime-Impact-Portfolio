@@ -37,10 +37,10 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .hero::before{content:"";position:absolute;top:-40px;right:-40px;width:560px;height:560px;background-image:linear-gradient(to right,rgba(27,58,107,0.07) 1px,transparent 1px),linear-gradient(to bottom,rgba(27,58,107,0.07) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;-webkit-mask-image:radial-gradient(circle at 70% 30%,rgba(0,0,0,0.85),rgba(0,0,0,0) 72%);mask-image:radial-gradient(circle at 70% 30%,rgba(0,0,0,0.85),rgba(0,0,0,0) 72%)}
 .hero::after{content:"";position:absolute;left:6%;bottom:12%;width:16px;height:16px;background:#1B3A6B;opacity:0.5;pointer-events:none;z-index:0;box-shadow:40px -50px 0 2px rgba(27,58,107,0.14),100px -118px 0 -1px #1B3A6B}
 .hero-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-.hero-deco .sq{position:absolute;background:#1B3A6B;opacity:0.5;animation:sqIn 0.7s cubic-bezier(0.22,1,0.36,1) both;will-change:transform}
-.hero-deco .sq--line{background:transparent;border:1.5px solid rgba(27,58,107,0.22)}
-.hero-deco .sq--navy{background:#1B3A6B;opacity:0.35}
-.hero-deco .sq--ghost{background:#fff;border:1.5px solid rgba(27,58,107,0.18);opacity:1}
+.hero-deco .sq{position:absolute;background:#1B3A6B;opacity:0.35;animation:sqIn 0.7s cubic-bezier(0.22,1,0.36,1) both;will-change:transform}
+.hero-deco .sq--line{background:transparent;border:1.5px solid rgba(27,58,107,0.16)}
+.hero-deco .sq--navy{background:#1B3A6B;opacity:0.25}
+.hero-deco .sq--ghost{background:#fff;border:1.5px solid rgba(27,58,107,0.14);opacity:1}
 @keyframes sqIn{from{opacity:0;transform:translateY(24px) rotate(6deg) scale(0.85)}to{opacity:var(--sq-op,0.85);transform:translateY(0) rotate(0) scale(1)}}
 .hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
 .hero-left{text-align:center}
@@ -1752,26 +1752,26 @@ section[id]{scroll-margin-top:90px}
     var variants = ['', 'sq--line', 'sq--navy', 'sq--ghost'];
 
     var layout = [
-      {x:8,y:10,s:52,v:0,delay:0.5},
-      {x:17,y:30,s:20,v:1,delay:0.59},
-      {x:7,y:55,s:34,v:2,delay:0.68},
-      {x:20,y:76,s:16,v:3,delay:0.77},
-      {x:84,y:8,s:44,v:2,delay:0.5},
-      {x:91,y:34,s:22,v:0,delay:0.6},
-      {x:82,y:64,s:30,v:1,delay:0.7},
-      {x:89,y:86,s:18,v:3,delay:0.8},
-      {x:49,y:4,s:18,v:1,delay:0.56},
-      {x:55,y:6,s:12,v:3,delay:0.74},
-      {x:27,y:92,s:22,v:0,delay:0.65},
-      {x:70,y:95,s:14,v:2,delay:0.86},
-      {x:38,y:15,s:12,v:3,delay:0.82},
-      {x:62,y:18,s:14,v:1,delay:0.92},
-      {x:94,y:50,s:12,v:0,delay:0.7},
-      {x:6,y:78,s:14,v:3,delay:0.95},
-      {x:43,y:40,s:12,v:1,delay:1.0},
-      {x:58,y:72,s:10,v:3,delay:1.05},
-      {x:14,y:62,s:10,v:1,delay:1.1},
-      {x:76,y:42,s:10,v:3,delay:1.15}
+      {x:8,y:10,s:24,v:0,delay:0.5},
+      {x:17,y:30,s:10,v:1,delay:0.59},
+      {x:7,y:55,s:16,v:2,delay:0.68},
+      {x:20,y:76,s:9,v:3,delay:0.77},
+      {x:84,y:8,s:20,v:2,delay:0.5},
+      {x:91,y:34,s:11,v:0,delay:0.6},
+      {x:82,y:64,s:14,v:1,delay:0.7},
+      {x:89,y:86,s:10,v:3,delay:0.8},
+      {x:49,y:4,s:10,v:1,delay:0.56},
+      {x:55,y:6,s:8,v:3,delay:0.74},
+      {x:27,y:92,s:12,v:0,delay:0.65},
+      {x:70,y:95,s:9,v:2,delay:0.86},
+      {x:38,y:15,s:8,v:3,delay:0.82},
+      {x:62,y:18,s:9,v:1,delay:0.92},
+      {x:94,y:50,s:8,v:0,delay:0.7},
+      {x:6,y:78,s:9,v:3,delay:0.95},
+      {x:43,y:40,s:8,v:1,delay:1.0},
+      {x:58,y:72,s:7,v:3,delay:1.05},
+      {x:14,y:62,s:7,v:1,delay:1.1},
+      {x:76,y:42,s:7,v:3,delay:1.15}
     ];
 
     function build(){
@@ -1780,7 +1780,7 @@ section[id]{scroll-margin-top:90px}
       layout.forEach(function(l){
         var el = document.createElement('div');
         el.className = 'sq ' + variants[l.v];
-        el.style.cssText = 'left:' + l.x + '%;top:' + l.y + '%;width:' + l.s + 'px;height:' + l.s + 'px;animation-delay:' + l.delay + 's;--sq-op:' + (l.v===3?1:(l.v===2?0.35:0.5));
+        el.style.cssText = 'left:' + l.x + '%;top:' + l.y + '%;width:' + l.s + 'px;height:' + l.s + 'px;animation-delay:' + l.delay + 's;--sq-op:' + (l.v===3?1:(l.v===2?0.25:0.35));
         el.setAttribute('data-speed', (0.25 + Math.random()*0.5).toFixed(2));
         deco.appendChild(el);
         squares.push(el);
@@ -1885,7 +1885,7 @@ section[id]{scroll-margin-top:90px}
   .pia-marquee__track{display:inline-flex;align-items:center;will-change:transform;animation:pia-marquee 25s linear infinite}
   .pia-marquee__text{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(3rem,10vw,7rem);line-height:1.1;color:rgba(255,255,255,0.08);letter-spacing:0.02em}
   @keyframes pia-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  @media(prefers-reduced-motion:reduce){.pia-marquee__track{animation:none}.problem-card,.problem-card:nth-child(2),.problem-card:nth-child(3){transform:none}.hero-left>*{animation:none;opacity:1}.header-nav-item{opacity:1;transform:none;transition:none}.sec-reveal{opacity:1;transform:none;transition:none}.sec-reveal .solution-card,.sec-reveal .solution-point,.sec-reveal .process-guarantee,.sec-reveal .process-step,.sec-reveal .testi-cell,.sec-reveal .pricing-card,.sec-reveal .faq-card,.sec-reveal .portail-card{opacity:1;transform:none;transition:none}.r-stack .realisations-panel{transition:none}.hero-deco .sq{animation:none;opacity:var(--sq-op,0.5)}.header-cta::before,.hero-cta::before,.p-cta::before,.pricing-card .btn-outline::before,.pricing-card .btn-full::before,.pricing-wide-left .btn-cta::before,.contact-form-wrap .btn-submit::before{transition:none;left:140%}.pricing-cta-top::after{transform:scaleX(1)}}
+  @media(prefers-reduced-motion:reduce){.pia-marquee__track{animation:none}.problem-card,.problem-card:nth-child(2),.problem-card:nth-child(3){transform:none}.hero-left>*{animation:none;opacity:1}.header-nav-item{opacity:1;transform:none;transition:none}.sec-reveal{opacity:1;transform:none;transition:none}.sec-reveal .solution-card,.sec-reveal .solution-point,.sec-reveal .process-guarantee,.sec-reveal .process-step,.sec-reveal .testi-cell,.sec-reveal .pricing-card,.sec-reveal .faq-card,.sec-reveal .portail-card{opacity:1;transform:none;transition:none}.r-stack .realisations-panel{transition:none}.hero-deco .sq{animation:none;opacity:var(--sq-op,0.35)}.header-cta::before,.hero-cta::before,.p-cta::before,.pricing-card .btn-outline::before,.pricing-card .btn-full::before,.pricing-wide-left .btn-cta::before,.contact-form-wrap .btn-submit::before{transition:none;left:140%}.pricing-cta-top::after{transform:scaleX(1)}}
   .pia-footer-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 24px;width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
   .pia-footer-copy{color:rgba(255,255,255,0.25);font-size:13px;margin:0}
   .pia-footer-legal{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
