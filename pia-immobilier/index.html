@@ -36,6 +36,12 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .hero{display:flex;align-items:center;padding:128px 0 80px;background:#fff;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;top:-40px;right:-40px;width:560px;height:560px;background-image:linear-gradient(to right,rgba(27,58,107,0.07) 1px,transparent 1px),linear-gradient(to bottom,rgba(27,58,107,0.07) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;-webkit-mask-image:radial-gradient(circle at 70% 30%,rgba(0,0,0,0.85),rgba(0,0,0,0) 72%);mask-image:radial-gradient(circle at 70% 30%,rgba(0,0,0,0.85),rgba(0,0,0,0) 72%)}
 .hero::after{content:"";position:absolute;left:6%;bottom:12%;width:16px;height:16px;background:#FF6B00;pointer-events:none;z-index:0;box-shadow:40px -50px 0 2px rgba(27,58,107,0.14),100px -118px 0 -1px #FF6B00}
+.hero-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.hero-deco .sq{position:absolute;background:#FF6B00;opacity:0.85;animation:sqIn 0.7s cubic-bezier(0.22,1,0.36,1) both;will-change:transform}
+.hero-deco .sq--line{background:transparent;border:1.5px solid rgba(255,107,0,0.5)}
+.hero-deco .sq--navy{background:#1B3A6B;opacity:0.7}
+.hero-deco .sq--ghost{background:#fff;border:1.5px solid rgba(27,58,107,0.18);opacity:1}
+@keyframes sqIn{from{opacity:0;transform:translateY(24px) rotate(6deg) scale(0.85)}to{opacity:var(--sq-op,0.85);transform:translateY(0) rotate(0) scale(1)}}
 .hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
 .hero-left{text-align:center}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:#EEF3FF;color:#1B3A6B;font-size:12.5px;font-weight:700;padding:5px 14px 5px 5px;border-radius:100px;margin-bottom:18px;letter-spacing:0.4px;text-transform:uppercase;border:1px solid rgba(27,58,107,0.08);box-shadow:0 1px 2px rgba(0,0,0,0.04)}
@@ -65,8 +71,13 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .hero-left>*:nth-child(7){animation-delay:0.82s}
 .hero-left>*:nth-child(8){animation-delay:0.94s}
 .hero-sub{font-size:18px;color:#4B5563;max-width:640px;margin:0 auto 28px;line-height:1.6}
-.hero-cta{display:inline-flex;align-items:center;gap:8px;background:#1B3A6B;color:#fff;font-family:'Outfit',sans-serif;font-weight:600;font-size:17px;padding:18px 36px;border-radius:6px;border:none;cursor:pointer;transition:background 0.2s,box-shadow 0.2s;text-decoration:none;box-shadow:0 2px 4px rgba(27,58,107,0.15),0 6px 20px rgba(27,58,107,0.1)}
-.hero-cta:hover{background:#15305a}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;background:#F7F5F0;color:#0E1E3A;border:1.5px solid #FF6B00;font-family:'Outfit',sans-serif;font-weight:600;font-size:17px;padding:18px 36px;border-radius:6px;cursor:pointer;transition:background 0.2s,color 0.2s,border-color 0.2s,box-shadow 0.2s,transform 0.2s;text-decoration:none;position:relative;overflow:hidden;box-shadow:0 2px 4px rgba(255,107,0,0.15),0 6px 20px rgba(255,107,0,0.1)}
+.hero-cta::before{content:"";position:absolute;top:0;left:-75%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);transform:skewX(-20deg);transition:left 0.55s ease}
+.hero-cta:hover::before{left:140%}
+.hero-cta:hover{background:#FF6B00;color:#fff;border-color:#FF6B00;transform:translateY(-2px)}
+.hero-cta .cta-icon{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;background:#FF6B00;color:#fff;flex-shrink:0;transition:background 0.25s,color 0.25s,transform 0.25s}
+.hero-cta .cta-icon svg{width:13px;height:13px;display:block}
+.hero-cta:hover .cta-icon{background:#F7F5F0;color:#FF6B00;transform:translate(2px,-2px)}
 .hero-stats{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;margin-top:20px;justify-content:center}
 .hero-stats span{font-size:15px;color:#4B5563;display:flex;align-items:center;gap:8px}
 .hero-stats span::before{content:"";width:6px;height:6px;border-radius:50%;background:#22C55E;flex-shrink:0}
@@ -126,9 +137,12 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .mega-link:hover i{opacity:1;transform:translateX(0)}
 .mega-link:hover::after{transform:scaleX(1)}
 .header-right{display:flex;align-items:center;gap:12px;margin-left:auto}
-.header-cta{display:inline-flex;align-items:center;gap:8px;background:#F7F5F0;color:#0E1E3A;border:1.5px solid #FF6B00;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;padding:8px 10px 8px 18px;border-radius:8px;text-decoration:none;transition:background 0.25s,color 0.25s,border-color 0.25s,transform 0.2s;white-space:nowrap}
-.header-cta .cta-icon{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;background:#FF6B00;color:#fff;font-size:12px;flex-shrink:0;transition:background 0.25s,color 0.25s,transform 0.25s}
-.header-cta:hover{background:#FF6B00;color:#0E1E3A;border-color:#FF6B00;transform:translateY(-1px)}
+.header-cta{display:inline-flex;align-items:center;gap:8px;background:#F7F5F0;color:#0E1E3A;border:1.5px solid #FF6B00;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;padding:8px 10px 8px 18px;border-radius:8px;text-decoration:none;transition:background 0.25s,color 0.25s,border-color 0.25s,transform 0.2s;white-space:nowrap;position:relative;overflow:hidden}
+.header-cta::before{content:"";position:absolute;top:0;left:-75%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.45),transparent);transform:skewX(-20deg);transition:left 0.55s ease}
+.header-cta:hover::before{left:140%}
+.header-cta .cta-icon{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;background:#FF6B00;color:#fff;flex-shrink:0;transition:background 0.25s,color 0.25s,transform 0.25s}
+.header-cta .cta-icon svg{width:13px;height:13px;display:block}
+.header-cta:hover{background:#FF6B00;color:#0E1E3A;border-color:#FF6B00;transform:translateY(-2px)}
 .header-cta:hover .cta-icon{background:#F7F5F0;color:#FF6B00;transform:translate(2px,-2px)}
 .header-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;margin-left:12px;border:none;background:none}
 .header-burger span{width:22px;height:2px;background:#1B3A6B;border-radius:2px;transition:transform 0.3s,opacity 0.3s}
@@ -152,7 +166,8 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
   .header-mega{position:static;box-shadow:none;border:none;padding:6px 0 0;opacity:1;visibility:visible;transform:none;display:block;min-width:auto}
   .header-right{gap:8px}
   .header-cta{padding:7px 8px 7px 14px;font-size:13px;border-radius:7px}
-  .header-cta .cta-icon{width:24px;height:24px;font-size:11px}
+  .header-cta .cta-icon{width:24px;height:24px}
+  .header-cta .cta-icon svg{width:12px;height:12px}
   .header-burger{display:flex}
 }
 
@@ -250,17 +265,22 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .pricing-card ul li{font-size:15px;color:#374151;display:flex;align-items:center;gap:8px;line-height:1.4}
 .pricing-card ul li .check-circle{width:16px;height:16px;border-radius:50%;background:rgba(255,107,0,0.12);border:0.5px solid rgba(255,107,0,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:#FF6B00;font-weight:700}
 
-.pricing-card .btn-outline,.pricing-card .btn-full{display:block;width:100%;text-align:center;padding:12px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s}
-.pricing-card .btn-outline{background:transparent;border:1.5px solid #0E1E3A;color:#C2410C}
-.pricing-card .btn-outline:hover{background:#0E1E3A;color:#fff}
-.pricing-card .btn-full{background:#0E1E3A;color:#fff;border:1.5px solid #0E1E3A}
-.pricing-card .btn-full:hover{background:#1B3A6B;border-color:#1B3A6B}
+.pricing-card .btn-outline,.pricing-card .btn-full{display:block;width:100%;text-align:center;padding:12px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s,transform 0.2s;position:relative;overflow:hidden}
+.pricing-card .btn-outline::before,.pricing-card .btn-full::before{content:"";position:absolute;top:0;left:-75%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.35),transparent);transform:skewX(-20deg);transition:left 0.55s ease}
+.pricing-card .btn-outline:hover::before,.pricing-card .btn-full:hover::before{left:140%}
+.pricing-card .btn-outline{background:#F7F5F0;border:1.5px solid #FF6B00;color:#0E1E3A}
+.pricing-card .btn-outline:hover{background:#FF6B00;color:#fff;transform:translateY(-2px)}
+.pricing-card .btn-full{background:#F7F5F0;color:#0E1E3A;border:1.5px solid #FF6B00}
+.pricing-card .btn-full:hover{background:#FF6B00;color:#fff;border-color:#FF6B00;transform:translateY(-2px)}
 .pricing-card.selected-pack{border-color:#FF6B00;box-shadow:0 4px 24px rgba(255,107,0,0.15)}
 
-.pricing-cta-top{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#1B3A6B;cursor:pointer;border:none;background:none;font-family:'Outfit',sans-serif;padding:4px 0;margin:4px 0 10px;transition:color 0.2s;text-decoration:none}
-.pricing-cta-top:hover{color:#FF6B00}
-.pricing-cta-top i{font-size:12px;transition:transform 0.2s}
-.pricing-cta-top:hover i{transform:translateX(3px)}
+.pricing-cta-top{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#0E1E3A;cursor:pointer;border:1.5px solid #FF6B00;background:#F7F5F0;font-family:'Outfit',sans-serif;padding:6px 8px 6px 16px;border-radius:8px;margin:4px 0 10px;transition:background 0.25s,color 0.25s,border-color 0.25s,transform 0.2s;text-decoration:none;position:relative;overflow:hidden;width:fit-content}
+.pricing-cta-top::before{content:"";position:absolute;top:0;left:-75%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);transform:skewX(-20deg);transition:left 0.55s ease}
+.pricing-cta-top:hover::before{left:140%}
+.pricing-cta-top:hover{background:#FF6B00;color:#0E1E3A;border-color:#FF6B00;transform:translateY(-2px)}
+.pricing-cta-top .cta-icon{width:24px;height:24px;border-radius:6px;transition:background 0.25s,color 0.25s,transform 0.25s}
+.pricing-cta-top .cta-icon svg{width:12px;height:12px;display:block}
+.pricing-cta-top:hover .cta-icon{background:#F7F5F0;color:#FF6B00;transform:translate(2px,-2px)}
 
 /* Carte large du bas */
 .pricing-card.pricing-wide{grid-column:1 / -1;background:#0E1E3A;border:0.5px solid #0E1E3A;border-radius:12px;padding:32px 36px}
@@ -274,8 +294,10 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .pricing-wide-left .delay{color:#FF6B00}
 .pricing-wide-left .delay .delay-dot{background:#FF6B00}
 .pricing-wide-left .desc{color:rgba(255,255,255,0.55)}
-.pricing-wide-left .btn-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#FF6B00;color:#0E1E3A;border:none;border-radius:6px;padding:12px 32px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:opacity 0.2s;width:auto;align-self:flex-start;margin-top:auto;text-decoration:none}
-.pricing-wide-left .btn-cta:hover{opacity:0.9}
+.pricing-wide-left .btn-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#F7F5F0;color:#0E1E3A;border:1.5px solid #FF6B00;border-radius:6px;padding:12px 32px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s,transform 0.2s;width:auto;align-self:flex-start;margin-top:auto;text-decoration:none;position:relative;overflow:hidden}
+.pricing-wide-left .btn-cta::before{content:"";position:absolute;top:0;left:-75%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.35),transparent);transform:skewX(-20deg);transition:left 0.55s ease}
+.pricing-wide-left .btn-cta:hover::before{left:140%}
+.pricing-wide-left .btn-cta:hover{background:#FF6B00;color:#0E1E3A;border-color:#FF6B00;transform:translateY(-2px)}
 .pricing-wide-right ul{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin:0;flex:none}
 .pricing-wide-right ul li{font-size:15px;color:rgba(255,255,255,0.8);display:flex;align-items:center;gap:8px;line-height:1.4}
 .pricing-wide-right ul li .check-circle{width:16px;height:16px;border-radius:50%;background:rgba(255,107,0,0.12);border:0.5px solid rgba(255,107,0,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:#FF6B00;font-weight:700}
@@ -322,10 +344,13 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .realisations-panel-content p{font-size:17px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:16px}
 .realisations-panel-content .p-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
 .realisations-panel-content .p-tags span{font-size:11px;background:rgba(255,255,255,0.12);color:#fff;padding:3px 10px;font-weight:500}
-.realisations-panel-content .p-cta{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#FF6B00;font-family:'Outfit',sans-serif;font-weight:600;font-size:15px;padding:12px 24px;border-radius:8px;border:1.5px solid #FF6B00;cursor:pointer;transition:all 0.25s;text-decoration:none;width:fit-content}
-.realisations-panel-content .p-cta:hover{background:#FF6B00;color:#fff}
-.realisations-panel-content .p-cta i{font-size:15px;transition:transform 0.25s}
-.realisations-panel-content .p-cta:hover i{transform:translateX(4px)}
+.realisations-panel-content .p-cta{display:inline-flex;align-items:center;gap:10px;background:#F7F5F0;color:#0E1E3A;font-family:'Outfit',sans-serif;font-weight:600;font-size:15px;padding:12px 24px;border-radius:8px;border:1.5px solid #FF6B00;cursor:pointer;transition:background 0.25s,border-color 0.25s,color 0.25s,transform 0.2s;text-decoration:none;width:fit-content;position:relative;overflow:hidden}
+.realisations-panel-content .p-cta::before{content:"";position:absolute;top:0;left:-75%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);transform:skewX(-20deg);transition:left 0.55s ease}
+.realisations-panel-content .p-cta:hover::before{left:140%}
+.realisations-panel-content .p-cta .cta-icon{width:24px;height:24px;border-radius:6px;transition:background 0.25s,color 0.25s,transform 0.25s}
+.realisations-panel-content .p-cta .cta-icon svg{width:12px;height:12px;display:block}
+.realisations-panel-content .p-cta:hover{background:#FF6B00;color:#fff;border-color:#FF6B00;transform:translateY(-2px)}
+.realisations-panel-content .p-cta:hover .cta-icon{background:#F7F5F0;color:#FF6B00;transform:translate(2px,-2px)}
 
 .realisations-progress{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:2}
 .realisations-progress .r-dot{width:10px;height:10px;border-radius:50%;background:#C9D3E3;transition:background 0.3s;cursor:pointer}
@@ -545,8 +570,10 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .contact-form-wrap input:user-invalid,.contact-form-wrap select:user-invalid{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,0.08)}
 .contact-form-wrap input:user-valid,.contact-form-wrap select:user-valid{border-color:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,0.08)}
 .contact-form-wrap select{background:#F5F7FB url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 14px center;padding-right:36px}
-.contact-form-wrap .btn-submit{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:50px;background:#0E1E3A;color:#fff;border:none;border-radius:6px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.2s,box-shadow 0.2s;margin-top:8px;box-shadow:0 2px 4px rgba(14,30,58,0.15),0 6px 20px rgba(14,30,58,0.1)}
-.contact-form-wrap .btn-submit:hover{background:#1a2f52}
+.contact-form-wrap .btn-submit{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:50px;background:#F7F5F0;color:#0E1E3A;border:1.5px solid #FF6B00;border-radius:6px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s,transform 0.2s;margin-top:8px;position:relative;overflow:hidden;box-shadow:0 2px 4px rgba(255,107,0,0.15),0 6px 20px rgba(255,107,0,0.1)}
+.contact-form-wrap .btn-submit::before{content:"";position:absolute;top:0;left:-75%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.35),transparent);transform:skewX(-20deg);transition:left 0.55s ease}
+.contact-form-wrap .btn-submit:hover::before{left:140%}
+.contact-form-wrap .btn-submit:hover{background:#FF6B00;color:#0E1E3A;border-color:#FF6B00;transform:translateY(-2px)}
 .contact-form-wrap .btn-submit:disabled{opacity:0.6;cursor:not-allowed}
 .contact-form-wrap .btn-submit svg{flex-shrink:0}
 .contact-form-wrap .form-guarantee{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;font-family:'Outfit',sans-serif;font-size:11px;color:#22C55E;font-weight:500}
@@ -613,6 +640,7 @@ section[id]{scroll-margin-top:90px}
 }
 @media(max-width:480px){
   .hero{padding:112px 0 56px}
+  .hero-deco{opacity:0.35}
   .hero h1{font-size:clamp(30px,8.5vw,38px)}
   .hero-badge{font-size:11px;padding:4px 12px 4px 4px}
   .hero-badge .hero-badge-ico{width:20px;height:20px;font-size:10px}
@@ -654,7 +682,7 @@ section[id]{scroll-margin-top:90px}
       <a href="#portfolio" class="header-nav-item">Projets</a>
     </nav>
     <div class="header-right">
-      <a href="#contact" class="header-cta">Prendre contact <span class="cta-icon"><i class="fa-solid fa-arrow-up-right" aria-hidden="true"></i></span></a>
+      <a href="#contact" class="header-cta">Prendre contact <span class="cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a>
       <button type="button" class="header-burger" id="headerBurger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -664,13 +692,14 @@ section[id]{scroll-margin-top:90px}
 
 <!-- ══ HERO ══ -->
 <section class="hero">
+  <div class="hero-deco" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-left">
       <div class="hero-badge"><span class="hero-badge-ico"><i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i></span> Agence web immobilière</div>
       <h1>Nous <span class="h-word h-word--p">créons<span class="h-brush"><svg viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M30,60 C70,38 120,44 165,36 C210,28 250,38 295,30 C340,22 390,36 435,28 C480,20 525,30 575,16 L590,14 C582,34 582,54 590,72 L575,70 C540,82 500,76 465,84 C430,92 385,82 350,90 C315,98 270,88 235,96 C200,104 155,94 120,102 C85,110 45,100 30,60 Z"/></svg></span></span> votre site immobilier sur-mesure, performant et <span class="h-word h-word--f">sans abonnement<span class="h-brush"><svg viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M30,60 C70,38 120,44 165,36 C210,28 250,38 295,30 C340,22 390,36 435,28 C480,20 525,30 575,16 L590,14 C582,34 582,54 590,72 L575,70 C540,82 500,76 465,84 C430,92 385,82 350,90 C315,98 270,88 235,96 C200,104 155,94 120,102 C85,110 45,100 30,60 Z"/></svg></span></span>, <span class="h-word h-word--l">livré en<span class="h-brush"><svg viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M30,60 C70,38 120,44 165,36 C210,28 250,38 295,30 C340,22 390,36 435,28 C480,20 525,30 575,16 L590,14 C582,34 582,54 590,72 L575,70 C540,82 500,76 465,84 C430,92 385,82 350,90 C315,98 270,88 235,96 C200,104 155,94 120,102 C85,110 45,100 30,60 Z"/></svg></span><span class="h-brush h-brush--2"><svg viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M30,60 C70,38 120,44 165,36 C210,28 250,38 295,30 C340,22 390,36 435,28 C480,20 525,30 575,16 L590,14 C582,34 582,54 590,72 L575,70 C540,82 500,76 465,84 C430,92 385,82 350,90 C315,98 270,88 235,96 C200,104 155,94 120,102 C85,110 45,100 30,60 Z"/></svg></span> 7 à 30 jours</span>.</h1>
 
       <p class="hero-sub">Un site immobilier à votre nom, optimisé pour transformer vos visiteurs en clients — en plus de la visibilité de vos portails. Pas d'abonnement, pas de dépendance.</p>
-      <a href="#offres" class="hero-cta">Obtenez votre devis gratuit →</a>
+      <a href="#offres" class="hero-cta">Obtenez votre devis gratuit <span class="cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a>
       <div class="hero-price">
         <span class="hp-pill">Tarifs dès <strong>350 € TTC</strong></span>
         <span class="hp-note">· sans abonnement · <a href="#offres">voir les offres →</a></span>
@@ -795,7 +824,7 @@ section[id]{scroll-margin-top:90px}
       </div>
     </div>
     <div style="text-align:center;margin-top:40px">
-      <a href="#offres" class="hero-cta" style="font-size:15px;padding:16px 32px">Parler à un expert →</a>
+      <a href="#offres" class="hero-cta" style="font-size:15px;padding:16px 32px">Parler à un expert <span class="cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -929,7 +958,7 @@ section[id]{scroll-margin-top:90px}
             <h3>Orbite Benin — Cotonou</h3>
             <p>Agence immobilière avec WordPress et le thème Houzez. Site performant, bien référencé et optimisé pour la recherche de biens.</p>
             <div class="p-tags"><span>Immobilier</span><span>WordPress</span><span>Houzez</span></div>
-            <a href="https://orbitebenin.com" target="_blank" class="p-cta">Voir ce site <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="https://orbitebenin.com" target="_blank" class="p-cta">Voir ce site <span class="cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -944,7 +973,7 @@ section[id]{scroll-margin-top:90px}
             <h3>Lion Immobilier Voyageur</h3>
             <p>Plateforme immobilière pour réserver des séjours et des logements. Site complet avec recherche, fiches détaillées et système de réservation intégré.</p>
             <div class="p-tags"><span>Immobilier</span><span>Réservation</span><span>Site vitrine</span></div>
-            <a href="https://www.lionimmobiliervoyageur.com" target="_blank" class="p-cta">Voir ce site <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="https://www.lionimmobiliervoyageur.com" target="_blank" class="p-cta">Voir ce site <span class="cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -959,7 +988,7 @@ section[id]{scroll-margin-top:90px}
             <h3>Comptalink</h3>
             <p>Site vitrine SaaS avec Hostinger et Codex ChatGPT. Abonnement intégré, email Omnisend, paiements par carte bancaire et PayPal.</p>
             <div class="p-tags"><span>SaaS</span><span>Site vitrine</span><span>Paiement</span></div>
-            <a href="https://comptalink.me" target="_blank" class="p-cta">Voir ce site <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="https://comptalink.me" target="_blank" class="p-cta">Voir ce site <span class="cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -992,7 +1021,7 @@ section[id]{scroll-margin-top:90px}
         </div>
         <div class="delay"><span class="delay-dot"></span> 7 jours</div>
         <div class="pricing-vs">vs votre abonnement portail, payé chaque mois</div>
-        <button type="button" class="pricing-cta-top select-pack">Discutons-en <i class="fa-solid fa-arrow-right"></i></button>
+        <button type="button" class="pricing-cta-top select-pack">Discutons-en <span class="cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span></button>
         <p class="desc">5 pages complètes pour exister en ligne, capter des leads et vendre sans commission.</p>
         <hr>
         <ul>
@@ -1021,7 +1050,7 @@ section[id]{scroll-margin-top:90px}
         </div>
         <div class="delay"><span class="delay-dot"></span> 20 jours</div>
         <div class="pricing-vs">vs vos abonnements portails + outils, chaque mois</div>
-        <button type="button" class="pricing-cta-top select-pack">Discutons-en <i class="fa-solid fa-arrow-right"></i></button>
+        <button type="button" class="pricing-cta-top select-pack">Discutons-en <span class="cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span></button>
         <p class="desc">Générez des leads qualifiés en complément de vos portails actuels.</p>
         <hr>
         <ul>
@@ -1050,7 +1079,7 @@ section[id]{scroll-margin-top:90px}
         </div>
         <div class="delay"><span class="delay-dot"></span> 20 jours</div>
         <div class="pricing-vs">vs vos abonnements portails + outils, chaque mois</div>
-        <button type="button" class="pricing-cta-top select-pack">Discutons-en <i class="fa-solid fa-arrow-right"></i></button>
+        <button type="button" class="pricing-cta-top select-pack">Discutons-en <span class="cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span></button>
         <p class="desc">Réservez directement, sans commission Airbnb.</p>
         <hr>
         <ul>
@@ -1713,6 +1742,77 @@ section[id]{scroll-margin-top:90px}
   });
   })();
 
+  // Décor hero — carrés animés en parallaxe au scroll
+  (function(){
+    var deco = document.querySelector('.hero-deco');
+    if(!deco) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var squares = [];
+    var variants = ['', 'sq--line', 'sq--navy', 'sq--ghost'];
+
+    var layout = [
+      {x:8,y:10,s:52,v:0,delay:0.5},
+      {x:17,y:30,s:20,v:1,delay:0.59},
+      {x:7,y:55,s:34,v:2,delay:0.68},
+      {x:20,y:76,s:16,v:3,delay:0.77},
+      {x:84,y:8,s:44,v:2,delay:0.5},
+      {x:91,y:34,s:22,v:0,delay:0.6},
+      {x:82,y:64,s:30,v:1,delay:0.7},
+      {x:89,y:86,s:18,v:3,delay:0.8},
+      {x:49,y:4,s:18,v:1,delay:0.56},
+      {x:55,y:6,s:12,v:3,delay:0.74},
+      {x:27,y:92,s:22,v:0,delay:0.65},
+      {x:70,y:95,s:14,v:2,delay:0.86},
+      {x:38,y:15,s:12,v:3,delay:0.82},
+      {x:62,y:18,s:14,v:1,delay:0.92},
+      {x:94,y:50,s:12,v:0,delay:0.7},
+      {x:6,y:78,s:14,v:3,delay:0.95},
+      {x:43,y:40,s:12,v:1,delay:1.0},
+      {x:58,y:72,s:10,v:3,delay:1.05},
+      {x:14,y:62,s:10,v:1,delay:1.1},
+      {x:76,y:42,s:10,v:3,delay:1.15}
+    ];
+
+    function build(){
+      deco.innerHTML = '';
+      squares = [];
+      layout.forEach(function(l){
+        var el = document.createElement('div');
+        el.className = 'sq ' + variants[l.v];
+        el.style.cssText = 'left:' + l.x + '%;top:' + l.y + '%;width:' + l.s + 'px;height:' + l.s + 'px;animation-delay:' + l.delay + 's;--sq-op:' + (l.v===3?1:(l.v===2?0.7:0.85));
+        el.setAttribute('data-speed', (0.25 + Math.random()*0.5).toFixed(2));
+        deco.appendChild(el);
+        squares.push(el);
+      });
+    }
+
+    function update(){
+      var y = window.pageYOffset;
+      squares.forEach(function(el){
+        var sp = parseFloat(el.getAttribute('data-speed')) || 0.4;
+        el.style.transform = 'translateY(' + (y * sp * 0.4).toFixed(1) + 'px)';
+      });
+    }
+
+    build();
+
+    if(!reduceMotion){
+      var ticking = false;
+      window.addEventListener('scroll', function(){
+        if(!ticking){
+          ticking = true;
+          requestAnimationFrame(function(){
+            update();
+            ticking = false;
+          });
+        }
+      }, { passive: true });
+    } else {
+      update();
+    }
+  })();
+
   // Reveal entrée / sortie des sections au scroll
   (function(){
     var targets = document.querySelectorAll('section:not(.hero)');
@@ -1785,7 +1885,7 @@ section[id]{scroll-margin-top:90px}
   .pia-marquee__track{display:inline-flex;align-items:center;will-change:transform;animation:pia-marquee 25s linear infinite}
   .pia-marquee__text{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(3rem,10vw,7rem);line-height:1.1;color:rgba(255,255,255,0.08);letter-spacing:0.02em}
   @keyframes pia-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  @media(prefers-reduced-motion:reduce){.pia-marquee__track{animation:none}.problem-card,.problem-card:nth-child(2),.problem-card:nth-child(3){transform:none}.hero-left>*{animation:none;opacity:1}.header-nav-item{opacity:1;transform:none;transition:none}.sec-reveal{opacity:1;transform:none;transition:none}.sec-reveal .solution-card,.sec-reveal .solution-point,.sec-reveal .process-guarantee,.sec-reveal .process-step,.sec-reveal .testi-cell,.sec-reveal .pricing-card,.sec-reveal .faq-card,.sec-reveal .portail-card{opacity:1;transform:none;transition:none}.r-stack .realisations-panel{transition:none}}
+  @media(prefers-reduced-motion:reduce){.pia-marquee__track{animation:none}.problem-card,.problem-card:nth-child(2),.problem-card:nth-child(3){transform:none}.hero-left>*{animation:none;opacity:1}.header-nav-item{opacity:1;transform:none;transition:none}.sec-reveal{opacity:1;transform:none;transition:none}.sec-reveal .solution-card,.sec-reveal .solution-point,.sec-reveal .process-guarantee,.sec-reveal .process-step,.sec-reveal .testi-cell,.sec-reveal .pricing-card,.sec-reveal .faq-card,.sec-reveal .portail-card{opacity:1;transform:none;transition:none}.r-stack .realisations-panel{transition:none}.hero-deco .sq{animation:none;opacity:var(--sq-op,0.85)}.header-cta::before,.hero-cta::before,.p-cta::before,.pricing-cta-top::before,.pricing-card .btn-outline::before,.pricing-card .btn-full::before,.pricing-wide-left .btn-cta::before,.contact-form-wrap .btn-submit::before{transition:none;left:140%}}
   .pia-footer-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 24px;width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
   .pia-footer-copy{color:rgba(255,255,255,0.25);font-size:13px;margin:0}
   .pia-footer-legal{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
