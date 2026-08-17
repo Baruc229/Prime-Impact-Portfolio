@@ -455,7 +455,7 @@ function readingTime(content){
 
 async function fetchAPI(url){
   var cacheKey='blog:'+url;
-  var ttl=120000;
+  var ttl=600000;
   try{
     var raw=sessionStorage.getItem(cacheKey);
     if(raw){
@@ -475,7 +475,7 @@ async function fetchAPI(url){
 async function init(){
   var data=await Promise.all([
     fetchAPI('/api/blog/posts?status=published&lang='+lang+'&limit=200'),
-    fetchAPI('/api/blog/badges'),
+    fetchAPI('/api/blog/badges?counts=false'),
     fetchAPI('/api/blog/authors')
   ]);
   var postsData=data[0];

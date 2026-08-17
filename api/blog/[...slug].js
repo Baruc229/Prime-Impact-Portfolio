@@ -47,6 +47,10 @@ function json(res, status, data) {
   res.end(JSON.stringify(data));
 }
 
+function setCache(res, seconds) {
+  res.setHeader('Cache-Control', `public, max-age=${seconds}, stale-while-revalidate=${seconds * 3}`);
+}
+
 async function requireAdmin(req, res) {
   const auth = req.headers['authorization'];
   if (!auth || !(await validateSession(auth.replace('Bearer ', '')))) {
@@ -85,7 +89,7 @@ async function handler(req, res) {
               const auth = req.headers['authorization'];
               const isAdmin = auth && (await validateSession(auth.replace('Bearer ', '')));
               if (!isAdmin && post.status !== 'published') return json(res, 404, { error: 'Not found' });
-              if (!isAdmin) { post.viewCount = (post.viewCount || 0) + 1; blogSave('posts', posts).catch(()=>{}); }
+              setCache(res, 30);
               return json(res, 200, post);
             }
             let filtered = [...posts];
@@ -100,7 +104,11 @@ async function handler(req, res) {
             const total = filtered.length;
             const totalPages = Math.ceil(total / limit);
             const start = (page - 1) * limit;
-            const items = filtered.slice(start, start + limit).map(p => ({ ...p, content: undefined }));
+            setCache(res, 60);
+            const items = filtered.slice(start, start + limit).map(p => {
+              const { content, resourceFile, ...rest } = p;
+              return rest;
+            });
             return json(res, 200, { posts: items, total, page, totalPages });
           }
           if (req.method === 'POST') {
@@ -163,7 +171,7 @@ async function handler(req, res) {
           const auth = req.headers['authorization'];
           const isAdmin = auth && (await validateSession(auth.replace('Bearer ', '')));
           if (!isAdmin && posts[idx].status !== 'published') return json(res, 404, { error: 'Not found' });
-          if (!isAdmin) { posts[idx].viewCount = (posts[idx].viewCount || 0) + 1; blogSave('posts', posts).catch(()=>{}); }
+          setCache(res, 30);
           return json(res, 200, posts[idx]);
         }
 
@@ -191,10 +199,15 @@ async function handler(req, res) {
       case 'badges': {
         if (!param) {
           if (req.method === 'GET') {
+            setCache(res, 300);
             const badges = await blogLoad('badges');
-            const allPosts = await blogLoad('posts');
-            const withCount = badges.map(b => ({ ...b, postCount: allPosts.filter(p => p.badgeIds && p.badgeIds.includes(b.id) && p.status === 'published').length }));
-            return json(res, 200, withCount);
+            const includeCounts = searchParams.get('counts') !== 'false';
+            if (includeCounts) {
+              const allPosts = await blogLoad('posts');
+              const withCount = badges.map(b => ({ ...b, postCount: allPosts.filter(p => p.badgeIds && p.badgeIds.includes(b.id) && p.status === 'published').length }));
+              return json(res, 200, withCount);
+            }
+            return json(res, 200, badges);
           }
           if (req.method === 'POST') {
             if (!(await requireAdmin(req, res))) return;
@@ -254,6 +267,7 @@ async function handler(req, res) {
       case 'authors': {
         if (!param) {
           if (req.method === 'GET') {
+            setCache(res, 300);
             const authors = await blogLoad('authors');
             return json(res, 200, authors);
           }

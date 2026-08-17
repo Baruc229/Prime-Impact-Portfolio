@@ -380,7 +380,7 @@ function readingTime(content) {
 
 async function fetchAPI(url) {
   const cacheKey = 'blog:' + url;
-  const ttl = 120000;
+  const ttl = 600000;
   try {
     const raw = sessionStorage.getItem(cacheKey);
     if (raw) {
@@ -506,7 +506,7 @@ async function init() {
 
   const [postData, badgesData, authorsData] = await Promise.all([
     fetchAPI('/api/blog/posts?slug=' + currentSlug),
-    fetchAPI('/api/blog/badges'),
+    fetchAPI('/api/blog/badges?counts=false'),
     fetchAPI('/api/blog/authors')
   ]);
   if (!postData || postData._error) { const errMsg = postData?._error; document.getElementById('postContent').innerHTML = '<p style="text-align:center;padding:60px 0;color:var(--text-muted)">' + (typeof errMsg === 'object' ? JSON.stringify(errMsg) : (errMsg || 'Article non trouvé.')) + '</p>'; document.getElementById('commentsSection').style.display = 'none'; return; }
