@@ -375,130 +375,67 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 /* ── PROCESSUS — NOUVEAU LAYOUT ── */
 .process-section{background:#0E1E3A;padding:80px 0}
 
-/* ── PARTIE 1 : Grid 2/3 + 1/3 ── */
-.process-part1{display:grid;grid-template-columns:1fr;gap:40px;margin-bottom:0}
+/* ── SECTION 1 : 2 colonnes — Intro + Étape 1 ── */
+.process-row1{display:grid;grid-template-columns:1fr;gap:40px;margin-bottom:0}
 
-.process-part1-left{min-width:0}
-.process-part1-left h2{color:#fff;margin:0 0 12px;font-size:clamp(26px,3.2vw,40px);line-height:1.12;letter-spacing:-0.02em}
+.process-intro-wrap{min-width:0;display:flex;flex-direction:column;justify-content:center}
+.process-intro-wrap h2{color:#fff;margin:0 0 12px;font-size:clamp(26px,3.2vw,40px);line-height:1.12;letter-spacing:-0.02em}
 .process-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:6px 16px 6px 14px;font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.1px;color:rgba(255,255,255,0.75);margin-bottom:16px}
 .process-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:#FF6B00;box-shadow:0 0 0 3px rgba(255,107,0,0.18)}
 .process-intro{font-family:'Outfit',sans-serif;font-weight:300;font-size:16px;line-height:1.65;color:rgba(255,255,255,0.45);max-width:52ch;margin:14px 0 0}
 
-/* Timeline verticale */
-.process-timeline{margin-top:36px;display:flex;flex-direction:column}
-.pt-step{display:grid;grid-template-columns:clamp(52px,7vw,76px) 1fr;gap:clamp(14px,2.5vw,32px);align-items:start;padding:24px 0;border-top:1px solid rgba(255,255,255,0.07)}
-.pt-step:last-child{border-top-color:rgba(255,255,255,0.04)}
+/* Carte étape (utilisée pour étape 1 dans section 1, et étapes 2-4 dans section 2) */
+.process-step-card{position:relative;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:32px 28px;display:flex;flex-direction:column;gap:12px;transition:transform 0.35s cubic-bezier(.16,1,.3,1),box-shadow 0.35s cubic-bezier(.16,1,.3,1),border-color 0.3s ease;overflow:hidden}
+.process-step-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#FF6B00,rgba(255,107,0,0.25));border-radius:14px 14px 0 0;opacity:0.8;transition:opacity 0.3s}
+.process-step-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,0.22);border-color:rgba(255,107,0,0.28)}
+.process-step-card:hover::before{opacity:1}
+.process-step-card .psc-num{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(36px,4vw,52px);line-height:1;letter-spacing:-0.03em;color:rgba(255,255,255,0.06);margin-bottom:4px;transition:color 0.3s cubic-bezier(.16,1,.3,1)}
+.process-step-card:hover .psc-num{color:rgba(255,107,0,0.2)}
+.process-step-card .psc-label{font-family:'Outfit',sans-serif;font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#FF6B00;margin-bottom:2px}
+.process-step-card h3{font-family:'Outfit',sans-serif;font-size:clamp(18px,2vw,22px);font-weight:700;color:#fff;margin:0;line-height:1.25}
+.process-step-card p{font-family:'Outfit',sans-serif;font-weight:300;font-size:15px;color:rgba(255,255,255,0.48);line-height:1.65;margin:0}
+.process-step-card p strong{color:#fff;font-weight:500}
+.process-step-card .ps-note{display:inline-flex;align-items:center;gap:9px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;color:rgba(255,107,0,0.85);margin-top:4px}
+.process-step-card .ps-note::before{content:"";width:20px;height:1px;background:rgba(255,107,0,0.45)}
 
-.pt-marker{display:flex;flex-direction:column;align-items:center;position:relative}
-.pt-num{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(30px,3.8vw,48px);line-height:1;letter-spacing:-0.03em;color:rgba(255,255,255,0.1);transition:color 0.3s cubic-bezier(.16,1,.3,1)}
-.pt-step:hover .pt-num{color:#FF6B00}
-
-.pt-line{width:1px;flex:1;min-height:20px;background:linear-gradient(to bottom,rgba(255,107,0,0.35),rgba(255,255,255,0.06));margin-top:8px}
-.pt-step:last-child .pt-line{display:none}
-
-.pt-content{padding-top:4px}
-.pt-label{font-family:'Outfit',sans-serif;font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#FF6B00;margin-bottom:6px;line-height:1.3}
-.pt-content h3{font-family:'Outfit',sans-serif;font-size:clamp(18px,2vw,23px);font-weight:700;color:#fff;margin:0 0 6px;line-height:1.25}
-.pt-content p{font-family:'Outfit',sans-serif;font-weight:300;font-size:15px;color:rgba(255,255,255,0.48);line-height:1.65;max-width:480px;margin:0}
-.pt-content p strong{color:#fff;font-weight:500}
-.ps-note{display:inline-flex;align-items:center;gap:9px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;color:rgba(255,107,0,0.85);margin-top:8px}
-.ps-note::before{content:"";width:20px;height:1px;background:rgba(255,107,0,0.45)}
-
-/* ── COLONNE DROITE : Garantie + Stats + CTA ── */
-.process-part1-right{display:flex;flex-direction:column;gap:16px}
-
-/* Carte garantie */
-.process-guarantee{position:relative;display:flex;align-items:flex-start;gap:16px;background:rgba(255,107,0,0.06);border:1px solid rgba(255,107,0,0.22);border-radius:14px;padding:22px 20px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.12),0 12px 32px rgba(0,0,0,0.16)}
-.process-guarantee::before{content:"";position:absolute;top:0;left:20px;width:38px;height:2px;background:#FF6B00;border-radius:0 0 2px 2px}
-.process-guarantee .g-icon{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;flex-shrink:0;background:rgba(255,107,0,0.1);border:1px solid rgba(255,107,0,0.28);color:#FF6B00;font-size:18px;line-height:1}
-.process-guarantee .g-body{display:flex;flex-direction:column;gap:5px}
-.process-guarantee .g-kicker{font-family:'Outfit',sans-serif;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:1.4px;color:rgba(255,107,0,0.85)}
-.process-guarantee .g-title{font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;color:#FF6B00;line-height:1.35}
-.process-guarantee .g-desc{font-family:'Outfit',sans-serif;font-weight:300;font-size:14px;color:rgba(255,255,255,0.48);line-height:1.6}
-.process-guarantee .g-desc strong{color:#fff;font-weight:500}
-
-/* Stats rapides */
-.process-quick-stats{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:0}
-.pq-stat{display:flex;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
-.pq-stat:last-child{border-bottom:none;padding-bottom:0}
-.pq-stat:first-child{padding-top:0}
-.pq-val{font-family:'Outfit',sans-serif;font-weight:800;font-size:26px;color:#FF6B00;line-height:1;min-width:54px;letter-spacing:-0.02em}
-.pq-lbl{font-family:'Outfit',sans-serif;font-weight:300;font-size:14px;color:rgba(255,255,255,0.45);line-height:1.35}
-
-/* CTA bouton */
-.process-cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#FF6B00;color:#0E1E3A;border:1.5px solid #FF6B00;font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;padding:14px 28px;border-radius:8px;cursor:pointer;text-decoration:none;transition:background 0.25s,color 0.25s,border-color 0.25s,transform 0.2s,box-shadow 0.25s;position:relative;overflow:hidden;box-shadow:0 2px 4px rgba(255,107,0,0.25),0 8px 20px rgba(255,107,0,0.18)}
-.process-cta-btn::before{content:"";position:absolute;top:0;left:-75%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.45),transparent);transform:skewX(-20deg);animation:ctaSheen 3.6s ease-in-out infinite}
-.process-cta-btn:hover{background:#fff;color:#0E1E3A;border-color:#fff;transform:translateY(-2px);box-shadow:0 2px 4px rgba(255,255,255,0.1),0 10px 28px rgba(255,255,255,0.08)}
-.process-cta-btn .cta-icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;background:#0E1E3A;color:#FF6B00;flex-shrink:0;transition:background 0.25s,color 0.25s,transform 0.25s}
-.process-cta-btn .cta-icon svg{width:12px;height:12px;display:block}
-.process-cta-btn:hover .cta-icon{background:#FF6B00;color:#fff;transform:translate(2px,-2px)}
-
-/* ── PARTIE 2 : 3 colonnes égales ── */
-.process-part2{display:grid;grid-template-columns:1fr;gap:14px;margin-top:56px;padding-top:48px;border-top:1px solid rgba(255,255,255,0.07)}
-
-.pp2-card{position:relative;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:28px 24px;transition:transform 0.35s cubic-bezier(.16,1,.3,1),box-shadow 0.35s cubic-bezier(.16,1,.3,1),border-color 0.3s ease;overflow:hidden}
-.pp2-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#FF6B00,rgba(255,107,0,0.25));border-radius:14px 14px 0 0;opacity:0.8;transition:opacity 0.3s}
-.pp2-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,0.22);border-color:rgba(255,107,0,0.28)}
-.pp2-card:hover::before{opacity:1}
-
-.pp2-icon{width:44px;height:44px;border-radius:10px;background:rgba(255,107,0,0.08);border:1px solid rgba(255,107,0,0.18);display:flex;align-items:center;justify-content:center;color:#FF6B00;font-size:18px;margin-bottom:14px;transition:background 0.3s,color 0.3s,border-color 0.3s}
-.pp2-card:hover .pp2-icon{background:#FF6B00;color:#0E1E3A;border-color:#FF6B00}
-
-.pp2-num{font-family:'Outfit',sans-serif;font-weight:700;font-size:10.5px;letter-spacing:0.12em;color:rgba(255,107,0,0.55);text-transform:uppercase;margin-bottom:6px}
-.pp2-card h3{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;color:#fff;margin:0 0 8px;line-height:1.3}
-.pp2-card p{font-family:'Outfit',sans-serif;font-weight:300;font-size:14.5px;color:rgba(255,255,255,0.46);line-height:1.65;margin:0}
+/* ── SECTION 2 : 3 colonnes — Étapes 2, 3, 4 ── */
+.process-row2{display:grid;grid-template-columns:1fr;gap:14px;margin-top:56px;padding-top:48px;border-top:1px solid rgba(255,255,255,0.07)}
 
 /* ── PROCESS RESPONSIVE ── */
 @media(min-width:768px){
-  .process-part1{grid-template-columns:1.9fr 1fr;gap:48px;align-items:start}
-  .process-part1-right{margin-top:10px}
-  .process-part2{grid-template-columns:repeat(3,1fr);gap:16px}
+  .process-row1{grid-template-columns:1.4fr 1fr;gap:48px;align-items:center}
+  .process-row2{grid-template-columns:repeat(3,1fr);gap:16px}
 }
 @media(max-width:767px){
   .process-section{padding:52px 0}
-  .process-part1{gap:32px}
-  .pt-step{padding:20px 0;grid-template-columns:44px 1fr;gap:14px}
-  .pt-num{font-size:28px}
-  .pt-content p{font-size:14px}
-  .process-part2{gap:12px;margin-top:40px;padding-top:36px}
-  .pp2-card{padding:22px 20px}
-  .pp2-card p{font-size:14px}
+  .process-row1{gap:32px}
+  .process-step-card{padding:26px 22px}
+  .process-row2{gap:12px;margin-top:40px;padding-top:36px}
 }
 @media(max-width:480px){
   .process-section{padding:44px 0}
-  .process-part1-left h2{font-size:clamp(22px,6vw,28px)}
-  .pt-step{grid-template-columns:40px 1fr;gap:12px}
-  .pt-num{font-size:26px}
-  .process-quick-stats{padding:14px 16px}
-  .pq-val{font-size:22px;min-width:46px}
-  .pq-lbl{font-size:13px}
-  .process-cta-btn{width:100%;justify-content:center;padding:14px 20px}
+  .process-intro-wrap h2{font-size:clamp(22px,6vw,28px)}
+  .process-step-card{padding:22px 18px}
+  .process-step-card .psc-num{font-size:32px}
 }
 
 @media(prefers-reduced-motion:reduce){
-  .pt-num{transition:none}
-  .pp2-card{transition:none}
-  .pp2-card::before{transition:none}
-  .pp2-icon{transition:none}
-  .process-cta-btn{transition:none}
-  .process-cta-btn::before{animation:none;left:140%}
-  .process-cta-btn .cta-icon{transition:none}
+  .process-step-card{transition:none}
+  .process-step-card::before{transition:none}
+  .process-step-card .psc-num{transition:none}
 }
 
 /* ── COMMENT ÇA MARCHE AVEC VOS PORTAILS ── */
-.portails-head{text-align:left;max-width:720px;margin:0 auto 44px}
+.portails-head{text-align:center;max-width:720px;margin:0 auto 44px}
 .portails-head h2{color:#1B3A6B}
 .portails-head p{color:#4B5563;font-size:17px;max-width:620px;margin:0 auto}
-.portails-layout{display:grid;grid-template-columns:1fr;gap:32px}
-.portails-main{display:flex;flex-direction:column;gap:20px}
-.portails-steps{display:grid;grid-template-columns:1fr;gap:14px}
+.portails-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:40px}
 .portail-card{background:#fff;border:1px solid #E4E9F2;border-radius:12px;padding:26px 24px;display:flex;flex-direction:column;gap:12px;min-width:0;transition:transform 0.3s ease,box-shadow 0.3s ease,border-color 0.3s ease}
 .portail-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(14,30,58,0.10);border-color:rgba(255,107,0,0.5)}
 .portail-card .pc-num{font-family:'Outfit',sans-serif;font-weight:800;font-size:13px;letter-spacing:0.06em;color:#FF6B00}
 .portail-card h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;color:#0E1E3A;margin:0;line-height:1.3}
 .portail-card p{font-family:'Outfit',sans-serif;font-weight:300;font-size:15px;color:#4B5563;line-height:1.65;margin:0}
-.portails-sidebar{display:flex;flex-direction:column;gap:20px}
-.portails-phases{background:#0E1E3A;border-radius:14px;padding:24px 22px;display:flex;flex-direction:column;gap:18px}
+.portails-phases{background:#0E1E3A;border-radius:14px;padding:24px 22px;display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:20px}
 .portails-phase{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
 .portails-phase .ph-tag{display:inline-flex;font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:5px 10px;border-radius:100px;white-space:nowrap}
 .portails-phase .ph-tag--1{background:rgba(255,107,0,0.14);color:#FF6B00;border:1px solid rgba(255,107,0,0.3)}
@@ -507,17 +444,14 @@ p{color:#4B5563;font-size:17px;line-height:1.7}
 .portails-phase p strong{color:#fff;font-weight:600}
 .portails-note{font-size:13.5px;color:#6b7280;text-align:center;margin:0 auto;max-width:640px;line-height:1.6}
 
-@media(min-width:768px){
-  .portails-layout{grid-template-columns:2fr 1fr;gap:36px;align-items:start}
-  .portails-steps{grid-template-columns:1fr 1fr}
-  .portails-phases{position:sticky;top:100px}
+@media(min-width:640px){
+  .portails-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(min-width:1024px){
-  .portails-layout{grid-template-columns:5fr 2fr;gap:40px}
-  .portails-phases{padding:28px 24px}
+  .portails-grid{grid-template-columns:repeat(4,1fr)}
+  .portails-phases{grid-template-columns:1fr 1fr;gap:32px;padding:28px 32px}
 }
-@media(max-width:767px){
-  .portails-layout{gap:24px}
+@media(max-width:640px){
   .portail-card{padding:22px 20px}
 }
 
@@ -883,58 +817,47 @@ section[id]{scroll-margin-top:90px}
 <!-- ══ COMMENT ÇA MARCHE AVEC VOS PORTAILS ══ -->
 <section class="section section-light" id="portails">
   <div class="container">
-
-    <div class="portails-layout">
-
-      <!-- Colonne gauche — intro + 4 étapes -->
-      <div class="portails-main">
-        <div class="portails-head">
-          <div class="section-badge">La mécanique</div>
-          <h2>Votre site travaille avec vos portails, en relais</h2>
-          <p>On ne vous demande pas de quitter vos portails du jour au lendemain. Le site prend le relais en douceur — et la dépendance s'efface à votre rythme.</p>
-        </div>
-
-        <div class="portails-steps">
-          <div class="portail-card">
-            <div class="pc-num">01</div>
-            <h3>Vous saisissez vos biens sur votre site</h3>
-            <p>Dans votre back-office, une seule fois : photos, prix, surface. Les données restent chez vous — vous les possédez.</p>
-          </div>
-          <div class="portail-card">
-            <div class="pc-num">02</div>
-            <h3>Votre site les diffuse vers vos portails</h3>
-            <p>Un connecteur conforme aux spécifications des portails publie automatiquement vos biens sur vos portails (SeLoger, Leboncoin, PAP…).</p>
-          </div>
-          <div class="portail-card">
-            <div class="pc-num">03</div>
-            <h3>Les portails continuent de vous apporter du trafic</h3>
-            <p>Rien ne casse : vous gardez leur visibilité. Leur algorithme continue de travailler pour vous, comme avant.</p>
-          </div>
-          <div class="portail-card">
-            <div class="pc-num">04</div>
-            <h3>Les clients finissent par venir chez vous</h3>
-            <p>Le client qui vous repère sur un portail clique vers votre site pour en savoir plus. Le contact est à vous — sans commission.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Colonne droite — phases + note -->
-      <aside class="portails-sidebar" aria-label="Phases de déploiement">
-        <div class="portails-phases">
-          <div class="portails-phase">
-            <span class="ph-tag ph-tag--1">Phase 1 · Démarrage</span>
-            <p>Votre site est livré, vos biens sont saisis, l'export vers les portails est branché. Vous lancez <strong>sans interrompre votre activité</strong>.</p>
-          </div>
-          <div class="portails-phase">
-            <span class="ph-tag ph-tag--2">Phase 2 · Montée en puissance</span>
-            <p>Vous réduisez vos abonnements portails : on garde ceux qui vous amènent du trafic, on coupe le reste. <strong>La décision vous appartient.</strong></p>
-          </div>
-        </div>
-        <p class="portails-note">Note : les délais de publication et d'éventuels frais d'activation côté portail dépendent de leurs conditions. On les vérifie ensemble avant tout engagement.</p>
-      </aside>
-
+    <div class="portails-head">
+      <div class="section-badge">La mécanique</div>
+      <h2>Votre site travaille avec vos portails, en relais</h2>
+      <p>On ne vous demande pas de quitter vos portails du jour au lendemain. Le site prend le relais en douceur — et la dépendance s'efface à votre rythme.</p>
     </div>
 
+    <div class="portails-grid">
+      <div class="portail-card">
+        <div class="pc-num">01</div>
+        <h3>Vous saisissez vos biens sur votre site</h3>
+        <p>Dans votre back-office, une seule fois : photos, prix, surface. Les données restent chez vous — vous les possédez.</p>
+      </div>
+      <div class="portail-card">
+        <div class="pc-num">02</div>
+        <h3>Votre site les diffuse vers vos portails</h3>
+        <p>Un connecteur conforme aux spécifications des portails publie automatiquement vos biens sur vos portails (SeLoger, Leboncoin, PAP…).</p>
+      </div>
+      <div class="portail-card">
+        <div class="pc-num">03</div>
+        <h3>Les portails continuent de vous apporter du trafic</h3>
+        <p>Rien ne casse : vous gardez leur visibilité. Leur algorithme continue de travailler pour vous, comme avant.</p>
+      </div>
+      <div class="portail-card">
+        <div class="pc-num">04</div>
+        <h3>Les clients finissent par venir chez vous</h3>
+        <p>Le client qui vous repère sur un portail clique vers votre site pour en savoir plus. Le contact est à vous — sans commission.</p>
+      </div>
+    </div>
+
+    <div class="portails-phases">
+      <div class="portails-phase">
+        <span class="ph-tag ph-tag--1">Phase 1 · Démarrage</span>
+        <p>Votre site est livré, vos biens sont saisis, l'export vers les portails est branché. Vous lancez <strong>sans interrompre votre activité</strong>.</p>
+      </div>
+      <div class="portails-phase">
+        <span class="ph-tag ph-tag--2">Phase 2 · Montée en puissance</span>
+        <p>Vous réduisez vos abonnements portails : on garde ceux qui vous amènent du trafic, on coupe le reste. <strong>La décision vous appartient.</strong></p>
+      </div>
+    </div>
+
+    <p class="portails-note">Note : les délais de publication et d'éventuels frais d'activation côté portail dépendent de leurs conditions. On les vérifie ensemble avant tout engagement.</p>
   </div>
 </section>
 
@@ -942,124 +865,50 @@ section[id]{scroll-margin-top:90px}
 <section class="process-section" id="process">
   <div class="container">
 
-    <!-- ══ PARTIE 1 : Timeline éditoriale (2/3) + Garantie & stats (1/3) ══ -->
-    <div class="process-part1">
+    <!-- ══ SECTION 1 : 2 colonnes — Intro + Étape 1 ══ -->
+    <div class="process-row1">
 
-      <!-- COLONNE GAUCHE — 2/3 — Détail du processus -->
-      <div class="process-part1-left">
+      <div class="process-intro-wrap">
         <div class="process-badge">Étape par étape</div>
         <h2>De l'échange initial à la mise en ligne — sans mauvaise surprise</h2>
         <p class="process-intro">Un processus clair et structuré. Vous validez chaque étape avant de passer à la suivante — rien ne se fait sans votre feu vert.</p>
-
-        <div class="process-timeline">
-          <div class="pt-step">
-            <div class="pt-marker">
-              <span class="pt-num">01</span>
-              <span class="pt-line"></span>
-            </div>
-            <div class="pt-content">
-              <div class="pt-label">Découverte</div>
-              <h3>Échange gratuit, sans engagement</h3>
-              <p>On discute de votre activité, vos portails actuels, vos objectifs. Je prends des notes, je pose les bonnes questions. Zéro frais, zéro pression.</p>
-              <div class="ps-note">Aucun engagement</div>
-            </div>
-          </div>
-
-          <div class="pt-step">
-            <div class="pt-marker">
-              <span class="pt-num">02</span>
-              <span class="pt-line"></span>
-            </div>
-            <div class="pt-content">
-              <div class="pt-label">Conception</div>
-              <h3>Design &amp; fonctionnalités sur-mesure</h3>
-              <p>Maquette interactive, textes optimisés SEO, IA intégrée (estimation, chatbot, rédaction d'annonces). Tout est pensé pour transformer vos visiteurs en clients.</p>
-            </div>
-          </div>
-
-          <div class="pt-step">
-            <div class="pt-marker">
-              <span class="pt-num">03</span>
-              <span class="pt-line"></span>
-            </div>
-            <div class="pt-content">
-              <div class="pt-label">Révision</div>
-              <h3>Validation &amp; retouches incluses</h3>
-              <p>Vous visionnez, vous commentez, j'ajuste. <strong>3 séries de retouches incluses</strong> — suffisant dans 95% des cas. Au-delà, on en discute ensemble.</p>
-              <div class="ps-note">3 séries de retouches incluses</div>
-            </div>
-          </div>
-
-          <div class="pt-step">
-            <div class="pt-marker">
-              <span class="pt-num">04</span>
-            </div>
-            <div class="pt-content">
-              <div class="pt-label">Lancement</div>
-              <h3>Mise en ligne &amp; formation à l'autonomie</h3>
-              <p>Site live, back-office configuré, formation pour gérer vos annonces seul. <strong>30 jours d'assistance incluse</strong> — après, vous êtes 100% autonome.</p>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <!-- COLONNE DROITE — 1/3 — Garantie + Stats + CTA -->
-      <div class="process-part1-right">
-        <div class="process-guarantee">
-          <div class="g-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
-          <div class="g-body">
-            <div class="g-kicker">Notre engagement</div>
-            <div class="g-title">Garantie étape par étape</div>
-            <div class="g-desc">Vous approuvez chaque livrable avant la phase suivante. <strong>Aucune surprise</strong>, aucun frais caché.</div>
-          </div>
-        </div>
-
-        <div class="process-quick-stats">
-          <div class="pq-stat">
-            <span class="pq-val">7–30</span>
-            <span class="pq-lbl">jours de livraison selon le pack</span>
-          </div>
-          <div class="pq-stat">
-            <span class="pq-val">3</span>
-            <span class="pq-lbl">séries de retouches incluses</span>
-          </div>
-          <div class="pq-stat">
-            <span class="pq-val">30j</span>
-            <span class="pq-lbl">d'assistance post-livraison</span>
-          </div>
-          <div class="pq-stat">
-            <span class="pq-val">0 €</span>
-            <span class="pq-lbl">d'abonnement mensuel</span>
-          </div>
-        </div>
-
-        <a href="#contact" class="process-cta-btn">
-          Démarrer mon projet
-          <span class="cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
-        </a>
+      <div class="process-step-card">
+        <div class="psc-num">01</div>
+        <div class="psc-label">Découverte</div>
+        <h3>Échange gratuit, sans engagement</h3>
+        <p>On discute de votre activité, vos portails actuels, vos objectifs. Je prends des notes, je pose les bonnes questions. Zéro frais, zéro pression.</p>
+        <div class="ps-note">Aucun engagement</div>
       </div>
+
     </div>
 
-    <!-- ══ PARTIE 2 : 3 colonnes égales — Les 3 piliers ══ -->
-    <div class="process-part2">
-      <div class="pp2-card">
-        <div class="pp2-icon"><i class="fa-solid fa-comments"></i></div>
-        <div class="pp2-num">Étape 01</div>
-        <h3>Estimation rapide &amp; ciblée</h3>
-        <p>Un appel de 15 minutes suffit. Pas de questionnaire de 47 cases — on discute, je comprends votre activité, je propose une solution adaptée à votre budget.</p>
+    <!-- ══ SECTION 2 : 3 colonnes — Étapes 2, 3, 4 ══ -->
+    <div class="process-row2">
+
+      <div class="process-step-card">
+        <div class="psc-num">02</div>
+        <div class="psc-label">Conception</div>
+        <h3>Design &amp; fonctionnalités sur-mesure</h3>
+        <p>Maquette interactive, textes optimisés SEO, IA intégrée (estimation, chatbot, rédaction d'annonces). Tout est pensé pour transformer vos visiteurs en clients.</p>
       </div>
-      <div class="pp2-card">
-        <div class="pp2-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-        <div class="pp2-num">Étape 02</div>
-        <h3>Mise en valeur professionnelle</h3>
-        <p>Photos optimisées, annonces rédigées par IA, home staging virtuel. Votre site inspire confiance dès le premier scroll — bien au-delà d'un portail générique.</p>
+
+      <div class="process-step-card">
+        <div class="psc-num">03</div>
+        <div class="psc-label">Révision</div>
+        <h3>Validation &amp; retouches incluses</h3>
+        <p>Vous visionnez, vous commentez, j'ajuste. <strong>3 séries de retouches incluses</strong> — suffisant dans 95% des cas. Au-delà, on en discute ensemble.</p>
+        <div class="ps-note">3 séries de retouches incluses</div>
       </div>
-      <div class="pp2-card">
-        <div class="pp2-icon"><i class="fa-solid fa-rocket"></i></div>
-        <div class="pp2-num">Étape 03</div>
-        <h3>Livraison &amp; autonomie</h3>
-        <p>Site en ligne, formation incluse, 30 jours de support. Vous gérez vos annonces en quelques clics — sans repasser par nous, sans frais cachés.</p>
+
+      <div class="process-step-card">
+        <div class="psc-num">04</div>
+        <div class="psc-label">Lancement</div>
+        <h3>Mise en ligne &amp; formation à l'autonomie</h3>
+        <p>Site live, back-office configuré, formation pour gérer vos annonces seul. <strong>30 jours d'assistance incluse</strong> — après, vous êtes 100% autonome.</p>
       </div>
+
     </div>
 
   </div>
