@@ -21,6 +21,8 @@
     { "source": "/refonte-site", "destination": "/service-refonte-site" },
     { "source": "/suivi-accompagnement", "destination": "/service-suivi-accompagnement" },
     { "source": "/blog", "destination": "/blog/index" },
-    { "source": "/blog/:slug", "destination": "/blog/post" }
+    { "source": "/blog/:slug", "destination": "/blog/post" },
+    { "source": "/conditions-generales", "destination": "/conditions-generales" },
+    { "source": "/conditions-vente", "destination": "/conditions-vente" }
   ]
 }

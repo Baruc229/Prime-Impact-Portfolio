@@ -137,6 +137,8 @@ function buildFooter() {
             <li><a href="/temoignages" data-i18n="nav.testimonials">Témoignages</a></li>
             <li><a href="/contact" data-i18n="nav.contact">Contact</a></li>
             <li><a href="/mentions-legales">Mentions légales</a></li>
+            <li><a href="/conditions-generales">CGU</a></li>
+            <li><a href="/conditions-vente">CGV</a></li>
             <li><a href="/politique-confidentialite">Confidentialité</a></li>
           </ul>
         </div>
