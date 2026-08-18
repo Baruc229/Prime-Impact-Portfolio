@@ -160,6 +160,8 @@ p,li,blockquote,.hero-desc,.step-desc,.testimonial-text,.faq-question{font-style
 .footer{background:#0D1B35!important;border:0!important}
 .footer-brand h3{font-family:var(--font-heading)!important;color:#fff!important;letter-spacing:0!important}
 .footer-title,.footer-links a,.footer-bottom{color:rgba(255,255,255,0.6)!important}
+.footer-legal a{color:rgba(255,255,255,0.5)!important}
+.footer-legal a:hover{color:var(--accent-gold)!important}
 .footer-links a:hover{color:var(--accent-gold)!important}
 .social-links a{color:rgba(255,255,255,0.6)!important}
 .social-links a:hover{color:var(--accent-gold)!important}
