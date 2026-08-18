@@ -136,10 +136,6 @@ function buildFooter() {
             <li><a href="/blog" data-i18n="nav.blog">Blog</a></li>
             <li><a href="/temoignages" data-i18n="nav.testimonials">Témoignages</a></li>
             <li><a href="/contact" data-i18n="nav.contact">Contact</a></li>
-            <li><a href="/mentions-legales">Mentions légales</a></li>
-            <li><a href="/conditions-generales">CGU</a></li>
-            <li><a href="/conditions-vente">CGV</a></li>
-            <li><a href="/politique-confidentialite">Confidentialité</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -150,6 +146,12 @@ function buildFooter() {
         </div>
       </div>
       <div class="footer-bottom">
+        <div class="footer-legal">
+          <a href="/mentions-legales">Mentions légales</a>
+          <a href="/conditions-generales">CGU</a>
+          <a href="/conditions-vente">CGV</a>
+          <a href="/politique-confidentialite">Confidentialité</a>
+        </div>
         <p><span data-i18n="footer.rights">Tous droits réservés.</span> © ${new Date().getFullYear()} Prime Impact Agency.</p>
       </div>
     </div>

@@ -2095,6 +2095,24 @@ img {
   font-size: 14px;
 }
 
+.footer-legal {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-legal a {
+  color: var(--text-muted);
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.footer-legal a:hover {
+  color: var(--accent-gold);
+}
+
 /* RESPONSIVE */
 @media (max-width: 1024px) {
 
