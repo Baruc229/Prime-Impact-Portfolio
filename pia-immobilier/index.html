@@ -68,9 +68,19 @@ p{color:#4B5563;font-size:1.0625rem;line-height:1.7}
 .hero .hero-cta .cta-icon{width:32px;height:32px;background:#FF6B00;color:#fff}
 .hero .hero-cta .cta-icon svg{width:15px;height:15px}
 .hero .hero-cta:hover .cta-icon{background:#0E1E3A;color:#fff}
-.hero-stats{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;margin-top:20px;justify-content:center}
-.hero-stats span{font-size:15px;color:#4B5563;display:flex;align-items:center;gap:8px}
-.hero-stats span::before{content:"";width:6px;height:6px;border-radius:50%;background:#1B3A6B;flex-shrink:0}
+.hero-stats{display:grid;grid-template-columns:1fr;gap:10px;margin-top:24px}
+.hs-col{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E4E9F2;border-radius:10px;padding:14px 18px;transition:border-color 0.3s,box-shadow 0.3s}
+.hs-col:hover{border-color:rgba(27,58,107,0.2);box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.hs-col--accent{background:#FF6B00;border-color:#FF6B00;color:#fff}
+.hs-col--accent:hover{border-color:#e55d00;box-shadow:0 2px 12px rgba(255,107,0,0.25)}
+.hs-icon{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;flex-shrink:0;font-size:14px}
+.hs-col:not(.hs-col--accent) .hs-icon{background:#EEF3FF;color:#1B3A6B}
+.hs-col--accent .hs-icon{background:rgba(255,255,255,0.2);color:#fff}
+.hs-text{flex:1;min-width:0;font-size:14px;font-weight:600;line-height:1.35}
+.hs-col:not(.hs-col--accent) .hs-text{color:#1B3A6B}
+.hs-arrow{display:flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;opacity:0.35}
+.hs-col--accent .hs-arrow{opacity:0.5}
+.hs-arrow svg{width:14px;height:14px;display:block}
 .hero-price{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
 .hero-price .hp-pill{display:inline-flex;align-items:center;gap:6px;background:#EEF3FF;border:1px solid rgba(27,58,107,0.14);color:#1B3A6B;font-weight:700;font-size:15px;padding:7px 16px;border-radius:999px}
 .hero-price .hp-pill strong{color:#1B3A6B}
@@ -615,7 +625,7 @@ section[id]{scroll-margin-top:90px}
   .hero-left{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
   .hero h1{font-size:clamp(42px,5vw,52px)}
   .hero-sub{margin:0 auto 28px}
-  .hero-stats{justify-content:center}
+  .hero-stats{grid-template-columns:repeat(3,1fr);gap:10px}
   .problem-grid{grid-template-columns:repeat(3,1fr)}
   .solution-grid{grid-template-columns:repeat(2,1fr)}
   .portfolio-grid{grid-template-columns:repeat(3,1fr)}
@@ -635,9 +645,7 @@ section[id]{scroll-margin-top:90px}
   .hero-badge{font-size:11px;padding:4px 12px 4px 4px}
   .hero-badge .hero-badge-ico{width:20px;height:20px;font-size:10px}
   .hero-cta{width:100%;justify-content:center;font-size:15px;padding:16px 24px}
-  .hero-stats{display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:8px 16px;font-size:13px;margin-top:20px}
-  .hero-stats span{font-size:13px;align-items:flex-start;line-height:1.4}
-  .hero-stats span::before{margin-top:5px}
+  .hero-stats{grid-template-columns:1fr;gap:8px;margin-top:20px}
   .section{padding:48px 0}
   .section-hero{padding:80px 0 56px}
   .section-title h2,.about-wrap h2,.process-section h2,.faq-left h2,.contact-left h2{font-size:clamp(20px,7vw,28px)}
@@ -710,9 +718,21 @@ section[id]{scroll-margin-top:90px}
         <span class="hp-note">· sans abonnement · <span class="hp-offers">voir les offres</span></span>
       </div>
       <div class="hero-stats">
-        <span>Maintien 30 jours d'assistance incluse</span>
-        <span>1 an d'hébergement offert</span>
-        <span>25+ sites livrés</span>
+        <div class="hs-col">
+          <div class="hs-icon"><i class="fa-solid fa-headset"></i></div>
+          <div class="hs-text">Maintien 30 jours d'assistance incluse</div>
+          <div class="hs-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+        <div class="hs-col hs-col--accent">
+          <div class="hs-icon"><i class="fa-solid fa-house"></i></div>
+          <div class="hs-text">1 an d'hébergement offert</div>
+          <div class="hs-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+        <div class="hs-col">
+          <div class="hs-icon"><i class="fa-solid fa-check"></i></div>
+          <div class="hs-text">25+ sites livrés</div>
+          <div class="hs-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
       </div>
     </div>
   </div>
