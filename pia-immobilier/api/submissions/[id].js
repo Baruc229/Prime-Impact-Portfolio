@@ -1,7 +1,8 @@
 const { load, save, validateSession } = require('../_lib/db');
+const { setCors } = require('../_lib/cors');
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  setCors(req, res);
   res.setHeader('Access-Control-Allow-Methods', 'GET, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -32,7 +33,7 @@ module.exports = async (req, res) => {
       res.json(row);
     } catch (err) {
       console.error('[API] Get error:', err);
-      res.status(500).json({ error: err.message || 'Internal server error' });
+      res.status(500).json({ error: 'Erreur serveur' });
     }
     return;
   }
@@ -50,7 +51,7 @@ module.exports = async (req, res) => {
       res.json({ success: true });
     } catch (err) {
       console.error('[API] Delete error:', err);
-      res.status(500).json({ error: err.message || 'Internal server error' });
+      res.status(500).json({ error: 'Erreur serveur' });
     }
     return;
   }

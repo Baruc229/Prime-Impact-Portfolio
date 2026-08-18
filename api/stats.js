@@ -1,7 +1,8 @@
 const { load, validateSession } = require('./_lib/db');
+const { setCors } = require('./_lib/cors');
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  setCors(req, res);
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -34,7 +35,7 @@ module.exports = async (req, res) => {
       res.json({ total, unread, today, byType });
     } catch (err) {
       console.error('[API] Stats error:', err);
-      res.status(500).json({ error: err.message || 'Internal server error' });
+      res.status(500).json({ error: 'Erreur serveur' });
     }
     return;
   }

@@ -1,5 +1,25 @@
 const { blogLoad, blogSave, validateSession } = require('../_lib/db');
 
+function sanitize(str) {
+  if (str == null) return '';
+  return String(str).replace(/<[^>]*>/g, '').replace(/[<>]/g, '').trim();
+}
+
+function sanitizePostData(data) {
+  const clean = { ...data };
+  const textFields = ['title', 'excerpt', 'metaTitle', 'metaDescription'];
+  for (const f of textFields) {
+    if (clean[f]) clean[f] = sanitize(clean[f]);
+  }
+  if (clean.content && typeof clean.content === 'string') {
+    clean.content = clean.content
+      .replace(/<script[\s\S]*?<\/script>/gi, '')
+      .replace(/on\w+="[^"]*"/gi, '')
+      .replace(/on\w+='[^']*'/gi, '');
+  }
+  return clean;
+}
+
 const rateLimitMap = new Map();
 function rateLimit(key, maxRequests, windowMs) {
   const now = Date.now();
@@ -113,7 +133,8 @@ async function handler(req, res) {
           }
           if (req.method === 'POST') {
             if (!(await requireAdmin(req, res))) return;
-            const data = await readBody(req);
+            const raw = await readBody(req);
+            const data = sanitizePostData(raw);
             const posts = await blogLoad('posts');
             const slug = await generateSlug(data.title || 'article', posts);
             const now = new Date().toISOString();
@@ -141,7 +162,8 @@ async function handler(req, res) {
 
             if (req.method === 'PUT') {
               if (!(await requireAdmin(req, res))) return;
-              const data = await readBody(req);
+              const raw = await readBody(req);
+              const data = sanitizePostData(raw);
               const newSlug = data.title && data.title !== posts[idx].title
                 ? await generateSlug(data.title, posts, posts[idx].id) : posts[idx].slug;
               const now = new Date().toISOString();
@@ -177,7 +199,8 @@ async function handler(req, res) {
 
         if (req.method === 'PUT') {
           if (!(await requireAdmin(req, res))) return;
-          const data = await readBody(req);
+          const raw = await readBody(req);
+          const data = sanitizePostData(raw);
           const newSlug = data.title && data.title !== posts[idx].title
             ? await generateSlug(data.title, posts, posts[idx].id) : posts[idx].slug;
           const now = new Date().toISOString();
@@ -445,7 +468,7 @@ async function handler(req, res) {
         return json(res, 404, { error: 'Not found' });
     }
   } catch (e) {
-    return json(res, 400, { error: e.message });
+    return json(res, 400, { error: 'Erreur serveur' });
   }
 }
 

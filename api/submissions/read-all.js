@@ -1,7 +1,8 @@
 const { load, save, validateSession } = require('../_lib/db');
+const { setCors } = require('../_lib/cors');
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  setCors(req, res);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -30,6 +31,6 @@ module.exports = async (req, res) => {
     res.json({ success: true, markedRead: count });
   } catch (err) {
     console.error('[API] read-all error:', err);
-    res.status(500).json({ error: err.message || 'Internal server error' });
+    res.status(500).json({ error: 'Erreur serveur' });
   }
 };

@@ -1,7 +1,9 @@
 const { createSession } = require('./_lib/db');
+const { setCors } = require('./_lib/cors');
+const { checkRateLimit } = require('./_lib/rate-limit');
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  setCors(req, res);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -11,6 +13,11 @@ module.exports = async (req, res) => {
   }
 
   if (req.method === 'POST') {
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+    if (!(await checkRateLimit('login:' + ip, 5, 900))) {
+      return res.status(429).json({ error: 'Trop de tentatives. Réessayez dans 15 minutes.' });
+    }
+
     const { password } = req.body;
     const adminPassword = process.env.ADMIN_PASSWORD;
 

@@ -1,4 +1,5 @@
 const { load, validateSession } = require('./_lib/db');
+const { setCors } = require('./_lib/cors');
 const nodemailer = require('nodemailer');
 const PDFDocument = require('pdfkit');
 const XLSX = require('xlsx');
@@ -267,7 +268,7 @@ function buildEmailHTML(submissions, format) {
 }
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  setCors(req, res);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -309,7 +310,7 @@ module.exports = async (req, res) => {
       res.status(200).send(data);
     } catch (err) {
       console.error('[EXPORT] Error:', err);
-      res.status(500).json({ error: err.message || 'Internal server error' });
+      res.status(500).json({ error: 'Erreur serveur' });
     }
     return;
   }
@@ -377,7 +378,7 @@ module.exports = async (req, res) => {
       res.json({ success: true, sentTo: targetEmail, total: db.submissions.length, format: outFormat });
     } catch (err) {
       console.error('[EXPORT] Email error:', err);
-      res.status(500).json({ error: 'Erreur d\'envoi : ' + err.message });
+      res.status(500).json({ error: 'Erreur lors de l\'envoi' });
     }
     return;
   }

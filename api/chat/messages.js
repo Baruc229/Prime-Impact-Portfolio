@@ -6,9 +6,10 @@
 
 const { getSession, addMessage, getMessages } = require('../_lib/chat-db');
 const { generateResponse, getInitError } = require('../_lib/chat-kb');
+const { setCors } = require('../_lib/cors');
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  setCors(req, res);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

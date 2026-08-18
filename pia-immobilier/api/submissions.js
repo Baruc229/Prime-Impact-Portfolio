@@ -1,4 +1,5 @@
 const { load, save, validateSession } = require('./_lib/db');
+const { setCors } = require('./_lib/cors');
 const nodemailer = require('nodemailer');
 
 const TYPE_LABELS = { contact: 'Contact', devis: 'Devis', order: 'Commande' };
@@ -75,7 +76,7 @@ async function sendNotificationEmail(submission) {
 }
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  setCors(req, res);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -108,7 +109,7 @@ module.exports = async (req, res) => {
       res.json({ submissions: pageItems, total, page, limit, totalPages });
     } catch (err) {
       console.error('[API] List error:', err);
-      res.status(500).json({ error: err.message || 'Internal server error' });
+      res.status(500).json({ error: 'Erreur serveur' });
     }
     return;
   }
@@ -146,7 +147,7 @@ module.exports = async (req, res) => {
       res.json({ success: true, id: submission.id });
     } catch (err) {
       console.error('[API] Insert error:', err);
-      res.status(500).json({ error: err.message || 'Internal server error' });
+      res.status(500).json({ error: 'Erreur serveur' });
     }
     return;
   }
