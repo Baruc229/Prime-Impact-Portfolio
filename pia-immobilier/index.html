@@ -393,9 +393,7 @@ p{color:#4B5563;font-size:1.0625rem;line-height:1.7}
 
 /* Carte étape (utilisée pour étape 1 dans section 1, et étapes 2-4 dans section 2) */
 .process-step-card{position:relative;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:32px 28px;display:flex;flex-direction:column;gap:12px;transition:transform 0.35s cubic-bezier(.16,1,.3,1),box-shadow 0.35s cubic-bezier(.16,1,.3,1),border-color 0.3s ease;overflow:hidden}
-.process-step-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#FF6B00,rgba(255,107,0,0.25));border-radius:14px 14px 0 0;opacity:0.8;transition:opacity 0.3s}
 .process-step-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,0.22);border-color:rgba(255,107,0,0.28)}
-.process-step-card:hover::before{opacity:1}
 .process-step-card .psc-num{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(36px,4vw,52px);line-height:1;letter-spacing:-0.03em;color:rgba(255,255,255,0.06);margin-bottom:4px;transition:color 0.3s cubic-bezier(.16,1,.3,1)}
 .process-step-card:hover .psc-num{color:rgba(255,107,0,0.2)}
 .process-step-card .psc-label{font-family:'Outfit',sans-serif;font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#FF6B00;margin-bottom:2px}
@@ -406,12 +404,17 @@ p{color:#4B5563;font-size:1.0625rem;line-height:1.7}
 .process-step-card .ps-note::before{content:"";width:20px;height:1px;background:rgba(255,107,0,0.45)}
 
 /* ── SECTION 2 : 3 colonnes — Étapes 2, 3, 4 ── */
-.process-row2{display:grid;grid-template-columns:1fr;gap:14px;margin-top:56px;padding-top:48px;border-top:1px solid rgba(255,255,255,0.07)}
+.process-row2{display:flex;flex-direction:column;gap:14px;margin-top:56px;padding-top:48px;border-top:1px solid rgba(255,255,255,0.07)}
+
+/* Flèches de connexion entre étapes */
+.process-arrow{display:none}
 
 /* ── PROCESS RESPONSIVE ── */
 @media(min-width:768px){
   .process-row1{grid-template-columns:1.4fr 1fr;gap:48px;align-items:center}
-  .process-row2{grid-template-columns:repeat(3,1fr);gap:16px}
+  .process-row2{flex-direction:row;align-items:stretch;gap:0}
+  .process-arrow{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:52px;padding:0 2px}
+  .process-arrow svg{width:100%;height:auto;display:block}
 }
 @media(max-width:767px){
   .process-section{padding:52px 0}
@@ -428,7 +431,6 @@ p{color:#4B5563;font-size:1.0625rem;line-height:1.7}
 
 @media(prefers-reduced-motion:reduce){
   .process-step-card{transition:none}
-  .process-step-card::before{transition:none}
   .process-step-card .psc-num{transition:none}
 }
 
@@ -902,12 +904,38 @@ section[id]{scroll-margin-top:90px}
         <p>Maquette interactive, textes optimisés SEO, IA intégrée (estimation, chatbot, rédaction d'annonces). Tout est pensé pour transformer vos visiteurs en clients.</p>
       </div>
 
+      <div class="process-arrow" aria-hidden="true">
+        <svg viewBox="0 0 48 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="pfa" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.02)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0.12)"/>
+            </linearGradient>
+          </defs>
+          <line x1="0" y1="10" x2="36" y2="10" stroke="url(#pfa)" stroke-width="1"/>
+          <path d="M33 6L40 10L33 14" stroke="rgba(255,255,255,0.18)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
       <div class="process-step-card">
         <div class="psc-num">03</div>
         <div class="psc-label">Révision</div>
         <h3>Validation &amp; retouches incluses</h3>
         <p>Vous visionnez, vous commentez, j'ajuste. <strong>3 séries de retouches incluses</strong> — suffisant dans 95% des cas. Au-delà, on en discute ensemble.</p>
         <div class="ps-note">3 séries de retouches incluses</div>
+      </div>
+
+      <div class="process-arrow" aria-hidden="true">
+        <svg viewBox="0 0 48 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="pfb" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.02)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0.12)"/>
+            </linearGradient>
+          </defs>
+          <line x1="0" y1="10" x2="36" y2="10" stroke="url(#pfb)" stroke-width="1"/>
+          <path d="M33 6L40 10L33 14" stroke="rgba(255,255,255,0.18)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
 
       <div class="process-step-card">
