@@ -426,28 +426,33 @@ p{color:#4B5563;font-size:1.0625rem;line-height:1.7}
 /* ── SECTION 2 : 3 colonnes — Étapes 2, 3, 4 ── */
 .process-row2{display:flex;flex-direction:column;gap:14px;margin-top:56px;padding-top:48px;border-top:1px solid rgba(255,255,255,0.07)}
 
-/* Flèches de connexion entre étapes */
-.process-arrow{display:none}
-.process-connector{display:flex;justify-content:center;padding:20px 0}
-.process-connector svg{width:24px;height:40px;flex-shrink:0}
-.process-connector line{stroke:rgba(255,107,0,0.45);stroke-width:1.5;stroke-dasharray:5 4}
-.process-connector path{stroke:rgba(255,107,0,0.45);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none}
+/* ── TIMELINE ROPE ── */
+.tl-seg{display:flex;justify-content:center;padding:0}
+.tl-seg::before{content:"";width:0;height:40px;border-left:2px dashed rgba(255,107,0,0.35)}
+.tl-node{position:absolute;left:0;width:12px;height:12px;border-radius:50%;background:#FF6B00;box-shadow:0 0 0 4px rgba(255,107,0,0.15);transform:translate(-50%,-50%);top:28px;z-index:2}
+.process-step-card{position:relative}
+.process-row2{position:relative}
 
 /* ── PROCESS RESPONSIVE ── */
 @media(min-width:768px){
   .process-row1{grid-template-columns:1.4fr 1fr;gap:48px;align-items:center}
   .process-row2{flex-direction:row;align-items:stretch;gap:0}
-  .process-arrow{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:52px;padding:0 2px}
-  .process-arrow svg{width:100%;height:auto;display:block}
-  .process-connector svg{width:24px;height:40px}
+  .process-row2{border-top:2px dashed rgba(255,107,0,0.25);padding-top:0}
+  .process-row2 .process-step-card::after{content:"";position:absolute;left:0;top:0;width:12px;height:12px;border-radius:50%;background:#FF6B00;box-shadow:0 0 0 4px rgba(255,107,0,0.15);transform:translate(-50%,-50%);top:0;z-index:2}
+  .process-row2 .process-step-card:first-child::after{display:block}
+  .tl-seg::before{height:40px}
+  .tl-node{display:none}
 }
 @media(max-width:767px){
   .process-section{padding:52px 0}
   .process-row1{gap:32px}
   .process-step-card{padding:26px 22px}
-  .process-row2{gap:0;margin-top:40px;padding-top:36px}
-  .process-arrow{display:flex;align-items:center;justify-content:center;width:100%;padding:10px 0}
-  .process-arrow svg{width:24px;height:40px;display:block;transform:rotate(90deg)}
+  .process-row2{gap:0;margin-top:24px;padding-top:0}
+  .process-row2 .process-step-card{padding-left:28px}
+  .tl-seg{padding:0;justify-content:flex-start;padding-left:5px}
+  .tl-seg::before{height:24px}
+  .tl-node{display:block;left:0;width:10px;height:10px;top:24px}
+  .process-step-card + .process-step-card::before{content:"";position:absolute;left:-1px;top:-24px;width:0;height:24px;border-left:2px dashed rgba(255,107,0,0.35)}
 }
 @media(max-width:480px){
   .process-section{padding:44px 0}
@@ -916,6 +921,7 @@ section[id]{scroll-margin-top:90px}
       </div>
 
       <div class="process-step-card">
+        <div class="tl-node" aria-hidden="true"></div>
         <div class="psc-label"><span>01</span><span>[Découverte]</span></div>
         <h3>Échange gratuit, sans engagement</h3>
         <p>On discute de votre activité, vos portails actuels, vos objectifs. Je prends des notes, je pose les bonnes questions. Zéro frais, zéro pression.</p>
@@ -923,40 +929,27 @@ section[id]{scroll-margin-top:90px}
       </div>
 
     </div>
-
-    <!-- ══ CONNECTEUR 01 → 02 ══ -->
-    <div class="process-connector" aria-hidden="true">
-      <svg viewBox="0 0 24 40" fill="none">
-        <line x1="12" y1="2" x2="12" y2="34"/>
-        <path d="M6 30 L12 38 L18 30"/>
-      </svg>
-    </div>
+<!-- ══ CORDE 01→02 ══ -->
+    <div class="tl-seg" aria-hidden="true"></div>
 
     <!-- ══ SECTION 2 : 3 colonnes — Étapes 2, 3, 4 ══ -->
     <div class="process-row2">
 
       <div class="process-step-card">
+        <div class="tl-node" aria-hidden="true"></div>
         <div class="psc-label"><span>02</span><span>[Conception]</span></div>
         <h3>Design &amp; fonctionnalités sur-mesure</h3>
         <p>Maquette interactive, textes optimisés SEO, IA intégrée (estimation, chatbot, rédaction d'annonces). Tout est pensé pour transformer vos visiteurs en clients.</p>
       </div>
-
-      <div class="process-arrow" aria-hidden="true">
-        <svg viewBox="0 0 52 24" fill="none"><line x1="2" y1="12" x2="38" y2="12" stroke="rgba(255,107,0,0.45)" stroke-width="1.5" stroke-dasharray="5 4"/><path d="M36 6 L46 12 L36 18" stroke="rgba(255,107,0,0.45)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-      </div>
-
-      <div class="process-step-card">
+<div class="process-step-card">
+        <div class="tl-node" aria-hidden="true"></div>
         <div class="psc-label"><span>03</span><span>[Révision]</span></div>
         <h3>Validation &amp; retouches incluses</h3>
         <p>Vous visionnez, vous commentez, j'ajuste. <strong>3 séries de retouches incluses</strong> — suffisant dans 95% des cas. Au-delà, on en discute ensemble.</p>
         <div class="ps-note">3 séries de retouches incluses</div>
       </div>
-
-      <div class="process-arrow" aria-hidden="true">
-        <svg viewBox="0 0 52 24" fill="none"><line x1="2" y1="12" x2="38" y2="12" stroke="rgba(255,107,0,0.45)" stroke-width="1.5" stroke-dasharray="5 4"/><path d="M36 6 L46 12 L36 18" stroke="rgba(255,107,0,0.45)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-      </div>
-
-      <div class="process-step-card">
+<div class="process-step-card">
+        <div class="tl-node" aria-hidden="true"></div>
         <div class="psc-label"><span>04</span><span>[Lancement]</span></div>
         <h3>Mise en ligne &amp; formation à l'autonomie</h3>
         <p>Site live, back-office configuré, formation pour gérer vos annonces seul. <strong>30 jours d'assistance incluse</strong> — après, vous êtes 100% autonome.</p>
