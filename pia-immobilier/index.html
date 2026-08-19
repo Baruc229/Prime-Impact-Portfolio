@@ -401,10 +401,7 @@ p{color:#4B5563;font-size:1.0625rem;line-height:1.7}
 
 
 /* ── PROCESSUS — NOUVEAU LAYOUT ── */
-.process-section{background:#0E1E3A;padding:80px 0;position:relative;overflow:hidden}
-.process-section::before{content:"";position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(255,107,0,0.06) 0%,transparent 70%);pointer-events:none;z-index:0}
-.process-section::after{content:"";position:absolute;bottom:-150px;left:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(27,58,107,0.1) 0%,transparent 70%);pointer-events:none;z-index:0}
-.process-section>*{position:relative;z-index:1}
+.process-section{background:#0E1E3A;padding:80px 0}
 
 /* ── SECTION 1 : 2 colonnes — Intro + Étape 1 ── */
 .process-row1{display:grid;grid-template-columns:1fr;gap:40px;margin-bottom:0}
@@ -431,6 +428,10 @@ p{color:#4B5563;font-size:1.0625rem;line-height:1.7}
 
 /* Flèches de connexion entre étapes */
 .process-arrow{display:none}
+.process-connector{display:flex;justify-content:center;padding:20px 0}
+.process-connector svg{width:24px;height:40px;flex-shrink:0}
+.process-connector line{stroke:rgba(255,107,0,0.45);stroke-width:1.5;stroke-dasharray:5 4}
+.process-connector path{stroke:rgba(255,107,0,0.45);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none}
 
 /* ── PROCESS RESPONSIVE ── */
 @media(min-width:768px){
@@ -438,12 +439,15 @@ p{color:#4B5563;font-size:1.0625rem;line-height:1.7}
   .process-row2{flex-direction:row;align-items:stretch;gap:0}
   .process-arrow{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:52px;padding:0 2px}
   .process-arrow svg{width:100%;height:auto;display:block}
+  .process-connector svg{width:24px;height:40px}
 }
 @media(max-width:767px){
   .process-section{padding:52px 0}
   .process-row1{gap:32px}
   .process-step-card{padding:26px 22px}
-  .process-row2{gap:12px;margin-top:40px;padding-top:36px}
+  .process-row2{gap:0;margin-top:40px;padding-top:36px}
+  .process-arrow{display:flex;align-items:center;justify-content:center;width:100%;padding:10px 0}
+  .process-arrow svg{width:24px;height:40px;display:block;transform:rotate(90deg)}
 }
 @media(max-width:480px){
   .process-section{padding:44px 0}
@@ -920,6 +924,14 @@ section[id]{scroll-margin-top:90px}
 
     </div>
 
+    <!-- ══ CONNECTEUR 01 → 02 ══ -->
+    <div class="process-connector" aria-hidden="true">
+      <svg viewBox="0 0 24 40" fill="none">
+        <line x1="12" y1="2" x2="12" y2="34"/>
+        <path d="M6 30 L12 38 L18 30"/>
+      </svg>
+    </div>
+
     <!-- ══ SECTION 2 : 3 colonnes — Étapes 2, 3, 4 ══ -->
     <div class="process-row2">
 
@@ -930,7 +942,7 @@ section[id]{scroll-margin-top:90px}
       </div>
 
       <div class="process-arrow" aria-hidden="true">
-        <svg viewBox="0 0 52 24" fill="none"><defs><linearGradient id="procArrow1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="rgba(255,107,0,0)"/><stop offset="40%" stop-color="rgba(255,107,0,0.35)"/><stop offset="100%" stop-color="rgba(255,107,0,0.7)"/></linearGradient></defs><path d="M2 12 L38 12" stroke="url(#procArrow1)" stroke-width="1.5" stroke-linecap="round"/><path d="M36 6 L46 12 L36 18" stroke="rgba(255,107,0,0.6)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <svg viewBox="0 0 52 24" fill="none"><line x1="2" y1="12" x2="38" y2="12" stroke="rgba(255,107,0,0.45)" stroke-width="1.5" stroke-dasharray="5 4"/><path d="M36 6 L46 12 L36 18" stroke="rgba(255,107,0,0.45)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       </div>
 
       <div class="process-step-card">
@@ -941,7 +953,7 @@ section[id]{scroll-margin-top:90px}
       </div>
 
       <div class="process-arrow" aria-hidden="true">
-        <svg viewBox="0 0 52 24" fill="none"><defs><linearGradient id="procArrow2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="rgba(255,107,0,0)"/><stop offset="40%" stop-color="rgba(255,107,0,0.35)"/><stop offset="100%" stop-color="rgba(255,107,0,0.7)"/></linearGradient></defs><path d="M2 12 L38 12" stroke="url(#procArrow2)" stroke-width="1.5" stroke-linecap="round"/><path d="M36 6 L46 12 L36 18" stroke="rgba(255,107,0,0.6)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <svg viewBox="0 0 52 24" fill="none"><line x1="2" y1="12" x2="38" y2="12" stroke="rgba(255,107,0,0.45)" stroke-width="1.5" stroke-dasharray="5 4"/><path d="M36 6 L46 12 L36 18" stroke="rgba(255,107,0,0.45)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       </div>
 
       <div class="process-step-card">
