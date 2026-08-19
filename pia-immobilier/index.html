@@ -516,11 +516,16 @@ p{color:#4B5563;font-size:1.0625rem;line-height:1.7}
 }
 
 /* ── FAQ ── */
-.faq-section{background:#EEF3FF;padding:64px 0}
-.faq-wrapper{padding:40px;display:grid;grid-template-columns:280px 1fr;gap:36px}
-.faq-left h2{font-size:clamp(32px,3.5vw,42px);color:#1B3A6B;margin-bottom:12px;font-weight:700}
-.faq-left p{font-family:'Outfit',sans-serif;font-size:16px;color:#4B5563;line-height:1.6;max-width:240px}
-.faq-right{display:flex;flex-direction:column;gap:12px}
+.faq-section{background:#EEF3FF;padding:64px 0;position:relative;overflow:hidden}
+.faq-beam-wrapper{position:relative;border-radius:16px;padding:40px;background:rgba(255,255,255,0.5);border:1px solid rgba(27,58,107,0.08);box-shadow:0 1px 2px rgba(0,0,0,0.04),0 8px 32px rgba(0,0,0,0.04);overflow:hidden}
+.faq-beam-wrapper::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent 0deg,transparent 60deg,rgba(27,58,107,0.25) 90deg,rgba(255,107,0,0.2) 110deg,transparent 140deg,transparent 360deg);animation:faqBeamRotate 5s linear infinite;z-index:0;pointer-events:none}
+.faq-beam-wrapper::after{content:"";position:absolute;inset:1px;border-radius:15px;background:#EEF3FF;z-index:1;pointer-events:none}
+.faq-beam-wrapper>*{position:relative;z-index:2}
+@keyframes faqBeamRotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.faq-head{text-align:center;max-width:520px;margin:0 auto 36px}
+.faq-head h2{font-size:clamp(28px,3.5vw,38px);color:#1B3A6B;margin-bottom:8px;font-weight:700}
+.faq-head p{font-family:'Outfit',sans-serif;font-size:16px;color:#4B5563;line-height:1.6}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .faq-card{background:#fff;border:1px solid #E4E9F2;border-radius:8px;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s}
 .faq-card.open{border-color:#FF6B00;box-shadow:0 1px 2px rgba(255,107,0,0.06),0 4px 12px rgba(255,107,0,0.08)}
 .faq-card-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:none;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:16px;font-weight:500;color:#0B1F3A;text-align:left;gap:12px;transition:background 0.2s}
@@ -531,17 +536,23 @@ p{color:#4B5563;font-size:1.0625rem;line-height:1.7}
 .faq-card.open .faq-card-answer{grid-template-rows:1fr;padding:0 20px 20px}
 .faq-card-answer > *{overflow:hidden}
 .faq-card-answer p{font-family:'Outfit',sans-serif;font-size:15px;color:#4B5563;line-height:1.7}
-.faq-footer{margin-top:24px;padding-top:20px;border-top:1px solid #E1E7F2;text-align:center}
+.faq-footer{grid-column:1/-1;margin-top:8px;padding-top:20px;border-top:1px solid #E1E7F2;text-align:center}
 .faq-footer p{font-family:'Outfit',sans-serif;font-size:14px;color:#4B5563}
 .faq-footer a{color:#C2410C;font-weight:500;text-decoration:underline}
 .faq-footer a:hover{color:#92400e}
 @media(max-width:768px){
-  .faq-section{padding:48px 0}
-  .faq-wrapper{grid-template-columns:1fr;gap:32px;padding:32px 24px}
-  .faq-left p{max-width:100%}
+.faq-section{padding:48px 0}
+.faq-beam-wrapper{padding:32px 24px}
+.faq-grid{grid-template-columns:1fr}
+.faq-head p{max-width:100%}
+}
+@media(max-width:480px){
+.faq-beam-wrapper{padding:24px 16px}
+
+
 }
 
-/* ── CONTACT / FORM ── */
+/* ── CONTACT / FORM ──*/
 .contact-section{background:#fff;padding:64px 0}
 .contact-wrapper{display:grid;grid-template-columns:1fr 1fr}
 
@@ -648,7 +659,7 @@ section[id]{scroll-margin-top:90px}
   .hero-stats{grid-template-columns:1fr;gap:8px;margin-top:20px}
   .section{padding:48px 0}
   .section-hero{padding:80px 0 56px}
-  .section-title h2,.about-wrap h2,.process-section h2,.faq-left h2,.contact-left h2{font-size:clamp(20px,7vw,28px)}
+  .section-title h2,.about-wrap h2,.process-section h2,.faq-head h2,.contact-left h2{font-size:clamp(20px,7vw,28px)}
   .problem-card,.solution-card{padding:20px 16px}
   .testi-card{padding:20px 16px}
   .pricing-card{padding:24px 18px}
@@ -656,9 +667,9 @@ section[id]{scroll-margin-top:90px}
   .contact-wrapper{padding:0}
   .contact-left,.contact-form-wrap{padding:28px 20px}
   .testi-cell{min-height:180px}
-  .faq-wrapper{padding:24px 16px}
-  .faq-card-btn{font-size:15px;padding:14px 16px}
-  .faq-card-answer p{font-size:14px}
+  
+  
+  
 }
 </style>
 </head>
@@ -731,9 +742,7 @@ section[id]{scroll-margin-top:90px}
       </div>
     </div>
   </div>
-</section>
-
-<!-- ══ PROBLEME ══ -->
+</section>-- ══ PROBLEME ══ -->
 <section class="section section-light" id="probleme">
   <div class="container">
     <div class="section-title">
@@ -1239,12 +1248,12 @@ section[id]{scroll-margin-top:90px}
 <!-- ══ FAQ ══ -->
 <section class="faq-section" id="faq">
   <div class="container">
-    <div class="faq-wrapper">
-      <div class="faq-left">
+    <div class="faq-beam-wrapper">
+      <div class="faq-head">
         <h2>Questions fréquentes</h2>
         <p>Vous avez des questions ? Nous avons les réponses.</p>
       </div>
-      <div class="faq-right">
+      <div class="faq-grid">
         <div class="faq-card">
           <button type="button" class="faq-card-btn">
             <span>Je n'ai pas de nom de domaine ni d'hébergement, c'est un problème ?</span>
