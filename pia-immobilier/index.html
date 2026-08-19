@@ -202,7 +202,19 @@ p{color:#4B5563;font-size:1.0625rem;line-height:1.7}
 .problem-card::after{content:"";position:absolute;top:0;left:50%;width:14px;height:14px;border-radius:50%;background:#C2410C;transform:translate(-50%,-55%);box-shadow:0 2px 4px rgba(0,0,0,0.28),inset 0 -1px 2px rgba(0,0,0,0.2);pointer-events:none}
 
 /* ── SOLUTION GRID ── */
-.solution-grid{display:grid;grid-template-columns:1fr;gap:24px}
+.solution-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.solution-card{display:flex;flex-direction:column;align-items:center;text-align:center;min-height:220px;justify-content:flex-start;opacity:0;transform:translateY(24px);animation:solCardIn 0.5s ease forwards}
+.solution-card:nth-child(1){animation-delay:0s}
+.solution-card:nth-child(2){animation-delay:0.08s}
+.solution-card:nth-child(3){animation-delay:0.16s}
+.solution-card:nth-child(4){animation-delay:0.24s}
+.solution-card:nth-child(5){animation-delay:0.32s}
+.solution-card:nth-child(6){animation-delay:0.4s}
+.solution-card:nth-child(7){animation-delay:0.48s}
+.solution-card:nth-child(8){animation-delay:0.56s}
+@keyframes solCardIn{to{opacity:1;transform:translateY(0)}}
+@media(max-width:1024px){.solution-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.solution-grid{grid-template-columns:1fr}}
 .solution-card{background:#fff;border-radius:8px;padding:24px;box-shadow:0 1px 2px rgba(0,0,0,0.04),0 4px 16px rgba(0,0,0,0.04);transition:transform 0.3s ease,box-shadow 0.3s ease}
 .solution-card:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.08)}
 .solution-card .icon-circle{width:48px;height:48px;background:#EEF3FF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;transition:background 0.3s ease}
@@ -799,42 +811,42 @@ section[id]{scroll-margin-top:90px}
       <div class="solution-card">
         <div class="icon-circle"><i class="fa-regular fa-compass"></i></div>
         <h3>Génération de leads</h3>
-        <p>Formulaires intelligents, estimation de bien assistée par IA, prise de RDV. Vos visiteurs deviennent des contacts qualifiés — en plus de ceux de vos portails.</p>
+        <p>Estimation IA, formulaires intelligents et prise de RDV — vos visiteurs deviennent des contacts qualifiés.</p>
       </div>
       <div class="solution-card">
         <div class="icon-circle"><i class="fa-solid fa-robot"></i></div>
         <h3>Assistant IA 24/7</h3>
-        <p>Un chatbot propulsé par IA qualifie vos leads et répond aux questions courantes, même la nuit — avant que vous ne décrochiez. Il passe le relais sur WhatsApp quand c'est nécessaire.</p>
+        <p>Un chatbot IA qualifie vos leads et répond 24/7 — il passe le relais sur WhatsApp si besoin.</p>
       </div>
       <div class="solution-card">
         <div class="icon-circle"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
         <h3>Rédaction d'annonces par IA</h3>
-        <p>À partir de vos photos et de vos caractéristiques, l'IA rédige une première version de l'annonce : accroche, description, points forts. Vous relisez, ajustez, publiez.</p>
+        <p>L'IA rédige l'annonce à partir de vos photos et caractéristiques — vous relisez, ajustez, publiez.</p>
       </div>
       <div class="solution-card">
         <div class="icon-circle"><i class="fa-regular fa-eye"></i></div>
         <h3>Optimisé pour Google</h3>
-        <p>SEO technique, balises sémantiques, vitesse. Vos clients vous trouvent sur Google sans payer de pubs chaque mois.</p>
+        <p>SEO technique et vitesse — vos clients vous trouvent sur Google sans pub payante.</p>
       </div>
       <div class="solution-card">
         <div class="icon-circle"><i class="fa-regular fa-pen-to-square"></i></div>
         <h3>Admin autonome</h3>
-        <p>Un back-office simple : ajoutez une annonce, modifiez un prix ou un texte, changez les photos, dépubliez un bien vendu — en quelques clics, sans coder et sans repasser par nous.</p>
+        <p>Ajoutez, modifiez, dépubliez en quelques clics — sans coder, sans repasser par nous.</p>
       </div>
       <div class="solution-card">
         <div class="icon-circle"><i class="fa-regular fa-comment-dots"></i></div>
         <h3>Chat &amp; prise de RDV</h3>
-        <p>WhatsApp intégré, chat en direct assisté par IA, calendrier de réservation. Vos clients vous contactent en un clic — même la nuit.</p>
+        <p>WhatsApp, chat IA et calendrier de RDV — vos clients vous contactent en un clic.</p>
       </div>
       <div class="solution-card">
         <div class="icon-circle"><i class="fa-solid fa-rocket"></i></div>
         <h3>Rapide &amp; sécurisé</h3>
-        <p>Pagespeed &gt;80, SSL, sauvegardes automatiques. Un site fiable qui inspire confiance et ne fait pas fuir vos visiteurs.</p>
+        <p>Pagespeed &gt;80, SSL, sauvegardes — un site rapide qui inspire confiance.</p>
       </div>
       <div class="solution-card">
         <div class="icon-circle"><i class="fa-regular fa-circle-question"></i></div>
         <h3>Assistance 30 jours</h3>
-        <p>On ne vous lâche pas après la mise en ligne. Formation, retouches, questions — on est là. Ensuite, vous êtes autonome.</p>
+        <p>Formation, retouches, questions — on est là après la mise en ligne. Ensuite, vous êtes autonome.</p>
       </div>
     </div>
     <div style="text-align:center;margin-top:40px">
